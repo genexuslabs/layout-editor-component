@@ -1,0 +1,70 @@
+{
+  "name": "@genexus/layout-editor-component",
+  "version": "0.0.1",
+  "description": "GeneXus Layout Editor",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "docs": "stencil build --dev --docs",
+    "lint": "npm run tslint",
+    "precommit": "pretty-quick --staged && npm run lint",
+    "pretty-quick": "pretty-quick",
+    "start": "stencil build --dev --watch --serve",
+    "start.es5": "stencil build --dev --watch --serve --es5",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "tslint": "tslint --project . -e \"**/*.spec.ts\"",
+    "validate": "npm run lint && npm run test && npm run build",
+    "validate.ci": "npm run lint && npm run test && npm run build --max-workers 1 --debug"
+  },
+  "dependencies": {
+    "@genexus/web-controls-library": "0.0.29"
+  },
+  "devDependencies": {
+    "@stencil/core": "^0.13.2",
+    "@stencil/sass": "0.0.5",
+    "@types/jest": "23.3.3",
+    "@types/puppeteer": "1.6.0",
+    "husky": "^0.14.3",
+    "jest": "23.5.0",
+    "jest-environment-node": "23.4.0",
+    "pixelmatch": "4.0.2",
+    "prettier": "^1.11.1",
+    "pretty-quick": "^1.4.1",
+    "puppeteer": "1.7.0",
+    "sass-lint": "^1.12.1",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-eslint-rules": "^5.3.1",
+    "typescript": "^2.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genexuslabs/layout-editor-component.git"
+  },
+  "author": "GeneXus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/genexuslabs/layout-editor-component"
+  },
+  "homepage": "https://github.com/genexuslabs/layout-editor-component",
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx"
+    ]
+  }
+}
