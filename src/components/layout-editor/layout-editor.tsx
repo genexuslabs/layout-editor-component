@@ -18,6 +18,7 @@ import {
   getDropTargetData,
   isEmptyContainerDrop
 } from "./layout-editor-helpers";
+// tslint:disable-next-line
 import { IComponent } from "@genexus/web-controls-library/dist/types/components/common/interfaces";
 // The following import must be commented until Stencil issue regarding SASS @imports
 // of imported components and the SASS Stencil plugin is solved.

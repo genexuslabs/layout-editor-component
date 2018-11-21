@@ -1,4 +1,5 @@
 import { Component, Element } from "@stencil/core";
+// tslint:disable-next-line
 import { IComponent } from "@genexus/web-controls-library/dist/types/components/common/interfaces";
 
 @Component({
