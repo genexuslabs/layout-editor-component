@@ -508,7 +508,8 @@ export class LayoutEditor {
           this.handleDelete();
           break;
         case " ":
-          this.handleSelection(event.target as HTMLElement, event.ctrlKey);
+          const target = event.target as HTMLElement;
+          this.handleSelection(target.firstElementChild as HTMLElement, event.ctrlKey);
           event.preventDefault();
           break;
       }
