@@ -197,6 +197,7 @@ export class LayoutEditor {
 
     this.element.addEventListener("keydown", this.handleKeyDown.bind(this));
     this.element.addEventListener("click", this.handleClick.bind(this));
+    this.element.addEventListener("contextmenu", this.handleClick.bind(this));
   }
 
   private initDragAndDrop() {
