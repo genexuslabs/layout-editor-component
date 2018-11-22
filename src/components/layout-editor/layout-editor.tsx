@@ -3,6 +3,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  Listen,
   Prop,
   Watch
 } from "@stencil/core";
@@ -41,6 +42,13 @@ export class LayoutEditor {
    */
   @Prop({ mutable: true })
   selectedControls: string[] = [];
+
+  @Watch("selectedControls")
+  watchSelectedControls() {
+    this.controlSelected.emit({
+      controls: this.selectedControls
+    });
+  }
 
   /**
    * Fired when a control is moved inside the layout editor to a new location
@@ -194,10 +202,6 @@ export class LayoutEditor {
   componentDidLoad() {
     this.initDragAndDrop();
     this.setControlsDraggable();
-
-    this.element.addEventListener("keydown", this.handleKeyDown.bind(this));
-    this.element.addEventListener("click", this.handleClick.bind(this));
-    this.element.addEventListener("contextmenu", this.handleClick.bind(this));
   }
 
   private initDragAndDrop() {
@@ -499,30 +503,42 @@ export class LayoutEditor {
     return this.ghostElement;
   }
 
-  private handleKeyDown(event: KeyboardEvent) {
-    const target = event.target as HTMLElement;
-    const { cellId } = getCellData(target);
-    if (cellId) {
-      switch (event.key) {
-        case "Delete":
-          this.handleDelete();
-          break;
-        case " ":
-          const target = event.target as HTMLElement;
-          this.handleSelection(target.firstElementChild as HTMLElement, event.ctrlKey);
-          event.preventDefault();
-          break;
-      }
+  componentWillUpdate() {
+    this.restoreAfterDragDrop();
+  }
+
+  componentDidUpdate() {
+    this.setControlsDraggable();
+  }
+
+  private restoreAfterDragDrop() {
+    this.removeTransitElement();
+    this.removeGhostElement();
+    this.removeAttributeFromElements("data-gx-le-active-target");
+    this.removeAttributeFromElements("data-gx-le-dragged");
+  }
+
+  private removeAttributeFromElements(attributeName: string) {
+    const activeTargets = Array.from(
+      this.element.querySelectorAll(`[${attributeName}]`)
+    );
+    for (const target of activeTargets) {
+      target.removeAttribute(attributeName);
     }
   }
 
-  private handleDelete() {
-    this.controlRemoved.emit({
-      controls: this.selectedControls
+  private setControlsDraggable() {
+    this.getDropAreas().forEach((el: HTMLElement) => {
+      const controlElement = el.firstElementChild;
+      if (controlElement) {
+        controlElement.setAttribute("draggable", "true");
+      }
     });
   }
 
-  private handleClick(event: MouseEvent) {
+  @Listen("click")
+  @Listen("contextmenu")
+  handleClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     this.handleSelection(target, event.ctrlKey);
     const selCell = findParentCell(target);
@@ -563,36 +579,27 @@ export class LayoutEditor {
       : [selectedControlId];
   }
 
-  componentWillUpdate() {
-    this.restoreAfterDragDrop();
-  }
-
-  componentDidUpdate() {
-    this.setControlsDraggable();
-  }
-
-  private restoreAfterDragDrop() {
-    this.removeTransitElement();
-    this.removeGhostElement();
-    this.removeAttributeFromElements("data-gx-le-active-target");
-    this.removeAttributeFromElements("data-gx-le-dragged");
-  }
-
-  private removeAttributeFromElements(attributeName: string) {
-    const activeTargets = Array.from(
-      this.element.querySelectorAll(`[${attributeName}]`)
-    );
-    for (const target of activeTargets) {
-      target.removeAttribute(attributeName);
+  @Listen("keydown")
+  handleKeyDown(event: KeyboardEvent) {
+    const target = event.target as HTMLElement;
+    const { cellId } = getCellData(target);
+    if (cellId) {
+      switch (event.key) {
+        case "Delete":
+          this.handleDelete();
+          break;
+        case " ":
+          const target = event.target as HTMLElement;
+          this.handleSelection(target.firstElementChild as HTMLElement, event.ctrlKey);
+          event.preventDefault();
+          break;
+      }
     }
   }
 
-  private setControlsDraggable() {
-    this.getDropAreas().forEach((el: HTMLElement) => {
-      const controlElement = el.firstElementChild;
-      if (controlElement) {
-        controlElement.setAttribute("draggable", "true");
-      }
+  private handleDelete() {
+    this.controlRemoved.emit({
+      controls: this.selectedControls
     });
   }
 
@@ -620,13 +627,6 @@ export class LayoutEditor {
         </div>
       );
     }
-  }
-
-  @Watch("selectedControls")
-  watchSelectedControls() {
-    this.controlSelected.emit({
-      controls: this.selectedControls
-    });
   }
 }
 
