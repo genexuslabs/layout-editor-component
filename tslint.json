@@ -15,12 +15,7 @@
     "member-ordering": [
       true,
       {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
+        "order": ["static-field", "static-method", "instance-method"]
       }
     ],
     "new-parens": true,

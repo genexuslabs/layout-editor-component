@@ -589,7 +589,6 @@ export class LayoutEditor {
           this.handleDelete();
           break;
         case " ":
-          const target = event.target as HTMLElement;
           this.handleSelection(
             target.firstElementChild as HTMLElement,
             event.ctrlKey
