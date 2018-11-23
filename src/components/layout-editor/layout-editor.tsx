@@ -590,7 +590,10 @@ export class LayoutEditor {
           break;
         case " ":
           const target = event.target as HTMLElement;
-          this.handleSelection(target.firstElementChild as HTMLElement, event.ctrlKey);
+          this.handleSelection(
+            target.firstElementChild as HTMLElement,
+            event.ctrlKey
+          );
           event.preventDefault();
           break;
       }
@@ -601,6 +604,29 @@ export class LayoutEditor {
     this.controlRemoved.emit({
       controls: this.selectedControls
     });
+  }
+
+  @Listen("mouseover")
+  onMouseOver(event: MouseEvent) {
+    const cell = findParentCell(event.target as HTMLElement);
+    if (cell) {
+      this.clearHighglighting();
+      cell.setAttribute("data-gx-le-highlighted", "");
+    }
+  }
+
+  @Listen("mouseout")
+  onMouseOut() {
+    this.clearHighglighting();
+  }
+
+  private clearHighglighting() {
+    const highlightedElement = this.element.querySelector(
+      "[data-gx-le-highlighted]"
+    );
+    if (highlightedElement) {
+      highlightedElement.removeAttribute("data-gx-le-highlighted");
+    }
   }
 
   render() {
