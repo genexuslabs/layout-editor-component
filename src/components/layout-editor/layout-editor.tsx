@@ -605,7 +605,7 @@ export class LayoutEditor {
     });
   }
 
-  @Listen("mouseover")
+  @Listen("mouseover", { passive: true })
   onMouseOver(event: MouseEvent) {
     const cell = findParentCell(event.target as HTMLElement);
     if (cell) {
@@ -614,7 +614,7 @@ export class LayoutEditor {
     }
   }
 
-  @Listen("mouseout")
+  @Listen("mouseout", { passive: true })
   onMouseOut() {
     this.clearHighglighting();
   }
