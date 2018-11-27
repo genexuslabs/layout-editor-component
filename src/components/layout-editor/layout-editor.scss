@@ -277,6 +277,11 @@
     $class: "%default-field",
     $label: "%default-field-label"
   );
+
+  [data-gx-le-responsive-table-cell] > [data-gx-le-container],
+  [data-gx-le-flex-table] > gx-layout-editor-placeholder {
+    flex-grow: 1;
+  }
 }
 
 gx-layout-editor {
