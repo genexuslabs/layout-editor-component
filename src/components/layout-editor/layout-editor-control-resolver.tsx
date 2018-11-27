@@ -67,11 +67,7 @@ export function isCellSelected(cell, context: IResolverContext): boolean {
 }
 
 function findChildControl(cell): any {
-  const resolver = findResolverByType(cell.childControlType);
-  if (!resolver) {
-    return null;
-  }
-  return cell[resolver.type];
+  return cell[cell.childControlType];
 }
 
 interface IResolverMapEntry {
