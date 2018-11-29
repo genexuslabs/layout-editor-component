@@ -138,6 +138,7 @@
     &[data-gx-le-active-target][data-gx-le-active-target="left"],
     &[data-gx-le-active-target][data-gx-le-active-target="right"] {
       [data-gx-le-transit-element] {
+        top: 0;
         width: 0px;
         height: 100%;
         padding-left: var(--gx-le-table-placeholder-width);
@@ -281,6 +282,22 @@
   }
 }
 
+@mixin simple-grid-customization {
+  [data-gx-le-simple-grid] {
+    td[data-gx-le-drop-area] {
+      min-height: 1px;
+
+      .form-group {
+        margin-bottom: 0;
+      }
+    }
+
+    table[data-gx-le-container] {
+      min-height: 1px;
+    }
+  }
+}
+
 @mixin controls-customization {
   %default-field {
     color: var(--gx-le-form-field-color);
@@ -298,6 +315,8 @@
   [data-gx-le-flex-table] > gx-layout-editor-placeholder {
     flex-grow: 1;
   }
+
+  @include simple-grid-customization();
 }
 
 gx-layout-editor {
