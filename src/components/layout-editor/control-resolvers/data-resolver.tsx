@@ -16,6 +16,7 @@ export default function dataResolver({ data }) {
         disabled={data["@enabled"] === "False"}
         readonly
         value={data["@controlName"]}
+        class={data["@class"]}
       />
     </gx-form-field>
   );
