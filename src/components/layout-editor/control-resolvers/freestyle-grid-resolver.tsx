@@ -10,7 +10,7 @@ export default function freestyleGridResolver(
 ) {
   return (
     <div
-      css-class={grid["@class"]}
+      class={grid["@class"]}
       data-gx-le-control-id={grid["@id"]}
       data-gx-le-control-header-bar
       data-gx-le-selected={isCellSelected(grid, context).toString()}

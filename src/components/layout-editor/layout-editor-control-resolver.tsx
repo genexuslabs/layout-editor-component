@@ -4,6 +4,7 @@ import dataResolver from "./control-resolvers/data-resolver";
 import defaultResolver from "./control-resolvers/default-resolver";
 import freestyleGridResolver from "./control-resolvers/freestyle-grid-resolver";
 import imageResolver from "./control-resolvers/image-resolver";
+import simpleGridResolver from "./control-resolvers/simple-grid-resolver";
 import tableResolver from "./control-resolvers/table-resolver";
 import textblockResolver from "./control-resolvers/textblock-resolver";
 
@@ -31,6 +32,10 @@ const resolversMap: IResolverMapEntry[] = [
   {
     resolver: textblockResolver,
     type: "textblock"
+  },
+  {
+    resolver: simpleGridResolver,
+    type: "simplegrid"
   },
   {
     resolver: tableResolver,
