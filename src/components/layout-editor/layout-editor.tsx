@@ -582,20 +582,21 @@ export class LayoutEditor {
   @Listen("keydown")
   handleKeyDown(event: KeyboardEvent) {
     const target = event.target as HTMLElement;
-    const { cellId } = getCellData(target);
-    if (cellId) {
-      switch (event.key) {
-        case "Delete":
-          this.handleDelete();
-          break;
-        case " ":
+    switch (event.key) {
+      case "Delete":
+        this.handleDelete();
+        break;
+      case " ":
+        const { cellId } = getCellData(target);
+        const controlId = getControlId(target);
+        if (cellId || controlId) {
           this.handleSelection(
-            target.firstElementChild as HTMLElement,
+            cellId ? (target.firstElementChild as HTMLElement) : target,
             event.ctrlKey
           );
           event.preventDefault();
-          break;
-      }
+        }
+        break;
     }
   }
 
