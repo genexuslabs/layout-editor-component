@@ -13,12 +13,10 @@ import {
 } from "./layout-editor-control-resolver";
 import {
   findParentCell,
-  findValidDropTarget,
   getCellData,
-  getControlId,
-  getDropTargetData,
-  isEmptyContainerDrop
+  getControlId
 } from "./layout-editor-helpers";
+import { LayoutEditorDragDrop } from "./layout-editor-drag-drop";
 // The following import must be commented until Stencil issue regarding SASS @imports
 // of imported components and the SASS Stencil plugin is solved.
 // Meanwhile the dependency is loaded manually
@@ -31,6 +29,8 @@ import {
 })
 export class LayoutEditor {
   @Element() element: HTMLElement;
+
+  dragDrop: LayoutEditorDragDrop;
 
   /**
    * The abstract form model object
@@ -194,346 +194,21 @@ export class LayoutEditor {
    */
   @Event() controlSelected: EventEmitter;
 
-  private transitElement: HTMLDivElement;
-  private dragLeaveTimeoutId: number;
-  private lastCellDragLeft: HTMLElement;
-  private ghostElement: HTMLDivElement;
-
   componentDidLoad() {
-    this.initDragAndDrop();
-    this.setControlsDraggable();
-  }
-
-  private initDragAndDrop() {
-    this.element.addEventListener(
-      "dragstart",
-      this.handleControlDragStart.bind(this)
+    this.dragDrop = new LayoutEditorDragDrop(
+      this.element as HTMLGxLayoutEditorElement,
+      this.moveCompleted,
+      this.controlAdded
     );
-
-    this.element.addEventListener(
-      "dragend",
-      this.handleControlDragEnd.bind(this)
-    );
-
-    this.element.addEventListener(
-      "dragleave",
-      this.handleControlDragLeave.bind(this)
-    );
-
-    this.element.addEventListener("drop", this.handleControlDrop.bind(this));
-
-    this.element.addEventListener(
-      "dragover",
-      this.handleControlOver.bind(this)
-    );
-  }
-
-  private handleControlDragStart(event: DragEvent) {
-    const dt = event.dataTransfer;
-    const evtTarget = event.target as HTMLElement;
-    const cell = findParentCell(evtTarget);
-    cell.setAttribute("data-gx-le-dragged", "true");
-    const { cellId } = getCellData(cell);
-    dt.setData("text/plain", `gx-le-move-operation,${cellId}`);
-
-    const ghost = this.createGhostElement(evtTarget);
-    event.dataTransfer.setDragImage(ghost, 0, 0);
-
-    dt.dropEffect = "copy";
-  }
-
-  private handleControlDragEnd() {
-    this.element.removeAttribute("data-gx-le-dragging");
-    this.restoreAfterDragDrop();
-  }
-
-  private handleControlDragLeave(event: DragEvent) {
-    const evtTarget = event.target as HTMLElement;
-    const targetCell = findValidDropTarget(evtTarget);
-    if (!targetCell) {
-      return;
-    }
-
-    this.lastCellDragLeft = targetCell;
-
-    this.dragLeaveTimeoutId = window.setTimeout(() => {
-      this.clearActiveTarget(targetCell);
-      this.removeTransitElement();
-    }, 50);
-  }
-
-  private removeTransitElement() {
-    const transitElement = this.getTransitElement();
-    if (transitElement.parentElement) {
-      transitElement.parentElement.removeChild(transitElement);
-    }
-  }
-
-  private clearActiveTarget(targetCell: HTMLElement) {
-    targetCell.removeAttribute("data-gx-le-active-target");
-  }
-
-  private handleControlOver(event: DragEvent) {
-    this.element.setAttribute("data-gx-le-dragging", "");
-
-    const evtTarget = event.target as HTMLElement;
-    const targetCell = findValidDropTarget(evtTarget);
-    if (!targetCell) {
-      return;
-    }
-
-    if (targetCell.matches("[data-gx-le-dragged] [data-gx-le-drop-area]")) {
-      return;
-    }
-
-    if (targetCell.matches("[data-gx-le-dragged] [data-gx-le-placeholder]")) {
-      return;
-    }
-
-    event.preventDefault();
-
-    if (this.lastCellDragLeft === targetCell) {
-      window.clearTimeout(this.dragLeaveTimeoutId);
-    }
-
-    const transitElement = this.getTransitElement();
-
-    if (
-      this.getTransitElementPosition(targetCell, event) === DropPosition.After
-    ) {
-      targetCell.appendChild(transitElement);
-    } else {
-      targetCell.insertBefore(transitElement, targetCell.firstElementChild);
-    }
-
-    const { dropArea: direction } = getCellData(targetCell);
-
-    const position =
-      targetCell.children.length === 1
-        ? "empty"
-        : transitElement.nextElementSibling
-        ? direction === "vertical"
-          ? "top"
-          : "left"
-        : direction === "vertical"
-        ? "bottom"
-        : "right";
-    targetCell.setAttribute("data-gx-le-active-target", position);
-  }
-
-  private getTransitElementPosition(
-    targetCell: HTMLElement,
-    event: DragEvent
-  ): DropPosition {
-    const boundingRect = targetCell.getBoundingClientRect();
-    const boundingRectWidth = boundingRect.right - boundingRect.left;
-    return event.clientX > boundingRect.left + boundingRectWidth / 2
-      ? DropPosition.After
-      : DropPosition.Before;
-  }
-
-  private getTransitElement(): HTMLDivElement {
-    if (!this.transitElement) {
-      this.transitElement = document.createElement("div");
-      this.transitElement.setAttribute("data-gx-le-transit-element", "");
-    }
-
-    return this.transitElement;
-  }
-
-  private handleControlDrop(event: DragEvent) {
-    const targetCell = findValidDropTarget(event.target as HTMLElement);
-
-    if (!targetCell) {
-      return;
-    }
-
-    event.preventDefault();
-
-    const eventData = this.getEventDataForDropAction(
-      targetCell,
-      this.transitElement
-    );
-
-    const {
-      sourceCellId,
-      kbObjectName,
-      elementType
-    } = this.parseDropEventDataTransfer(event);
-
-    if (sourceCellId) {
-      const sourceCell = this.element.querySelector(
-        `[data-gx-le-cell-id="${sourceCellId}"]`
-      ) as HTMLElement;
-
-      if (sourceCell) {
-        const { rowId: sourceRowId } = getCellData(sourceCell);
-        this.emitDropEvent(this.moveCompleted, {
-          ...eventData,
-          sourceCellId,
-          sourceRowId
-        });
-      }
-    } else {
-      if (kbObjectName) {
-        this.emitDropEvent(this.controlAdded, {
-          ...eventData,
-          kbObjectName
-        });
-      } else if (elementType) {
-        this.emitDropEvent(this.controlAdded, {
-          ...eventData,
-          elementType
-        });
-      }
-    }
-  }
-
-  parseDropEventDataTransfer(event: DragEvent): any {
-    const evtDataTransfer = event.dataTransfer.getData("text/plain");
-    const [dataTransferFirst, dataTransferSecond] = evtDataTransfer.split(",");
-
-    if (dataTransferFirst === "gx-le-move-operation") {
-      return {
-        sourceCellId: dataTransferSecond
-      };
-    } else {
-      if (dataTransferSecond === undefined) {
-        return {
-          kbObjectName: dataTransferFirst
-        };
-      } else if (
-        dataTransferSecond !== undefined &&
-        dataTransferFirst === "GX_DASHBOARD_ADDELEMENT"
-      ) {
-        return {
-          elementType: dataTransferSecond
-        };
-      }
-    }
-  }
-
-  private getEventDataForDropAction(
-    targetCell: HTMLElement,
-    droppedEl: HTMLElement
-  ) {
-    let eventData;
-
-    const { placeholderType, nextRowId } = getDropTargetData(targetCell);
-    if (placeholderType === "row") {
-      if (isEmptyContainerDrop(targetCell)) {
-        // Dropped on an empty container
-        eventData = {
-          containerId: getControlId(targetCell.parentElement)
-        };
-      } else {
-        // Dropped on a new row
-        const beforeRowId = nextRowId;
-        if (beforeRowId) {
-          eventData = {
-            beforeRowId
-          };
-        } else {
-          eventData = {
-            containerId: getControlId(targetCell.parentElement)
-          };
-        }
-      }
-    } else {
-      const { rowId: targetRowId } = getCellData(targetCell);
-      // Dropped on an existing row
-      if (targetCell.children.length === 1) {
-        // Dropped on an empty cell
-        const { cellId: targetCellId } = getCellData(targetCell);
-        eventData = {
-          targetCellId
-        };
-      } else {
-        // Dropped on a non-empty cell
-        let beforeCellId = null;
-        if (droppedEl.nextElementSibling) {
-          beforeCellId = getCellData(targetCell).cellId;
-        } else {
-          if (targetCell.nextElementSibling) {
-            const nextElementData = getCellData(
-              targetCell.nextElementSibling as HTMLElement
-            );
-            if (targetRowId === nextElementData.rowId) {
-              beforeCellId = nextElementData.cellId;
-            }
-          }
-        }
-        eventData = {
-          beforeCellId,
-          targetRowId
-        };
-      }
-    }
-    return eventData;
-  }
-
-  private emitDropEvent(emitter: EventEmitter, data: any) {
-    this.restoreAfterDragDrop();
-    emitter.emit.call(this, data);
-  }
-
-  private getDropAreas() {
-    return Array.from(
-      this.element.querySelectorAll(
-        "[data-gx-le-drop-area], [data-gx-le-placeholder]"
-      )
-    );
-  }
-
-  private createGhostElement(fromElement: HTMLElement) {
-    this.ghostElement = document.createElement("div");
-    this.ghostElement.appendChild(fromElement.cloneNode(true));
-    this.ghostElement.style.position = "fixed";
-    this.ghostElement.style.top = "-100vh";
-    this.ghostElement.style.left = "-100vh";
-    document.body.appendChild(this.ghostElement);
-    return this.ghostElement;
-  }
-
-  private removeGhostElement(): any {
-    if (this.ghostElement) {
-      this.ghostElement.parentElement.removeChild(this.ghostElement);
-      this.ghostElement = null;
-    }
-    return this.ghostElement;
+    this.dragDrop.initialize();
   }
 
   componentWillUpdate() {
-    this.restoreAfterDragDrop();
+    this.dragDrop.restoreAfterDragDrop();
   }
 
   componentDidUpdate() {
-    this.setControlsDraggable();
-  }
-
-  private restoreAfterDragDrop() {
-    this.removeTransitElement();
-    this.removeGhostElement();
-    this.removeAttributeFromElements("data-gx-le-active-target");
-    this.removeAttributeFromElements("data-gx-le-dragged");
-  }
-
-  private removeAttributeFromElements(attributeName: string) {
-    const activeTargets = Array.from(
-      this.element.querySelectorAll(`[${attributeName}]`)
-    );
-    for (const target of activeTargets) {
-      target.removeAttribute(attributeName);
-    }
-  }
-
-  private setControlsDraggable() {
-    this.getDropAreas().forEach((el: HTMLElement) => {
-      const controlElement = el.firstElementChild;
-      if (controlElement) {
-        controlElement.setAttribute("draggable", "true");
-      }
-    });
+    this.dragDrop.update();
   }
 
   @Listen("click")
@@ -654,9 +329,4 @@ export class LayoutEditor {
       );
     }
   }
-}
-
-enum DropPosition {
-  Before = "before",
-  After = "after"
 }
