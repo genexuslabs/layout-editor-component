@@ -1,5 +1,6 @@
 import {
   findParentCell,
+  findParentContainer,
   findValidDropTarget,
   getCellData,
   getControlId,
@@ -52,7 +53,11 @@ export class LayoutEditorDragDrop {
     const cell = findParentCell(evtTarget);
     cell.setAttribute("data-gx-le-dragged", "true");
     const { cellId } = getCellData(cell);
-    dt.setData("text/plain", `gx-le-move-operation,${cellId}`);
+    const controlId = getControlId(cell.firstElementChild);
+    dt.setData(
+      "text/plain",
+      `${MOVE_OPERATION_NAME},${cellId || ""},${controlId || ""}`
+    );
 
     const ghost = this.createGhostElement(evtTarget);
     event.dataTransfer.setDragImage(ghost, 0, 0);
@@ -176,7 +181,8 @@ export class LayoutEditorDragDrop {
     const {
       sourceCellId,
       kbObjectName,
-      elementType
+      elementType,
+      controlId
     } = this.parseDropEventDataTransfer(event);
 
     if (sourceCellId) {
@@ -187,32 +193,45 @@ export class LayoutEditorDragDrop {
       if (sourceCell) {
         const { rowId: sourceRowId } = getCellData(sourceCell);
         this.emitDropEvent(this.moveCompleted, {
+          controlId,
           ...eventData,
           sourceCellId,
           sourceRowId
         });
       }
     } else {
-      if (kbObjectName) {
-        this.emitDropEvent(this.controlAdded, {
+      if (controlId) {
+        this.emitDropEvent(this.moveCompleted, {
           ...eventData,
-          kbObjectName
+          controlId
         });
-      } else if (elementType) {
-        this.emitDropEvent(this.controlAdded, {
-          ...eventData,
-          elementType
-        });
+      } else {
+        if (kbObjectName) {
+          this.emitDropEvent(this.controlAdded, {
+            ...eventData,
+            kbObjectName
+          });
+        } else if (elementType) {
+          this.emitDropEvent(this.controlAdded, {
+            ...eventData,
+            elementType
+          });
+        }
       }
     }
   }
 
   parseDropEventDataTransfer(event: DragEvent): any {
     const evtDataTransfer = event.dataTransfer.getData("text/plain");
-    const [dataTransferFirst, dataTransferSecond] = evtDataTransfer.split(",");
+    const [
+      dataTransferFirst,
+      dataTransferSecond,
+      dataTransferThird
+    ] = evtDataTransfer.split(",");
 
     if (dataTransferFirst === MOVE_OPERATION_NAME) {
       return {
+        controlId: dataTransferThird,
         sourceCellId: dataTransferSecond
       };
     } else {
@@ -267,24 +286,35 @@ export class LayoutEditorDragDrop {
           targetCellId
         };
       } else {
-        // Dropped on a non-empty cell
-        let beforeCellId = null;
-        if (droppedEl.nextElementSibling) {
-          beforeCellId = getCellData(targetCell).cellId;
+        const targetControlId = getControlId(targetCell);
+        if (targetControlId) {
+          // Dropped on a control (this happens when the container doesn't handle rows nor cells)
+          eventData = {
+            containerId: getControlId(findParentContainer(targetCell))
+          };
+          if (droppedEl.nextElementSibling) {
+            eventData.beforeControlId = targetControlId;
+          }
         } else {
-          if (targetCell.nextElementSibling) {
-            const nextElementData = getCellData(
-              targetCell.nextElementSibling as HTMLElement
-            );
-            if (targetRowId === nextElementData.rowId) {
-              beforeCellId = nextElementData.cellId;
+          // Dropped on a non-empty cell
+          let beforeCellId = null;
+          if (droppedEl.nextElementSibling) {
+            beforeCellId = getCellData(targetCell).cellId;
+          } else {
+            if (targetCell.nextElementSibling) {
+              const nextElementData = getCellData(
+                targetCell.nextElementSibling
+              );
+              if (targetRowId === nextElementData.rowId) {
+                beforeCellId = nextElementData.cellId;
+              }
             }
           }
+          eventData = {
+            beforeCellId,
+            targetRowId
+          };
         }
-        eventData = {
-          beforeCellId,
-          targetRowId
-        };
       }
     }
     return eventData;

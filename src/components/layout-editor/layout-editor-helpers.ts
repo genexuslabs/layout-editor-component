@@ -28,7 +28,7 @@ export function findValidDropTarget(el: HTMLElement): HTMLElement {
   return findParentCell(el);
 }
 
-export function getCellData(el: HTMLElement): ICellData {
+export function getCellData(el: Element): ICellData {
   return {
     cellId: el.getAttribute("data-gx-le-cell-id"),
     dropArea: el.getAttribute("data-gx-le-drop-area"),
@@ -51,8 +51,22 @@ export function isEmptyContainerDrop(el: HTMLElement): boolean {
   );
 }
 
-export function getControlId(el: HTMLElement): string {
+export function getControlId(el: Element): string {
   return el.getAttribute("data-gx-le-control-id") || "";
+}
+
+export function findParentContainer(el: Element): Element {
+  const parentElement = el.parentElement;
+  if (!parentElement) {
+    return null;
+  }
+
+  const controlId = getControlId(parentElement);
+  if (controlId) {
+    return parentElement;
+  }
+
+  return findParentContainer(parentElement.parentElement);
 }
 
 interface ICellData {

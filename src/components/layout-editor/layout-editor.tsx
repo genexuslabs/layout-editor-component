@@ -55,20 +55,22 @@ export class LayoutEditor {
    *
    * An object containing information of the move operation is sent in the `detail` property of the event object
    *
-   * Regardless where the control was dropped, the detail object will contain information about the source row and the id of the dropped control:
+   * Regardless where the control was dropped, the detail object will contain information about the source row,
+   * the source cell (if available), and the id of the dropped control:
    *
    * | Property         | Details                                                                                                          |
    * | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
-   * | `sourceCellId`   | Identifier of the source cell                                                                                    |
-   * | `sourceRowId`    | Identifier of the source row                                                                                     |
+   * | `sourceCellId`   | Identifier of the source cell, if available                                                                      |
+   * | `sourceRowId`    | Identifier of the source row, if available                                                                       |
+   * | `controlId`      | Identifier of the control                                                                                        |
    *
-   * Depending on where the control was dropped, additional information will be provided and different properties will be set. There are four possible cases:
+   * Depending on where the control was dropped, additional information will be provided and different properties will be set. There are five possible cases:
    *
    * 1. Dropped on an empty container or on a new row that will be the last row of a container
    * 2. Dropped on a new row of a non empty container
    * 3. Dropped on an existing empty cell
    * 4. Dropped on an existing row
-   *
+   * 5. Dropped on a non empty container control that doesn't handle cells nor rows
    *
    * ###### 1. Dropped on an empty container or on a new row that will be the last row of a container
    *
@@ -94,6 +96,13 @@ export class LayoutEditor {
    * | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
    * | `beforeCellId`    | Identifier of the cell that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last cell. |
    * | `targetRowId`     | Identifier of the row where the control was dropped                                                                                         |
+   *
+   *  ###### 5. Dropped on a non empty container control that doesn't handle cells nor rows
+   *
+   * | Property          | Details                                                                                                                                           |
+   * | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+   * | `beforeControlId` | Identifier of the control that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last control. |
+   * | `containerId`     | Identifier of the container where the control was dropped                                                                                         |
    *
    */
   @Event() moveCompleted: EventEmitter;
@@ -139,7 +148,7 @@ export class LayoutEditor {
    * 2. Dropped on a new row of a non empty container
    * 3. Dropped on an existing empty cell
    * 4. Dropped on an existing row
-   *
+   * 5. Dropped on a non empty container control that doesn't handle cells nor rows
    *
    * ###### 1. Dropped on an empty container or on a new row that will be the last row of a container
    *
@@ -165,6 +174,13 @@ export class LayoutEditor {
    * | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
    * | `beforeCelllId`   | Identifier of the cell that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last cell. |
    * | `targetRowId`     | Identifier of the row where the control was dropped                                                                                         |
+   *
+   *  ###### 5. Dropped on a non empty container control that doesn't handle cells nor rows
+   *
+   * | Property          | Details                                                                                                                                           |
+   * | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+   * | `beforeControlId` | Identifier of the control that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last control. |
+   * | `containerId`     | Identifier of the container where the control was dropped                                                                                         |
    *
    *
    */
@@ -230,9 +246,7 @@ export class LayoutEditor {
       const selCell = findParentCell(target);
       if (selCell) {
         if (selCell.firstElementChild) {
-          selectedControlId = getControlId(
-            selCell.firstElementChild as HTMLElement
-          );
+          selectedControlId = getControlId(selCell.firstElementChild);
         }
 
         if (!selectedControlId) {
