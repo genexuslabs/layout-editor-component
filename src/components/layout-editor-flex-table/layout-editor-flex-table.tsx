@@ -1,15 +1,31 @@
+import { Component, Element, Prop } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
   isCellSelected
-} from "../layout-editor-control-resolver";
+} from "../layout-editor/layout-editor-control-resolver";
 
-export default function flexTableResolver(
-  { table },
-  context: IResolverContext
-) {
+@Component({
+  shadow: false,
+  styleUrl: "layout-editor-flex-table.scss",
+  tag: "gx-le-flex-table"
+})
+export class LayoutEditorFlexTable {
+  @Element() element: HTMLElement;
+
+  @Prop() context: IResolverContext;
+  @Prop() model: any;
+
+  render() {
+    return flexTableResolver(this.model, this.context);
+  }
+}
+
+function flexTableResolver({ table }, context: IResolverContext) {
   const modelRows = table.row
-    ? Array.isArray(table.row) ? table.row : [table.row]
+    ? Array.isArray(table.row)
+      ? table.row
+      : [table.row]
     : [];
   const isEmptyTable = modelRows.length === 0;
   const nonEmptyRows = modelRows.filter(

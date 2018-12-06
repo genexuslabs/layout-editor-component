@@ -1,40 +1,30 @@
-import actionResolver from "./control-resolvers/action-resolver";
-import componentResolver from "./control-resolvers/component-resolver";
-import dataResolver from "./control-resolvers/data-resolver";
-import defaultResolver from "./control-resolvers/default-resolver";
-import freestyleGridResolver from "./control-resolvers/freestyle-grid-resolver";
-import imageResolver from "./control-resolvers/image-resolver";
-import simpleGridResolver from "./control-resolvers/simple-grid-resolver";
-import tableResolver from "./control-resolvers/table-resolver";
-import textblockResolver from "./control-resolvers/textblock-resolver";
-
 const resolversMap: IResolverMapEntry[] = [
   {
-    resolver: actionResolver,
+    tag: "gx-le-action",
     type: "action"
   },
   {
-    resolver: componentResolver,
+    tag: "gx-le-component",
     type: "component"
   },
   {
-    resolver: dataResolver,
+    tag: "gx-le-data",
     type: "data"
   },
   {
-    resolver: freestyleGridResolver,
+    tag: "gx-le-freestyle-grid",
     type: "grid"
   },
   {
-    resolver: imageResolver,
+    tag: "gx-le-image",
     type: "image"
   },
   {
-    resolver: textblockResolver,
+    tag: "gx-le-textblock",
     type: "textblock"
   },
   {
-    resolver: simpleGridResolver,
+    tag: "gx-le-simple-grid",
     type: "simplegrid"
   },
   {
@@ -48,9 +38,14 @@ export function controlResolver(control, context: IResolverContext) {
     const resolverObj = findResolverByType(control.childControlType);
 
     if (resolverObj) {
-      return resolverObj.resolver(control, context);
+      if (resolverObj.resolver) {
+        return resolverObj.resolver(control, context);
+      } else {
+        const TagType = resolverObj.tag;
+        return <TagType model={control} context={context} />;
+      }
     } else {
-      return defaultResolver(control);
+      return <gx-le-default model={control} context={context} />;
     }
   }
   return null;
@@ -76,10 +71,22 @@ function findChildControl(cell): any {
 }
 
 interface IResolverMapEntry {
+  resolver?: (control: any, context?: IResolverContext) => void;
+  tag?: string;
   type: string;
-  resolver: (control: any, context?: IResolverContext) => void;
 }
 
 export interface IResolverContext {
   selectedControls: string[];
+}
+
+const tableComponentsMap = {
+  Flex: "gx-le-flex-table",
+  Responsive: "gx-le-responsive-table",
+  Tabular: "gx-le-tabular-table"
+};
+
+function tableResolver(cell, context) {
+  const TagType = tableComponentsMap[cell.table["@tableType"]];
+  return <TagType model={cell} context={context} />;
 }

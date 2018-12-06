@@ -1,15 +1,33 @@
+import { Component, Element, Prop } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
   isCellSelected
-} from "../layout-editor-control-resolver";
+} from "../layout-editor/layout-editor-control-resolver";
 
-export default function tabularTableResolver(
-  { table },
-  context: IResolverContext
-) {
+@Component({
+  shadow: false,
+  styleUrl: "layout-editor-tabular-table.scss",
+  tag: "gx-le-tabular-table"
+})
+export class LayoutEditorTabularTable {
+  @Element() element: HTMLElement;
+
+  @Prop() context: IResolverContext;
+  @Prop() model: any;
+
+  render() {
+    this.element.setAttribute("data-gx-le-control-id", this.model["@id"]);
+
+    return tabularTableResolver(this.model, this.context);
+  }
+}
+
+function tabularTableResolver({ table }, context: IResolverContext) {
   const modelRows = table.row
-    ? Array.isArray(table.row) ? table.row : [table.row]
+    ? Array.isArray(table.row)
+      ? table.row
+      : [table.row]
     : [];
 
   const isEmptyTable = modelRows.length === 0;
@@ -39,7 +57,6 @@ export default function tabularTableResolver(
       {...getTableStyle(rowsCount, maxCols)}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}
-      data-gx-le-control-id={table["@id"]}
     >
       {[...rows, ...renderEmptyRows(nonEmptyRows, maxCols)]}
     </gx-table>

@@ -6,9 +6,110 @@
 
 import "@stencil/core";
 
+import { IResolverContext } from "./components/layout-editor/layout-editor-control-resolver";
+
 export namespace Components {
+  interface GxLeAction {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeActionAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeComponent {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeComponentAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeData {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeDataAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeDefault {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeDefaultAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeFlexTable {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeFlexTableAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeFreestyleGrid {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeFreestyleGridAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeImage {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeImageAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
   interface GxLayoutEditorPlaceholder {}
   interface GxLayoutEditorPlaceholderAttributes extends StencilHTMLAttributes {}
+
+  interface GxLeResponsiveTable {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeResponsiveTableAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeSimpleGrid {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeSimpleGridAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeTabularTable {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeTabularTableAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
+
+  interface GxLeTextblock {
+    context: IResolverContext;
+    model: any;
+  }
+  interface GxLeTextblockAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: any;
+  }
 
   interface GxLayoutEditor {
     /**
@@ -50,14 +151,92 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    GxLeAction: Components.GxLeAction;
+    GxLeComponent: Components.GxLeComponent;
+    GxLeData: Components.GxLeData;
+    GxLeDefault: Components.GxLeDefault;
+    GxLeFlexTable: Components.GxLeFlexTable;
+    GxLeFreestyleGrid: Components.GxLeFreestyleGrid;
+    GxLeImage: Components.GxLeImage;
     GxLayoutEditorPlaceholder: Components.GxLayoutEditorPlaceholder;
+    GxLeResponsiveTable: Components.GxLeResponsiveTable;
+    GxLeSimpleGrid: Components.GxLeSimpleGrid;
+    GxLeTabularTable: Components.GxLeTabularTable;
+    GxLeTextblock: Components.GxLeTextblock;
     GxLayoutEditor: Components.GxLayoutEditor;
   }
 
   interface StencilIntrinsicElements {
+    "gx-le-action": Components.GxLeActionAttributes;
+    "gx-le-component": Components.GxLeComponentAttributes;
+    "gx-le-data": Components.GxLeDataAttributes;
+    "gx-le-default": Components.GxLeDefaultAttributes;
+    "gx-le-flex-table": Components.GxLeFlexTableAttributes;
+    "gx-le-freestyle-grid": Components.GxLeFreestyleGridAttributes;
+    "gx-le-image": Components.GxLeImageAttributes;
     "gx-layout-editor-placeholder": Components.GxLayoutEditorPlaceholderAttributes;
+    "gx-le-responsive-table": Components.GxLeResponsiveTableAttributes;
+    "gx-le-simple-grid": Components.GxLeSimpleGridAttributes;
+    "gx-le-tabular-table": Components.GxLeTabularTableAttributes;
+    "gx-le-textblock": Components.GxLeTextblockAttributes;
     "gx-layout-editor": Components.GxLayoutEditorAttributes;
   }
+
+  interface HTMLGxLeActionElement
+    extends Components.GxLeAction,
+      HTMLStencilElement {}
+  var HTMLGxLeActionElement: {
+    prototype: HTMLGxLeActionElement;
+    new (): HTMLGxLeActionElement;
+  };
+
+  interface HTMLGxLeComponentElement
+    extends Components.GxLeComponent,
+      HTMLStencilElement {}
+  var HTMLGxLeComponentElement: {
+    prototype: HTMLGxLeComponentElement;
+    new (): HTMLGxLeComponentElement;
+  };
+
+  interface HTMLGxLeDataElement
+    extends Components.GxLeData,
+      HTMLStencilElement {}
+  var HTMLGxLeDataElement: {
+    prototype: HTMLGxLeDataElement;
+    new (): HTMLGxLeDataElement;
+  };
+
+  interface HTMLGxLeDefaultElement
+    extends Components.GxLeDefault,
+      HTMLStencilElement {}
+  var HTMLGxLeDefaultElement: {
+    prototype: HTMLGxLeDefaultElement;
+    new (): HTMLGxLeDefaultElement;
+  };
+
+  interface HTMLGxLeFlexTableElement
+    extends Components.GxLeFlexTable,
+      HTMLStencilElement {}
+  var HTMLGxLeFlexTableElement: {
+    prototype: HTMLGxLeFlexTableElement;
+    new (): HTMLGxLeFlexTableElement;
+  };
+
+  interface HTMLGxLeFreestyleGridElement
+    extends Components.GxLeFreestyleGrid,
+      HTMLStencilElement {}
+  var HTMLGxLeFreestyleGridElement: {
+    prototype: HTMLGxLeFreestyleGridElement;
+    new (): HTMLGxLeFreestyleGridElement;
+  };
+
+  interface HTMLGxLeImageElement
+    extends Components.GxLeImage,
+      HTMLStencilElement {}
+  var HTMLGxLeImageElement: {
+    prototype: HTMLGxLeImageElement;
+    new (): HTMLGxLeImageElement;
+  };
 
   interface HTMLGxLayoutEditorPlaceholderElement
     extends Components.GxLayoutEditorPlaceholder,
@@ -65,6 +244,38 @@ declare global {
   var HTMLGxLayoutEditorPlaceholderElement: {
     prototype: HTMLGxLayoutEditorPlaceholderElement;
     new (): HTMLGxLayoutEditorPlaceholderElement;
+  };
+
+  interface HTMLGxLeResponsiveTableElement
+    extends Components.GxLeResponsiveTable,
+      HTMLStencilElement {}
+  var HTMLGxLeResponsiveTableElement: {
+    prototype: HTMLGxLeResponsiveTableElement;
+    new (): HTMLGxLeResponsiveTableElement;
+  };
+
+  interface HTMLGxLeSimpleGridElement
+    extends Components.GxLeSimpleGrid,
+      HTMLStencilElement {}
+  var HTMLGxLeSimpleGridElement: {
+    prototype: HTMLGxLeSimpleGridElement;
+    new (): HTMLGxLeSimpleGridElement;
+  };
+
+  interface HTMLGxLeTabularTableElement
+    extends Components.GxLeTabularTable,
+      HTMLStencilElement {}
+  var HTMLGxLeTabularTableElement: {
+    prototype: HTMLGxLeTabularTableElement;
+    new (): HTMLGxLeTabularTableElement;
+  };
+
+  interface HTMLGxLeTextblockElement
+    extends Components.GxLeTextblock,
+      HTMLStencilElement {}
+  var HTMLGxLeTextblockElement: {
+    prototype: HTMLGxLeTextblockElement;
+    new (): HTMLGxLeTextblockElement;
   };
 
   interface HTMLGxLayoutEditorElement
@@ -76,12 +287,34 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    "gx-le-action": HTMLGxLeActionElement;
+    "gx-le-component": HTMLGxLeComponentElement;
+    "gx-le-data": HTMLGxLeDataElement;
+    "gx-le-default": HTMLGxLeDefaultElement;
+    "gx-le-flex-table": HTMLGxLeFlexTableElement;
+    "gx-le-freestyle-grid": HTMLGxLeFreestyleGridElement;
+    "gx-le-image": HTMLGxLeImageElement;
     "gx-layout-editor-placeholder": HTMLGxLayoutEditorPlaceholderElement;
+    "gx-le-responsive-table": HTMLGxLeResponsiveTableElement;
+    "gx-le-simple-grid": HTMLGxLeSimpleGridElement;
+    "gx-le-tabular-table": HTMLGxLeTabularTableElement;
+    "gx-le-textblock": HTMLGxLeTextblockElement;
     "gx-layout-editor": HTMLGxLayoutEditorElement;
   }
 
   interface ElementTagNameMap {
+    "gx-le-action": HTMLGxLeActionElement;
+    "gx-le-component": HTMLGxLeComponentElement;
+    "gx-le-data": HTMLGxLeDataElement;
+    "gx-le-default": HTMLGxLeDefaultElement;
+    "gx-le-flex-table": HTMLGxLeFlexTableElement;
+    "gx-le-freestyle-grid": HTMLGxLeFreestyleGridElement;
+    "gx-le-image": HTMLGxLeImageElement;
     "gx-layout-editor-placeholder": HTMLGxLayoutEditorPlaceholderElement;
+    "gx-le-responsive-table": HTMLGxLeResponsiveTableElement;
+    "gx-le-simple-grid": HTMLGxLeSimpleGridElement;
+    "gx-le-tabular-table": HTMLGxLeTabularTableElement;
+    "gx-le-textblock": HTMLGxLeTextblockElement;
     "gx-layout-editor": HTMLGxLayoutEditorElement;
   }
 
