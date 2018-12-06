@@ -14,16 +14,16 @@ export class LayoutEditorResponsiveTable {
   @Element() element: HTMLElement;
 
   @Prop() context: IResolverContext;
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
     this.element.setAttribute("data-gx-le-control-id", this.model["@id"]);
 
-    return responsiveTableResolver(this.model, this.context);
+    return responsiveTableResolver(this.model.table, this.context);
   }
 }
 
-function responsiveTableResolver({ table }, context: IResolverContext) {
+function responsiveTableResolver(table, context: IResolverContext) {
   const modelRows = table.row
     ? Array.isArray(table.row)
       ? table.row

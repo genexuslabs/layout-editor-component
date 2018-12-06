@@ -13,11 +13,11 @@ export class LayoutEditorSimpelGrid {
   @Element() element: HTMLElement;
 
   @Prop() context: IResolverContext;
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
     const { simplegrid } = this.model;
-    const headerBarText = simplegrid.controlType || "Grid";
+    const headerBarText = this.model.controlType || "Grid";
 
     this.element.setAttribute("data-gx-le-control-id", simplegrid["@id"]);
     this.element.setAttribute("data-gx-le-control-header-bar", "");
@@ -65,7 +65,9 @@ export class LayoutEditorSimpelGrid {
                 ).toString()}
                 data-gx-le-drop-area="horizontal"
               >
-                <gx-le-data model={{ data: item }} />
+                <gx-le-data
+                  model={({ data: item } as any) as GeneXusAbstractLayout.Cell}
+                />
               </td>
             ))}
           </tr>

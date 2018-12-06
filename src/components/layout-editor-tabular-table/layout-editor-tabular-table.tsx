@@ -14,16 +14,16 @@ export class LayoutEditorTabularTable {
   @Element() element: HTMLElement;
 
   @Prop() context: IResolverContext;
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
     this.element.setAttribute("data-gx-le-control-id", this.model["@id"]);
 
-    return tabularTableResolver(this.model, this.context);
+    return tabularTableResolver(this.model.table, this.context);
   }
 }
 
-function tabularTableResolver({ table }, context: IResolverContext) {
+function tabularTableResolver(table, context: IResolverContext) {
   const modelRows = table.row
     ? Array.isArray(table.row)
       ? table.row

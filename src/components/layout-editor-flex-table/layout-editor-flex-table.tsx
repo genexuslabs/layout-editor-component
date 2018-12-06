@@ -14,14 +14,14 @@ export class LayoutEditorFlexTable {
   @Element() element: HTMLElement;
 
   @Prop() context: IResolverContext;
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
-    return flexTableResolver(this.model, this.context);
+    return flexTableResolver(this.model.table, this.context);
   }
 }
 
-function flexTableResolver({ table }, context: IResolverContext) {
+function flexTableResolver(table, context: IResolverContext) {
   const modelRows = table.row
     ? Array.isArray(table.row)
       ? table.row

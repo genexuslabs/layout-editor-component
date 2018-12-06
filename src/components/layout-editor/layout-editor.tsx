@@ -35,7 +35,7 @@ export class LayoutEditor {
   /**
    * The abstract form model object
    */
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Model;
 
   /**
    * Array with the identifiers of the selected controls. If empty the whole layout-editor is marked as selected.

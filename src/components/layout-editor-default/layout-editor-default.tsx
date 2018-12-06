@@ -10,7 +10,7 @@ export class LayoutEditorDefault {
   @Element() element: HTMLElement;
 
   @Prop() context: IResolverContext;
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
     const childControl = this.model[this.model.childControlType];

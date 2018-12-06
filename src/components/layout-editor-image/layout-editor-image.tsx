@@ -10,7 +10,7 @@ export class LayoutEditorImage {
   @Element() element: HTMLElement;
 
   @Prop() context: IResolverContext;
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
     const { image } = this.model;

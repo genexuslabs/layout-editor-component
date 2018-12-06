@@ -10,7 +10,7 @@ export class LayoutEditorAction {
   @Element() element: HTMLElement;
 
   @Prop() context: IResolverContext;
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
     const { action } = this.model;

@@ -14,7 +14,7 @@ export class LayoutEditorFreestyleGrid {
   @Element() element: HTMLElement;
 
   @Prop() context: IResolverContext;
-  @Prop() model: any;
+  @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
     const { grid } = this.model;
@@ -27,7 +27,9 @@ export class LayoutEditorFreestyleGrid {
         data-gx-le-control-id={grid["@id"]}
         data-gx-le-control-header-bar
         data-gx-le-selected={isCellSelected(grid, this.context).toString()}
-        style={{ "--gx-le-control-header-bar-text": `'${grid.controlType}'` }}
+        style={{
+          "--gx-le-control-header-bar-text": `'${this.model.controlType}'`
+        }}
       >
         {controlResolver(grid, this.context)}
       </div>
