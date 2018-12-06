@@ -30,6 +30,7 @@ export default function simpleGridResolver(
           <tr>
             {simplegrid.item.map(item => (
               <th
+                key={item["@id"]}
                 tabindex="0"
                 class={item["@class"]}
                 data-gx-le-control-id={item["@id"]}
@@ -44,6 +45,7 @@ export default function simpleGridResolver(
           <tr>
             {simplegrid.item.map(item => (
               <td
+                key={item["@id"]}
                 data-gx-le-control-id={item["@id"]}
                 data-gx-le-selected={isCellSelected(item, context).toString()}
                 data-gx-le-drop-area="horizontal"
