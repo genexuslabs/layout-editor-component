@@ -27,6 +27,12 @@ export class LayoutEditorSimpelGrid {
       `'${headerBarText}'`
     );
 
+    const items: GeneXusAbstractLayout.SimpleGridItem[] = Array.isArray(
+      simplegrid.item
+    )
+      ? simplegrid.item
+      : [simplegrid.item];
+
     return (
       <table
         data-gx-le-container
@@ -37,7 +43,7 @@ export class LayoutEditorSimpelGrid {
       >
         <thead>
           <tr>
-            {simplegrid.item.map(item => (
+            {items.map(item => (
               <th
                 key={item["@id"]}
                 tabindex="0"
@@ -55,7 +61,7 @@ export class LayoutEditorSimpelGrid {
         </thead>
         <tbody>
           <tr>
-            {simplegrid.item.map(item => (
+            {items.map(item => (
               <td
                 key={item["@id"]}
                 data-gx-le-control-id={item["@id"]}
