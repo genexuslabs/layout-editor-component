@@ -1,4 +1,9 @@
 gx-le-simple-grid {
   display: block;
   border: 1px solid var(--gx-le-control-header-bar-background-color);
+
+  // Hide container's anchor icon
+  & > table[data-gx-le-container]:hover::after {
+    display: none;
+  }
 }
