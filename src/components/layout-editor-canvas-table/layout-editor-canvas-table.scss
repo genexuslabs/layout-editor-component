@@ -1,0 +1,10 @@
+gx-le-canvas-table {
+  display: flex;
+  flex-grow: 1;
+  & > gx-canvas {
+    flex-grow: 1;
+    & > gx-canvas-cell {
+      position: static;
+    }
+  }
+}

@@ -85,6 +85,7 @@ export interface IResolverContext {
 }
 
 const tableComponentsMap = {
+  Absolute: "gx-le-canvas-table",
   Flex: "gx-le-flex-table",
   Responsive: "gx-le-responsive-table",
   Tabular: "gx-le-tabular-table"

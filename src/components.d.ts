@@ -18,6 +18,15 @@ export namespace Components {
     model?: GeneXusAbstractLayout.Cell;
   }
 
+  interface GxLeCanvasTable {
+    context: IResolverContext;
+    model: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeCanvasTableAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: GeneXusAbstractLayout.Cell;
+  }
+
   interface GxLeComponent {
     context: IResolverContext;
     model: GeneXusAbstractLayout.Cell;
@@ -161,6 +170,7 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     GxLeAction: Components.GxLeAction;
+    GxLeCanvasTable: Components.GxLeCanvasTable;
     GxLeComponent: Components.GxLeComponent;
     GxLeData: Components.GxLeData;
     GxLeDefault: Components.GxLeDefault;
@@ -178,6 +188,7 @@ declare global {
 
   interface StencilIntrinsicElements {
     "gx-le-action": Components.GxLeActionAttributes;
+    "gx-le-canvas-table": Components.GxLeCanvasTableAttributes;
     "gx-le-component": Components.GxLeComponentAttributes;
     "gx-le-data": Components.GxLeDataAttributes;
     "gx-le-default": Components.GxLeDefaultAttributes;
@@ -199,6 +210,14 @@ declare global {
   var HTMLGxLeActionElement: {
     prototype: HTMLGxLeActionElement;
     new (): HTMLGxLeActionElement;
+  };
+
+  interface HTMLGxLeCanvasTableElement
+    extends Components.GxLeCanvasTable,
+      HTMLStencilElement {}
+  var HTMLGxLeCanvasTableElement: {
+    prototype: HTMLGxLeCanvasTableElement;
+    new (): HTMLGxLeCanvasTableElement;
   };
 
   interface HTMLGxLeComponentElement
@@ -307,6 +326,7 @@ declare global {
 
   interface HTMLElementTagNameMap {
     "gx-le-action": HTMLGxLeActionElement;
+    "gx-le-canvas-table": HTMLGxLeCanvasTableElement;
     "gx-le-component": HTMLGxLeComponentElement;
     "gx-le-data": HTMLGxLeDataElement;
     "gx-le-default": HTMLGxLeDefaultElement;
@@ -324,6 +344,7 @@ declare global {
 
   interface ElementTagNameMap {
     "gx-le-action": HTMLGxLeActionElement;
+    "gx-le-canvas-table": HTMLGxLeCanvasTableElement;
     "gx-le-component": HTMLGxLeComponentElement;
     "gx-le-data": HTMLGxLeDataElement;
     "gx-le-default": HTMLGxLeDefaultElement;
