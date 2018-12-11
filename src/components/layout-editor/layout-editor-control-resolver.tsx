@@ -24,6 +24,10 @@ const resolversMap: IResolverMapEntry[] = [
     type: "textblock"
   },
   {
+    tag: "gx-le-section",
+    type: "section"
+  },
+  {
     tag: "gx-le-simple-grid",
     type: "simplegrid"
   },

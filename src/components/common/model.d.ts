@@ -115,9 +115,8 @@ declare module GeneXusAbstractLayout {
     table: Table;
   }
 
-  export interface SectionItem {
+  export interface SectionItem extends Container {
     "@id": string;
-    textblock: Textblock;
   }
 
   export interface Section {
@@ -156,11 +155,7 @@ declare module GeneXusAbstractLayout {
     "@id": string;
   }
 
-  export interface Cell {
-    "@id": string;
-    "@cellControlName": string;
-    "@hAlign": string;
-    "@vAlign": string;
+  export interface Container {
     childControlType: string;
     controlType: string;
     data?: Data;
@@ -180,6 +175,13 @@ declare module GeneXusAbstractLayout {
     tab?: Tab;
     actiongroup?: Actiongroup;
     ucw?: Ucw;
+  }
+
+  export interface Cell extends Container {
+    "@id": string;
+    "@cellControlName": string;
+    "@hAlign": string;
+    "@vAlign": string;
   }
 
   export interface Row {
