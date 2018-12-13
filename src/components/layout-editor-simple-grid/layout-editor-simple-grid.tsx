@@ -27,18 +27,19 @@ export class LayoutEditorSimpelGrid {
       `'${headerBarText}'`
     );
 
-    const items: GeneXusAbstractLayout.SimpleGridItem[] = Array.isArray(
-      simplegrid.item
-    )
-      ? simplegrid.item
-      : [simplegrid.item];
+    const items: GeneXusAbstractLayout.SimpleGridItem[] = simplegrid.item
+      ? Array.isArray(simplegrid.item)
+        ? simplegrid.item
+        : [simplegrid.item]
+      : [];
 
     return (
       <table
         data-gx-le-container
         class={simplegrid["@class"]}
         style={{
-          borderCollapse: "collapse"
+          borderCollapse: "collapse",
+          width: "100%"
         }}
       >
         <thead>
@@ -61,22 +62,28 @@ export class LayoutEditorSimpelGrid {
         </thead>
         <tbody>
           <tr>
-            {items.map(item => (
-              <td
-                key={item["@id"]}
-                data-gx-le-control-id={item["@id"]}
-                data-gx-le-selected={isCellSelected(
-                  item,
-                  this.context
-                ).toString()}
-                data-gx-le-drop-area="horizontal"
-                data-gx-le-accepted-tag-names="gx-le-data"
-              >
-                <gx-le-data
-                  model={({ data: item } as any) as GeneXusAbstractLayout.Cell}
-                />
-              </td>
-            ))}
+            {items.length ? (
+              items.map(item => (
+                <td
+                  key={item["@id"]}
+                  data-gx-le-control-id={item["@id"]}
+                  data-gx-le-selected={isCellSelected(
+                    item,
+                    this.context
+                  ).toString()}
+                  data-gx-le-drop-area="horizontal"
+                  data-gx-le-accepted-tag-names="gx-le-data"
+                >
+                  <gx-le-data
+                    model={
+                      ({ data: item } as any) as GeneXusAbstractLayout.Cell
+                    }
+                  />
+                </td>
+              ))
+            ) : (
+              <td data-gx-le-placeholder="row" />
+            )}
           </tr>
         </tbody>
       </table>

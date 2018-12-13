@@ -13,7 +13,7 @@ export function findParentCell(el: HTMLElement): HTMLElement {
 }
 
 export function findValidDropTarget(el: HTMLElement): HTMLElement {
-  if (el.matches("gx-layout-editor-placeholder")) {
+  if (el.matches("[data-gx-le-placeholder]")) {
     return el;
   }
 
