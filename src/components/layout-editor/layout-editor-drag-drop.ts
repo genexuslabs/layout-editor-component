@@ -356,12 +356,19 @@ export class LayoutEditorDragDrop {
 
   private createGhostElement(fromElement: HTMLElement) {
     this.ghostElement = document.createElement("div");
-    this.ghostElement.appendChild(fromElement.cloneNode(true));
+    const clonedElement = fromElement.cloneNode(true);
+    this.copyCustomProperties(fromElement, clonedElement);
+    this.ghostElement.appendChild(clonedElement);
     this.ghostElement.style.position = "fixed";
     this.ghostElement.style.top = "-100vh";
     this.ghostElement.style.left = "-100vh";
     document.body.appendChild(this.ghostElement);
     return this.ghostElement;
+  }
+
+  private copyCustomProperties(sourceElement: any, targetElement: any) {
+    targetElement.model = sourceElement.model;
+    targetElement.context = sourceElement.context;
   }
 
   private removeGhostElement(): any {

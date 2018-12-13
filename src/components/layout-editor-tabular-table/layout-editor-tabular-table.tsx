@@ -17,9 +17,10 @@ export class LayoutEditorTabularTable {
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
-    this.element.setAttribute("data-gx-le-control-id", this.model["@id"]);
+    const table = this.model.table;
+    this.element.setAttribute("data-gx-le-control-id", table["@id"]);
 
-    return tabularTableResolver(this.model.table, this.context);
+    return tabularTableResolver(table, this.context);
   }
 }
 

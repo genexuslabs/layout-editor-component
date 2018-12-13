@@ -17,9 +17,10 @@ export class LayoutEditorResponsiveTable {
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
-    this.element.setAttribute("data-gx-le-control-id", this.model["@id"]);
+    const table = this.model.table;
+    this.element.setAttribute("data-gx-le-control-id", table["@id"]);
 
-    return responsiveTableResolver(this.model.table, this.context);
+    return responsiveTableResolver(table, this.context);
   }
 }
 
