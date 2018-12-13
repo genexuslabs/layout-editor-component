@@ -282,7 +282,7 @@ export class LayoutEditorDragDrop {
       if (isEmptyContainerDrop(targetCell)) {
         // Dropped on an empty container
         eventData = {
-          containerId: getControlId(targetCell.parentElement)
+          containerId: getControlId(findParentContainer(targetCell))
         };
       } else {
         // Dropped on a new row
@@ -293,7 +293,7 @@ export class LayoutEditorDragDrop {
           };
         } else {
           eventData = {
-            containerId: getControlId(targetCell.parentElement)
+            containerId: getControlId(findParentContainer(targetCell))
           };
         }
       }

@@ -66,7 +66,7 @@ export function findParentContainer(el: Element): Element {
     return parentElement;
   }
 
-  return findParentContainer(parentElement.parentElement);
+  return findParentContainer(parentElement);
 }
 
 interface ICellData {
