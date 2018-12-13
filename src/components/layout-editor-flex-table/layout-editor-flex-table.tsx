@@ -17,7 +17,10 @@ export class LayoutEditorFlexTable {
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
-    return flexTableResolver(this.model.table, this.context);
+    const table = this.model.table;
+    this.element.setAttribute("data-gx-le-control-id", table["@id"]);
+
+    return flexTableResolver(table, this.context);
   }
 }
 
@@ -43,7 +46,6 @@ function flexTableResolver(table, context: IResolverContext) {
 
   return (
     <div
-      data-gx-le-control-id={table["@id"]}
       style={getTableStyle(table)}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}
