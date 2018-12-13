@@ -73,6 +73,7 @@ export class LayoutEditorSimpelGrid {
                   ).toString()}
                   data-gx-le-drop-area="horizontal"
                   data-gx-le-accepted-tag-names="gx-le-data"
+                  data-gx-le-accepted-element-types="Attribute/Variable"
                 >
                   <gx-le-data
                     model={

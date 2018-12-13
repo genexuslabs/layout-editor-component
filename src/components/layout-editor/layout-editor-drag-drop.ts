@@ -221,8 +221,6 @@ export class LayoutEditorDragDrop {
       return;
     }
 
-    event.preventDefault();
-
     const eventData = this.getEventDataForDropAction(
       targetCell,
       this.transitElement
@@ -234,6 +232,12 @@ export class LayoutEditorDragDrop {
       elementType,
       controlId
     } = this.parseDropEventDataTransfer(event);
+
+    if (!this.isDroppedControlAccepted(targetCell, elementType)) {
+      return;
+    }
+
+    event.preventDefault();
 
     if (sourceCellId) {
       const sourceCell = this.element.querySelector(
@@ -352,6 +356,24 @@ export class LayoutEditorDragDrop {
         "[data-gx-le-drop-area], [data-gx-le-placeholder]"
       )
     );
+  }
+
+  private isDroppedControlAccepted(
+    targetCell: HTMLElement,
+    elementType: string
+  ) {
+    if (!elementType) {
+      return false;
+    }
+
+    const acceptedElementTypes = targetCell.getAttribute(
+      "data-gx-le-accepted-element-types"
+    );
+
+    if (acceptedElementTypes) {
+      return acceptedElementTypes.includes(elementType);
+    }
+    return true;
   }
 
   private createGhostElement(fromElement: HTMLElement) {
