@@ -16,6 +16,10 @@ const resolversMap: IResolverMapEntry[] = [
     type: "grid"
   },
   {
+    tag: "gx-le-group",
+    type: "group"
+  },
+  {
     tag: "gx-le-image",
     type: "image"
   },

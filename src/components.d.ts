@@ -72,6 +72,15 @@ export namespace Components {
     model?: GeneXusAbstractLayout.Cell;
   }
 
+  interface GxLeGroup {
+    context: IResolverContext;
+    model: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeGroupAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: GeneXusAbstractLayout.Cell;
+  }
+
   interface GxLeImage {
     context: IResolverContext;
     model: GeneXusAbstractLayout.Cell;
@@ -176,6 +185,7 @@ declare global {
     GxLeDefault: Components.GxLeDefault;
     GxLeFlexTable: Components.GxLeFlexTable;
     GxLeFreestyleGrid: Components.GxLeFreestyleGrid;
+    GxLeGroup: Components.GxLeGroup;
     GxLeImage: Components.GxLeImage;
     GxLayoutEditorPlaceholder: Components.GxLayoutEditorPlaceholder;
     GxLeResponsiveTable: Components.GxLeResponsiveTable;
@@ -194,6 +204,7 @@ declare global {
     "gx-le-default": Components.GxLeDefaultAttributes;
     "gx-le-flex-table": Components.GxLeFlexTableAttributes;
     "gx-le-freestyle-grid": Components.GxLeFreestyleGridAttributes;
+    "gx-le-group": Components.GxLeGroupAttributes;
     "gx-le-image": Components.GxLeImageAttributes;
     "gx-layout-editor-placeholder": Components.GxLayoutEditorPlaceholderAttributes;
     "gx-le-responsive-table": Components.GxLeResponsiveTableAttributes;
@@ -258,6 +269,14 @@ declare global {
   var HTMLGxLeFreestyleGridElement: {
     prototype: HTMLGxLeFreestyleGridElement;
     new (): HTMLGxLeFreestyleGridElement;
+  };
+
+  interface HTMLGxLeGroupElement
+    extends Components.GxLeGroup,
+      HTMLStencilElement {}
+  var HTMLGxLeGroupElement: {
+    prototype: HTMLGxLeGroupElement;
+    new (): HTMLGxLeGroupElement;
   };
 
   interface HTMLGxLeImageElement
@@ -332,6 +351,7 @@ declare global {
     "gx-le-default": HTMLGxLeDefaultElement;
     "gx-le-flex-table": HTMLGxLeFlexTableElement;
     "gx-le-freestyle-grid": HTMLGxLeFreestyleGridElement;
+    "gx-le-group": HTMLGxLeGroupElement;
     "gx-le-image": HTMLGxLeImageElement;
     "gx-layout-editor-placeholder": HTMLGxLayoutEditorPlaceholderElement;
     "gx-le-responsive-table": HTMLGxLeResponsiveTableElement;
@@ -350,6 +370,7 @@ declare global {
     "gx-le-default": HTMLGxLeDefaultElement;
     "gx-le-flex-table": HTMLGxLeFlexTableElement;
     "gx-le-freestyle-grid": HTMLGxLeFreestyleGridElement;
+    "gx-le-group": HTMLGxLeGroupElement;
     "gx-le-image": HTMLGxLeImageElement;
     "gx-layout-editor-placeholder": HTMLGxLayoutEditorPlaceholderElement;
     "gx-le-responsive-table": HTMLGxLeResponsiveTableElement;
