@@ -19,8 +19,8 @@ export function findValidDropTarget(el: HTMLElement): HTMLElement {
 
   if (el.tagName.toLowerCase() === "gx-layout-editor") {
     const dropCandidates = el.querySelectorAll(
-      `:scope > div > [data-gx-le-container] > [data-gx-le-placeholder]:last-child,
-       :scope > div > [data-gx-le-container] > [data-gx-le-drop-area]:last-child`
+      `:scope > div > [data-gx-le-control-id] > [data-gx-le-container] > [data-gx-le-placeholder]:last-child,
+       :scope > div > [data-gx-le-control-id] > [data-gx-le-container] > [data-gx-le-drop-area]:last-child`
     );
     return dropCandidates[dropCandidates.length - 1] as HTMLElement;
   }
