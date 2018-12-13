@@ -70,6 +70,7 @@ export class LayoutEditorSimpelGrid {
                   this.context
                 ).toString()}
                 data-gx-le-drop-area="horizontal"
+                data-gx-le-accepted-tag-names="gx-le-data"
               >
                 <gx-le-data
                   model={({ data: item } as any) as GeneXusAbstractLayout.Cell}

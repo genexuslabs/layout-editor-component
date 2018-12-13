@@ -53,10 +53,10 @@ export class LayoutEditorDragDrop {
     const cell = findParentCell(evtTarget);
     cell.setAttribute("data-gx-le-dragged", "true");
     const { cellId } = getCellData(cell);
-    const controlId = getControlId(cell.firstElementChild);
+    const controlId = getControlId(cell.firstElementChild) || "";
     dt.setData(
       "text/plain",
-      `${MOVE_OPERATION_NAME},${cellId || ""},${controlId || ""}`
+      `${MOVE_OPERATION_NAME},${cellId || ""},${controlId}`
     );
 
     const ghost = this.createGhostElement(evtTarget);
@@ -113,6 +113,10 @@ export class LayoutEditorDragDrop {
       return;
     }
 
+    if (!this.isDraggedControlAccepted(targetCell)) {
+      return;
+    }
+
     event.preventDefault();
 
     if (this.lastCellDragLeft === targetCell) {
@@ -142,6 +146,52 @@ export class LayoutEditorDragDrop {
         ? "bottom"
         : "right";
     targetCell.setAttribute("data-gx-le-active-target", position);
+  }
+
+  private parseDropEventDataTransfer(event: DragEvent): IDragOperationData {
+    const evtDataTransfer = event.dataTransfer.getData("text/plain");
+    const [
+      dataTransferFirst,
+      dataTransferSecond,
+      dataTransferThird
+    ] = evtDataTransfer.split(",");
+
+    if (dataTransferFirst === MOVE_OPERATION_NAME) {
+      return {
+        controlId: dataTransferThird,
+        sourceCellId: dataTransferSecond
+      };
+    } else {
+      if (dataTransferSecond === undefined) {
+        return {
+          kbObjectName: dataTransferFirst
+        };
+      } else if (
+        dataTransferSecond !== undefined &&
+        dataTransferFirst === GX_ADD_OPERATION_NAME
+      ) {
+        return {
+          elementType: dataTransferSecond
+        };
+      }
+    }
+  }
+
+  private isDraggedControlAccepted(targetCell: HTMLElement) {
+    const draggedControl = this.element.querySelector(
+      "[data-gx-le-dragged='true'] > [data-gx-le-control-id]"
+    );
+
+    const acceptedTagNamesAttr = targetCell.getAttribute(
+      "data-gx-le-accepted-tag-names"
+    );
+
+    if (draggedControl && acceptedTagNamesAttr) {
+      return acceptedTagNamesAttr.includes(
+        draggedControl.tagName.toLowerCase()
+      );
+    }
+    return true;
   }
 
   private getTransitElementPosition(
@@ -217,35 +267,6 @@ export class LayoutEditorDragDrop {
             elementType
           });
         }
-      }
-    }
-  }
-
-  parseDropEventDataTransfer(event: DragEvent): any {
-    const evtDataTransfer = event.dataTransfer.getData("text/plain");
-    const [
-      dataTransferFirst,
-      dataTransferSecond,
-      dataTransferThird
-    ] = evtDataTransfer.split(",");
-
-    if (dataTransferFirst === MOVE_OPERATION_NAME) {
-      return {
-        controlId: dataTransferThird,
-        sourceCellId: dataTransferSecond
-      };
-    } else {
-      if (dataTransferSecond === undefined) {
-        return {
-          kbObjectName: dataTransferFirst
-        };
-      } else if (
-        dataTransferSecond !== undefined &&
-        dataTransferFirst === GX_ADD_OPERATION_NAME
-      ) {
-        return {
-          elementType: dataTransferSecond
-        };
       }
     }
   }
@@ -379,6 +400,13 @@ export class LayoutEditorDragDrop {
       }
     });
   }
+}
+
+interface IDragOperationData {
+  controlId?: string;
+  elementType?: string;
+  kbObjectName?: string;
+  sourceCellId?: string;
 }
 
 enum DropPosition {
