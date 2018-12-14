@@ -1,0 +1,7 @@
+gx-le-horizontal-rule {
+  display: flex;
+  flex-grow: 1;
+  & > hr {
+    flex-grow: 1;
+  }
+}

@@ -20,6 +20,10 @@ const resolversMap: IResolverMapEntry[] = [
     type: "group"
   },
   {
+    tag: "gx-le-horizontal-rule",
+    type: "horizontalrule"
+  },
+  {
     tag: "gx-le-image",
     type: "image"
   },
