@@ -238,7 +238,7 @@ declare module GeneXusAbstractLayout {
     "@Orientation": string;
     childControlType: string;
     table: Table;
-    actionGroups: ActionGroups;
+    actionGroups?: ActionGroups;
   }
 
   export interface Model {
