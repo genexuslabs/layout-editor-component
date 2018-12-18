@@ -233,7 +233,10 @@ export class LayoutEditorDragDrop {
       controlId
     } = this.parseDropEventDataTransfer(event);
 
-    if (!this.isDroppedControlAccepted(targetCell, elementType)) {
+    if (
+      elementType &&
+      !this.isDroppedControlAccepted(targetCell, elementType)
+    ) {
       return;
     }
 
@@ -362,10 +365,6 @@ export class LayoutEditorDragDrop {
     targetCell: HTMLElement,
     elementType: string
   ) {
-    if (!elementType) {
-      return false;
-    }
-
     const acceptedElementTypes = targetCell.getAttribute(
       "data-gx-le-accepted-element-types"
     );
