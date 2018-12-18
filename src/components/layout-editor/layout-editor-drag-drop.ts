@@ -322,6 +322,12 @@ export class LayoutEditorDragDrop {
           };
           if (droppedEl.nextElementSibling) {
             eventData.beforeControlId = targetControlId;
+          } else {
+            if (droppedEl.parentElement.nextElementSibling) {
+              eventData.beforeControlId = getControlId(
+                droppedEl.parentElement.nextElementSibling
+              );
+            }
           }
         } else {
           // Dropped on a non-empty cell
