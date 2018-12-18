@@ -62,7 +62,7 @@ describe("gx-layout-editor rendering", () => {
     expect(selectedTextblock).toBeTruthy();
   });
 
-  it("should mark the gx-le-textblock component as selected and fire the controlSelected event", async () => {
+  it("should click on gx-le-textblock component, mark it as selected and fire the controlSelected event", async () => {
     const page = await newE2EPage();
     await page.setContent(`<gx-layout-editor></gx-layout-editor>`);
     const layoutEditor = await page.find("gx-layout-editor");
@@ -97,7 +97,7 @@ describe("gx-layout-editor rendering", () => {
     });
   });
 
-  it("should fire the controlRemoved event", async () => {
+  it("should select the gx-le-textblock component by pressing space bar on its parent cell, while focused", async () => {
     const page = await newE2EPage();
     await page.setContent(`<gx-layout-editor></gx-layout-editor>`);
     const layoutEditor = await page.find("gx-layout-editor");
@@ -107,6 +107,32 @@ describe("gx-layout-editor rendering", () => {
     );
     await page.waitForChanges();
 
+    const controlSelectedEvent = await layoutEditor.spyOnEvent(
+      "controlSelected"
+    );
+
+    const textBlockParentCell = await page.find(
+      "[data-gx-le-responsive-table-cell]"
+    );
+    await textBlockParentCell.focus();
+    await textBlockParentCell.press(" ");
+
+    await page.waitForChanges();
+    expect(controlSelectedEvent).toHaveReceivedEventDetail({
+      controls: ["table/row[8]/cell[1]/textblock"]
+    });
+  });
+
+  it("should fire the controlRemoved event", async () => {
+    const page = await newE2EPage();
+    await page.setContent(`<gx-layout-editor></gx-layout-editor>`);
+    const layoutEditor = await page.find("gx-layout-editor");
+    await layoutEditor.setProperty(
+      "model",
+      MODEL_RESPONSIVE_TABLE_WITH_TEXTBLOCK
+    );
+
+    await page.waitForChanges();
     const controlRemovedEvent = await layoutEditor.spyOnEvent("controlRemoved");
 
     const textblock = await page.find("gx-le-textblock");
