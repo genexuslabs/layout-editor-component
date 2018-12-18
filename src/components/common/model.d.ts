@@ -104,6 +104,7 @@ declare module GeneXusAbstractLayout {
     "@collection": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
     item: [SimpleGridItem];
+    acceptedElementTypes?: string[];
   }
 
   export interface Group {

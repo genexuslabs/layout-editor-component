@@ -33,6 +33,12 @@ export class LayoutEditorSimpelGrid {
         : [simplegrid.item]
       : [];
 
+    const acceptedElementTypes = simplegrid.acceptedElementTypes || [];
+    const acceptedTypesAttrs = {
+      "data-gx-le-accepted-element-types": acceptedElementTypes.join(","),
+      "data-gx-le-accepted-tag-names": "gx-le-data"
+    };
+
     return (
       <table
         data-gx-le-container
@@ -72,8 +78,7 @@ export class LayoutEditorSimpelGrid {
                     this.context
                   ).toString()}
                   data-gx-le-drop-area="horizontal"
-                  data-gx-le-accepted-tag-names="gx-le-data"
-                  data-gx-le-accepted-element-types="Attribute/Variable"
+                  {...acceptedTypesAttrs}
                 >
                   <gx-le-data
                     model={
@@ -83,7 +88,7 @@ export class LayoutEditorSimpelGrid {
                 </td>
               ))
             ) : (
-              <td data-gx-le-placeholder="row" />
+              <td data-gx-le-placeholder="row" {...acceptedTypesAttrs} />
             )}
           </tr>
         </tbody>
