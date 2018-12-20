@@ -69,8 +69,12 @@ function findResolverByType(type: string): IResolverMapEntry {
 
 export function isCellSelected(cell, context: IResolverContext): boolean {
   const controlToVerify = findChildControl(cell) || cell;
+  return isControlSelected(controlToVerify, context);
+}
+
+export function isControlSelected(control, context: IResolverContext): boolean {
   for (const selControl of context.selectedControls) {
-    if (selControl === controlToVerify["@id"]) {
+    if (selControl === control["@id"]) {
       return true;
     }
   }

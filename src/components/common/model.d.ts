@@ -95,6 +95,7 @@ declare module GeneXusAbstractLayout {
     "@WebUserControlProperties": string;
     "@controlNameForStencil": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
+    controlType: string;
   }
 
   export interface Simplegrid {

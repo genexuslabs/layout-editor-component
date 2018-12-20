@@ -1,7 +1,7 @@
 import { Component, Element, Prop } from "@stencil/core";
 import {
   IResolverContext,
-  isCellSelected
+  isControlSelected
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -57,7 +57,7 @@ export class LayoutEditorSimpelGrid {
                 tabindex="0"
                 class={item["@class"]}
                 data-gx-le-control-id={item["@id"]}
-                data-gx-le-selected={isCellSelected(
+                data-gx-le-selected={isControlSelected(
                   item,
                   this.context
                 ).toString()}
@@ -74,11 +74,15 @@ export class LayoutEditorSimpelGrid {
                 <td
                   key={item["@id"]}
                   data-gx-le-control-id={item["@id"]}
-                  data-gx-le-selected={isCellSelected(
+                  data-gx-le-selected={isControlSelected(
                     item,
                     this.context
                   ).toString()}
                   data-gx-le-drop-area="horizontal"
+                  style={{
+                    "--gx-le-control-type-name":
+                      item.controlType && `"${item.controlType}"`
+                  }}
                   {...acceptedTypesAttrs}
                 >
                   <gx-le-data
