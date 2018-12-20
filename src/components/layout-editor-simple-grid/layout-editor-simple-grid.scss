@@ -3,7 +3,25 @@ gx-le-simple-grid {
   border: 1px solid var(--gx-le-control-header-bar-background-color);
 
   // Hide container's anchor icon
-  & > table[data-gx-le-container]:hover::after {
-    display: none;
+  & > table {
+    &[data-gx-le-container]:hover::after {
+      display: none;
+    }
+
+    &[data-gx-le-container-empty="true"] {
+      min-width: 300px;
+    }
+
+    [data-gx-le-drop-area] {
+      &[data-gx-le-active-target] {
+        &[data-gx-le-active-target="left"],
+        &[data-gx-le-active-target="right"] {
+          [data-gx-le-transit-element] {
+            top: -55px;
+            height: calc(100% + 55px);
+          }
+        }
+      }
+    }
   }
 }

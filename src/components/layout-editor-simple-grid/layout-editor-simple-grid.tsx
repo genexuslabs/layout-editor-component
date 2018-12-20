@@ -42,6 +42,7 @@ export class LayoutEditorSimpelGrid {
     return (
       <table
         data-gx-le-container
+        data-gx-le-container-empty={(!items.length).toString()}
         class={simplegrid["@class"]}
         style={{
           borderCollapse: "collapse",
