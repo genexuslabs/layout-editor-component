@@ -42,7 +42,7 @@
       border: var(--gx-le-table-cell-border);
     }
 
-    &:hover {
+    &[data-gx-le-highlighted-container] {
       position: relative;
 
       &:after {

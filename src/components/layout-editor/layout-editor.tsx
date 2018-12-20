@@ -13,6 +13,7 @@ import {
 } from "./layout-editor-control-resolver";
 import {
   findParentCell,
+  findParentContainer,
   getCellData,
   getControlId
 } from "./layout-editor-helpers";
@@ -297,10 +298,16 @@ export class LayoutEditor {
 
   @Listen("mouseover", { passive: true })
   onMouseOver(event: MouseEvent) {
-    const cell = findParentCell(event.target as HTMLElement);
+    const hoveredElement = event.target as HTMLElement;
+    const cell = findParentCell(hoveredElement);
+    const container = hoveredElement.matches("[data-gx-le-container]")
+      ? hoveredElement
+      : findParentContainer(cell);
+
     if (cell) {
       this.clearHighglighting();
       cell.setAttribute("data-gx-le-highlighted", "");
+      container.setAttribute("data-gx-le-highlighted-container", "");
     }
   }
 
@@ -315,6 +322,12 @@ export class LayoutEditor {
     );
     if (highlightedElement) {
       highlightedElement.removeAttribute("data-gx-le-highlighted");
+    }
+    const highlightedCtElement = this.element.querySelector(
+      "[data-gx-le-highlighted-container]"
+    );
+    if (highlightedCtElement) {
+      highlightedCtElement.removeAttribute("data-gx-le-highlighted-container");
     }
   }
 
