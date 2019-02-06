@@ -49,24 +49,6 @@ export class LayoutEditorSimpelGrid {
           width: "100%"
         }}
       >
-        <thead>
-          <tr>
-            {items.map(item => (
-              <th
-                key={item["@id"]}
-                tabindex="0"
-                class={item["@class"]}
-                data-gx-le-control-id={item["@id"]}
-                data-gx-le-selected={isControlSelected(
-                  item,
-                  this.context
-                ).toString()}
-              >
-                {item["@titleExp"]}
-              </th>
-            ))}
-          </tr>
-        </thead>
         <tbody>
           <tr>
             {items.length ? (
@@ -85,6 +67,9 @@ export class LayoutEditorSimpelGrid {
                   }}
                   {...acceptedTypesAttrs}
                 >
+                  <div class="header" data-gx-le-control-id={item["@id"]}>
+                    {item["@titleExp"]}
+                  </div>
                   <gx-le-data
                     model={
                       ({ data: item } as any) as GeneXusAbstractLayout.Cell

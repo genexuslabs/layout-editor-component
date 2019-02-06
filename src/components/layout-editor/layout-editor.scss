@@ -182,26 +182,6 @@
     outline: var(--gx-le-table-selected-cell-border-color) solid
       var(--gx-le-table-selected-cell-border-width);
   }
-
-  th,
-  td {
-    &[data-gx-le-selected="false"] {
-      padding-left: var(--gx-le-table-selected-cell-border-width);
-      padding-right: var(--gx-le-table-selected-cell-border-width);
-    }
-  }
-  th,
-  td {
-    &[data-gx-le-selected="true"] {
-      outline: 0;
-      border-left: var(--gx-le-table-selected-cell-border-color) solid
-        var(--gx-le-table-selected-cell-border-width);
-      border-right: var(--gx-le-table-selected-cell-border-color) solid
-        var(--gx-le-table-selected-cell-border-width);
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
 }
 
 @mixin hovering-highlighting {
@@ -282,22 +262,6 @@
   }
 }
 
-@mixin simple-grid-customization {
-  [data-gx-le-simple-grid] {
-    td[data-gx-le-drop-area] {
-      min-height: 1px;
-
-      .form-group {
-        margin-bottom: 0;
-      }
-    }
-
-    table[data-gx-le-container] {
-      min-height: 1px;
-    }
-  }
-}
-
 @mixin controls-customization {
   %default-field {
     color: var(--gx-le-form-field-color);
@@ -315,8 +279,6 @@
   [data-gx-le-flex-table] > gx-layout-editor-placeholder {
     flex-grow: 1;
   }
-
-  @include simple-grid-customization();
 }
 
 gx-layout-editor {
