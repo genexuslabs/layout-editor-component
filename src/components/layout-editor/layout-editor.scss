@@ -184,25 +184,38 @@
   }
 }
 
+@mixin container-highlighting($color) {
+  outline: $color solid var(--gx-le-table-hovered-cell-border-width) !important;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: var(--gx-le-control-type-name);
+    z-index: 1;
+    color: var(--gx-le-control-type-name-color);
+    text-shadow: initial;
+    background-color: $color;
+    font: var(--gx-le-control-type-name-font);
+    padding: 0.3rem;
+  }
+}
+
+@mixin dragging-hovering-highlighting {
+  [data-gx-le-active-target-parent] {
+    @include container-highlighting(
+      var(--gx-le-table-dragging-hovered-container-border-color)
+    );
+  }
+}
+
 @mixin hovering-highlighting {
   [data-gx-le-drop-area] {
     &[data-gx-le-highlighted] {
-      outline: var(--gx-le-table-hovered-cell-border-color) solid
-        var(--gx-le-table-hovered-cell-border-width) !important;
-      position: relative;
-
-      &:before {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        content: var(--gx-le-control-type-name);
-        z-index: 1;
-        color: var(--gx-le-control-type-name-color);
-        text-shadow: initial;
-        background-color: var(--gx-le-table-hovered-cell-border-color);
-        font: var(--gx-le-control-type-name-font);
-        padding: 0.3rem;
-      }
+      @include container-highlighting(
+        var(--gx-le-table-hovered-cell-border-color)
+      );
     }
   }
 }
@@ -237,6 +250,7 @@
     display: block;
     content: var(--gx-le-control-header-bar-text);
     background-color: var(--gx-le-control-header-bar-background-color);
+    font-size: var(--gx-le-control-header-bar-font-size);
     color: var(--gx-le-control-header-bar-color);
     padding: 1px 4px;
     text-transform: uppercase;
@@ -303,6 +317,8 @@ gx-layout-editor {
   @include selection-highlighting();
 
   @include hovering-highlighting();
+
+  @include dragging-hovering-highlighting();
 
   @include ghost();
 

@@ -26,33 +26,36 @@ A set of special attributes are used to annotate container web components and it
 | `data-gx-le-selected`               | Used to mark a container item as selected                                                                                                                                                                                                                                                                                                                                              |
 | `data-gx-le-next-row-id`            | Used to store the identifier of a container item's next row (if it isn't located in the last row). Typically obtained from the abstract form model "@id" property of the row that is next to the parent row of the cell                                                                                                                                                                |
 | `data-gx-le-active-target`          | Used to mark a container item as an active drop target                                                                                                                                                                                                                                                                                                                                 |  |
+| `data-gx-le-active-target-parent`   | Used to mark a container as the parent of an active drop target                                                                                                                                                                                                                                                                                                                        |  |
 | `data-gx-le-dragging`               | Used to mark the layout editor as in dragging state                                                                                                                                                                                                                                                                                                                                    |
 | `data-gx-le-control-id`             | Used to store the identifier of the control in the control element.                                                                                                                                                                                                                                                                                                                    |
 
 ## CSS variables
 
-| CSS variable name                             | Details                                                             |
-| --------------------------------------------- | ------------------------------------------------------------------- |
-| `--gx-le-empty-min-height`                    | Layout editor minimum height when empty                             |
-| `--gx-le-control-header-bar-background-color` | Control header bar background color                                 |
-| `--gx-le-control-header-bar-color`            | Control header bar text color                                       |
-| `--gx-le-control-header-bar-text`             | Control header bar text content                                     |
-| `--gx-le-control-type-name-color`             | Color of the text that shows the control type when hovered          |
-| `--gx-le-control-type-name-font`              | Font of the text that shows the control type when hovered           |
-| `--gx-le-form-field-color`                    | Color of the field of `gx-form-field` elements                      |
-| `--gx-le-table-anchor-icon`                   | Icon to be shown as an anchor for containers                        |
-| `--gx-le-table-anchor-icon-size`              | Size of the anchor icon                                             |
-| `--gx-le-table-cell-border`                   | Container item border                                               |
-| `--gx-le-table-cell-gap`                      | Gap between a container cells                                       |
-| `--gx-le-table-min-height`                    | Container minimum height                                            |
-| `--gx-le-table-cell-min-height`               | Container cell minimum height                                       |
-| `--gx-le-table-placeholder-color`             | Drop placeholder color                                              |
-| `--gx-le-table-placeholder-height`            | Height of drop placeholder (when a horizontal placeholder is shown) |
-| `--gx-le-table-placeholder-width`             | Width of drop placeholder (when a vertical placeholder is shown)    |
-| `--gx-le-table-hovered-cell-border-color`     | Hovered container item border color                                 |
-| `--gx-le-table-hovered-cell-border-width`     | Hovered container item border width                                 |
-| `--gx-le-table-selected-cell-border-color`    | Selected container item border color                                |
-| `--gx-le-table-selected-cell-border-width`    | Selected container item border width                                |
+| CSS variable name                                       | Details                                                             |
+| ------------------------------------------------------- | ------------------------------------------------------------------- |
+| `--gx-le-empty-min-height`                              | Layout editor minimum height when empty                             |
+| `--gx-le-control-header-bar-background-color`           | Control header bar background color                                 |
+| `--gx-le-control-header-bar-font-size`                  | Control header bar font size                                        |
+| `--gx-le-control-header-bar-color`                      | Control header bar text color                                       |
+| `--gx-le-control-header-bar-text`                       | Control header bar text content                                     |
+| `--gx-le-control-type-name-color`                       | Color of the text that shows the control type when hovered          |
+| `--gx-le-control-type-name-font`                        | Font of the text that shows the control type when hovered           |
+| `--gx-le-form-field-color`                              | Color of the field of `gx-form-field` elements                      |
+| `--gx-le-table-anchor-icon`                             | Icon to be shown as an anchor for containers                        |
+| `--gx-le-table-anchor-icon-size`                        | Size of the anchor icon                                             |
+| `--gx-le-table-cell-border`                             | Container item border                                               |
+| `--gx-le-table-cell-gap`                                | Gap between a container cells                                       |
+| `--gx-le-table-min-height`                              | Container minimum height                                            |
+| `--gx-le-table-cell-min-height`                         | Container cell minimum height                                       |
+| `--gx-le-table-placeholder-color`                       | Drop placeholder color                                              |
+| `--gx-le-table-placeholder-height`                      | Height of drop placeholder (when a horizontal placeholder is shown) |
+| `--gx-le-table-placeholder-width`                       | Width of drop placeholder (when a vertical placeholder is shown)    |
+| `--gx-le-table-hovered-cell-border-color`               | Hovered container item border color                                 |
+| `--gx-le-table-hovered-cell-border-width`               | Hovered container item border width                                 |
+| `--gx-le-table-dragging-hovered-container-border-color` | Hovered container while dragging border color                       |
+| `--gx-le-table-selected-cell-border-color`              | Selected container item border color                                |
+| `--gx-le-table-selected-cell-border-width`              | Selected container item border width                                |
 
 <!-- Auto Generated Below -->
 

@@ -94,6 +94,10 @@ export class LayoutEditorDragDrop {
 
   private clearActiveTarget(targetCell: HTMLElement) {
     targetCell.removeAttribute("data-gx-le-active-target");
+    const targetParentContainer = findParentContainer(targetCell);
+    if (targetParentContainer) {
+      targetParentContainer.removeAttribute("data-gx-le-active-target-parent");
+    }
   }
 
   private handleControlOver(event: DragEvent) {
@@ -146,6 +150,11 @@ export class LayoutEditorDragDrop {
         ? "bottom"
         : "right";
     targetCell.setAttribute("data-gx-le-active-target", position);
+
+    const targetParentContainer = findParentContainer(targetCell);
+    if (targetParentContainer) {
+      targetParentContainer.setAttribute("data-gx-le-active-target-parent", "");
+    }
   }
 
   private parseDropEventDataTransfer(event: DragEvent): IDragOperationData {
@@ -408,6 +417,7 @@ export class LayoutEditorDragDrop {
     this.removeTransitElement();
     this.removeGhostElement();
     this.removeAttributeFromElements("data-gx-le-active-target");
+    this.removeAttributeFromElements("data-gx-le-active-target-parent");
     this.removeAttributeFromElements("data-gx-le-dragged");
   }
 
