@@ -27,7 +27,7 @@
     "@genexus/web-controls-library": "0.0.29"
   },
   "devDependencies": {
-    "@stencil/core": "^0.16.0",
+    "@stencil/core": "^0.17.2",
     "@stencil/sass": "0.0.5",
     "@types/jest": "23.3.3",
     "@types/puppeteer": "1.6.4",
