@@ -182,14 +182,12 @@ export class LayoutEditorDragDrop {
       "[data-gx-le-dragged='true'] > [data-gx-le-control-id]"
     );
 
-    const acceptedTagNamesAttr = targetCell.getAttribute(
-      "data-gx-le-accepted-tag-names"
+    const acceptedTagNamesSelectors = targetCell.getAttribute(
+      "data-gx-le-accepted-selectors"
     );
 
-    if (draggedControl && acceptedTagNamesAttr) {
-      return acceptedTagNamesAttr.includes(
-        draggedControl.tagName.toLowerCase()
-      );
+    if (draggedControl && acceptedTagNamesSelectors) {
+      return draggedControl.matches(acceptedTagNamesSelectors);
     }
     return true;
   }

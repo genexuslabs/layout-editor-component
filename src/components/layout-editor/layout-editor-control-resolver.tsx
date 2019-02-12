@@ -53,7 +53,7 @@ export function controlResolver(control, context: IResolverContext) {
       if (resolverObj.resolver) {
         return resolverObj.resolver(control, context);
       } else {
-        const TagType = resolverObj.tag;
+        const TagType = resolverObj.tag as any;
         return <TagType model={control} context={context} />;
       }
     } else {

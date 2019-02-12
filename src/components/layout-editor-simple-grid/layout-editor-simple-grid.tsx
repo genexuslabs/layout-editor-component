@@ -36,7 +36,8 @@ export class LayoutEditorSimpelGrid {
     const acceptedElementTypes = simplegrid.acceptedElementTypes || [];
     const acceptedTypesAttrs = {
       "data-gx-le-accepted-element-types": acceptedElementTypes.join(","),
-      "data-gx-le-accepted-tag-names": "gx-le-data"
+      "data-gx-le-accepted-selectors":
+        "gx-le-simple-grid div.column, gx-le-data"
     };
 
     return (
@@ -67,14 +68,14 @@ export class LayoutEditorSimpelGrid {
                   }}
                   {...acceptedTypesAttrs}
                 >
-                  <div class="header" data-gx-le-control-id={item["@id"]}>
-                    {item["@titleExp"]}
+                  <div class="column">
+                    <div class="header">{item["@titleExp"]}</div>
+                    <gx-le-data
+                      model={
+                        ({ data: item } as any) as GeneXusAbstractLayout.Cell
+                      }
+                    />
                   </div>
-                  <gx-le-data
-                    model={
-                      ({ data: item } as any) as GeneXusAbstractLayout.Cell
-                    }
-                  />
                 </td>
               ))
             ) : (
