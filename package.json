@@ -21,7 +21,7 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "tslint": "tslint --project . -e \"**/*.spec.ts\"",
     "validate": "npm run lint && npm run test && npm run build",
-    "validate.ci": "npm run lint && npm run test && npm run build --max-workers 1 --debug"
+    "validate.ci": "npm run lint && npm run test --max-workers 1 && npm run build --max-workers 1 --debug"
   },
   "dependencies": {
     "@genexus/web-controls-library": "0.0.29"
