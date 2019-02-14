@@ -60,6 +60,7 @@ function tabularTableResolver(table, context: IResolverContext) {
         ? getCellColSpan(previousCell)
         : 1;
       colStart += previousCellColSpan;
+
       if (!isLastRow) {
         rowPlaceholdersToRender.push({
           colSpan: getCellColSpan(cell),
@@ -70,7 +71,7 @@ function tabularTableResolver(table, context: IResolverContext) {
         });
       }
 
-      return renderCell(cell, row["@id"], i, colStart, context);
+      return renderCell(cell, row["@id"], i, context);
     });
     return renderedCells;
   });
@@ -89,7 +90,7 @@ function tabularTableResolver(table, context: IResolverContext) {
       colStart: 1,
       nextRow: null,
       rowSpan: 1,
-      rowStart: nonEmptyRows.length + rowPlaceholdersToRender.length + 1
+      rowStart: nonEmptyRows.length * 2 + 1
     }
   ];
 
@@ -141,9 +142,9 @@ function getTableStyle(rowsCount, colsCount) {
 
 function renderEmptyRows(rowPlaceholdersToRender: IPlaceholderRow[]) {
   return rowPlaceholdersToRender.map(
-    ({ nextRow, colStart, colSpan, rowStart, rowSpan }: IPlaceholderRow) => {
+    ({ nextRow, colSpan, rowStart, rowSpan }: IPlaceholderRow) => {
       const emptyCellStyle = {
-        "grid-column": `${colStart} / span ${colSpan}`,
+        "grid-column": `span ${colSpan}`,
         "grid-row": `${rowStart} / span ${rowSpan}`
       };
       return (
@@ -157,7 +158,7 @@ function renderEmptyRows(rowPlaceholdersToRender: IPlaceholderRow[]) {
   );
 }
 
-function renderCell(cell, rowId, rowIndex, colStart, context) {
+function renderCell(cell, rowId, rowIndex, context) {
   const rowSpan = (getCellRowSpan(cell) - 1) * 2 + 1;
   const colSpan = getCellColSpan(cell);
   const rowStart = (rowIndex + 1) * 2;
@@ -172,7 +173,7 @@ function renderCell(cell, rowId, rowIndex, colStart, context) {
       style={{
         "--gx-le-control-type-name":
           cell.controlType && `"${cell.controlType}"`,
-        "grid-column": `${colStart} / span ${colSpan}`,
+        "grid-column": `span ${colSpan}`,
         "grid-row": ` ${rowStart} / span ${rowSpan}`
       }}
       data-gx-le-selected={isCellSelected(cell, context).toString()}
