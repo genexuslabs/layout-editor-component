@@ -184,8 +184,8 @@
   }
 }
 
-@mixin container-highlighting($color) {
-  outline: $color solid var(--gx-le-table-hovered-cell-border-width) !important;
+@mixin container-highlighting($color, $width) {
+  outline: $color solid $width !important;
   position: relative;
 
   &:before {
@@ -205,7 +205,8 @@
 @mixin dragging-hovering-highlighting {
   [data-gx-le-active-target-parent] {
     @include container-highlighting(
-      var(--gx-le-table-dragging-hovered-container-border-color)
+      var(--gx-le-table-dragging-hovered-container-border-color),
+      var(--gx-le-table-dragging-hovered-container-border-width)
     );
   }
 }
@@ -214,7 +215,8 @@
   [data-gx-le-drop-area] {
     &[data-gx-le-highlighted] {
       @include container-highlighting(
-        var(--gx-le-table-hovered-cell-border-color)
+        var(--gx-le-table-hovered-cell-border-color),
+        var(--gx-le-table-hovered-cell-border-width)
       );
     }
   }
