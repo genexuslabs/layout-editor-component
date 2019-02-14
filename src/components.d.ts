@@ -90,6 +90,15 @@ export namespace Components {
     model?: GeneXusAbstractLayout.Cell;
   }
 
+  interface GxLeHyperlink {
+    context: IResolverContext;
+    model: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeHyperlinkAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: GeneXusAbstractLayout.Cell;
+  }
+
   interface GxLeImage {
     context: IResolverContext;
     model: GeneXusAbstractLayout.Cell;
@@ -196,6 +205,7 @@ declare global {
     GxLeFreestyleGrid: Components.GxLeFreestyleGrid;
     GxLeGroup: Components.GxLeGroup;
     GxLeHorizontalRule: Components.GxLeHorizontalRule;
+    GxLeHyperlink: Components.GxLeHyperlink;
     GxLeImage: Components.GxLeImage;
     GxLayoutEditorPlaceholder: Components.GxLayoutEditorPlaceholder;
     GxLeResponsiveTable: Components.GxLeResponsiveTable;
@@ -216,6 +226,7 @@ declare global {
     "gx-le-freestyle-grid": Components.GxLeFreestyleGridAttributes;
     "gx-le-group": Components.GxLeGroupAttributes;
     "gx-le-horizontal-rule": Components.GxLeHorizontalRuleAttributes;
+    "gx-le-hyperlink": Components.GxLeHyperlinkAttributes;
     "gx-le-image": Components.GxLeImageAttributes;
     "gx-layout-editor-placeholder": Components.GxLayoutEditorPlaceholderAttributes;
     "gx-le-responsive-table": Components.GxLeResponsiveTableAttributes;
@@ -298,6 +309,14 @@ declare global {
     new (): HTMLGxLeHorizontalRuleElement;
   };
 
+  interface HTMLGxLeHyperlinkElement
+    extends Components.GxLeHyperlink,
+      HTMLStencilElement {}
+  var HTMLGxLeHyperlinkElement: {
+    prototype: HTMLGxLeHyperlinkElement;
+    new (): HTMLGxLeHyperlinkElement;
+  };
+
   interface HTMLGxLeImageElement
     extends Components.GxLeImage,
       HTMLStencilElement {}
@@ -372,6 +391,7 @@ declare global {
     "gx-le-freestyle-grid": HTMLGxLeFreestyleGridElement;
     "gx-le-group": HTMLGxLeGroupElement;
     "gx-le-horizontal-rule": HTMLGxLeHorizontalRuleElement;
+    "gx-le-hyperlink": HTMLGxLeHyperlinkElement;
     "gx-le-image": HTMLGxLeImageElement;
     "gx-layout-editor-placeholder": HTMLGxLayoutEditorPlaceholderElement;
     "gx-le-responsive-table": HTMLGxLeResponsiveTableElement;
@@ -392,6 +412,7 @@ declare global {
     "gx-le-freestyle-grid": HTMLGxLeFreestyleGridElement;
     "gx-le-group": HTMLGxLeGroupElement;
     "gx-le-horizontal-rule": HTMLGxLeHorizontalRuleElement;
+    "gx-le-hyperlink": HTMLGxLeHyperlinkElement;
     "gx-le-image": HTMLGxLeImageElement;
     "gx-layout-editor-placeholder": HTMLGxLayoutEditorPlaceholderElement;
     "gx-le-responsive-table": HTMLGxLeResponsiveTableElement;

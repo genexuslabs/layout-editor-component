@@ -24,6 +24,10 @@ const resolversMap: IResolverMapEntry[] = [
     type: "horizontalrule"
   },
   {
+    tag: "gx-le-hyperlink",
+    type: "hyperlink"
+  },
+  {
     tag: "gx-le-image",
     type: "image"
   },
