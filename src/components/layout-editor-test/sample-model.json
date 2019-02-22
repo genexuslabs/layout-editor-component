@@ -1,0 +1,848 @@
+{
+  "layout": {
+    "@id": "98494cca-b9ef-4312-a18e-0120f7687d2a",
+    "@Type": "Any Mode",
+    "@Orientation": "Any Orientation",
+    "childControlType": "table",
+    "controlType": "Table",
+    "table": {
+      "@id": "51b8e886-34f8-459c-9c2a-3b9ebcf189bb",
+      "@controlName": "MainTable",
+      "@width": "100%",
+      "@height": "100%",
+      "@class": "Table",
+      "@tableType": "Responsive",
+      "@formClass": "Form",
+      "@responsiveSizes": "[]",
+      "@rowHeights": ";;;;;;;;;;;;;;;;;;",
+      "@isStencil": "false",
+      "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property></Properties>",
+      "row": [
+        {
+          "@id": "1111a41e-3eef-4651-9897-32ad508c4bf0",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "lalala",
+            "@rowSpan": "1",
+            "@colSpan": "1",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "@[ElementName]": "cell",
+            "@idIsSDControl": "True",
+            "@IsAbstractLayoutControl": "True",
+            "childControlType": "table",
+            "controlType": "Table",
+            "table": {
+              "@id": "table/row[1]/cell[1]/table",
+              "@controlName": "Table1",
+              "@width": "100%",
+              "@height": "pd",
+              "@class": "Table",
+              "@background": "",
+              "@ScrollFactor": "1",
+              "@ZoomFactor": "0",
+              "@ScrollAttachment": "Parent",
+              "@visible": "True",
+              "@invisibleMode": "Keep Space",
+              "@enabled": "True",
+              "@tableType": "Absolute",
+              "@expandBounds": "Background Only",
+              "@expandDirection": "Top, Left, Bottom, Right",
+              "@isStencil": "false",
+              "row": [
+                {
+                  "@id": "217b92d5-b844-424a-8833-723e7afe8148",
+                  "@rowHeight": "pd",
+                  "cell": {
+                    "@id": "b7a66887-0d2b-480d-8670-eae0177ba81a",
+                    "@hAlign": "Default",
+                    "@vAlign": "Default",
+                    "@userTop": "0dip",
+                    "@userLeft": "0dip",
+                    "@userBottom": "0dip",
+                    "@userRight": "0dip",
+                    "@userWidth": "100%",
+                    "@userHeight": "100%",
+                    "@zOrder": "0",
+                    "@absX": "0",
+                    "@absRX": "0",
+                    "@absY": "0",
+                    "@absRY": "0",
+                    "@absWidth": "0",
+                    "@absRWidth": "100",
+                    "@absHeight": "0",
+                    "@absRHeight": "100",
+                    "childControlType": "textblock",
+                    "textblock": {
+                      "@controlName": "Textblock1",
+                      "@caption": "Text Block",
+                      "@AutoGrow": "False",
+                      "@AutoResize": "False",
+                      "@class": "TextBlock",
+                      "@visible": "True",
+                      "@invisibleMode": "Keep Space",
+                      "@enabled": "True",
+                      "@format": "Text",
+                      "@id": "table/row[1]/cell[1]/table/row[1]/cell[1]/textblock"
+                    }
+                  }
+                },
+                {
+                  "@id": "6a54ee3a-8e02-4353-9ebf-821ce07d79df",
+                  "@rowHeight": "pd",
+                  "cell": {
+                    "@id": "97d5f483-24d8-46fb-a9a8-eb110dc5fc7f",
+                    "@hAlign": "Default",
+                    "@vAlign": "Default",
+                    "@userTop": "0dip",
+                    "@userLeft": "0dip",
+                    "@userBottom": "0dip",
+                    "@userRight": "0dip",
+                    "@userWidth": "100%",
+                    "@userHeight": "100%",
+                    "@zOrder": "0",
+                    "@absX": "0",
+                    "@absRX": "0",
+                    "@absY": "0",
+                    "@absRY": "0",
+                    "@absWidth": "0",
+                    "@absRWidth": "100",
+                    "@absHeight": "0",
+                    "@absRHeight": "100",
+                    "childControlType": "textblock",
+                    "textblock": {
+                      "@controlName": "Textblock2",
+                      "@caption": "Text Block",
+                      "@AutoGrow": "False",
+                      "@AutoResize": "False",
+                      "@class": "TextBlock",
+                      "@visible": "True",
+                      "@invisibleMode": "Keep Space",
+                      "@enabled": "True",
+                      "@format": "Text",
+                      "@id": "table/row[1]/cell[1]/table/row[2]/cell[1]/textblock"
+                    }
+                  }
+                },
+                {
+                  "@id": "aa3dedec-5072-457f-9e25-cd7180cd4876",
+                  "@rowHeight": "pd",
+                  "cell": {
+                    "@id": "bfb7b12a-c250-4d32-8364-a666dc9ab751",
+                    "@hAlign": "Default",
+                    "@vAlign": "Default",
+                    "@userTop": "0dip",
+                    "@userLeft": "0dip",
+                    "@userBottom": "0dip",
+                    "@userRight": "0dip",
+                    "@userWidth": "100%",
+                    "@userHeight": "100%",
+                    "@zOrder": "0",
+                    "@absX": "0",
+                    "@absRX": "0",
+                    "@absY": "0",
+                    "@absRY": "0",
+                    "@absWidth": "0",
+                    "@absRWidth": "100",
+                    "@absHeight": "0",
+                    "@absRHeight": "100",
+                    "childControlType": "textblock",
+                    "textblock": {
+                      "@controlName": "Textblock3",
+                      "@caption": "Text Block",
+                      "@AutoGrow": "False",
+                      "@AutoResize": "False",
+                      "@class": "TextBlock",
+                      "@visible": "True",
+                      "@invisibleMode": "Keep Space",
+                      "@enabled": "True",
+                      "@format": "Text",
+                      "@id": "table/row[1]/cell[1]/table/row[3]/cell[1]/textblock"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "e014a41e-3eef-4651-9897-32ad508c4bf0",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "f1e64927-085b-45dc-9e92-7739386a35c3",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "data",
+            "data": {
+              "@controlName": "&i",
+              "@attribute": "&i",
+              "@labelPosition": "Left",
+              "@labelCaption": "i",
+              "@readonly": "False",
+              "@class": "Attribute",
+              "@inviteMessage": "",
+              "@ReturnOnClick": "False",
+              "@WebUserControlProperties": "",
+              "@controlNameForStencil": "",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>ControlType</Name><Value>Edit</Value></Property><Property><Name>IsUserControl</Name><Value>False</Value></Property><Property><Name>IsUserControlWithFixedValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithDynamicValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithCustomValues</Name><Value>False</Value></Property><Property><Name>InputType</Name><Value>Values</Value></Property><Property><Name>NotifyContextChange</Name><Value>False</Value></Property><Property><Name>Autocomplete</Name><Value>True</Value></Property><Property><Name>IsPassword</Name><Value>False</Value></Property><Property><Name>GxObjClass</Name><Value>13</Value></Property><Property><Name>RowIndex</Name><Value>1</Value></Property><Property><Name>ColIndex</Name><Value>1</Value></Property><Property><Name>AttNumDim</Name><Value>0</Value></Property><Property><Name>eventGX</Name><Value /></Property><Property><Name>EmptyAsNull</Name><Value>Yes</Value></Property><Property><Name>AutoResize</Name><Value>True</Value></Property><Property><Name>GxWidth</Name><Value>4chr</Value></Property><Property><Name>GxHeight</Name><Value>1row</Value></Property><Property><Name>MaxTextNumberLines</Name><Value>0</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property><Property><Name>HorizontalAlignment</Name><Value>right</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property></Properties>",
+              "@id": "table/row[1]/cell[1]/data"
+            }
+          }
+        },
+        {
+          "@id": "fba4b816-0088-49fb-bdae-2047c827ec8f",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "50d07087-2a04-4b59-9bab-2ff9ef0c556c",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "action",
+            "action": {
+              "@controlName": "Enter",
+              "@onClickEvent": "Enter",
+              "@caption": "GX_BtnEnter",
+              "@ControlType": "",
+              "@class": "Button",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>title</Name><Value>GX_BtnEnter</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property><Property><Name>BackColor</Name><Value>ButtonFace</Value></Property></Properties>",
+              "@id": "table/row[2]/cell[1]/action"
+            }
+          }
+        },
+        {
+          "@id": "0fd27381-51a5-4302-badf-bbc52c16aa57",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "785a0335-0fcb-44c4-aafb-6e6b7ae8ff31",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "embeddedpage",
+            "embeddedpage": {
+              "@controlName": "EmbPage1",
+              "@class": "EmbeddedPage",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>center</Value></Property></Properties>",
+              "@id": "table/row[3]/cell[1]/embeddedpage"
+            }
+          }
+        },
+        {
+          "@id": "e168bba7-13d7-4f4e-8663-90156cbd33ad",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "c15440dd-16fc-42ce-a800-e46689a4e62f",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "errorviewer",
+            "errorviewer": {
+              "@controlName": "ErrorViewer1",
+              "@class": "ErrorViewer",
+              "@visible": "True",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>DisplayMode</Name><Value>Bullet List</Value></Property><Property><Name>ForeColor</Name><Value>Red</Value></Property><Property><Name>BackColor</Name><Value /></Property></Properties>",
+              "@id": "table/row[4]/cell[1]/errorviewer"
+            }
+          }
+        },
+        {
+          "@id": "5772c179-9d95-4e71-8951-27e5f800c035",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "ed36b787-c9bf-44bf-9fca-dd67e85b4ec6",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "horizontalrule",
+            "controlType": "Horizontal rule",
+            "horizontalrule": {
+              "@id": "table/row[5]/cell[1]/horizontalrule"
+            }
+          }
+        },
+        {
+          "@id": "58aacae3-0bfb-4ee6-9651-ba115cac1297",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "b078ffa2-c564-48da-a62d-0e8ce3684bad",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "hyperlink",
+            "hyperlink": {
+              "@text": "Hyperlink test",
+              "@class": "Hyperlink",
+              "@controlNameForStencil": "",
+              "@id": "table/row[6]/cell[1]/hyperlink"
+            }
+          }
+        },
+        {
+          "@id": "83dfe538-004a-462f-bdce-d25ecc8717d1",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "3a1b6865-b533-4f89-8c3e-f1efbc396584",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "image",
+            "image": {
+              "@controlName": "Image1",
+              "@image": "9fb193d9-64a4-4d30-b129-ff7c76830f7e-ActionDisplay",
+              "@class": "Image",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>lowimagereference</Name><Value /></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>eventGX</Name><Value /></Property><Property><Name>height</Name><Value /></Property><Property><Name>width</Name><Value /></Property><Property><Name>align</Name><Value>left</Value></Property></Properties>",
+              "@id": "table/row[7]/cell[1]/image"
+            }
+          }
+        },
+        {
+          "@id": "d983fe15-33fa-44fa-8eeb-52bbf7692b17",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "3b8e00be-2de7-4243-86ff-1b4c1fc5fcde",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "textblock",
+            "controlType": "Textblock",
+            "textblock": {
+              "@controlName": "Textblock1",
+              "@caption": "Text Block",
+              "@class": "TextBlock",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>Event</Name><Value /></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property></Properties>",
+              "@id": "table/row[8]/cell[1]/textblock"
+            }
+          }
+        },
+        {
+          "@id": "4ac615ea-8bd1-4e98-b749-1b8f040e95f4",
+          "@rowHeight": "100%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "06b1de1b-99b6-48ce-a9d0-39ca585bf851",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "component",
+            "controlType": "Component",
+            "component": {
+              "@controlName": "Component1",
+              "@webObject": "",
+              "@parameters": "",
+              "@id": "table/row[9]/cell[1]/component"
+            }
+          }
+        },
+        {
+          "@id": "06b1b53a-04f8-4745-963c-d2ea54c6a7ea",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "e73ea17a-da8d-44ad-9c0d-a6840f17a9c2",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "table",
+            "controlType": "Table",
+            "table": {
+              "@id": "table/row[10]/cell[1]/table",
+              "@controlName": "Table1",
+              "@class": "Flex",
+              "@tableType": "Flex",
+              "@flexDirection": "Row",
+              "@flexWrap": "No Wrap",
+              "@justifyContent": "Flex Start",
+              "@alignItems": "Stretch",
+              "@adjustContainerSize": "False",
+              "@isStencil": "false",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property></Properties>",
+              "row": {
+                "@id": "23ab9b8f-36c2-4472-b351-2a2fe5081843",
+                "@rowHeight": "pd",
+                "cell": {
+                  "@id": "3d2b41ac-d2e1-4bbd-a956-4e11d18e0cd5",
+                  "@cellControlName": "",
+                  "@hAlign": "Default",
+                  "@vAlign": "Default",
+                  "@flexGrow": "1",
+                  "@flexShrink": "1",
+                  "@alignSelf": "Auto",
+                  "@flexWidth": "",
+                  "@flexHeight": "",
+                  "@minWidth": "",
+                  "@minHeight": "",
+                  "@maxWidth": "",
+                  "@maxHeight": "",
+                  "childControlType": "textblock",
+                  "textblock": {
+                    "@controlName": "Textblock2",
+                    "@caption": "Text Block",
+                    "@class": "TextBlock",
+                    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>Event</Name><Value /></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property></Properties>",
+                    "@id": "table/row[10]/cell[1]/table/row[1]/cell[1]/textblock"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "@id": "78d17f3e-6dcc-4363-a6e5-a0ea184609a4",
+          "@rowHeight": "100%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "a78ce19a-5dbe-4204-b783-f8e7795677ec",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "grid",
+            "controlType": "FreestyleGrid",
+            "grid": {
+              "@id": "table/row[11]/cell[1]/grid",
+              "@controlName": "Grid1",
+              "@class": "FreeStyleGrid",
+              "@collection": "",
+              "@rows": "<unlimited>",
+              "@dataSelector": "",
+              "@defaultTable": "",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>GxObjClass</Name><Value>13</Value></Property><Property><Name>RenderingMode</Name><Value>Responsive</Value></Property><Property><Name>AllowDrop</Name><Value>False</Value></Property><Property><Name>AllowDrag</Name><Value>False</Value></Property><Property><Name>NotifyContextChange</Name><Value>False</Value></Property><Property><Name>align</Name><Value>left</Value></Property><Property><Name>cellPadding</Name><Value>1</Value></Property><Property><Name>cellSpacing</Name><Value>2</Value></Property><Property><Name>SflRender</Name><Value /></Property><Property><Name>multi_columns</Name><Value>1</Value></Property><Property><Name>multi_columns_xs</Name><Value>1</Value></Property><Property><Name>multi_columns_sm</Name><Value>1</Value></Property><Property><Name>multi_columns_md</Name><Value>1</Value></Property><Property><Name>multi_columns_lg</Name><Value>1</Value></Property><Property><Name>AllowCollapsing</Name><Value>False</Value></Property><Property><Name>Collapsed</Name><Value>False</Value></Property></Properties>",
+              "childControlType": "table",
+              "table": {
+                "@id": "94dab41a-98d0-4b10-818b-7a8da8a29b13",
+                "@controlName": "Grid1Table",
+                "@width": "100%",
+                "@height": "pd",
+                "@class": "Table",
+                "@tableType": "Responsive",
+                "@responsiveSizes": "[]",
+                "@rowHeights": "",
+                "@isStencil": "false",
+                "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property></Properties>",
+                "row": {
+                  "@id": "8940080c-4b44-4249-a95d-8b3d82eb5db3",
+                  "@rowHeight": "pd",
+                  "@rowHeightWeb": "",
+                  "cell": {
+                    "@id": "11c76592-f86f-4b6c-b122-61b6df125aba",
+                    "@cellControlName": "",
+                    "@hAlign": "Default",
+                    "@vAlign": "Default",
+                    "childControlType": "data",
+                    "data": {
+                      "@controlName": "&i",
+                      "@attribute": "&i",
+                      "@labelPosition": "None",
+                      "@readonly": "False",
+                      "@class": "Attribute",
+                      "@inviteMessage": "",
+                      "@ReturnOnClick": "False",
+                      "@WebUserControlProperties": "",
+                      "@controlNameForStencil": "",
+                      "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>ControlType</Name><Value>Edit</Value></Property><Property><Name>IsUserControl</Name><Value>False</Value></Property><Property><Name>IsUserControlWithFixedValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithDynamicValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithCustomValues</Name><Value>False</Value></Property><Property><Name>InputType</Name><Value>Values</Value></Property><Property><Name>NotifyContextChange</Name><Value>False</Value></Property><Property><Name>Autocomplete</Name><Value>True</Value></Property><Property><Name>IsPassword</Name><Value>False</Value></Property><Property><Name>GxObjClass</Name><Value>13</Value></Property><Property><Name>RowIndex</Name><Value>1</Value></Property><Property><Name>ColIndex</Name><Value>1</Value></Property><Property><Name>AttNumDim</Name><Value>0</Value></Property><Property><Name>eventGX</Name><Value /></Property><Property><Name>EmptyAsNull</Name><Value>Yes</Value></Property><Property><Name>AutoResize</Name><Value>True</Value></Property><Property><Name>GxWidth</Name><Value>4chr</Value></Property><Property><Name>GxHeight</Name><Value>1row</Value></Property><Property><Name>MaxTextNumberLines</Name><Value>0</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property><Property><Name>HorizontalAlignment</Name><Value>right</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property></Properties>",
+                      "@id": "table/row[11]/cell[1]/grid/table[1]/row[1]/cell[1]/data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "@id": "e1340d36-e9f4-4f7b-9201-3a19ee5d5a29",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "ebe2064b-a61e-48dd-ba04-2eb95b58de73",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "simplegrid",
+            "controlType": "Grid",
+            "simplegrid": {
+              "@id": "table/row[12]/cell[1]/simplegrid",
+              "@controlName": "Grid2",
+              "@class": "Grid",
+              "@collection": "",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>GxObjClass</Name><Value>13</Value></Property><Property><Name>idDataSelector</Name><Value /></Property><Property><Name>SflRender</Name><Value /></Property><Property><Name>AutoResize</Name><Value>True</Value></Property><Property><Name>MaxCols</Name><Value>1</Value></Property><Property><Name>MaxRows</Name><Value>0</Value></Property><Property><Name>align</Name><Value>left</Value></Property><Property><Name>cellPadding</Name><Value>1</Value></Property><Property><Name>cellSpacing</Name><Value>2</Value></Property><Property><Name>Sortable</Name><Value>True</Value></Property><Property><Name>AllowDrop</Name><Value>False</Value></Property><Property><Name>AllowDrag</Name><Value>False</Value></Property><Property><Name>NotifyContextChange</Name><Value>False</Value></Property><Property><Name>AllowCollapsing</Name><Value>False</Value></Property><Property><Name>Collapsed</Name><Value>False</Value></Property><Property><Name>AllowSelection</Name><Value>False</Value></Property><Property><Name>AllowHover</Name><Value>True</Value></Property></Properties>",
+              "item": [
+                {
+                  "@id": "9c4a9a84-a24f-4006-b905-b4bce21a9d71",
+                  "@controlName": "&i",
+                  "@attribute": "&i",
+                  "@titleExp": "i",
+                  "@class": "Attribute",
+                  "@WebUserControlProperties": "",
+                  "@controlNameForStencil": "",
+                  "controlType": "Attribute",
+                  "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>ControlType</Name><Value>Edit</Value></Property><Property><Name>IsUserControl</Name><Value>False</Value></Property><Property><Name>IsUserControlWithFixedValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithDynamicValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithCustomValues</Name><Value>False</Value></Property><Property><Name>InputType</Name><Value>Values</Value></Property><Property><Name>NotifyContextChange</Name><Value>False</Value></Property><Property><Name>Autocomplete</Name><Value>True</Value></Property><Property><Name>IsPassword</Name><Value>False</Value></Property><Property><Name>GxObjClass</Name><Value>13</Value></Property><Property><Name>RowIndex</Name><Value>1</Value></Property><Property><Name>ColIndex</Name><Value>1</Value></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>AttNumDim</Name><Value>0</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property><Property><Name>ColReadOnly</Name><Value>False</Value></Property><Property><Name>EmptyAsNull</Name><Value>Yes</Value></Property><Property><Name>ColAutoResize</Name><Value>True</Value></Property><Property><Name>ColWidth</Name><Value>0</Value></Property><Property><Name>Height</Name><Value>17</Value></Property><Property><Name>HorizontalAlignment</Name><Value>right</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>ColVisible</Name><Value>True</Value></Property></Properties>"
+                },
+                {
+                  "@id": "9c4a9a84-a24f-4006-b905-b4bce21a9d75",
+                  "@controlName": "&i",
+                  "@attribute": "&i",
+                  "@titleExp": "i",
+                  "@class": "Attribute",
+                  "@WebUserControlProperties": "",
+                  "@controlNameForStencil": "",
+                  "controlType": "Attribute",
+                  "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>ControlType</Name><Value>Edit</Value></Property><Property><Name>IsUserControl</Name><Value>False</Value></Property><Property><Name>IsUserControlWithFixedValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithDynamicValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithCustomValues</Name><Value>False</Value></Property><Property><Name>InputType</Name><Value>Values</Value></Property><Property><Name>NotifyContextChange</Name><Value>False</Value></Property><Property><Name>Autocomplete</Name><Value>True</Value></Property><Property><Name>IsPassword</Name><Value>False</Value></Property><Property><Name>GxObjClass</Name><Value>13</Value></Property><Property><Name>RowIndex</Name><Value>1</Value></Property><Property><Name>ColIndex</Name><Value>1</Value></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>AttNumDim</Name><Value>0</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property><Property><Name>ColReadOnly</Name><Value>False</Value></Property><Property><Name>EmptyAsNull</Name><Value>Yes</Value></Property><Property><Name>ColAutoResize</Name><Value>True</Value></Property><Property><Name>ColWidth</Name><Value>0</Value></Property><Property><Name>Height</Name><Value>17</Value></Property><Property><Name>HorizontalAlignment</Name><Value>right</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>ColVisible</Name><Value>True</Value></Property></Properties>"
+                },
+                {
+                  "@id": "9c4a9a84-a24f-4006-b905-b4bce21a9d78",
+                  "@controlName": "&i",
+                  "@attribute": "&i",
+                  "@titleExp": "i",
+                  "@class": "Attribute",
+                  "@WebUserControlProperties": "",
+                  "@controlNameForStencil": "",
+                  "controlType": "Attribute",
+                  "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>ControlType</Name><Value>Edit</Value></Property><Property><Name>IsUserControl</Name><Value>False</Value></Property><Property><Name>IsUserControlWithFixedValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithDynamicValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithCustomValues</Name><Value>False</Value></Property><Property><Name>InputType</Name><Value>Values</Value></Property><Property><Name>NotifyContextChange</Name><Value>False</Value></Property><Property><Name>Autocomplete</Name><Value>True</Value></Property><Property><Name>IsPassword</Name><Value>False</Value></Property><Property><Name>GxObjClass</Name><Value>13</Value></Property><Property><Name>RowIndex</Name><Value>1</Value></Property><Property><Name>ColIndex</Name><Value>1</Value></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>AttNumDim</Name><Value>0</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property><Property><Name>ColReadOnly</Name><Value>False</Value></Property><Property><Name>EmptyAsNull</Name><Value>Yes</Value></Property><Property><Name>ColAutoResize</Name><Value>True</Value></Property><Property><Name>ColWidth</Name><Value>0</Value></Property><Property><Name>Height</Name><Value>17</Value></Property><Property><Name>HorizontalAlignment</Name><Value>right</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>ColVisible</Name><Value>True</Value></Property></Properties>"
+                }
+              ],
+              "acceptedElementTypes": ["Attribute/Variable"]
+            }
+          }
+        },
+        {
+          "@id": "c9bd5fc6-aca1-4869-9e4e-9d115b21e26e",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "984a30cf-0a3a-4fc7-a6b2-a922847f041a",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "group",
+            "controlType": "Group",
+            "group": {
+              "@id": "table/row[13]/cell[1]/group",
+              "@controlName": "Group1",
+              "@caption": "Hi!",
+              "@class": "Group",
+              "childControlType": "table",
+              "controlType": "Table",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>height</Name><Value /></Property><Property><Name>width</Name><Value /></Property></Properties>",
+              "table": {
+                "@id": "a4bbc85a-952e-41ac-afe7-a5cfc2a5750b",
+                "@controlName": "Group1Table",
+                "@width": "100%",
+                "@height": "pd",
+                "@class": "Table",
+                "@tableType": "Responsive",
+                "@responsiveSizes": "[]",
+                "@rowHeights": "",
+                "@isStencil": "false",
+                "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property></Properties>",
+                "row": {
+                  "@id": "6a23af07-b560-4411-875f-9fffa7b0c4d1",
+                  "@rowHeight": "pd",
+                  "@rowHeightWeb": "",
+                  "cell": {
+                    "@id": "faa2e658-bbbb-4846-aee9-837dd74e037e",
+                    "@cellControlName": "",
+                    "@hAlign": "Default",
+                    "@vAlign": "Default",
+                    "childControlType": "textblock",
+                    "textblock": {
+                      "@controlName": "Textblock3",
+                      "@caption": "Text Block inside group",
+                      "@class": "TextBlock",
+                      "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>Event</Name><Value /></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property></Properties>",
+                      "@id": "table/row[13]/cell[1]/group/table/row[1]/cell[1]/textblock"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "@id": "46a24a08-d018-4d39-bc05-7f9f1c18b087",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "6ae2a398-d759-42af-9de9-b5eb410e2684",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "table",
+            "table": {
+              "@id": "table/row[14]/cell[1]/table",
+              "@controlName": "Table2",
+              "@width": "100%",
+              "@height": "pd",
+              "@class": "Table",
+              "@tableType": "Responsive",
+              "@responsiveSizes": "[]",
+              "@rowHeights": "",
+              "@isStencil": "false",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property></Properties>",
+              "row": {
+                "@id": "9d23bf4f-2662-4f23-84aa-8762a3b4a85f",
+                "@rowHeight": "pd",
+                "@rowHeightWeb": "",
+                "cell": {
+                  "@id": "9feabab0-388b-410c-b369-301d9a004330",
+                  "@cellControlName": "",
+                  "@hAlign": "Default",
+                  "@vAlign": "Default",
+                  "childControlType": "textblock",
+                  "textblock": {
+                    "@controlName": "Textblock4",
+                    "@caption": "Text Block",
+                    "@class": "TextBlock",
+                    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>Event</Name><Value /></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property></Properties>",
+                    "@id": "table/row[14]/cell[1]/table/row[1]/cell[1]/textblock"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "@id": "58e2b340-f05e-4700-b58c-ee4f4986dcdc",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "703c3a8e-9349-4b6b-bd9d-672c4250a82e",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "section",
+            "section": {
+              "@controlName": "Section1",
+              "@class": "Section",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>SemanticContent</Name><Value>div</Value></Property><Property><Name>align</Name><Value>left</Value></Property></Properties>",
+              "@id": "table/row[15]/cell[1]/section",
+              "item": [
+                {
+                  "@id": "7445949b-66d1-4442-a6d8-eabb6e1f94cd",
+                  "childControlType": "textblock",
+                  "textblock": {
+                    "@controlName": "Textblock1",
+                    "@caption": "Text Block",
+                    "@class": "TextBlock",
+                    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>Event</Name><Value /></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>116, 116, 116</Value></Property></Properties>"
+                  }
+                },
+                {
+                  "@id": "189f4bfe-808e-4cd2-871b-d4238b5d46ba",
+                  "childControlType": "textblock",
+                  "textblock": {
+                    "@controlName": "Textblock2",
+                    "@caption": "Text Block",
+                    "@class": "TextBlock",
+                    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>Event</Name><Value /></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>116, 116, 116</Value></Property></Properties>"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "f28b4fae-b036-4df9-8697-f71e2d2cbb71",
+          "@rowHeight": "100%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "902c266f-be2c-4c62-8f3e-47cd8d3ef7ca",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "tab",
+            "tab": {
+              "@id": "table/row[16]/cell[1]/tab",
+              "@controlName": "Tab1",
+              "@class": "Tab",
+              "@visible": "True",
+              "@historyManagement": "False",
+              "item": [
+                {
+                  "@id": "b5b78f09-2ee6-4dbd-b276-246ecb18d21c",
+                  "@itemControlName": "TabPage1",
+                  "@caption": "TabPage1",
+                  "table": {
+                    "@id": "4eee560b-0ae2-4882-bd44-227a260d8e8c",
+                    "@controlName": "TabPage1Table",
+                    "@width": "100%",
+                    "@height": "pd",
+                    "@class": "Table",
+                    "@tableType": "Responsive",
+                    "@responsiveSizes": "[]",
+                    "@rowHeights": "",
+                    "@isStencil": "false",
+                    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property></Properties>",
+                    "row": {
+                      "@id": "b702913d-e5be-4e7e-bd00-499ceade8fe9",
+                      "@rowHeight": "pd",
+                      "@rowHeightWeb": "",
+                      "cell": {
+                        "@id": "1251241c-4cbd-4c30-b109-caaa038b86b9",
+                        "@cellControlName": "",
+                        "@hAlign": "Default",
+                        "@vAlign": "Default",
+                        "childControlType": "data",
+                        "data": {
+                          "@controlName": "&i",
+                          "@attribute": "&i",
+                          "@labelPosition": "Left",
+                          "@labelCaption": "i",
+                          "@readonly": "False",
+                          "@class": "Attribute",
+                          "@inviteMessage": "",
+                          "@ReturnOnClick": "False",
+                          "@WebUserControlProperties": "",
+                          "@controlNameForStencil": "",
+                          "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>ControlType</Name><Value>Edit</Value></Property><Property><Name>IsUserControl</Name><Value>False</Value></Property><Property><Name>IsUserControlWithFixedValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithDynamicValues</Name><Value>False</Value></Property><Property><Name>IsUserControlWithCustomValues</Name><Value>False</Value></Property><Property><Name>InputType</Name><Value>Values</Value></Property><Property><Name>NotifyContextChange</Name><Value>False</Value></Property><Property><Name>Autocomplete</Name><Value>True</Value></Property><Property><Name>IsPassword</Name><Value>False</Value></Property><Property><Name>GxObjClass</Name><Value>13</Value></Property><Property><Name>RowIndex</Name><Value>1</Value></Property><Property><Name>ColIndex</Name><Value>1</Value></Property><Property><Name>AttNumDim</Name><Value>0</Value></Property><Property><Name>eventGX</Name><Value /></Property><Property><Name>EmptyAsNull</Name><Value>Yes</Value></Property><Property><Name>AutoResize</Name><Value>True</Value></Property><Property><Name>GxWidth</Name><Value>4chr</Value></Property><Property><Name>GxHeight</Name><Value>1row</Value></Property><Property><Name>MaxTextNumberLines</Name><Value>0</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property><Property><Name>HorizontalAlignment</Name><Value>right</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property></Properties>",
+                          "@id": "table/row[16]/cell[1]/tab/item[1]/table/row[1]/cell[1]/data"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "@id": "8db859d5-7c27-422c-9f50-6067d5adf156",
+                  "@itemControlName": "TabPage2",
+                  "@caption": "TabPage2",
+                  "table": {
+                    "@id": "0e45dc32-abc3-4186-94d8-5f354842b2c5",
+                    "@controlName": "TabPage2Table",
+                    "@width": "100%",
+                    "@height": "100%",
+                    "@class": "Table",
+                    "@tableType": "Responsive",
+                    "@responsiveSizes": "[]",
+                    "@rowHeights": "",
+                    "@isStencil": "false",
+                    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property></Properties>"
+                  }
+                },
+                {
+                  "@id": "b775f32c-3340-41e8-a6d8-4c48d7d73675",
+                  "@itemControlName": "TabPage3",
+                  "@caption": "TabPage3",
+                  "table": {
+                    "@id": "a78ccb1a-d058-4fea-bc15-f7cec5bb21cf",
+                    "@controlName": "TabPage3Table",
+                    "@width": "100%",
+                    "@height": "100%",
+                    "@class": "Table",
+                    "@tableType": "Responsive",
+                    "@responsiveSizes": "[]",
+                    "@rowHeights": "",
+                    "@isStencil": "false",
+                    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property></Properties>"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "ae8d3dd7-45cc-4e83-9b80-48584670303f",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "1fa86c70-9028-4dae-9528-28097a30af1e",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "table",
+            "table": {
+              "@id": "table/row[17]/cell[1]/table",
+              "@controlName": "Table3",
+              "@width": "100%",
+              "@height": "pd",
+              "@class": "Table",
+              "@background": "",
+              "@tableType": "Tabular",
+              "@isStencil": "false",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>align</Name><Value>left</Value></Property><Property><Name>border</Name><Value>0</Value></Property><Property><Name>borderColor</Name><Value /></Property><Property><Name>cellPadding</Name><Value>1</Value></Property><Property><Name>cellSpacing</Name><Value>2</Value></Property></Properties>",
+              "row": {
+                "@id": "46478d16-b6d5-466e-bd15-8c56eacaf275",
+                "@rowHeight": "pd",
+                "cell": {
+                  "@id": "1fb1b0fa-24ed-48fa-934f-a64b006278b8",
+                  "@cellControlName": "",
+                  "@rowSpan": "1",
+                  "@colSpan": "1",
+                  "@hAlign": "Default",
+                  "@vAlign": "Default",
+                  "childControlType": "textblock",
+                  "textblock": {
+                    "@controlName": "Textblock6",
+                    "@caption": "Text Block",
+                    "@class": "TextBlock",
+                    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>Event</Name><Value /></Property><Property><Name>ReturnOnClick</Name><Value>False</Value></Property><Property><Name>GxFormat</Name><Value>Text</Value></Property><Property><Name>BackColor</Name><Value>Window</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property></Properties>",
+                    "@id": "table/row[17]/cell[1]/table/row[1]/cell[1]/textblock"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "@id": "acc8f1ff-2ab5-4e3b-a8ff-38c24392e294",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "450904fd-c80a-4850-a28d-a2a9c5b3470d",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "actiongroup",
+            "actiongroup": {
+              "@controlName": "Test",
+              "@visible": "True",
+              "@id": "table/row[18]/cell[1]/actiongroup"
+            }
+          }
+        },
+        {
+          "@id": "5147c1a1-da0e-4719-801f-a19bdb7b2143",
+          "@rowHeight": "5%",
+          "@rowHeightWeb": "",
+          "cell": {
+            "@id": "55439a94-8aa9-482e-96f0-302957ccaf2f",
+            "@cellControlName": "",
+            "@hAlign": "Default",
+            "@vAlign": "Default",
+            "childControlType": "ucw",
+            "ucw": {
+              "@gxControlType": "1997700375",
+              "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>UserControlType</Name><Value>AnimationView</Value></Property><Property><Name>ConstructorName</Name><Value>gx.ui.controls.AnimationView</Value></Property><Property><Name>ShowMethodName</Name><Value>show</Value></Property><Property><Name>ControlName</Name><Value>AnimationView1</Value></Property><Property><Name>Enabled</Name><Value>True</Value></Property><Property><Name>CssSupportFiles</Name><Value /></Property><Property><Name>JsSupportFiles</Name><Value>web-animation-view\\dist\\bundle.js</Value></Property><Property><Name>CssSharedSupportFiles</Name><Value /></Property><Property><Name>JsSharedSupportFiles</Name><Value>@genexus\\web-controls-library\\dist\\gx-web-controls.js</Value></Property></Properties>",
+              "@id": "table/row[19]/cell[1]/ucw"
+            }
+          }
+        }
+      ]
+    },
+    "actionGroups": {
+      "actionGroup": {
+        "@controlName": "Test",
+        "@class": "ActionGroup",
+        "@controlWebType": "ToolBar",
+        "@caption": "Test",
+        "@image": "",
+        "item": {
+          "action": {
+            "@controlName": "Button1",
+            "@onClickEvent": "'Go'",
+            "@caption": "Go",
+            "@ControlType": "",
+            "@class": "Button",
+            "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": "<Properties><Property><Name>title</Name><Value>Go</Value></Property><Property><Name>ForeColor</Name><Value>WindowText</Value></Property><Property><Name>BackColor</Name><Value>ButtonFace</Value></Property></Properties>"
+          }
+        }
+      }
+    }
+  }
+}

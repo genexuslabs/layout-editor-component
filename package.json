@@ -20,7 +20,7 @@
     "test": "stencil test --spec --e2e",
     "test.ci": "stencil test --spec --max-workers 1",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "tslint": "tslint --project . -e \"**/*.spec.ts\"",
+    "tslint": "tslint --project . -e \"**/*.spec.ts\" -e \"**/*.json\"",
     "validate": "npm run lint && npm run test && npm run build",
     "validate.ci": "npm run lint && npm run test.ci && npm run build --max-workers 1 --debug"
   },

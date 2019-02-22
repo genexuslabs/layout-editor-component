@@ -1,0 +1,91 @@
+gx-layout-editor-test {
+  --primary-color: #178df7;
+  --secondary-color: #55d6be;
+  --danger-color: #ed1c24;
+  --warning-color: #ffa600;
+  --light-color: #dffffc;
+  --dark-color: #2a2d34;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px 0;
+
+  & > .hidden {
+    display: none !important;
+  }
+
+  & > form {
+    gx-edit {
+      flex-grow: 1;
+      height: calc(100vh - 150px);
+      margin: 15px 0;
+      textarea {
+        height: 100%;
+      }
+    }
+  }
+
+  .le-test-button {
+    margin: 0 5px;
+  }
+
+  #options-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #btn-load-model {
+    button {
+      background-color: var(--primary-color);
+      color: white;
+    }
+  }
+
+  #btn-reset-model {
+    button {
+      background-color: var(--danger-color);
+      color: white;
+    }
+  }
+
+  gx-layout-editor {
+    margin: 15px 0;
+    --gx-le-control-header-bar-background-color: var(--primary-color);
+    --gx-le-control-header-bar-font-size: 11px;
+    --gx-le-control-header-bar-color: white;
+    --gx-le-table-cell-border: 1px dashed var(--primary-color);
+    --gx-le-table-cell-gap: 1px;
+    --gx-le-table-min-height: 100px;
+    --gx-le-table-cell-min-height: 80px;
+    --gx-le-table-placeholder-color: var(--primary-color);
+    --gx-le-table-placeholder-height: 4px;
+    --gx-le-table-placeholder-width: 4px;
+    --gx-le-table-selected-cell-border-color: var(--primary-color);
+    --gx-le-table-selected-cell-border-width: 2px;
+    --gx-le-table-hovered-cell-border-color: var(--primary-color);
+    --gx-le-table-hovered-cell-border-width: 2px;
+    --gx-le-table-dragging-hovered-container-border-color: var(--warning-color);
+    --gx-le-table-dragging-hovered-container-border-width: 1px;
+    --gx-le-control-type-name-color: white;
+    --gx-le-control-type-name-font: 0.7rem Arial;
+    --gx-le-form-field-color: var(--dark-color);
+    --gx-le-empty-min-height: 100vh;
+
+    &.preview {
+      --gx-le-table-cell-border: unset;
+      --gx-le-table-cell-gap: unset;
+      --gx-le-table-min-height: unset;
+      --gx-le-table-cell-min-height: unset;
+      --gx-le-table-placeholder-color: unset;
+      --gx-le-table-placeholder-width: unset;
+      --gx-le-table-placeholder-height: unset;
+      --gx-le-table-selected-cell-border-color: unset;
+      --gx-le-table-selected-cell-border-width: unset;
+      --gx-le-table-hovered-cell-border-color: unset;
+      --gx-le-table-hovered-cell-border-width: unset;
+      --gx-le-control-type-name: unset !important;
+    }
+  }
+}

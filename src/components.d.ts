@@ -147,6 +147,9 @@ export namespace Components {
     model?: GeneXusAbstractLayout.Cell;
   }
 
+  interface GxLayoutEditorTest {}
+  interface GxLayoutEditorTestAttributes extends StencilHTMLAttributes {}
+
   interface GxLeTextblock {
     context: IResolverContext;
     model: GeneXusAbstractLayout.Cell;
@@ -212,6 +215,7 @@ declare global {
     GxLeSection: Components.GxLeSection;
     GxLeSimpleGrid: Components.GxLeSimpleGrid;
     GxLeTabularTable: Components.GxLeTabularTable;
+    GxLayoutEditorTest: Components.GxLayoutEditorTest;
     GxLeTextblock: Components.GxLeTextblock;
     GxLayoutEditor: Components.GxLayoutEditor;
   }
@@ -233,6 +237,7 @@ declare global {
     "gx-le-section": Components.GxLeSectionAttributes;
     "gx-le-simple-grid": Components.GxLeSimpleGridAttributes;
     "gx-le-tabular-table": Components.GxLeTabularTableAttributes;
+    "gx-layout-editor-test": Components.GxLayoutEditorTestAttributes;
     "gx-le-textblock": Components.GxLeTextblockAttributes;
     "gx-layout-editor": Components.GxLayoutEditorAttributes;
   }
@@ -365,6 +370,14 @@ declare global {
     new (): HTMLGxLeTabularTableElement;
   };
 
+  interface HTMLGxLayoutEditorTestElement
+    extends Components.GxLayoutEditorTest,
+      HTMLStencilElement {}
+  var HTMLGxLayoutEditorTestElement: {
+    prototype: HTMLGxLayoutEditorTestElement;
+    new (): HTMLGxLayoutEditorTestElement;
+  };
+
   interface HTMLGxLeTextblockElement
     extends Components.GxLeTextblock,
       HTMLStencilElement {}
@@ -398,6 +411,7 @@ declare global {
     "gx-le-section": HTMLGxLeSectionElement;
     "gx-le-simple-grid": HTMLGxLeSimpleGridElement;
     "gx-le-tabular-table": HTMLGxLeTabularTableElement;
+    "gx-layout-editor-test": HTMLGxLayoutEditorTestElement;
     "gx-le-textblock": HTMLGxLeTextblockElement;
     "gx-layout-editor": HTMLGxLayoutEditorElement;
   }
@@ -419,6 +433,7 @@ declare global {
     "gx-le-section": HTMLGxLeSectionElement;
     "gx-le-simple-grid": HTMLGxLeSimpleGridElement;
     "gx-le-tabular-table": HTMLGxLeTabularTableElement;
+    "gx-layout-editor-test": HTMLGxLayoutEditorTestElement;
     "gx-le-textblock": HTMLGxLeTextblockElement;
     "gx-layout-editor": HTMLGxLayoutEditorElement;
   }
