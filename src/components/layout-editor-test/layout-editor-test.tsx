@@ -1,5 +1,6 @@
 import { Component, Element, State } from "@stencil/core";
 import sampleModel from "./sample-model.json";
+import { Fragment } from "../common/util";
 
 @Component({
   shadow: false,
@@ -19,8 +20,6 @@ export class LayoutEditorTest {
   }
 
   render() {
-    const Fragment = (_, children) => children;
-
     return (
       <Fragment>
         <form

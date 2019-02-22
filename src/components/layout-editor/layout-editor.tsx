@@ -18,6 +18,7 @@ import {
   getControlId
 } from "./layout-editor-helpers";
 import { LayoutEditorDragDrop } from "./layout-editor-drag-drop";
+import { Fragment } from "../common/util";
 // The following import must be commented until Stencil issue regarding SASS @imports
 // of imported components and the SASS Stencil plugin is solved.
 // Meanwhile the dependency is loaded manually
@@ -341,7 +342,7 @@ export class LayoutEditor {
         isCellSelected(this.model.layout, context);
       this.element.setAttribute("data-gx-le-selected", isSelected.toString());
       return (
-        <div>
+        <Fragment>
           {controlResolver(this.model.layout, context)}
           <gx-layout-editor-placeholder
             data-gx-le-external
@@ -352,7 +353,7 @@ export class LayoutEditor {
           >
             <div data-gx-le-external-transit />
           </gx-layout-editor-placeholder>
-        </div>
+        </Fragment>
       );
     }
   }
