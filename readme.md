@@ -5,6 +5,8 @@
 
 A custom element that renders a set of controls from a GeneXus UI model and allows drag&drop operations to change the layout of the controls.
 
+[Demo](https://gx-layout-editor.netlify.com/)
+
 ## Getting Started
 
 ```bash
@@ -32,14 +34,14 @@ npm run build
 
 ### Script tag
 
-* Put a script tag similar to this `<script src='https://unpkg.com/@genexus/layout-editor-component/dist/index.js'></script>` in the head of your index.html
-* Then you can start using the layout editor in your template, JSX, html etc
+- Put a script tag similar to this `<script src='https://unpkg.com/@genexus/layout-editor-component/dist/index.js'></script>` in the head of your index.html
+- Then you can start using the layout editor in your template, JSX, html etc
 
 ### Node Modules
 
-* Run `npm install @genexus/layout-editor-component --save`
-* Put a script tag similar to this `<script src='node_modules/@genexus/layout-editor-component/dist/index.js'></script>` in the head of your index.html
-* Then you can start using the layout editor in your template, JSX, html etc
+- Run `npm install @genexus/layout-editor-component --save`
+- Put a script tag similar to this `<script src='node_modules/@genexus/layout-editor-component/dist/index.js'></script>` in the head of your index.html
+- Then you can start using the layout editor in your template, JSX, html etc
 
 ## Authors
 
