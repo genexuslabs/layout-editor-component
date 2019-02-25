@@ -54,6 +54,15 @@ export namespace Components {
     model?: GeneXusAbstractLayout.Cell;
   }
 
+  interface GxLeErrorviewer {
+    context: IResolverContext;
+    model: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeErrorviewerAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: GeneXusAbstractLayout.Cell;
+  }
+
   interface GxLeFlexTable {
     context: IResolverContext;
     model: GeneXusAbstractLayout.Cell;
@@ -204,6 +213,7 @@ declare global {
     GxLeComponent: Components.GxLeComponent;
     GxLeData: Components.GxLeData;
     GxLeDefault: Components.GxLeDefault;
+    GxLeErrorviewer: Components.GxLeErrorviewer;
     GxLeFlexTable: Components.GxLeFlexTable;
     GxLeFreestyleGrid: Components.GxLeFreestyleGrid;
     GxLeGroup: Components.GxLeGroup;
@@ -226,6 +236,7 @@ declare global {
     "gx-le-component": Components.GxLeComponentAttributes;
     "gx-le-data": Components.GxLeDataAttributes;
     "gx-le-default": Components.GxLeDefaultAttributes;
+    "gx-le-errorviewer": Components.GxLeErrorviewerAttributes;
     "gx-le-flex-table": Components.GxLeFlexTableAttributes;
     "gx-le-freestyle-grid": Components.GxLeFreestyleGridAttributes;
     "gx-le-group": Components.GxLeGroupAttributes;
@@ -280,6 +291,14 @@ declare global {
   var HTMLGxLeDefaultElement: {
     prototype: HTMLGxLeDefaultElement;
     new (): HTMLGxLeDefaultElement;
+  };
+
+  interface HTMLGxLeErrorviewerElement
+    extends Components.GxLeErrorviewer,
+      HTMLStencilElement {}
+  var HTMLGxLeErrorviewerElement: {
+    prototype: HTMLGxLeErrorviewerElement;
+    new (): HTMLGxLeErrorviewerElement;
   };
 
   interface HTMLGxLeFlexTableElement
@@ -400,6 +419,7 @@ declare global {
     "gx-le-component": HTMLGxLeComponentElement;
     "gx-le-data": HTMLGxLeDataElement;
     "gx-le-default": HTMLGxLeDefaultElement;
+    "gx-le-errorviewer": HTMLGxLeErrorviewerElement;
     "gx-le-flex-table": HTMLGxLeFlexTableElement;
     "gx-le-freestyle-grid": HTMLGxLeFreestyleGridElement;
     "gx-le-group": HTMLGxLeGroupElement;
@@ -422,6 +442,7 @@ declare global {
     "gx-le-component": HTMLGxLeComponentElement;
     "gx-le-data": HTMLGxLeDataElement;
     "gx-le-default": HTMLGxLeDefaultElement;
+    "gx-le-errorviewer": HTMLGxLeErrorviewerElement;
     "gx-le-flex-table": HTMLGxLeFlexTableElement;
     "gx-le-freestyle-grid": HTMLGxLeFreestyleGridElement;
     "gx-le-group": HTMLGxLeGroupElement;

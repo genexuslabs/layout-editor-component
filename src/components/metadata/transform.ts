@@ -93,6 +93,9 @@ const controlTypes = {
   data: {
     transformFn: x => x
   },
+  errorviewer: {
+    transformFn: x => x
+  },
   grid: {
     transformFn: x => x
   },

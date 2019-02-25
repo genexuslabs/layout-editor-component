@@ -12,6 +12,10 @@ const resolversMap: IResolverMapEntry[] = [
     type: "data"
   },
   {
+    tag: "gx-le-errorviewer",
+    type: "errorviewer"
+  },
+  {
     tag: "gx-le-freestyle-grid",
     type: "grid"
   },
