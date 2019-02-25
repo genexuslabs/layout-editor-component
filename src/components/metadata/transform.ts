@@ -1,3 +1,5 @@
+import { controlsDefinition } from "../common/controls";
+
 function transformModel(
   rawModel: GeneXusAbstractLayout.Model
 ): GeneXusAbstractLayout.Model {
@@ -32,7 +34,7 @@ function transformContainer(
 function getTransformFunctionByType(
   type: string
 ): (control: GeneXusAbstractLayout.IControl) => GeneXusAbstractLayout.IControl {
-  const definition = controlTypes[type];
+  const definition = controlsTransforms[type];
   if (!definition) {
     return x => x;
   }
@@ -83,45 +85,12 @@ function inferChildControlType(parent: any): string {
   }
 }
 
-const controlTypes = {
-  action: {
-    transformFn: x => x
-  },
-  component: {
-    transformFn: x => x
-  },
-  data: {
-    transformFn: x => x
-  },
-  errorviewer: {
-    transformFn: x => x
-  },
-  grid: {
-    transformFn: x => x
-  },
-  horizontalrule: {
-    transformFn: x => x
-  },
-  hyperlink: {
-    transformFn: x => x
-  },
-  image: {
-    transformFn: x => x
-  },
-  section: {
-    transformFn: x => x
-  },
-  simplegrid: {
-    transformFn: x => x
-  },
+const controlsTransforms = {
   table: {
     transformFn: transformTable
-  },
-  textblock: {
-    transformFn: x => x
   }
 };
 
-const controlTypesList = Object.keys(controlTypes);
+const controlTypesList = controlsDefinition.map(def => def.type);
 
 export const transform = transformModel;
