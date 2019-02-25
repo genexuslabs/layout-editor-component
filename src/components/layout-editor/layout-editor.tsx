@@ -19,6 +19,7 @@ import {
 } from "./layout-editor-helpers";
 import { LayoutEditorDragDrop } from "./layout-editor-drag-drop";
 import { Fragment } from "../common/util";
+import { transform } from "../metadata/transform";
 // The following import must be commented until Stencil issue regarding SASS @imports
 // of imported components and the SASS Stencil plugin is solved.
 // Meanwhile the dependency is loaded manually
@@ -334,16 +335,18 @@ export class LayoutEditor {
 
   render() {
     if (this.model && this.model.layout) {
+      const model = transform(this.model);
+
       const context = {
         selectedControls: this.selectedControls
       };
       const isSelected =
         this.selectedControls.find(id => id === "") !== undefined ||
-        isCellSelected(this.model.layout, context);
+        isCellSelected(model.layout, context);
       this.element.setAttribute("data-gx-le-selected", isSelected.toString());
       return (
         <Fragment>
-          {controlResolver(this.model.layout, context)}
+          {controlResolver(model.layout, context)}
           <gx-layout-editor-placeholder
             data-gx-le-external
             data-gx-le-placeholder="row"

@@ -1,5 +1,5 @@
 declare module GeneXusAbstractLayout {
-  export interface Data {
+  export interface Data extends IControl {
     "@controlName": string;
     "@attribute": string;
     "@labelPosition": string;
@@ -11,71 +11,60 @@ declare module GeneXusAbstractLayout {
     "@WebUserControlProperties": string;
     "@controlNameForStencil": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
-    "@id": string;
   }
 
-  export interface Action {
+  export interface Action extends IControl {
     "@controlName": string;
     "@onClickEvent": string;
     "@caption": string;
     "@ControlType": string;
     "@class": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
-    "@id": string;
   }
 
-  export interface Embeddedpage {
+  export interface Embeddedpage extends IControl {
     "@controlName": string;
     "@class": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
-    "@id": string;
   }
 
-  export interface Errorviewer {
+  export interface Errorviewer extends IControl {
     "@controlName": string;
     "@class": string;
     "@visible": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
-    "@id": string;
   }
 
-  export interface Horizontalrule {
-    "@id": string;
-  }
+  export interface Horizontalrule extends IControl {}
 
-  export interface Hyperlink {
+  export interface Hyperlink extends IControl {
     "@text": string;
     "@class": string;
     "@controlNameForStencil": string;
-    "@id": string;
   }
 
-  export interface Image {
+  export interface Image extends IControl {
     "@controlName": string;
     "@image": string;
     imgSrc: string;
     "@class": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
-    "@id": string;
   }
 
-  export interface Textblock {
+  export interface Textblock extends IControl {
     "@controlName": string;
     "@caption": string;
     "@class": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
-    "@id": string;
   }
 
-  export interface Component {
+  export interface Component extends IControl {
     "@controlName": string;
     "@webObject": string;
     "@parameters": string;
-    "@id": string;
   }
 
-  export interface Grid {
-    "@id": string;
+  export interface Grid extends IControl {
     "@controlName": string;
     "@class": string;
     "@collection": string;
@@ -98,8 +87,7 @@ declare module GeneXusAbstractLayout {
     controlType: string;
   }
 
-  export interface Simplegrid {
-    "@id": string;
+  export interface Simplegrid extends IControl {
     "@controlName": string;
     "@class": string;
     "@collection": string;
@@ -108,8 +96,7 @@ declare module GeneXusAbstractLayout {
     acceptedElementTypes?: string[];
   }
 
-  export interface Group {
-    "@id": string;
+  export interface Group extends IControl {
     "@controlName": string;
     "@caption": string;
     "@class": string;
@@ -117,15 +104,14 @@ declare module GeneXusAbstractLayout {
     table: Table;
   }
 
-  export interface SectionItem extends Container {
+  export interface SectionItem extends IContainer {
     "@id": string;
   }
 
-  export interface Section {
+  export interface Section extends IControl {
     "@controlName": string;
     "@class": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
-    "@id": string;
     item: SectionItem;
   }
 
@@ -136,8 +122,7 @@ declare module GeneXusAbstractLayout {
     table: Table;
   }
 
-  export interface Tab {
-    "@id": string;
+  export interface Tab extends IControl {
     "@controlName": string;
     "@class": string;
     "@visible": string;
@@ -145,19 +130,17 @@ declare module GeneXusAbstractLayout {
     item: TabItem[];
   }
 
-  export interface Actiongroup {
+  export interface Actiongroup extends IControl {
     "@controlName": string;
     "@visible": string;
-    "@id": string;
   }
 
-  export interface Ucw {
+  export interface Ucw extends IControl {
     "@gxControlType": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
-    "@id": string;
   }
 
-  export interface Container {
+  export interface IContainer {
     childControlType: string;
     controlType: string;
     data?: Data;
@@ -179,7 +162,11 @@ declare module GeneXusAbstractLayout {
     ucw?: Ucw;
   }
 
-  export interface Cell extends Container {
+  export interface IControl {
+    "@id": string;
+  }
+
+  export interface Cell extends IContainer {
     "@id": string;
     "@cellControlName": string;
     "@hAlign": string;
@@ -190,10 +177,10 @@ declare module GeneXusAbstractLayout {
     "@id": string;
     "@rowHeight": string;
     "@rowHeightWeb": string;
-    cell: Cell;
+    cell: Cell[];
   }
 
-  export interface Table {
+  export interface Table extends IControl {
     "@id": string;
     "@controlName": string;
     "@width": string;
@@ -239,6 +226,7 @@ declare module GeneXusAbstractLayout {
     "@Type": string;
     "@Orientation": string;
     childControlType: string;
+    controlType: string;
     table: Table;
     actionGroups?: ActionGroups;
   }
