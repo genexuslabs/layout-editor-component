@@ -302,11 +302,12 @@ export class LayoutEditor {
   onMouseOver(event: MouseEvent) {
     const hoveredElement = event.target as HTMLElement;
     const cell = findParentCell(hoveredElement);
-    const container = hoveredElement.matches("[data-gx-le-container]")
-      ? hoveredElement
-      : findParentContainer(cell);
 
     if (cell) {
+      const container = hoveredElement.matches("[data-gx-le-container]")
+        ? hoveredElement
+        : findParentContainer(cell);
+
       this.clearHighglighting();
       cell.setAttribute("data-gx-le-highlighted", "");
       container.setAttribute("data-gx-le-highlighted-container", "");

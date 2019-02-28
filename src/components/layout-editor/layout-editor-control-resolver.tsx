@@ -16,12 +16,7 @@ export function controlResolver(control, context: IResolverContext) {
       }
     }
   }
-  return (
-    <gx-le-default
-      model={control[control.childControlType]}
-      context={context}
-    />
-  );
+  return <gx-le-default model={control} context={context} />;
 }
 
 function findResolverByType(type: string): IControlDefinition {
