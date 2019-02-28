@@ -24,8 +24,7 @@ export class LayoutEditorData {
       >
         <gx-edit
           area="field"
-          disabled={data["@enabled"] === "False"}
-          readonly
+          disabled
           value={data["@controlName"]}
           class={data["@class"]}
         />
