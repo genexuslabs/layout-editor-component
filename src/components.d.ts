@@ -168,6 +168,15 @@ export namespace Components {
     model?: GeneXusAbstractLayout.Cell;
   }
 
+  interface GxLeUserControl {
+    context: IResolverContext;
+    model: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeUserControlAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: GeneXusAbstractLayout.Cell;
+  }
+
   interface GxLayoutEditor {
     /**
      * The abstract form model object
@@ -227,6 +236,7 @@ declare global {
     GxLeTabularTable: Components.GxLeTabularTable;
     GxLayoutEditorTest: Components.GxLayoutEditorTest;
     GxLeTextblock: Components.GxLeTextblock;
+    GxLeUserControl: Components.GxLeUserControl;
     GxLayoutEditor: Components.GxLayoutEditor;
   }
 
@@ -250,6 +260,7 @@ declare global {
     "gx-le-tabular-table": Components.GxLeTabularTableAttributes;
     "gx-layout-editor-test": Components.GxLayoutEditorTestAttributes;
     "gx-le-textblock": Components.GxLeTextblockAttributes;
+    "gx-le-user-control": Components.GxLeUserControlAttributes;
     "gx-layout-editor": Components.GxLayoutEditorAttributes;
   }
 
@@ -405,6 +416,14 @@ declare global {
     new (): HTMLGxLeTextblockElement;
   };
 
+  interface HTMLGxLeUserControlElement
+    extends Components.GxLeUserControl,
+      HTMLStencilElement {}
+  var HTMLGxLeUserControlElement: {
+    prototype: HTMLGxLeUserControlElement;
+    new (): HTMLGxLeUserControlElement;
+  };
+
   interface HTMLGxLayoutEditorElement
     extends Components.GxLayoutEditor,
       HTMLStencilElement {}
@@ -433,6 +452,7 @@ declare global {
     "gx-le-tabular-table": HTMLGxLeTabularTableElement;
     "gx-layout-editor-test": HTMLGxLayoutEditorTestElement;
     "gx-le-textblock": HTMLGxLeTextblockElement;
+    "gx-le-user-control": HTMLGxLeUserControlElement;
     "gx-layout-editor": HTMLGxLayoutEditorElement;
   }
 
@@ -456,6 +476,7 @@ declare global {
     "gx-le-tabular-table": HTMLGxLeTabularTableElement;
     "gx-layout-editor-test": HTMLGxLayoutEditorTestElement;
     "gx-le-textblock": HTMLGxLeTextblockElement;
+    "gx-le-user-control": HTMLGxLeUserControlElement;
     "gx-layout-editor": HTMLGxLayoutEditorElement;
   }
 

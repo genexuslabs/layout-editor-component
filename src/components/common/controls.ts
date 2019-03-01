@@ -69,6 +69,7 @@ export const controlsDefinition: IControlDefinition[] = [
     type: "table"
   },
   {
+    tag: "gx-le-user-control",
     type: "ucw"
   }
 ];
