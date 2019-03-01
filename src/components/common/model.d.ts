@@ -10,7 +10,6 @@ declare module GeneXusAbstractLayout {
     "@ReturnOnClick": string;
     "@WebUserControlProperties": string;
     "@controlNameForStencil": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
   }
 
   export interface Action extends IControl {
@@ -19,20 +18,17 @@ declare module GeneXusAbstractLayout {
     "@caption": string;
     "@ControlType": string;
     "@class": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
   }
 
   export interface Embeddedpage extends IControl {
     "@controlName": string;
     "@class": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
   }
 
   export interface Errorviewer extends IControl {
     "@controlName": string;
     "@class": string;
     "@visible": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
   }
 
   export interface Horizontalrule extends IControl {}
@@ -48,14 +44,12 @@ declare module GeneXusAbstractLayout {
     "@image": string;
     imgSrc: string;
     "@class": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
   }
 
   export interface Textblock extends IControl {
     "@controlName": string;
     "@caption": string;
     "@class": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
   }
 
   export interface Component extends IControl {
@@ -71,7 +65,6 @@ declare module GeneXusAbstractLayout {
     "@rows": string;
     "@dataSelector": string;
     "@defaultTable": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
     table: Table;
   }
 
@@ -83,7 +76,6 @@ declare module GeneXusAbstractLayout {
     "@class": string;
     "@WebUserControlProperties": string;
     "@controlNameForStencil": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
     controlType: string;
   }
 
@@ -91,7 +83,6 @@ declare module GeneXusAbstractLayout {
     "@controlName": string;
     "@class": string;
     "@collection": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
     item: [SimpleGridItem];
     acceptedElementTypes?: string[];
   }
@@ -100,7 +91,6 @@ declare module GeneXusAbstractLayout {
     "@controlName": string;
     "@caption": string;
     "@class": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
     table: Table;
   }
 
@@ -111,7 +101,6 @@ declare module GeneXusAbstractLayout {
   export interface Section extends IControl {
     "@controlName": string;
     "@class": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
     item: SectionItem;
   }
 
@@ -137,8 +126,9 @@ declare module GeneXusAbstractLayout {
 
   export interface Ucw extends IControl {
     "@gxControlType": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
   }
+
+  export interface UcwContainer extends Ucw, IContainer {}
 
   export interface IContainer {
     childControlType: string;
@@ -159,11 +149,13 @@ declare module GeneXusAbstractLayout {
     section?: Section;
     tab?: Tab;
     actiongroup?: Actiongroup;
-    ucw?: Ucw;
+    ucw?: Ucw | UcwContainer;
   }
 
   export interface IControl {
     "@id": string;
+    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES"?: string;
+    CustomProperties?: any;
   }
 
   export interface Cell extends IContainer {
@@ -191,7 +183,6 @@ declare module GeneXusAbstractLayout {
     "@responsiveSizes": string;
     "@rowHeights": string;
     "@isStencil": string;
-    "@PATTERN_ELEMENT_CUSTOM_PROPERTIES": string;
     row: Row[];
   }
 

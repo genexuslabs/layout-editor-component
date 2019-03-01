@@ -22,12 +22,12 @@ function transformContainer(
   rawContainer: GeneXusAbstractLayout.IContainer,
   childControlType: string
 ): GeneXusAbstractLayout.IContainer {
-  const transformControl = getTransformFunctionByType(childControlType);
+  const transformControlFn = getTransformFunctionByType(childControlType);
 
   return {
     childControlType,
     controlType: childControlType,
-    [childControlType]: transformControl(rawContainer[childControlType])
+    [childControlType]: transformControlFn(rawContainer[childControlType])
   };
 }
 
@@ -35,10 +35,15 @@ function getTransformFunctionByType(
   type: string
 ): (control: GeneXusAbstractLayout.IControl) => GeneXusAbstractLayout.IControl {
   const definition = controlsTransforms[type];
+
   if (!definition) {
-    return x => x;
+    return transformControl;
+  } else {
+    return (
+      control: GeneXusAbstractLayout.IControl
+    ): GeneXusAbstractLayout.IControl =>
+      definition.transformFn(transformControl(control));
   }
-  return definition.transformFn;
 }
 
 function transformTable(
@@ -73,6 +78,48 @@ function transformCell(
   };
 }
 
+function transformUserControl(
+  rawUserControl: GeneXusAbstractLayout.Ucw
+): GeneXusAbstractLayout.Ucw {
+  const childControlType = inferChildControlType(rawUserControl);
+
+  const transformed = childControlType
+    ? transformContainer(
+        rawUserControl as GeneXusAbstractLayout.UcwContainer,
+        childControlType
+      )
+    : transformControl(rawUserControl);
+
+  return {
+    ...rawUserControl,
+    ...transformed
+  };
+}
+
+function transformControl(
+  control: GeneXusAbstractLayout.IControl
+): GeneXusAbstractLayout.IControl {
+  const customPropertiesXml = control["@PATTERN_ELEMENT_CUSTOM_PROPERTIES"];
+  if (customPropertiesXml) {
+    control.CustomProperties = parseControlCustomProperties(
+      customPropertiesXml
+    );
+  }
+  return control;
+}
+
+function parseControlCustomProperties(propertiesXml: string): any {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(propertiesXml, "application/xml");
+  const propsElements = Array.from(doc.querySelectorAll("Property"));
+  return propsElements.reduce((acc, item) => {
+    acc[item.querySelector("Name").innerHTML] = item.querySelector(
+      "Value"
+    ).innerHTML;
+    return acc;
+  }, {});
+}
+
 function fixArrayProperty<T>(rawValue: any): T[] {
   return rawValue ? (Array.isArray(rawValue) ? rawValue : [rawValue]) : [];
 }
@@ -88,6 +135,9 @@ function inferChildControlType(parent: any): string {
 const controlsTransforms = {
   table: {
     transformFn: transformTable
+  },
+  ucw: {
+    transformFn: transformUserControl
   }
 };
 
