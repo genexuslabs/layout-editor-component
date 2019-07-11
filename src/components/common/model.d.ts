@@ -104,7 +104,7 @@ declare module GeneXusAbstractLayout {
     item: SectionItem;
   }
 
-  export interface TabItem {
+  export interface TabItem extends IContainer {
     "@id": string;
     "@itemControlName": string;
     "@caption": string;

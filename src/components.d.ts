@@ -153,6 +153,15 @@ export namespace Components {
     model?: GeneXusAbstractLayout.Cell;
   }
 
+  interface GxLeTab {
+    context: IResolverContext;
+    model: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeTabAttributes extends StencilHTMLAttributes {
+    context?: IResolverContext;
+    model?: GeneXusAbstractLayout.Cell;
+  }
+
   interface GxLeTabularTable {
     context: IResolverContext;
     model: GeneXusAbstractLayout.Cell;
@@ -305,6 +314,7 @@ declare global {
     GxLeResponsiveTable: Components.GxLeResponsiveTable;
     GxLeSection: Components.GxLeSection;
     GxLeSimpleGrid: Components.GxLeSimpleGrid;
+    GxLeTab: Components.GxLeTab;
     GxLeTabularTable: Components.GxLeTabularTable;
     GxLayoutEditorTest: Components.GxLayoutEditorTest;
     GxLeTextblock: Components.GxLeTextblock;
@@ -336,6 +346,7 @@ declare global {
     "gx-le-responsive-table": Components.GxLeResponsiveTableAttributes;
     "gx-le-section": Components.GxLeSectionAttributes;
     "gx-le-simple-grid": Components.GxLeSimpleGridAttributes;
+    "gx-le-tab": Components.GxLeTabAttributes;
     "gx-le-tabular-table": Components.GxLeTabularTableAttributes;
     "gx-layout-editor-test": Components.GxLayoutEditorTestAttributes;
     "gx-le-textblock": Components.GxLeTextblockAttributes;
@@ -478,6 +489,12 @@ declare global {
     new (): HTMLGxLeSimpleGridElement;
   };
 
+  interface HTMLGxLeTabElement extends Components.GxLeTab, HTMLStencilElement {}
+  var HTMLGxLeTabElement: {
+    prototype: HTMLGxLeTabElement;
+    new (): HTMLGxLeTabElement;
+  };
+
   interface HTMLGxLeTabularTableElement
     extends Components.GxLeTabularTable,
       HTMLStencilElement {}
@@ -591,6 +608,7 @@ declare global {
     "gx-le-responsive-table": HTMLGxLeResponsiveTableElement;
     "gx-le-section": HTMLGxLeSectionElement;
     "gx-le-simple-grid": HTMLGxLeSimpleGridElement;
+    "gx-le-tab": HTMLGxLeTabElement;
     "gx-le-tabular-table": HTMLGxLeTabularTableElement;
     "gx-layout-editor-test": HTMLGxLayoutEditorTestElement;
     "gx-le-textblock": HTMLGxLeTextblockElement;
@@ -622,6 +640,7 @@ declare global {
     "gx-le-responsive-table": HTMLGxLeResponsiveTableElement;
     "gx-le-section": HTMLGxLeSectionElement;
     "gx-le-simple-grid": HTMLGxLeSimpleGridElement;
+    "gx-le-tab": HTMLGxLeTabElement;
     "gx-le-tabular-table": HTMLGxLeTabularTableElement;
     "gx-layout-editor-test": HTMLGxLayoutEditorTestElement;
     "gx-le-textblock": HTMLGxLeTextblockElement;
