@@ -96,6 +96,31 @@ function transformUserControl(
   };
 }
 
+function transformTab(
+  rawTab: GeneXusAbstractLayout.Tab
+): GeneXusAbstractLayout.Tab {
+  const item = fixArrayProperty(rawTab.item);
+
+  return {
+    ...rawTab,
+    item: item.map(transformTabItem)
+  };
+}
+
+function transformTabItem(
+  rawTabItem: GeneXusAbstractLayout.TabItem
+): GeneXusAbstractLayout.TabItem {
+  const transformed = transformContainer(
+    rawTabItem as GeneXusAbstractLayout.TabItem,
+    inferChildControlType(rawTabItem)
+  );
+
+  return {
+    ...rawTabItem,
+    ...transformed
+  };
+}
+
 function transformControl(
   control: GeneXusAbstractLayout.IControl
 ): GeneXusAbstractLayout.IControl {
@@ -133,6 +158,9 @@ function inferChildControlType(parent: any): string {
 }
 
 const controlsTransforms = {
+  tab: {
+    transformFn: transformTab
+  },
   table: {
     transformFn: transformTable
   },
