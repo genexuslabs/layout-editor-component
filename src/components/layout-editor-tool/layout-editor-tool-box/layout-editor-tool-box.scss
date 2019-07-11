@@ -1,0 +1,62 @@
+gx-le-tool-box {
+  & .margin {
+    position: absolute;
+    background-color: var(
+      --gx-le-tool-box-margin-color,
+      rgba(255, 165, 0, 0.5)
+    );
+
+    &.top {
+      left: calc(0px - var(--margin-left, 0px));
+      bottom: 100%;
+      width: calc(100% + var(--margin-left, 0px) + var(--margin-right, 0px));
+      height: var(--margin-top);
+    }
+    &.bottom {
+      left: calc(0px - var(--margin-left, 0px));
+      top: 100%;
+      width: calc(100% + var(--margin-left, 0px) + var(--margin-right, 0px));
+      height: var(--margin-bottom, 0px);
+    }
+    &.left {
+      right: 100%;
+      height: 100%;
+      width: var(--margin-left, 0px);
+    }
+    &.right {
+      left: 100%;
+      height: 100%;
+      width: var(--margin-right, 0px);
+    }
+  }
+  & .padding {
+    position: absolute;
+    background-color: var(
+      --gx-le-tool-box-padding-color,
+      rgba(144, 238, 144, 0.5)
+    );
+
+    &.top {
+      top: 0px;
+      width: 100%;
+      height: var(--padding-top, 0px);
+    }
+    &.bottom {
+      bottom: 0px;
+      width: 100%;
+      height: var(--padding-bottom, 0px);
+    }
+    &.left {
+      top: calc(0px + var(--padding-top, 0px));
+      left: 0px;
+      height: calc(100% - var(--padding-top, 0px) - var(--padding-bottom, 0px));
+      width: var(--padding-left, 0px);
+    }
+    &.right {
+      top: calc(0px + var(--padding-top));
+      right: 0px;
+      height: calc(100% - var(--padding-top, 0px) - var(--padding-bottom, 0px));
+      width: var(--padding-right, 0px);
+    }
+  }
+}

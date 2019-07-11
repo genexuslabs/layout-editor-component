@@ -13,13 +13,16 @@ import {
 } from "./layout-editor-control-resolver";
 import {
   findParentCell,
-  findParentContainer,
   getCellData,
   getControlId
 } from "./layout-editor-helpers";
-import { LayoutEditorDragDrop } from "./layout-editor-drag-drop";
+
 import { Fragment } from "../common/util";
+import { LayoutEditorDragDrop } from "./layout-editor-drag-drop";
 import { transform } from "../metadata/transform";
+
+// import { LayoutEditorHighlightManager } from "./layout-editor-highlight-manager";
+
 // The following import must be commented until Stencil issue regarding SASS @imports
 // of imported components and the SASS Stencil plugin is solved.
 // Meanwhile the dependency is loaded manually
@@ -34,6 +37,7 @@ export class LayoutEditor {
   @Element() element: HTMLElement;
 
   dragDrop: LayoutEditorDragDrop;
+  // highlightManager: LayoutEditorHighlightManager;
 
   /**
    * The abstract form model object
@@ -220,6 +224,11 @@ export class LayoutEditor {
       this.controlAdded
     );
     this.dragDrop.initialize();
+    /*
+    this.highlightManager = new LayoutEditorHighlightManager(this
+      .element as HTMLGxLayoutEditorElement);
+    this.highlightManager.initialize();
+*/
   }
 
   componentWillUpdate() {
@@ -298,42 +307,6 @@ export class LayoutEditor {
     });
   }
 
-  @Listen("mouseover", { passive: true })
-  onMouseOver(event: MouseEvent) {
-    const hoveredElement = event.target as HTMLElement;
-    const cell = findParentCell(hoveredElement);
-
-    if (cell) {
-      const container = hoveredElement.matches("[data-gx-le-container]")
-        ? hoveredElement
-        : findParentContainer(cell);
-
-      this.clearHighglighting();
-      cell.setAttribute("data-gx-le-highlighted", "");
-      container.setAttribute("data-gx-le-highlighted-container", "");
-    }
-  }
-
-  @Listen("mouseout", { passive: true })
-  onMouseOut() {
-    this.clearHighglighting();
-  }
-
-  private clearHighglighting() {
-    const highlightedElement = this.element.querySelector(
-      "[data-gx-le-highlighted]"
-    );
-    if (highlightedElement) {
-      highlightedElement.removeAttribute("data-gx-le-highlighted");
-    }
-    const highlightedCtElement = this.element.querySelector(
-      "[data-gx-le-highlighted-container]"
-    );
-    if (highlightedCtElement) {
-      highlightedCtElement.removeAttribute("data-gx-le-highlighted-container");
-    }
-  }
-
   render() {
     if (this.model && this.model.layout) {
       const model = transform(this.model);
@@ -341,11 +314,16 @@ export class LayoutEditor {
       const context = {
         selectedControls: this.selectedControls
       };
+
       const isSelected =
         this.selectedControls.find(id => id === "") !== undefined ||
         isCellSelected(model.layout, context);
       this.element.setAttribute("data-gx-le-selected", isSelected.toString());
-      return (
+      return [
+        <gx-le-tool-highlight-controller
+          editor={this}
+          selection={this.selectedControls}
+        />,
         <Fragment>
           {controlResolver(model.layout, context)}
           <gx-layout-editor-placeholder
@@ -358,7 +336,7 @@ export class LayoutEditor {
             <div data-gx-le-external-transit />
           </gx-layout-editor-placeholder>
         </Fragment>
-      );
+      ];
     }
   }
 }

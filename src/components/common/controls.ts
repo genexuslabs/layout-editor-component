@@ -1,60 +1,79 @@
 export const controlsDefinition: IControlDefinition[] = [
   {
-    tag: "gx-le-action",
-    type: "action"
+    type: "Attribute",
+    typeName: "Attribute"
   },
   {
-    type: "actiongroup"
+    tag: "gx-le-action",
+    type: "action",
+    typeName: "Action"
+  },
+  {
+    type: "actiongroup",
+    typeName: "Action Group"
   },
   {
     tag: "gx-le-component",
-    type: "component"
+    type: "component",
+    typeName: "Component"
   },
   {
     tag: "gx-le-data",
-    type: "data"
+    type: "data",
+    typeName: "Data"
   },
   {
     tag: "gx-le-errorviewer",
-    type: "errorviewer"
+    type: "errorviewer",
+    typeName: "Error Viewer"
   },
   {
-    type: "embeddedpage"
+    type: "embeddedpage",
+    typeName: "Embedded Page"
   },
   {
     tag: "gx-le-freestyle-grid",
-    type: "grid"
+    type: "grid",
+    typeName: "Grid"
   },
   {
     tag: "gx-le-group",
-    type: "group"
+    type: "group",
+    typeName: "Group"
   },
   {
     tag: "gx-le-horizontal-rule",
-    type: "horizontalrule"
+    type: "horizontalrule",
+    typeName: "Horizontal Rule"
   },
   {
     tag: "gx-le-hyperlink",
-    type: "hyperlink"
+    type: "hyperlink",
+    typeName: "Hyperlink"
   },
   {
     tag: "gx-le-image",
-    type: "image"
+    type: "image",
+    typeName: "Image"
   },
   {
     tag: "gx-le-textblock",
-    type: "textblock"
+    type: "textblock",
+    typeName: "Text Block"
   },
   {
     tag: "gx-le-section",
-    type: "section"
+    type: "section",
+    typeName: "Section"
   },
   {
     tag: "gx-le-simple-grid",
-    type: "simplegrid"
+    type: "simplegrid",
+    typeName: "Simple Grid"
   },
   {
-    type: "tab"
+    type: "tab",
+    typeName: "Tab"
   },
   {
     tag: {
@@ -66,11 +85,13 @@ export const controlsDefinition: IControlDefinition[] = [
       },
       property: "@tableType"
     },
-    type: "table"
+    type: "table",
+    typeName: "Table"
   },
   {
     tag: "gx-le-user-control",
-    type: "ucw"
+    type: "ucw",
+    typeName: "User Control"
   }
 ];
 
@@ -84,6 +105,7 @@ export interface IControlDefinition {
         };
       };
   type: string;
+  typeName: string;
   metadataTransform?: (
     control: GeneXusAbstractLayout.IControl
   ) => GeneXusAbstractLayout.IControl;

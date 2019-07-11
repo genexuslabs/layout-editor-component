@@ -2,6 +2,8 @@ import { Component, Element, Prop } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
+  getControlName,
+  getControlTypeName,
   isCellSelected
 } from "../layout-editor/layout-editor-control-resolver";
 
@@ -177,6 +179,8 @@ function renderCell(cell, rowId, rowIndex, context) {
         "grid-row": ` ${rowStart} / span ${rowSpan}`
       }}
       data-gx-le-selected={isCellSelected(cell, context).toString()}
+      data-gx-le-control-type-name={getControlTypeName(cell)}
+      data-gx-le-control-name={getControlName(cell)}
     >
       {controlResolver(cell, context)}
     </gx-table-cell>

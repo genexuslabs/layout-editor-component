@@ -45,3 +45,23 @@ function findChildControl(cell): any {
 export interface IResolverContext {
   selectedControls: string[];
 }
+
+export function getControlTypeName(cell): string {
+  const controlDefinition =
+    cell.controlType && findResolverByType(cell.controlType);
+
+  if (controlDefinition) {
+    return controlDefinition.typeName;
+  } else {
+    return "Unknown control";
+  }
+}
+
+export function getControlName(cell): string {
+  return (
+    (cell.controlType &&
+      cell[cell.controlType] &&
+      `${cell[cell.controlType]["@controlName"] || ""}`) ||
+    (cell["@controlName"] || "")
+  );
+}

@@ -69,10 +69,42 @@ export function findParentContainer(el: Element): Element {
   return findParentContainer(parentElement);
 }
 
+export function getSelectedData(el: Element): ISelectedData {
+  let controlId = getControlId(el);
+
+  if (controlId === "" && el.firstElementChild) {
+    controlId = getControlId(el.firstElementChild);
+  }
+
+  return {
+    controlId
+  };
+}
+
+export function getBreadcrumb(el: HTMLElement): HTMLElement[] {
+  const breadcrumb: HTMLElement[] = [];
+
+  while (el.parentElement) {
+    const parent = el.parentElement;
+
+    if (parent.dataset && parent.dataset.gxLeControlTypeName) {
+      breadcrumb.push(parent);
+    }
+
+    el = parent;
+  }
+
+  return breadcrumb;
+}
+
 interface ICellData {
   cellId: string;
   dropArea: string;
   rowId: string;
+}
+
+interface ISelectedData {
+  controlId: string;
 }
 
 interface IDropTargetData {

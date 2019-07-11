@@ -2,6 +2,8 @@ import { Component, Element, Prop } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
+  getControlName,
+  getControlTypeName,
   isCellSelected
 } from "../layout-editor/layout-editor-control-resolver";
 
@@ -103,6 +105,8 @@ function renderCell(cell, rowId, context) {
       data-gx-le-row-id={rowId}
       data-gx-le-selected={isCellSelected(cell, context).toString()}
       data-gx-le-responsive-table-cell
+      data-gx-le-control-type-name={getControlTypeName(cell)}
+      data-gx-le-control-name={getControlName(cell)}
       style={getCellStyle(cell)}
     >
       {controlResolver(cell, context)}

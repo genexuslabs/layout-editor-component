@@ -1,0 +1,50 @@
+gx-le-tool-selection {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+
+  pointer-events: none;
+
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: var(--gx-le-tool-selection-color, #00a2ff);
+  outline-offset: -1px;
+
+  &.smooth {
+    transition: top 0.1s, left 0.1s, width 0.1s, height 0.1s;
+  }
+
+  &.highlight {
+    animation-name: gx-le-tool-selection-highlight;
+    animation-duration: 0.25s;
+    animation-iteration-count: 2;
+    animation-delay: 0.1;
+  }
+
+  & gx-le-tool-bar {
+    position: absolute;
+    transform: translate(0px, -100%);
+    z-index: 3;
+  }
+  & gx-le-tool-box {
+    z-index: 1;
+  }
+  & gx-le-tool-dimension {
+    z-index: 2;
+  }
+}
+
+@keyframes gx-le-tool-selection-highlight {
+  0% {
+    outline-width: 2px;
+    outline-offset: -1px;
+  }
+  50% {
+    outline-width: 6px;
+    outline-offset: -3px;
+  }
+  100% {
+    outline-width: 2px;
+    outline-offset: -1px;
+  }
+}

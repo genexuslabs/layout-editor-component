@@ -5,6 +5,7 @@ gx-layout-editor-test {
   --warning-color: #ffa600;
   --light-color: #dffffc;
   --dark-color: #2a2d34;
+  --font-family: "Arial";
 
   display: flex;
   flex-direction: column;
@@ -69,9 +70,30 @@ gx-layout-editor-test {
     --gx-le-table-dragging-hovered-container-border-color: var(--warning-color);
     --gx-le-table-dragging-hovered-container-border-width: 1px;
     --gx-le-control-type-name-color: white;
-    --gx-le-control-type-name-font: 0.7rem Arial;
+    --gx-le-control-type-name-font: 0.7rem var(--font-family);
     --gx-le-form-field-color: var(--dark-color);
     --gx-le-empty-min-height: 100vh;
+    --gx-le-tool-selection-color: var(--primary-color);
+    --gx-le-tool-bar-background-color: var(--primary-color);
+    --gx-le-tool-bar-type-name-font-family: var(--font-family);
+    --gx-le-tool-bar-type-name-font-size: 14px;
+    --gx-le-tool-bar-type-name-font-weight: bold;
+    --gx-le-tool-bar-type-name-color: var(--light-color);
+    --gx-le-tool-bar-name-font-family: var(--font-family);
+    --gx-le-tool-bar-name-font-size: 14px;
+    --gx-le-tool-bar-name-color: var(--light-color);
+    --gx-le-tool-breadcrumb-background-color: var(--primary-color);
+    --gx-le-tool-breadcrumb-type-name-font-family: var(--font-family);
+    --gx-le-tool-breadcrumb-type-name-font-size: 12px;
+    --gx-le-tool-breadcrumb-type-name-font-weight: bold;
+    --gx-le-tool-breadcrumb-type-name-color: var(--light-color);
+    --gx-le-tool-breadcrumb-name-font-family: var(--font-family);
+    --gx-le-tool-breadcrumb-name-font-size: 12px;
+    --gx-le-tool-breadcrumb-name-color: var(--light-color);
+    --gx-le-tool-dimension-background-color: var(--primary-color);
+    --gx-le-tool-dimension-font-family: var(--font-family);
+    --gx-le-tool-dimension-font-size: 12px;
+    --gx-le-tool-dimension-color: var(--light-color);
 
     &.preview {
       --gx-le-table-cell-border: unset;

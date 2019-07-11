@@ -1,0 +1,105 @@
+gx-le-tool-dimension {
+  display: flex;
+  position: absolute;
+  --guide-width: 2px;
+
+  &.height {
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    left: calc(100% + 5px);
+
+    & .guides {
+      flex-direction: column;
+      & .start-line {
+        top: 0px;
+        width: 16px;
+        height: var(--guide-width);
+      }
+      & .start-circle {
+        top: -2px;
+      }
+      & .size {
+        top: 0px;
+        bottom: 0px;
+        width: var(--guide-width);
+      }
+      & .end-line {
+        bottom: 0px;
+        width: 16px;
+        height: var(--guide-width);
+      }
+      & .end-circle {
+        bottom: -2px;
+      }
+    }
+  }
+  &.width {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    top: calc(100% + 5px);
+
+    & .guides {
+      flex-direction: row;
+      & .start-line {
+        left: 0px;
+        width: var(--guide-width);
+        height: 16px;
+      }
+      & .start-circle {
+        left: -2px;
+      }
+      & .size {
+        left: 0px;
+        right: 0px;
+        height: var(--guide-width);
+      }
+      & .end-line {
+        right: 0px;
+        width: var(--guide-width);
+        height: 16px;
+      }
+      & .end-circle {
+        right: -2px;
+      }
+    }
+  }
+
+  & .guides {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    & > * {
+      position: absolute;
+      align-self: center;
+      background-color: var(--gx-le-tool-dimension-background-color, #00a2ff);
+    }
+    & > .start-circle,
+    & > .end-circle {
+      border-radius: 50%;
+      width: 6px;
+      height: 6px;
+    }
+  }
+  & .length {
+    display: flex;
+    align-self: center;
+    z-index: 1;
+
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    background-color: var(--gx-le-tool-dimension-background-color, #00a2ff);
+    font-family: var(--gx-le-tool-dimension-font-family, initial);
+    font-size: var(--gx-le-tool-dimension-font-size, initial);
+    font-style: var(--gx-le-tool-dimension-font-style, initial);
+    font-weight: var(--gx-le-tool-dimension-font-weight, initial);
+    text-decoration: var(--gx-le-tool-dimension-text-decoration, initial);
+    color: var(--gx-le-tool-dimension-color, white);
+    border-radius: 15px;
+  }
+}

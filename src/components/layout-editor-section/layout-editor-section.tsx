@@ -2,6 +2,8 @@ import { Component, Element, Prop } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
+  getControlName,
+  getControlTypeName,
   isCellSelected
 } from "../layout-editor/layout-editor-control-resolver";
 
@@ -39,6 +41,8 @@ export class LayoutEditorSection {
               key={item["@id"]}
               data-gx-le-drop-area="vertical"
               data-gx-le-control-id={item["@id"]}
+              data-gx-le-control-type-name={getControlTypeName(item)}
+              data-gx-le-control-name={getControlName(item)}
               style={{
                 "--gx-le-control-type-name":
                   item.controlType && `"${item.controlType}"`
