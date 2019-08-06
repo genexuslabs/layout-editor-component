@@ -66,10 +66,14 @@ gx-le-tool-bar {
       list-style: none;
       & li {
         display: flex;
+
         align-items: center;
         margin-right: 5px;
         &:last-child {
           margin-right: 0px;
+        }
+        &.hidden {
+          display: none;
         }
       }
       & button {

@@ -79,7 +79,6 @@ export class LayoutEditorToolHighlightController {
             changeHighlight
             loadBar
             loadBox
-            loadDimension
           />
         ))}
       </div>
