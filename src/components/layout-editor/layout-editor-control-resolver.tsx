@@ -14,9 +14,10 @@ export function controlResolver(control, context: IResolverContext) {
         ] as any;
         return <TagType model={control} context={context} />;
       }
+    } else {
+      return <gx-le-default model={control} context={context} />;
     }
   }
-  return <gx-le-default model={control} context={context} />;
 }
 
 function findResolverByType(type: string): IControlDefinition {

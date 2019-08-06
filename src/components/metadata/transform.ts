@@ -70,11 +70,16 @@ function transformRow(
 function transformCell(
   rawCell: GeneXusAbstractLayout.Cell
 ): GeneXusAbstractLayout.Cell {
-  const childControlType = inferChildControlType(rawCell);
+  const childControlType = rawCell.childControlType
+    ? rawCell.childControlType
+    : inferChildControlType(rawCell);
+  const container = childControlType
+    ? transformContainer(rawCell, childControlType)
+    : null;
 
   return {
     ...rawCell,
-    ...transformContainer(rawCell, childControlType)
+    ...container
   };
 }
 
