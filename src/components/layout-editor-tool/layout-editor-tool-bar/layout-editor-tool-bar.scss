@@ -1,5 +1,5 @@
 gx-le-tool-bar {
-  display: block;
+  display: flex;
   pointer-events: all;
   --bar-padding: 5px;
 
@@ -33,7 +33,6 @@ gx-le-tool-bar {
         --gx-le-tool-bar-type-name-color,
         white
       );
-
       --gx-le-tool-identity-name-font-family: var(
         --gx-le-tool-bar-name-font-family,
         initial
@@ -65,7 +64,6 @@ gx-le-tool-bar {
       margin-left: 35px;
       padding: 0;
       list-style: none;
-
       & li {
         display: flex;
         align-items: center;
@@ -85,7 +83,6 @@ gx-le-tool-bar {
       }
       & .select {
         position: relative;
-
         & .breadcrumb-container {
           display: none;
           position: absolute;
@@ -103,12 +100,88 @@ gx-le-tool-bar {
   & .arrow {
     width: 10px;
     height: 10px;
-    background-image: linear-gradient(
-      135deg,
-      var(--gx-le-tool-bar-background-color, #00a2ff),
-      var(--gx-le-tool-bar-background-color, #00a2ff) 50%,
-      transparent 50%,
-      transparent
-    );
+  }
+  &.location-outside-top {
+    flex-direction: column;
+    & .bar {
+      order: 1;
+    }
+    & .arrow {
+      order: 2;
+      background-image: linear-gradient(
+        135deg,
+        var(--gx-le-tool-bar-background-color, #00a2ff),
+        var(--gx-le-tool-bar-background-color, #00a2ff) 50%,
+        transparent 50%,
+        transparent
+      );
+    }
+  }
+  &.location-outside-right {
+    flex-direction: row;
+    & .bar {
+      order: 2;
+    }
+    & .arrow {
+      order: 1;
+      background-image: linear-gradient(
+        -135deg,
+        var(--gx-le-tool-bar-background-color, #00a2ff),
+        var(--gx-le-tool-bar-background-color, #00a2ff) 50%,
+        transparent 50%,
+        transparent
+      );
+    }
+  }
+  &.location-outside-bottom {
+    flex-direction: column;
+    & .bar {
+      order: 2;
+    }
+    & .arrow {
+      order: 1;
+      background-image: linear-gradient(
+        45deg,
+        var(--gx-le-tool-bar-background-color, #00a2ff),
+        var(--gx-le-tool-bar-background-color, #00a2ff) 50%,
+        transparent 50%,
+        transparent
+      );
+    }
+  }
+  &.location-outside-left {
+    flex-direction: row;
+    & .bar {
+      order: 1;
+    }
+    & .arrow {
+      order: 2;
+      background-image: linear-gradient(
+        135deg,
+        var(--gx-le-tool-bar-background-color, #00a2ff),
+        var(--gx-le-tool-bar-background-color, #00a2ff) 50%,
+        transparent 50%,
+        transparent
+      );
+    }
+  }
+  &.location-inside-top {
+    flex-direction: column;
+    & .bar {
+      order: 2;
+    }
+    & .arrow {
+      order: 1;
+      background-image: linear-gradient(
+        45deg,
+        var(--gx-le-tool-bar-background-color, #00a2ff),
+        var(--gx-le-tool-bar-background-color, #00a2ff) 50%,
+        transparent 50%,
+        transparent
+      );
+    }
+  }
+  &.location-none {
+    display: none;
   }
 }

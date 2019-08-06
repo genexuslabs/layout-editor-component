@@ -1,4 +1,5 @@
 import { Component, Element, Listen, Prop, Watch } from "@stencil/core";
+
 import { LayoutEditorToolDimensionType } from "../layout-editor-tool-commons";
 
 @Component({
@@ -13,6 +14,8 @@ export class LayoutEditorToolSelection {
   @Prop() loadDimension: boolean;
   @Prop() changeHighlight: boolean;
   @Prop() changeSmooth: boolean;
+
+  arrange: HTMLGxLeToolArrangeControllerElement;
 
   @Listen("window:scroll", { passive: true })
   handleScroll() {
@@ -32,12 +35,14 @@ export class LayoutEditorToolSelection {
   watchControl() {
     this.highlight();
     this.updatePosition();
+    this.refreshArrange();
   }
 
   componentDidLoad() {
     this.smooth();
     this.highlight();
     this.updatePosition();
+    this.refreshArrange();
   }
 
   private smooth() {
@@ -80,9 +85,27 @@ export class LayoutEditorToolSelection {
     }
   }
 
+  private refreshArrange() {
+    if (this.arrange) {
+      window.requestAnimationFrame(() => {
+        this.arrange.refresh();
+      });
+    }
+  }
+
   render() {
     return [
-      this.loadBar && <gx-le-tool-bar control={this.control} />,
+      this.loadBar && (
+        <gx-le-tool-arrange-controller
+          selection={this.el}
+          ref={el =>
+            (this.arrange = el as HTMLGxLeToolArrangeControllerElement)
+          }
+        />
+      ),
+      this.loadBar && (
+        <gx-le-tool-bar class="location-none" control={this.control} />
+      ),
       this.loadBox && <gx-le-tool-box control={this.control} />,
       this.loadDimension && (
         <gx-le-tool-dimension

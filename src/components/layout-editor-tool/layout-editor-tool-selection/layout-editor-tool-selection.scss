@@ -21,10 +21,26 @@ gx-le-tool-selection {
     animation-delay: 0.1;
   }
 
-  & gx-le-tool-bar {
+  & gx-le-tool-bar,
+  gx-le-tool-arrange-controller .placeholder-bar {
     position: absolute;
-    transform: translate(0px, -100%);
     z-index: 3;
+
+    &.location-outside-top {
+      bottom: 100%;
+    }
+    &.location-outside-right {
+      left: 100%;
+    }
+    &.location-outside-bottom {
+      top: 100%;
+    }
+    &.location-outside-left {
+      right: 100%;
+    }
+    &.location-inside-top {
+      top: 0px;
+    }
   }
   & gx-le-tool-box {
     z-index: 1;
