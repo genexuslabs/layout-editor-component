@@ -66,7 +66,6 @@ gx-le-tool-bar {
       list-style: none;
       & li {
         display: flex;
-
         align-items: center;
         margin-right: 5px;
         &:last-child {
@@ -77,16 +76,28 @@ gx-le-tool-bar {
         }
       }
       & button {
-        width: 15px;
-        height: 15px;
+        width: 24px;
+        height: 24px;
         border: none;
         margin: 0;
         padding: 0;
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="100" width="100"><circle cx="50" cy="50" r="49" stroke="black" stroke-width="1" fill="white" /></svg>');
-        background-size: contain;
+        background-color: white;
+      }
+      & .info {
+        & button {
+          mask-image: url("assets/images/tool-bar-info.svg");
+        }
+      }
+      & .task {
+        & button {
+          mask-image: url("assets/images/tool-bar-task.svg");
+        }
       }
       & .select {
         position: relative;
+        & button {
+          mask-image: url("assets/images/tool-bar-select.svg");
+        }
         & .breadcrumb-container {
           display: none;
           position: absolute;

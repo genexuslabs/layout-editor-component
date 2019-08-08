@@ -8,7 +8,8 @@ exports.config = {
     },
     {
       type: "www",
-      serviceWorker: false
+      serviceWorker: false,
+      copy: [{ src: "assets" }]
     }
   ],
   plugins: [sass()]
