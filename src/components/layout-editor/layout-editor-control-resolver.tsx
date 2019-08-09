@@ -4,7 +4,7 @@ export function controlResolver(control, context: IResolverContext) {
   if (control.childControlType) {
     const resolverObj = findResolverByType(control.childControlType);
 
-    if (resolverObj) {
+    if (resolverObj && resolverObj.tag) {
       if (typeof resolverObj.tag === "string") {
         const TagType = resolverObj.tag as any;
         return <TagType model={control} context={context} />;
