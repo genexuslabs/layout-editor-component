@@ -20,19 +20,17 @@ import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 export class LayoutEditorToolBar {
   @Prop() control: HTMLElement;
   @State() parentControl: HTMLElement;
-
-  itemButtonInfo: HTMLElement;
-  itemButtonTask: HTMLElement;
-  itemButtonSelect: HTMLElement;
+  @State() buttonInfoHidden = true;
+  @State() buttonTaskHidden = true;
+  @State() buttonSelectHidden = true;
 
   componentWillLoad() {
-    this.initializeButtonParent();
+    this.initializeButtonSelect();
   }
 
   @Watch("control")
   watchControl() {
-    this.initializeButtonParent();
-    this.refreshButtonsStatus();
+    this.initializeButtonSelect();
   }
 
   @Event() select: EventEmitter<ILayoutEditorToolSelectEvent>;
@@ -45,16 +43,9 @@ export class LayoutEditorToolBar {
     event.stopPropagation();
   }
 
-  private initializeButtonParent() {
+  private initializeButtonSelect() {
     this.parentControl = getBreadcrumb(this.control)[0];
-  }
-
-  private refreshButtonsStatus() {
-    if (this.parentControl) {
-      this.itemButtonSelect.classList.remove("hidden");
-    } else {
-      this.itemButtonSelect.classList.add("hidden");
-    }
+    this.buttonSelectHidden = this.parentControl ? false : true;
   }
 
   render() {
@@ -62,14 +53,15 @@ export class LayoutEditorToolBar {
       <div class="bar">
         <gx-le-tool-identity class="identity" control={this.control} />
         <ul class="buttons">
-          <li class="info hidden" ref={el => (this.itemButtonInfo = el)}>
-            <button />
+          <li class="info" hidden={this.buttonInfoHidden}>
+            <button type="button" />
           </li>
-          <li class="task hidden" ref={el => (this.itemButtonTask = el)}>
-            <button />
+          <li class="task" hidden={this.buttonTaskHidden}>
+            <button type="button" />
           </li>
-          <li class="select hidden" ref={el => (this.itemButtonSelect = el)}>
+          <li class="select" hidden={this.buttonSelectHidden}>
             <button
+              type="button"
               class="parent"
               onClick={this.handleSelectParentClick.bind(this)}
             />
