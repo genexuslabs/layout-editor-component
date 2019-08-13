@@ -168,12 +168,6 @@
         }
       }
     }
-
-    & > :not([data-gx-le-container]),
-    & > :not([data-gx-le-container]) > *,
-    & > [data-gx-le-container]:after {
-      cursor: move !important;
-    }
   }
 }
 

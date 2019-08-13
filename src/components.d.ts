@@ -183,6 +183,14 @@ export namespace Components {
     model?: GeneXusAbstractLayout.Cell;
   }
 
+  interface GxLeToolArrangeController {
+    refresh: () => Promise<void>;
+    selection: HTMLElement;
+  }
+  interface GxLeToolArrangeControllerAttributes extends StencilHTMLAttributes {
+    selection?: HTMLElement;
+  }
+
   interface GxLeToolBar {
     control: HTMLElement;
   }
@@ -213,6 +221,13 @@ export namespace Components {
   interface GxLeToolDimensionAttributes extends StencilHTMLAttributes {
     control?: HTMLElement;
     type?: LayoutEditorToolDimensionType;
+  }
+
+  interface GxLeToolDrag {
+    control: HTMLElement;
+  }
+  interface GxLeToolDragAttributes extends StencilHTMLAttributes {
+    control?: HTMLElement;
   }
 
   interface GxLeToolHighlightController {
@@ -318,10 +333,12 @@ declare global {
     GxLeTabularTable: Components.GxLeTabularTable;
     GxLayoutEditorTest: Components.GxLayoutEditorTest;
     GxLeTextblock: Components.GxLeTextblock;
+    GxLeToolArrangeController: Components.GxLeToolArrangeController;
     GxLeToolBar: Components.GxLeToolBar;
     GxLeToolBox: Components.GxLeToolBox;
     GxLeToolBreadcrumb: Components.GxLeToolBreadcrumb;
     GxLeToolDimension: Components.GxLeToolDimension;
+    GxLeToolDrag: Components.GxLeToolDrag;
     GxLeToolHighlightController: Components.GxLeToolHighlightController;
     GxLeToolIdentity: Components.GxLeToolIdentity;
     GxLeToolSelection: Components.GxLeToolSelection;
@@ -350,10 +367,12 @@ declare global {
     "gx-le-tabular-table": Components.GxLeTabularTableAttributes;
     "gx-layout-editor-test": Components.GxLayoutEditorTestAttributes;
     "gx-le-textblock": Components.GxLeTextblockAttributes;
+    "gx-le-tool-arrange-controller": Components.GxLeToolArrangeControllerAttributes;
     "gx-le-tool-bar": Components.GxLeToolBarAttributes;
     "gx-le-tool-box": Components.GxLeToolBoxAttributes;
     "gx-le-tool-breadcrumb": Components.GxLeToolBreadcrumbAttributes;
     "gx-le-tool-dimension": Components.GxLeToolDimensionAttributes;
+    "gx-le-tool-drag": Components.GxLeToolDragAttributes;
     "gx-le-tool-highlight-controller": Components.GxLeToolHighlightControllerAttributes;
     "gx-le-tool-identity": Components.GxLeToolIdentityAttributes;
     "gx-le-tool-selection": Components.GxLeToolSelectionAttributes;
@@ -519,6 +538,14 @@ declare global {
     new (): HTMLGxLeTextblockElement;
   };
 
+  interface HTMLGxLeToolArrangeControllerElement
+    extends Components.GxLeToolArrangeController,
+      HTMLStencilElement {}
+  var HTMLGxLeToolArrangeControllerElement: {
+    prototype: HTMLGxLeToolArrangeControllerElement;
+    new (): HTMLGxLeToolArrangeControllerElement;
+  };
+
   interface HTMLGxLeToolBarElement
     extends Components.GxLeToolBar,
       HTMLStencilElement {}
@@ -549,6 +576,14 @@ declare global {
   var HTMLGxLeToolDimensionElement: {
     prototype: HTMLGxLeToolDimensionElement;
     new (): HTMLGxLeToolDimensionElement;
+  };
+
+  interface HTMLGxLeToolDragElement
+    extends Components.GxLeToolDrag,
+      HTMLStencilElement {}
+  var HTMLGxLeToolDragElement: {
+    prototype: HTMLGxLeToolDragElement;
+    new (): HTMLGxLeToolDragElement;
   };
 
   interface HTMLGxLeToolHighlightControllerElement
@@ -612,10 +647,12 @@ declare global {
     "gx-le-tabular-table": HTMLGxLeTabularTableElement;
     "gx-layout-editor-test": HTMLGxLayoutEditorTestElement;
     "gx-le-textblock": HTMLGxLeTextblockElement;
+    "gx-le-tool-arrange-controller": HTMLGxLeToolArrangeControllerElement;
     "gx-le-tool-bar": HTMLGxLeToolBarElement;
     "gx-le-tool-box": HTMLGxLeToolBoxElement;
     "gx-le-tool-breadcrumb": HTMLGxLeToolBreadcrumbElement;
     "gx-le-tool-dimension": HTMLGxLeToolDimensionElement;
+    "gx-le-tool-drag": HTMLGxLeToolDragElement;
     "gx-le-tool-highlight-controller": HTMLGxLeToolHighlightControllerElement;
     "gx-le-tool-identity": HTMLGxLeToolIdentityElement;
     "gx-le-tool-selection": HTMLGxLeToolSelectionElement;
@@ -644,10 +681,12 @@ declare global {
     "gx-le-tabular-table": HTMLGxLeTabularTableElement;
     "gx-layout-editor-test": HTMLGxLayoutEditorTestElement;
     "gx-le-textblock": HTMLGxLeTextblockElement;
+    "gx-le-tool-arrange-controller": HTMLGxLeToolArrangeControllerElement;
     "gx-le-tool-bar": HTMLGxLeToolBarElement;
     "gx-le-tool-box": HTMLGxLeToolBoxElement;
     "gx-le-tool-breadcrumb": HTMLGxLeToolBreadcrumbElement;
     "gx-le-tool-dimension": HTMLGxLeToolDimensionElement;
+    "gx-le-tool-drag": HTMLGxLeToolDragElement;
     "gx-le-tool-highlight-controller": HTMLGxLeToolHighlightControllerElement;
     "gx-le-tool-identity": HTMLGxLeToolIdentityElement;
     "gx-le-tool-selection": HTMLGxLeToolSelectionElement;

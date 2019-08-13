@@ -7,6 +7,7 @@ import {
   getDropTargetData,
   isEmptyContainerDrop
 } from "./layout-editor-helpers";
+
 import { EventEmitter } from "@stencil/core";
 
 export class LayoutEditorDragDrop {
@@ -43,26 +44,23 @@ export class LayoutEditorDragDrop {
       "dragover",
       this.handleControlOver.bind(this)
     );
-
-    this.setControlsDraggable();
   }
 
   private handleControlDragStart(event: DragEvent) {
-    const dt = event.dataTransfer;
-    const evtTarget = event.target as HTMLElement;
-    const cell = findParentCell(evtTarget);
-    cell.setAttribute("data-gx-le-dragged", "true");
+    const dataTransfer = event.dataTransfer;
+    const control = (event.target as HTMLGxLeToolDragElement).control;
+    const cell = findParentCell(control);
     const { cellId } = getCellData(cell);
     const controlId = getControlId(cell.firstElementChild) || "";
-    dt.setData(
+
+    cell.setAttribute("data-gx-le-dragged", "true");
+
+    dataTransfer.dropEffect = "copy";
+    dataTransfer.setDragImage(this.createGhostElement(control), 0, 0);
+    dataTransfer.setData(
       "text/plain",
       `${MOVE_OPERATION_NAME},${cellId || ""},${controlId}`
     );
-
-    const ghost = this.createGhostElement(evtTarget);
-    event.dataTransfer.setDragImage(ghost, 0, 0);
-
-    dt.dropEffect = "copy";
   }
 
   private handleControlDragEnd() {
@@ -366,14 +364,6 @@ export class LayoutEditorDragDrop {
     emitter.emit.call(this, data);
   }
 
-  private getDropAreas() {
-    return Array.from(
-      this.element.querySelectorAll(
-        "[data-gx-le-drop-area], [data-gx-le-placeholder]"
-      )
-    );
-  }
-
   private isDroppedControlAccepted(
     targetCell: HTMLElement,
     elementType: string
@@ -428,19 +418,6 @@ export class LayoutEditorDragDrop {
     for (const target of activeTargets) {
       target.removeAttribute(attributeName);
     }
-  }
-
-  public update() {
-    this.setControlsDraggable();
-  }
-
-  private setControlsDraggable() {
-    this.getDropAreas().forEach((el: HTMLElement) => {
-      const controlElement = el.firstElementChild;
-      if (controlElement) {
-        controlElement.setAttribute("draggable", "true");
-      }
-    });
   }
 }
 

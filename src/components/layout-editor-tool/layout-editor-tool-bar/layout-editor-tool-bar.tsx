@@ -51,6 +51,7 @@ export class LayoutEditorToolBar {
   render() {
     return [
       <div class="bar">
+        <gx-le-tool-drag control={this.control} />
         <gx-le-tool-identity class="identity" control={this.control} />
         <ul class="buttons">
           <li class="info" hidden={this.buttonInfoHidden}>
