@@ -1,4 +1,4 @@
-import { Component, Element, Listen, Prop, Watch } from "@stencil/core";
+import { Component, Element, Listen, Prop, Watch, h } from "@stencil/core";
 
 import { LayoutEditorToolDimensionType } from "../layout-editor-tool-commons";
 
@@ -17,14 +17,14 @@ export class LayoutEditorToolSelection {
 
   arrange: HTMLGxLeToolArrangeControllerElement;
 
-  @Listen("window:scroll", { passive: true })
+  @Listen("scroll", { target: "window", passive: true })
   handleScroll() {
     this.smoothSuspend();
     this.updatePosition();
     this.smoothResume();
   }
 
-  @Listen("window:resize", { passive: true })
+  @Listen("resize", { target: "window", passive: true })
   handleResize() {
     this.smoothSuspend();
     this.updatePosition();

@@ -82,17 +82,20 @@ gx-le-tool-bar {
       }
       & .info {
         & button {
+          -webkit-mask-image: url("assets/images/tool-bar-info.svg");
           mask-image: url("assets/images/tool-bar-info.svg");
         }
       }
       & .task {
         & button {
+          -webkit-mask-image: url("assets/images/tool-bar-task.svg");
           mask-image: url("assets/images/tool-bar-task.svg");
         }
       }
       & .select {
         position: relative;
         & button {
+          -webkit-mask-image: url("assets/images/tool-bar-select.svg");
           mask-image: url("assets/images/tool-bar-select.svg");
         }
         & .breadcrumb-container {

@@ -1,5 +1,7 @@
 import { IControlDefinition, controlsDefinition } from "../common/controls";
 
+import { h } from "@stencil/core";
+
 export function controlResolver(control, context: IResolverContext) {
   if (control.childControlType) {
     const resolverObj = findResolverByType(control.childControlType);

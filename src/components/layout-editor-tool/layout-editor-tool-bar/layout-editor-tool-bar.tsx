@@ -4,7 +4,8 @@ import {
   EventEmitter,
   Prop,
   State,
-  Watch
+  Watch,
+  h
 } from "@stencil/core";
 import {
   getBreadcrumb,

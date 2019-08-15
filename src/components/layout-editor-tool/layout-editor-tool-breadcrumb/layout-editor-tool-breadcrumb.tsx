@@ -4,12 +4,14 @@ import {
   EventEmitter,
   Prop,
   State,
-  Watch
+  Watch,
+  h
 } from "@stencil/core";
 import {
   getBreadcrumb,
   getSelectedData
 } from "../../layout-editor/layout-editor-helpers";
+
 import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 
 @Component({

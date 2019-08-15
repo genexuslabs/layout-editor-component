@@ -1,14 +1,14 @@
-import { Component, Element, State } from "@stencil/core";
+import { Component, Element, State, h } from "@stencil/core";
 
 import { Fragment } from "../common/util";
 import sampleModel from "./sample-model.json";
 
 @Component({
   shadow: false,
-  styleUrls: ["layout-editor-test.scss", "sample-model.scss"],
-  tag: "gx-layout-editor-test"
+  styleUrls: ["layout-editor-sample.scss", "sample-model.scss"],
+  tag: "gx-layout-editor-sample"
 })
-export class LayoutEditorTest {
+export class LayoutEditorSample {
   @Element() element: HTMLElement;
 
   @State() currentModel: any;

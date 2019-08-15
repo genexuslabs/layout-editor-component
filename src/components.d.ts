@@ -5,15 +5,10 @@
  */
 
 
-import '@stencil/core';
-
-
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   IResolverContext,
 } from './components/layout-editor/layout-editor-control-resolver';
-import {
-  EventEmitter,
-} from '@stencil/core';
 import {
   ILayoutEditorToolSelectEvent,
   LayoutEditorToolDimensionType,
@@ -22,266 +17,7 @@ import {
   LayoutEditor,
 } from './components/layout-editor/layout-editor';
 
-
 export namespace Components {
-
-  interface GxLeAction {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeActionAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeCanvasTable {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeCanvasTableAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeComponent {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeComponentAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeData {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeDataAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeDefault {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeDefaultAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeErrorviewer {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeErrorviewerAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeFlexTable {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeFlexTableAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeFreestyleGrid {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeFreestyleGridAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeGroup {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeGroupAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeHorizontalRule {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeHorizontalRuleAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeHyperlink {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeHyperlinkAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeImage {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeImageAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLayoutEditorPlaceholder {}
-  interface GxLayoutEditorPlaceholderAttributes extends StencilHTMLAttributes {}
-
-  interface GxLeResponsiveTable {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeResponsiveTableAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeSection {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeSectionAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeSimpleGrid {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeSimpleGridAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeTab {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeTabAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeTabularTable {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeTabularTableAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLayoutEditorTest {}
-  interface GxLayoutEditorTestAttributes extends StencilHTMLAttributes {}
-
-  interface GxLeTextblock {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeTextblockAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
-  interface GxLeToolArrangeController {
-    'refresh': () => Promise<void>;
-    'selection': HTMLElement;
-  }
-  interface GxLeToolArrangeControllerAttributes extends StencilHTMLAttributes {
-    'selection'?: HTMLElement;
-  }
-
-  interface GxLeToolBar {
-    'control': HTMLElement;
-  }
-  interface GxLeToolBarAttributes extends StencilHTMLAttributes {
-    'control'?: HTMLElement;
-    'onSelect'?: (event: CustomEvent<ILayoutEditorToolSelectEvent>) => void;
-  }
-
-  interface GxLeToolBox {
-    'control': HTMLElement;
-  }
-  interface GxLeToolBoxAttributes extends StencilHTMLAttributes {
-    'control'?: HTMLElement;
-  }
-
-  interface GxLeToolBreadcrumb {
-    'control': HTMLElement;
-  }
-  interface GxLeToolBreadcrumbAttributes extends StencilHTMLAttributes {
-    'control'?: HTMLElement;
-    'onSelect'?: (event: CustomEvent<ILayoutEditorToolSelectEvent>) => void;
-  }
-
-  interface GxLeToolDimension {
-    'control': HTMLElement;
-    'type': LayoutEditorToolDimensionType;
-  }
-  interface GxLeToolDimensionAttributes extends StencilHTMLAttributes {
-    'control'?: HTMLElement;
-    'type'?: LayoutEditorToolDimensionType;
-  }
-
-  interface GxLeToolDrag {
-    'control': HTMLElement;
-  }
-  interface GxLeToolDragAttributes extends StencilHTMLAttributes {
-    'control'?: HTMLElement;
-  }
-
-  interface GxLeToolHighlightController {
-    'editor': LayoutEditor;
-    'selection': string[];
-  }
-  interface GxLeToolHighlightControllerAttributes extends StencilHTMLAttributes {
-    'editor'?: LayoutEditor;
-    'selection'?: string[];
-  }
-
-  interface GxLeToolIdentity {
-    'control': HTMLElement;
-  }
-  interface GxLeToolIdentityAttributes extends StencilHTMLAttributes {
-    'control'?: HTMLElement;
-  }
-
-  interface GxLeToolSelection {
-    'changeHighlight': boolean;
-    'changeSmooth': boolean;
-    'control': HTMLElement;
-    'loadBar': boolean;
-    'loadBox': boolean;
-    'loadDimension': boolean;
-  }
-  interface GxLeToolSelectionAttributes extends StencilHTMLAttributes {
-    'changeHighlight'?: boolean;
-    'changeSmooth'?: boolean;
-    'control'?: HTMLElement;
-    'loadBar'?: boolean;
-    'loadBox'?: boolean;
-    'loadDimension'?: boolean;
-  }
-
-  interface GxLeUserControl {
-    'context': IResolverContext;
-    'model': GeneXusAbstractLayout.Cell;
-  }
-  interface GxLeUserControlAttributes extends StencilHTMLAttributes {
-    'context'?: IResolverContext;
-    'model'?: GeneXusAbstractLayout.Cell;
-  }
-
   interface GxLayoutEditor {
     /**
     * The abstract form model object
@@ -292,103 +28,141 @@ export namespace Components {
     */
     'selectedControls': string[];
   }
-  interface GxLayoutEditorAttributes extends StencilHTMLAttributes {
-    /**
-    * The abstract form model object
-    */
-    'model'?: GeneXusAbstractLayout.Model;
-    /**
-    * Fired when a control (that wasn't already inside the layout editor) has been dropped on a valid drop target (for example, a control from a toolbox or an object from the knowledge base navigator)  ##### Dragging a control  If a control is being dragged, the dataTransfer property of the event must have the following format:  `"GX_DASHBOARD_ADDELEMENT,[GeneXus type of control]"`  where:  * `GX_DASHBOARD_ADDELEMENT` is the type of action * `[GeneXus type of control]` is the type of control that's been added. This value can have any value and will be passed as part of the information sent as part of the event.  ##### Dragging a KB object  If a KB object is being dragged, the dataTransfer property of the event must contain the name of the KB object.  ##### Dropped control information  An object containing information of the add operation is sent in the `detail` property of the event object.  If a KB object was dropped, the following properties are set:  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `kbObjectName`    | Name of the GeneXus object                                                                                                               |  If control was dropped, the following properties are set.  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `elementType`     | The type of the control that's been added and was received as the `[GeneXus type of control]` in the dataTransfer of the drop operation     |  Depending on where the control was dropped, additional information will be provided and different properties will be set. There are four possible cases:  1. Dropped on an empty container or in the last row of a container 2. Dropped on a new row of a non empty container 3. Dropped on an existing empty cell 4. Dropped on an existing row 5. Dropped on a non empty container control that doesn't handle cells nor rows  ###### 1. Dropped on an empty container or on a new row that will be the last row of a container  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `containerId`     | Identifier of the container where the control was dropped                                                                                   |  ###### 2. Dropped on a new row of a non empty container  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeRowId`     | Identifier of the row next to the row where the control was dropped. An empty string if dropped in the last row or on an empty container.   |  ###### 3. Dropped on an existing empty cell  | Property      | Details                                                                                                          | | ------------- | ---------------------------------------------------------------------------------------------------------------- | | `targetCellId`| Identifier of the cell where the control was dropped |    ###### 4. Dropped on an existing row  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeCelllId`   | Identifier of the cell that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last cell. | | `targetRowId`     | Identifier of the row where the control was dropped                                                                                         |    ###### 5. Dropped on a non empty container control that doesn't handle cells nor rows  | Property          | Details                                                                                                                                           | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeControlId` | Identifier of the control that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last control. | | `containerId`     | Identifier of the container where the control was dropped                                                                                         |
-    */
-    'onControlAdded'?: (event: CustomEvent) => void;
-    /**
-    * Fired when a control has been removed from the layout  An object containing information of the add operation is sent in the `detail` property of the event object  | Property           | Details                                                     | | ------------------ | ----------------------------------------------------------- | | `controls`         | An array containing the identifiers of the removed controls |
-    */
-    'onControlRemoved'?: (event: CustomEvent) => void;
-    /**
-    * Fired when the selection has been changed  An object containing information of the select operation is sent in the `detail` property of the event object  | Property       | Details                                                      | | -------------- | ------------------------------------------------------------ | | `controls`     | An array containing the identifiers of the selected controls |
-    */
-    'onControlSelected'?: (event: CustomEvent) => void;
-    /**
-    * Fired when a control is moved inside the layout editor to a new location  An object containing information of the move operation is sent in the `detail` property of the event object  Regardless where the control was dropped, the detail object will contain information about the source row, the source cell (if available), and the id of the dropped control:  | Property         | Details                                                                                                          | | ---------------- | ---------------------------------------------------------------------------------------------------------------- | | `sourceCellId`   | Identifier of the source cell, if available                                                                      | | `sourceRowId`    | Identifier of the source row, if available                                                                       | | `controlId`      | Identifier of the control                                                                                        |  Depending on where the control was dropped, additional information will be provided and different properties will be set. There are five possible cases:  1. Dropped on an empty container or on a new row that will be the last row of a container 2. Dropped on a new row of a non empty container 3. Dropped on an existing empty cell 4. Dropped on an existing row 5. Dropped on a non empty container control that doesn't handle cells nor rows  ###### 1. Dropped on an empty container or on a new row that will be the last row of a container  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `containerId`     | Identifier of the container where the control was dropped                                                                                   |  ###### 2. Dropped on a new row of a non empty container  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeRowId`     | Identifier of the row next to the row where the control was dropped. An empty string if dropped in the last row or on an empty container.   |  ###### 3. Dropped on an existing empty cell  | Property      | Details                                                                                                          | | ------------- | ---------------------------------------------------------------------------------------------------------------- | | `targetCellId`| Identifier of the cell where the control was dropped |    ###### 4. Dropped on an existing row  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeCellId`    | Identifier of the cell that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last cell. | | `targetRowId`     | Identifier of the row where the control was dropped                                                                                         |    ###### 5. Dropped on a non empty container control that doesn't handle cells nor rows  | Property          | Details                                                                                                                                           | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeControlId` | Identifier of the control that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last control. | | `containerId`     | Identifier of the container where the control was dropped                                                                                         |
-    */
-    'onMoveCompleted'?: (event: CustomEvent) => void;
-    /**
-    * Array with the identifiers of the selected controls. If empty the whole layout-editor is marked as selected.
-    */
-    'selectedControls'?: string[];
+  interface GxLayoutEditorPlaceholder {}
+  interface GxLayoutEditorSample {}
+  interface GxLeAction {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeCanvasTable {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeComponent {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeData {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeDefault {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeErrorviewer {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeFlexTable {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeFreestyleGrid {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeGroup {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeHorizontalRule {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeHyperlink {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeImage {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeResponsiveTable {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeSection {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeSimpleGrid {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeTab {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeTabularTable {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeTextblock {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeToolArrangeController {
+    'refresh': () => Promise<void>;
+    'selection': HTMLElement;
+  }
+  interface GxLeToolBar {
+    'control': HTMLElement;
+  }
+  interface GxLeToolBox {
+    'control': HTMLElement;
+  }
+  interface GxLeToolBreadcrumb {
+    'control': HTMLElement;
+  }
+  interface GxLeToolDimension {
+    'control': HTMLElement;
+    'type': LayoutEditorToolDimensionType;
+  }
+  interface GxLeToolDrag {
+    'control': HTMLElement;
+  }
+  interface GxLeToolHighlightController {
+    'editor': LayoutEditor;
+    'selection': string[];
+  }
+  interface GxLeToolIdentity {
+    'control': HTMLElement;
+  }
+  interface GxLeToolSelection {
+    'changeHighlight': boolean;
+    'changeSmooth': boolean;
+    'control': HTMLElement;
+    'loadBar': boolean;
+    'loadBox': boolean;
+    'loadDimension': boolean;
+  }
+  interface GxLeUserControl {
+    'context': IResolverContext;
+    'model': GeneXusAbstractLayout.Cell;
   }
 }
 
 declare global {
-  interface StencilElementInterfaces {
-    'GxLeAction': Components.GxLeAction;
-    'GxLeCanvasTable': Components.GxLeCanvasTable;
-    'GxLeComponent': Components.GxLeComponent;
-    'GxLeData': Components.GxLeData;
-    'GxLeDefault': Components.GxLeDefault;
-    'GxLeErrorviewer': Components.GxLeErrorviewer;
-    'GxLeFlexTable': Components.GxLeFlexTable;
-    'GxLeFreestyleGrid': Components.GxLeFreestyleGrid;
-    'GxLeGroup': Components.GxLeGroup;
-    'GxLeHorizontalRule': Components.GxLeHorizontalRule;
-    'GxLeHyperlink': Components.GxLeHyperlink;
-    'GxLeImage': Components.GxLeImage;
-    'GxLayoutEditorPlaceholder': Components.GxLayoutEditorPlaceholder;
-    'GxLeResponsiveTable': Components.GxLeResponsiveTable;
-    'GxLeSection': Components.GxLeSection;
-    'GxLeSimpleGrid': Components.GxLeSimpleGrid;
-    'GxLeTab': Components.GxLeTab;
-    'GxLeTabularTable': Components.GxLeTabularTable;
-    'GxLayoutEditorTest': Components.GxLayoutEditorTest;
-    'GxLeTextblock': Components.GxLeTextblock;
-    'GxLeToolArrangeController': Components.GxLeToolArrangeController;
-    'GxLeToolBar': Components.GxLeToolBar;
-    'GxLeToolBox': Components.GxLeToolBox;
-    'GxLeToolBreadcrumb': Components.GxLeToolBreadcrumb;
-    'GxLeToolDimension': Components.GxLeToolDimension;
-    'GxLeToolDrag': Components.GxLeToolDrag;
-    'GxLeToolHighlightController': Components.GxLeToolHighlightController;
-    'GxLeToolIdentity': Components.GxLeToolIdentity;
-    'GxLeToolSelection': Components.GxLeToolSelection;
-    'GxLeUserControl': Components.GxLeUserControl;
-    'GxLayoutEditor': Components.GxLayoutEditor;
-  }
 
-  interface StencilIntrinsicElements {
-    'gx-le-action': Components.GxLeActionAttributes;
-    'gx-le-canvas-table': Components.GxLeCanvasTableAttributes;
-    'gx-le-component': Components.GxLeComponentAttributes;
-    'gx-le-data': Components.GxLeDataAttributes;
-    'gx-le-default': Components.GxLeDefaultAttributes;
-    'gx-le-errorviewer': Components.GxLeErrorviewerAttributes;
-    'gx-le-flex-table': Components.GxLeFlexTableAttributes;
-    'gx-le-freestyle-grid': Components.GxLeFreestyleGridAttributes;
-    'gx-le-group': Components.GxLeGroupAttributes;
-    'gx-le-horizontal-rule': Components.GxLeHorizontalRuleAttributes;
-    'gx-le-hyperlink': Components.GxLeHyperlinkAttributes;
-    'gx-le-image': Components.GxLeImageAttributes;
-    'gx-layout-editor-placeholder': Components.GxLayoutEditorPlaceholderAttributes;
-    'gx-le-responsive-table': Components.GxLeResponsiveTableAttributes;
-    'gx-le-section': Components.GxLeSectionAttributes;
-    'gx-le-simple-grid': Components.GxLeSimpleGridAttributes;
-    'gx-le-tab': Components.GxLeTabAttributes;
-    'gx-le-tabular-table': Components.GxLeTabularTableAttributes;
-    'gx-layout-editor-test': Components.GxLayoutEditorTestAttributes;
-    'gx-le-textblock': Components.GxLeTextblockAttributes;
-    'gx-le-tool-arrange-controller': Components.GxLeToolArrangeControllerAttributes;
-    'gx-le-tool-bar': Components.GxLeToolBarAttributes;
-    'gx-le-tool-box': Components.GxLeToolBoxAttributes;
-    'gx-le-tool-breadcrumb': Components.GxLeToolBreadcrumbAttributes;
-    'gx-le-tool-dimension': Components.GxLeToolDimensionAttributes;
-    'gx-le-tool-drag': Components.GxLeToolDragAttributes;
-    'gx-le-tool-highlight-controller': Components.GxLeToolHighlightControllerAttributes;
-    'gx-le-tool-identity': Components.GxLeToolIdentityAttributes;
-    'gx-le-tool-selection': Components.GxLeToolSelectionAttributes;
-    'gx-le-user-control': Components.GxLeUserControlAttributes;
-    'gx-layout-editor': Components.GxLayoutEditorAttributes;
-  }
 
+  interface HTMLGxLayoutEditorElement extends Components.GxLayoutEditor, HTMLStencilElement {}
+  var HTMLGxLayoutEditorElement: {
+    prototype: HTMLGxLayoutEditorElement;
+    new (): HTMLGxLayoutEditorElement;
+  };
+
+  interface HTMLGxLayoutEditorPlaceholderElement extends Components.GxLayoutEditorPlaceholder, HTMLStencilElement {}
+  var HTMLGxLayoutEditorPlaceholderElement: {
+    prototype: HTMLGxLayoutEditorPlaceholderElement;
+    new (): HTMLGxLayoutEditorPlaceholderElement;
+  };
+
+  interface HTMLGxLayoutEditorSampleElement extends Components.GxLayoutEditorSample, HTMLStencilElement {}
+  var HTMLGxLayoutEditorSampleElement: {
+    prototype: HTMLGxLayoutEditorSampleElement;
+    new (): HTMLGxLayoutEditorSampleElement;
+  };
 
   interface HTMLGxLeActionElement extends Components.GxLeAction, HTMLStencilElement {}
   var HTMLGxLeActionElement: {
@@ -462,12 +236,6 @@ declare global {
     new (): HTMLGxLeImageElement;
   };
 
-  interface HTMLGxLayoutEditorPlaceholderElement extends Components.GxLayoutEditorPlaceholder, HTMLStencilElement {}
-  var HTMLGxLayoutEditorPlaceholderElement: {
-    prototype: HTMLGxLayoutEditorPlaceholderElement;
-    new (): HTMLGxLayoutEditorPlaceholderElement;
-  };
-
   interface HTMLGxLeResponsiveTableElement extends Components.GxLeResponsiveTable, HTMLStencilElement {}
   var HTMLGxLeResponsiveTableElement: {
     prototype: HTMLGxLeResponsiveTableElement;
@@ -496,12 +264,6 @@ declare global {
   var HTMLGxLeTabularTableElement: {
     prototype: HTMLGxLeTabularTableElement;
     new (): HTMLGxLeTabularTableElement;
-  };
-
-  interface HTMLGxLayoutEditorTestElement extends Components.GxLayoutEditorTest, HTMLStencilElement {}
-  var HTMLGxLayoutEditorTestElement: {
-    prototype: HTMLGxLayoutEditorTestElement;
-    new (): HTMLGxLayoutEditorTestElement;
   };
 
   interface HTMLGxLeTextblockElement extends Components.GxLeTextblock, HTMLStencilElement {}
@@ -569,48 +331,10 @@ declare global {
     prototype: HTMLGxLeUserControlElement;
     new (): HTMLGxLeUserControlElement;
   };
-
-  interface HTMLGxLayoutEditorElement extends Components.GxLayoutEditor, HTMLStencilElement {}
-  var HTMLGxLayoutEditorElement: {
-    prototype: HTMLGxLayoutEditorElement;
-    new (): HTMLGxLayoutEditorElement;
-  };
-
   interface HTMLElementTagNameMap {
-    'gx-le-action': HTMLGxLeActionElement
-    'gx-le-canvas-table': HTMLGxLeCanvasTableElement
-    'gx-le-component': HTMLGxLeComponentElement
-    'gx-le-data': HTMLGxLeDataElement
-    'gx-le-default': HTMLGxLeDefaultElement
-    'gx-le-errorviewer': HTMLGxLeErrorviewerElement
-    'gx-le-flex-table': HTMLGxLeFlexTableElement
-    'gx-le-freestyle-grid': HTMLGxLeFreestyleGridElement
-    'gx-le-group': HTMLGxLeGroupElement
-    'gx-le-horizontal-rule': HTMLGxLeHorizontalRuleElement
-    'gx-le-hyperlink': HTMLGxLeHyperlinkElement
-    'gx-le-image': HTMLGxLeImageElement
-    'gx-layout-editor-placeholder': HTMLGxLayoutEditorPlaceholderElement
-    'gx-le-responsive-table': HTMLGxLeResponsiveTableElement
-    'gx-le-section': HTMLGxLeSectionElement
-    'gx-le-simple-grid': HTMLGxLeSimpleGridElement
-    'gx-le-tab': HTMLGxLeTabElement
-    'gx-le-tabular-table': HTMLGxLeTabularTableElement
-    'gx-layout-editor-test': HTMLGxLayoutEditorTestElement
-    'gx-le-textblock': HTMLGxLeTextblockElement
-    'gx-le-tool-arrange-controller': HTMLGxLeToolArrangeControllerElement
-    'gx-le-tool-bar': HTMLGxLeToolBarElement
-    'gx-le-tool-box': HTMLGxLeToolBoxElement
-    'gx-le-tool-breadcrumb': HTMLGxLeToolBreadcrumbElement
-    'gx-le-tool-dimension': HTMLGxLeToolDimensionElement
-    'gx-le-tool-drag': HTMLGxLeToolDragElement
-    'gx-le-tool-highlight-controller': HTMLGxLeToolHighlightControllerElement
-    'gx-le-tool-identity': HTMLGxLeToolIdentityElement
-    'gx-le-tool-selection': HTMLGxLeToolSelectionElement
-    'gx-le-user-control': HTMLGxLeUserControlElement
-    'gx-layout-editor': HTMLGxLayoutEditorElement
-  }
-
-  interface ElementTagNameMap {
+    'gx-layout-editor': HTMLGxLayoutEditorElement;
+    'gx-layout-editor-placeholder': HTMLGxLayoutEditorPlaceholderElement;
+    'gx-layout-editor-sample': HTMLGxLayoutEditorSampleElement;
     'gx-le-action': HTMLGxLeActionElement;
     'gx-le-canvas-table': HTMLGxLeCanvasTableElement;
     'gx-le-component': HTMLGxLeComponentElement;
@@ -623,13 +347,11 @@ declare global {
     'gx-le-horizontal-rule': HTMLGxLeHorizontalRuleElement;
     'gx-le-hyperlink': HTMLGxLeHyperlinkElement;
     'gx-le-image': HTMLGxLeImageElement;
-    'gx-layout-editor-placeholder': HTMLGxLayoutEditorPlaceholderElement;
     'gx-le-responsive-table': HTMLGxLeResponsiveTableElement;
     'gx-le-section': HTMLGxLeSectionElement;
     'gx-le-simple-grid': HTMLGxLeSimpleGridElement;
     'gx-le-tab': HTMLGxLeTabElement;
     'gx-le-tabular-table': HTMLGxLeTabularTableElement;
-    'gx-layout-editor-test': HTMLGxLayoutEditorTestElement;
     'gx-le-textblock': HTMLGxLeTextblockElement;
     'gx-le-tool-arrange-controller': HTMLGxLeToolArrangeControllerElement;
     'gx-le-tool-bar': HTMLGxLeToolBarElement;
@@ -641,16 +363,193 @@ declare global {
     'gx-le-tool-identity': HTMLGxLeToolIdentityElement;
     'gx-le-tool-selection': HTMLGxLeToolSelectionElement;
     'gx-le-user-control': HTMLGxLeUserControlElement;
-    'gx-layout-editor': HTMLGxLayoutEditorElement;
   }
-
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
+
+declare namespace LocalJSX {
+  interface GxLayoutEditor extends JSXBase.HTMLAttributes<HTMLGxLayoutEditorElement> {
+    /**
+    * The abstract form model object
+    */
+    'model'?: GeneXusAbstractLayout.Model;
+    /**
+    * Fired when a control (that wasn't already inside the layout editor) has been dropped on a valid drop target (for example, a control from a toolbox or an object from the knowledge base navigator)  ##### Dragging a control  If a control is being dragged, the dataTransfer property of the event must have the following format:  `"GX_DASHBOARD_ADDELEMENT,[GeneXus type of control]"`  where:  * `GX_DASHBOARD_ADDELEMENT` is the type of action * `[GeneXus type of control]` is the type of control that's been added. This value can have any value and will be passed as part of the information sent as part of the event.  ##### Dragging a KB object  If a KB object is being dragged, the dataTransfer property of the event must contain the name of the KB object.  ##### Dropped control information  An object containing information of the add operation is sent in the `detail` property of the event object.  If a KB object was dropped, the following properties are set:  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `kbObjectName`    | Name of the GeneXus object                                                                                                               |  If control was dropped, the following properties are set.  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `elementType`     | The type of the control that's been added and was received as the `[GeneXus type of control]` in the dataTransfer of the drop operation     |  Depending on where the control was dropped, additional information will be provided and different properties will be set. There are four possible cases:  1. Dropped on an empty container or in the last row of a container 2. Dropped on a new row of a non empty container 3. Dropped on an existing empty cell 4. Dropped on an existing row 5. Dropped on a non empty container control that doesn't handle cells nor rows  ###### 1. Dropped on an empty container or on a new row that will be the last row of a container  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `containerId`     | Identifier of the container where the control was dropped                                                                                   |  ###### 2. Dropped on a new row of a non empty container  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeRowId`     | Identifier of the row next to the row where the control was dropped. An empty string if dropped in the last row or on an empty container.   |  ###### 3. Dropped on an existing empty cell  | Property      | Details                                                                                                          | | ------------- | ---------------------------------------------------------------------------------------------------------------- | | `targetCellId`| Identifier of the cell where the control was dropped |    ###### 4. Dropped on an existing row  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeCelllId`   | Identifier of the cell that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last cell. | | `targetRowId`     | Identifier of the row where the control was dropped                                                                                         |    ###### 5. Dropped on a non empty container control that doesn't handle cells nor rows  | Property          | Details                                                                                                                                           | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeControlId` | Identifier of the control that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last control. | | `containerId`     | Identifier of the container where the control was dropped                                                                                         |
+    */
+    'onControlAdded'?: (event: CustomEvent<any>) => void;
+    /**
+    * Fired when a control has been removed from the layout  An object containing information of the add operation is sent in the `detail` property of the event object  | Property           | Details                                                     | | ------------------ | ----------------------------------------------------------- | | `controls`         | An array containing the identifiers of the removed controls |
+    */
+    'onControlRemoved'?: (event: CustomEvent<any>) => void;
+    /**
+    * Fired when the selection has been changed  An object containing information of the select operation is sent in the `detail` property of the event object  | Property       | Details                                                      | | -------------- | ------------------------------------------------------------ | | `controls`     | An array containing the identifiers of the selected controls |
+    */
+    'onControlSelected'?: (event: CustomEvent<any>) => void;
+    /**
+    * Fired when a control is moved inside the layout editor to a new location  An object containing information of the move operation is sent in the `detail` property of the event object  Regardless where the control was dropped, the detail object will contain information about the source row, the source cell (if available), and the id of the dropped control:  | Property         | Details                                                                                                          | | ---------------- | ---------------------------------------------------------------------------------------------------------------- | | `sourceCellId`   | Identifier of the source cell, if available                                                                      | | `sourceRowId`    | Identifier of the source row, if available                                                                       | | `controlId`      | Identifier of the control                                                                                        |  Depending on where the control was dropped, additional information will be provided and different properties will be set. There are five possible cases:  1. Dropped on an empty container or on a new row that will be the last row of a container 2. Dropped on a new row of a non empty container 3. Dropped on an existing empty cell 4. Dropped on an existing row 5. Dropped on a non empty container control that doesn't handle cells nor rows  ###### 1. Dropped on an empty container or on a new row that will be the last row of a container  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `containerId`     | Identifier of the container where the control was dropped                                                                                   |  ###### 2. Dropped on a new row of a non empty container  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeRowId`     | Identifier of the row next to the row where the control was dropped. An empty string if dropped in the last row or on an empty container.   |  ###### 3. Dropped on an existing empty cell  | Property      | Details                                                                                                          | | ------------- | ---------------------------------------------------------------------------------------------------------------- | | `targetCellId`| Identifier of the cell where the control was dropped |    ###### 4. Dropped on an existing row  | Property          | Details                                                                                                                                     | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeCellId`    | Identifier of the cell that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last cell. | | `targetRowId`     | Identifier of the row where the control was dropped                                                                                         |    ###### 5. Dropped on a non empty container control that doesn't handle cells nor rows  | Property          | Details                                                                                                                                           | | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | | `beforeControlId` | Identifier of the control that, after the drop operation, ends located after the dropped control. An empty string if dropped as the last control. | | `containerId`     | Identifier of the container where the control was dropped                                                                                         |
+    */
+    'onMoveCompleted'?: (event: CustomEvent<any>) => void;
+    /**
+    * Array with the identifiers of the selected controls. If empty the whole layout-editor is marked as selected.
+    */
+    'selectedControls'?: string[];
+  }
+  interface GxLayoutEditorPlaceholder extends JSXBase.HTMLAttributes<HTMLGxLayoutEditorPlaceholderElement> {}
+  interface GxLayoutEditorSample extends JSXBase.HTMLAttributes<HTMLGxLayoutEditorSampleElement> {}
+  interface GxLeAction extends JSXBase.HTMLAttributes<HTMLGxLeActionElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeCanvasTable extends JSXBase.HTMLAttributes<HTMLGxLeCanvasTableElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeComponent extends JSXBase.HTMLAttributes<HTMLGxLeComponentElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeData extends JSXBase.HTMLAttributes<HTMLGxLeDataElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeDefault extends JSXBase.HTMLAttributes<HTMLGxLeDefaultElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeErrorviewer extends JSXBase.HTMLAttributes<HTMLGxLeErrorviewerElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeFlexTable extends JSXBase.HTMLAttributes<HTMLGxLeFlexTableElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeFreestyleGrid extends JSXBase.HTMLAttributes<HTMLGxLeFreestyleGridElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeGroup extends JSXBase.HTMLAttributes<HTMLGxLeGroupElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeHorizontalRule extends JSXBase.HTMLAttributes<HTMLGxLeHorizontalRuleElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeHyperlink extends JSXBase.HTMLAttributes<HTMLGxLeHyperlinkElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeImage extends JSXBase.HTMLAttributes<HTMLGxLeImageElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeResponsiveTable extends JSXBase.HTMLAttributes<HTMLGxLeResponsiveTableElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeSection extends JSXBase.HTMLAttributes<HTMLGxLeSectionElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeSimpleGrid extends JSXBase.HTMLAttributes<HTMLGxLeSimpleGridElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeTab extends JSXBase.HTMLAttributes<HTMLGxLeTabElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeTabularTable extends JSXBase.HTMLAttributes<HTMLGxLeTabularTableElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeTextblock extends JSXBase.HTMLAttributes<HTMLGxLeTextblockElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+  interface GxLeToolArrangeController extends JSXBase.HTMLAttributes<HTMLGxLeToolArrangeControllerElement> {
+    'selection'?: HTMLElement;
+  }
+  interface GxLeToolBar extends JSXBase.HTMLAttributes<HTMLGxLeToolBarElement> {
+    'control'?: HTMLElement;
+    'onSelect'?: (event: CustomEvent<ILayoutEditorToolSelectEvent>) => void;
+  }
+  interface GxLeToolBox extends JSXBase.HTMLAttributes<HTMLGxLeToolBoxElement> {
+    'control'?: HTMLElement;
+  }
+  interface GxLeToolBreadcrumb extends JSXBase.HTMLAttributes<HTMLGxLeToolBreadcrumbElement> {
+    'control'?: HTMLElement;
+    'onSelect'?: (event: CustomEvent<ILayoutEditorToolSelectEvent>) => void;
+  }
+  interface GxLeToolDimension extends JSXBase.HTMLAttributes<HTMLGxLeToolDimensionElement> {
+    'control'?: HTMLElement;
+    'type'?: LayoutEditorToolDimensionType;
+  }
+  interface GxLeToolDrag extends JSXBase.HTMLAttributes<HTMLGxLeToolDragElement> {
+    'control'?: HTMLElement;
+  }
+  interface GxLeToolHighlightController extends JSXBase.HTMLAttributes<HTMLGxLeToolHighlightControllerElement> {
+    'editor'?: LayoutEditor;
+    'selection'?: string[];
+  }
+  interface GxLeToolIdentity extends JSXBase.HTMLAttributes<HTMLGxLeToolIdentityElement> {
+    'control'?: HTMLElement;
+  }
+  interface GxLeToolSelection extends JSXBase.HTMLAttributes<HTMLGxLeToolSelectionElement> {
+    'changeHighlight'?: boolean;
+    'changeSmooth'?: boolean;
+    'control'?: HTMLElement;
+    'loadBar'?: boolean;
+    'loadBox'?: boolean;
+    'loadDimension'?: boolean;
+  }
+  interface GxLeUserControl extends JSXBase.HTMLAttributes<HTMLGxLeUserControlElement> {
+    'context'?: IResolverContext;
+    'model'?: GeneXusAbstractLayout.Cell;
+  }
+
+  interface IntrinsicElements {
+    'gx-layout-editor': GxLayoutEditor;
+    'gx-layout-editor-placeholder': GxLayoutEditorPlaceholder;
+    'gx-layout-editor-sample': GxLayoutEditorSample;
+    'gx-le-action': GxLeAction;
+    'gx-le-canvas-table': GxLeCanvasTable;
+    'gx-le-component': GxLeComponent;
+    'gx-le-data': GxLeData;
+    'gx-le-default': GxLeDefault;
+    'gx-le-errorviewer': GxLeErrorviewer;
+    'gx-le-flex-table': GxLeFlexTable;
+    'gx-le-freestyle-grid': GxLeFreestyleGrid;
+    'gx-le-group': GxLeGroup;
+    'gx-le-horizontal-rule': GxLeHorizontalRule;
+    'gx-le-hyperlink': GxLeHyperlink;
+    'gx-le-image': GxLeImage;
+    'gx-le-responsive-table': GxLeResponsiveTable;
+    'gx-le-section': GxLeSection;
+    'gx-le-simple-grid': GxLeSimpleGrid;
+    'gx-le-tab': GxLeTab;
+    'gx-le-tabular-table': GxLeTabularTable;
+    'gx-le-textblock': GxLeTextblock;
+    'gx-le-tool-arrange-controller': GxLeToolArrangeController;
+    'gx-le-tool-bar': GxLeToolBar;
+    'gx-le-tool-box': GxLeToolBox;
+    'gx-le-tool-breadcrumb': GxLeToolBreadcrumb;
+    'gx-le-tool-dimension': GxLeToolDimension;
+    'gx-le-tool-drag': GxLeToolDrag;
+    'gx-le-tool-highlight-controller': GxLeToolHighlightController;
+    'gx-le-tool-identity': GxLeToolIdentity;
+    'gx-le-tool-selection': GxLeToolSelection;
+    'gx-le-user-control': GxLeUserControl;
+  }
+}
+
+export { LocalJSX as JSX };
+
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
+

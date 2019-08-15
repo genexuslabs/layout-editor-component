@@ -1,4 +1,4 @@
-# gx-layout-editor-test
+# gx-layout-editor-sample
 
 <!-- Auto Generated Below -->
 

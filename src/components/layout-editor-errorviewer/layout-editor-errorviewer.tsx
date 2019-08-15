@@ -1,4 +1,5 @@
-import { Component, Element, Prop } from "@stencil/core";
+import { Component, Element, Prop, h } from "@stencil/core";
+
 import { IResolverContext } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
