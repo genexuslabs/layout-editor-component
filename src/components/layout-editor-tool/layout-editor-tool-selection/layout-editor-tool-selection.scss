@@ -38,8 +38,10 @@ gx-le-tool-selection {
     &.location-outside-left {
       right: 100%;
     }
-    &.location-inside-top {
+    &.location-inside-sticky {
+      position: sticky;
       top: 0px;
+      max-width: min-content;
     }
   }
   & gx-le-tool-box {

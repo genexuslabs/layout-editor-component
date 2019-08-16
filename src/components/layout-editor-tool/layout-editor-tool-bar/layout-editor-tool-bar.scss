@@ -180,7 +180,7 @@ gx-le-tool-bar {
       );
     }
   }
-  &.location-inside-top {
+  &.location-inside-sticky {
     flex-direction: column;
     & .bar {
       order: 2;

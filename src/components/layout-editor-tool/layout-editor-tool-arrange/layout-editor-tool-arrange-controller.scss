@@ -1,7 +1,13 @@
 gx-le-tool-arrange-controller {
   pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   & .placeholder-bar {
     width: var(--placeholder-bar-width, 0px);
     height: var(--placeholder-bar-height, 0px);
+    &.location-inside-sticky {
+      max-width: unset !important;
+    }
   }
 }

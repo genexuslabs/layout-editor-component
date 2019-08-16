@@ -15,13 +15,13 @@ export class LayoutEditorToolArrangeController {
   placeholderBarOutsideRight: HTMLElement;
   placeholderBarOutsideBottom: HTMLElement;
   placeholderBarOutsideLeft: HTMLElement;
-  placeholderBarInsideTop: HTMLElement;
+  placeholderBarInsideSticky: HTMLElement;
 
   isAvailableBarOutsideTop = false;
   isAvailableBarOutsideRight = false;
   isAvailableBarOutsideBottom = false;
   isAvailableBarOutsideLeft = false;
-  isAvailableBarInsideTop = false;
+  isAvailableBarInsideSticky = false;
 
   intersection = new IntersectionObserver(
     entries => {
@@ -41,7 +41,7 @@ export class LayoutEditorToolArrangeController {
     this.intersection.observe(this.placeholderBarOutsideRight);
     this.intersection.observe(this.placeholderBarOutsideBottom);
     this.intersection.observe(this.placeholderBarOutsideLeft);
-    this.intersection.observe(this.placeholderBarInsideTop);
+    this.intersection.observe(this.placeholderBarInsideSticky);
   }
 
   @Method()
@@ -80,8 +80,8 @@ export class LayoutEditorToolArrangeController {
         case this.placeholderBarOutsideLeft:
           this.isAvailableBarOutsideLeft = isAvailable;
           break;
-        case this.placeholderBarInsideTop:
-          this.isAvailableBarInsideTop = isAvailable;
+        case this.placeholderBarInsideSticky:
+          this.isAvailableBarInsideSticky = isAvailable;
           break;
       }
     });
@@ -100,8 +100,8 @@ export class LayoutEditorToolArrangeController {
       position = BarPosition.OUTSIDE_BOTTOM;
     } else if (this.isAvailableBarOutsideLeft) {
       position = BarPosition.OUTSIDE_LEFT;
-    } else if (this.isAvailableBarInsideTop) {
-      position = BarPosition.INSIDE_TOP;
+    } else if (this.isAvailableBarInsideSticky) {
+      position = BarPosition.INSIDE_STICKY;
     } else {
       position = BarPosition.NONE;
     }
@@ -113,24 +113,24 @@ export class LayoutEditorToolArrangeController {
   render() {
     return [
       <div
-        class="placeholder-bar location-outside-top"
+        class={`placeholder-bar ${BarPosition.OUTSIDE_TOP}`}
         ref={el => (this.placeholderBarOutsideTop = el)}
       />,
       <div
-        class="placeholder-bar location-outside-right"
+        class={`placeholder-bar ${BarPosition.OUTSIDE_RIGHT}`}
         ref={el => (this.placeholderBarOutsideRight = el)}
       />,
       <div
-        class="placeholder-bar location-outside-bottom"
+        class={`placeholder-bar ${BarPosition.OUTSIDE_BOTTOM}`}
         ref={el => (this.placeholderBarOutsideBottom = el)}
       />,
       <div
-        class="placeholder-bar location-outside-left"
+        class={`placeholder-bar ${BarPosition.OUTSIDE_LEFT}`}
         ref={el => (this.placeholderBarOutsideLeft = el)}
       />,
       <div
-        class="placeholder-bar location-inside-top"
-        ref={el => (this.placeholderBarInsideTop = el)}
+        class={`placeholder-bar ${BarPosition.INSIDE_STICKY}`}
+        ref={el => (this.placeholderBarInsideSticky = el)}
       />
     ];
   }
@@ -141,6 +141,6 @@ enum BarPosition {
   OUTSIDE_RIGHT = "location-outside-right",
   OUTSIDE_BOTTOM = "location-outside-bottom",
   OUTSIDE_LEFT = "location-outside-left",
-  INSIDE_TOP = "location-inside-top",
+  INSIDE_STICKY = "location-inside-sticky",
   NONE = "location-none"
 }
