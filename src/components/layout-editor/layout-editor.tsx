@@ -256,9 +256,14 @@ export class LayoutEditor {
   }
 
   private updateSelection(selectedControlId: string, add: boolean) {
-    this.selectedControls = add
-      ? [...this.selectedControls, selectedControlId]
-      : [selectedControlId];
+    if (add && selectedControlId !== "") {
+      this.selectedControls = this.selectedControls.includes(selectedControlId)
+        ? this.selectedControls.filter(id => id !== selectedControlId)
+        : [...this.selectedControls, selectedControlId];
+    } else if (!add) {
+      this.selectedControls =
+        selectedControlId === "" ? [] : [selectedControlId];
+    }
   }
 
   @Listen("keydown")

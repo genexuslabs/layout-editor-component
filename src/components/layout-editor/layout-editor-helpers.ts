@@ -60,7 +60,7 @@ export function isEmptyContainerDrop(el: HTMLElement): boolean {
 }
 
 export function getControlId(el: Element): string {
-  return el.getAttribute("data-gx-le-control-id") || "";
+  return el ? el.getAttribute("data-gx-le-control-id") || "" : "";
 }
 
 export function findParentContainer(el: Element): Element {
