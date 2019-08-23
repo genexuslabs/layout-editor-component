@@ -49,22 +49,28 @@ export interface IResolverContext {
   selectedControls: string[];
 }
 
-export function getControlTypeName(cell): string {
-  const controlDefinition =
-    cell.controlType && findResolverByType(cell.controlType);
-
-  if (controlDefinition) {
-    return controlDefinition.typeName;
-  } else {
-    return "Unknown control";
-  }
+export function getCellCommonAttrs(
+  cell: GeneXusAbstractLayout.Cell,
+  context: IResolverContext
+) {
+  return {
+    "data-gx-le-cell-id": cell["@id"],
+    "data-gx-le-control-container": true,
+    "data-gx-le-selected": isCellSelected(cell, context).toString(),
+    key: cell["@id"]
+  };
 }
 
-export function getControlName(cell): string {
-  return (
-    (cell.controlType &&
-      cell[cell.controlType] &&
-      `${cell[cell.controlType]["@controlName"] || ""}`) ||
-    (cell["@controlName"] || "")
-  );
+export function getControlCommonAttrs(model: GeneXusAbstractLayout.Cell) {
+  const controlDefinition = findResolverByType(model.childControlType);
+  const control = model[
+    model.childControlType
+  ] as GeneXusAbstractLayout.IControl;
+
+  return {
+    "data-gx-le-control-id": control["@id"],
+    "data-gx-le-control-name": control["@controlName"] || "",
+    "data-gx-le-control-type-name":
+      controlDefinition.typeName || "Unknown control"
+  };
 }

@@ -1,6 +1,8 @@
-import { Component, Element, Prop, h } from "@stencil/core";
-
-import { IResolverContext } from "../layout-editor/layout-editor-control-resolver";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
+import {
+  IResolverContext,
+  getControlCommonAttrs
+} from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
   shadow: false,
@@ -16,21 +18,20 @@ export class LayoutEditorAction {
   render() {
     const { action } = this.model;
 
-    this.element.setAttribute("data-gx-le-control-id", action["@id"] || "");
-
     return (
-      <gx-button
-        css-class={action["@class"]}
-        data-gx-le-control-id={action["@id"]}
-        disabled={action["@enabled"] === "False"}
-        image-position={imagePositionMap[action["@imagePosition"]]}
-      >
-        {action["@image"] && <img slot="main-image" src={action["@image"]} />}
-        {action["@disabledImage"] && (
-          <img slot="disabled-image" src={action["@disabledImage"]} />
-        )}
-        {action["@caption"]}
-      </gx-button>
+      <Host {...getControlCommonAttrs(this.model)}>
+        <gx-button
+          css-class={action["@class"]}
+          disabled={action["@enabled"] === "False"}
+          image-position={imagePositionMap[action["@imagePosition"]]}
+        >
+          {action["@image"] && <img slot="main-image" src={action["@image"]} />}
+          {action["@disabledImage"] && (
+            <img slot="disabled-image" src={action["@disabledImage"]} />
+          )}
+          {action["@caption"]}
+        </gx-button>
+      </Host>
     );
   }
 }

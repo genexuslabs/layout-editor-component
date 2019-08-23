@@ -1,7 +1,8 @@
-import { Component, Element, Prop, h } from "@stencil/core";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  controlResolver
+  controlResolver,
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -17,16 +18,17 @@ export class LayoutEditorGroup {
 
   render() {
     const { group } = this.model;
-    this.element.setAttribute("data-gx-le-control-id", group["@id"]);
 
     return (
-      <gx-group
-        caption={group["@caption"]}
-        class={group["@class"]}
-        data-gx-le-container
-      >
-        {controlResolver(group, this.context)}
-      </gx-group>
+      <Host {...getControlCommonAttrs(this.model)}>
+        <gx-group
+          caption={group["@caption"]}
+          class={group["@class"]}
+          data-gx-le-container
+        >
+          {controlResolver(group, this.context)}
+        </gx-group>
+      </Host>
     );
   }
 }

@@ -1,6 +1,8 @@
-import { Component, Element, Prop, h } from "@stencil/core";
-
-import { IResolverContext } from "../layout-editor/layout-editor-control-resolver";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
+import {
+  IResolverContext,
+  getControlCommonAttrs
+} from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
   shadow: false,
@@ -16,16 +18,12 @@ export class LayoutEditorHyperlink {
   render() {
     const { hyperlink } = this.model;
 
-    this.element.setAttribute("data-gx-le-control-id", hyperlink["@id"]);
-
     return (
-      <a
-        data-gx-le-control-id={hyperlink["@id"]}
-        href="#"
-        class={hyperlink["@class"]}
-      >
-        {hyperlink["@text"]}
-      </a>
+      <Host {...getControlCommonAttrs(this.model)}>
+        <a href="#" class={hyperlink["@class"]}>
+          {hyperlink["@text"]}
+        </a>
+      </Host>
     );
   }
 }

@@ -13,6 +13,7 @@ import {
   isCellSelected
 } from "./layout-editor-control-resolver";
 import {
+  findControlWrapper,
   findParentCell,
   getCellData,
   getControlId
@@ -249,24 +250,7 @@ export class LayoutEditor {
   }
 
   private handleSelection(target: HTMLElement, add: boolean) {
-    let selectedControlId = getControlId(target);
-
-    if (!selectedControlId) {
-      const selCell = findParentCell(target);
-      if (selCell) {
-        if (selCell.firstElementChild) {
-          selectedControlId = getControlId(selCell.firstElementChild);
-        }
-
-        if (!selectedControlId) {
-          const { cellId: selectedCellId } = getCellData(selCell);
-          selectedControlId = selectedCellId;
-        }
-      }
-    }
-    if (!selectedControlId) {
-      selectedControlId = "";
-    }
+    const selectedControlId = getControlId(findControlWrapper(target));
 
     this.updateSelection(selectedControlId, add);
   }

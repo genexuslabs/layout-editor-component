@@ -1,7 +1,8 @@
-import { Component, Element, Prop, h } from "@stencil/core";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  controlResolver
+  controlResolver,
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -18,10 +19,16 @@ export class LayoutEditorUserControl {
   render() {
     const { ucw } = this.model;
 
-    this.element.setAttribute("data-gx-le-control-id", ucw["@id"]);
+    return (
+      <Host {...getControlCommonAttrs(this.model)}>
+        {this.renderUCW(this.context, ucw)}
+      </Host>
+    );
+  }
 
+  renderUCW(context: IResolverContext, ucw: GeneXusAbstractLayout.Ucw) {
     if ((ucw as GeneXusAbstractLayout.UcwContainer).childControlType) {
-      return controlResolver(ucw, this.context);
+      return controlResolver(ucw, context);
     } else {
       return (
         <div>

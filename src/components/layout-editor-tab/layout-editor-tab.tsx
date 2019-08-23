@@ -1,7 +1,8 @@
-import { Component, Element, Listen, Prop, h } from "@stencil/core";
+import { Component, Element, Host, Listen, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  controlResolver
+  controlResolver,
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 import { getControlId } from "../layout-editor/layout-editor-helpers";
@@ -27,9 +28,11 @@ export class LayoutEditorTab {
   render() {
     const { tab } = this.model;
 
-    this.element.setAttribute("data-gx-le-control-id", tab["@id"] || "");
-
-    return this.renderTab(this.context, tab);
+    return (
+      <Host {...getControlCommonAttrs(this.model)}>
+        {this.renderTab(this.context, tab)}
+      </Host>
+    );
   }
 
   renderTab(context: IResolverContext, tab: GeneXusAbstractLayout.Tab) {
@@ -38,7 +41,7 @@ export class LayoutEditorTab {
     );
 
     return (
-      <gx-tab data-gx-le-control-id={tab["@id"]}>
+      <gx-tab>
         {tab.item.map((tabItem, index) => {
           return this.renderTabItem(
             context,
@@ -58,11 +61,7 @@ export class LayoutEditorTab {
     selected: boolean
   ) {
     return [
-      <gx-tab-caption
-        slot="caption"
-        data-gx-le-control-id={tabItem["@id"]}
-        selected={selected}
-      >
+      <gx-tab-caption slot="caption" selected={selected}>
         {tabItem["@caption"]}
       </gx-tab-caption>,
       <gx-tab-page slot="page">{controlResolver(tabItem, context)}</gx-tab-page>

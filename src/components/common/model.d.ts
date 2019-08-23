@@ -1,6 +1,5 @@
 declare module GeneXusAbstractLayout {
   export interface Data extends IControl {
-    "@controlName": string;
     "@attribute": string;
     "@labelPosition": string;
     "@labelCaption": string;
@@ -13,7 +12,6 @@ declare module GeneXusAbstractLayout {
   }
 
   export interface Action extends IControl {
-    "@controlName": string;
     "@onClickEvent": string;
     "@caption": string;
     "@ControlType": string;
@@ -21,12 +19,10 @@ declare module GeneXusAbstractLayout {
   }
 
   export interface Embeddedpage extends IControl {
-    "@controlName": string;
     "@class": string;
   }
 
   export interface Errorviewer extends IControl {
-    "@controlName": string;
     "@class": string;
     "@visible": string;
   }
@@ -40,26 +36,22 @@ declare module GeneXusAbstractLayout {
   }
 
   export interface Image extends IControl {
-    "@controlName": string;
     "@image": string;
     imgSrc: string;
     "@class": string;
   }
 
   export interface Textblock extends IControl {
-    "@controlName": string;
     "@caption": string;
     "@class": string;
   }
 
   export interface Component extends IControl {
-    "@controlName": string;
     "@webObject": string;
     "@parameters": string;
   }
 
   export interface Grid extends IControl {
-    "@controlName": string;
     "@class": string;
     "@collection": string;
     "@rows": string;
@@ -80,7 +72,6 @@ declare module GeneXusAbstractLayout {
   }
 
   export interface Simplegrid extends IControl {
-    "@controlName": string;
     "@class": string;
     "@collection": string;
     item: [SimpleGridItem];
@@ -88,7 +79,6 @@ declare module GeneXusAbstractLayout {
   }
 
   export interface Group extends IControl {
-    "@controlName": string;
     "@caption": string;
     "@class": string;
     table: Table;
@@ -99,7 +89,6 @@ declare module GeneXusAbstractLayout {
   }
 
   export interface Section extends IControl {
-    "@controlName": string;
     "@class": string;
     item: SectionItem;
   }
@@ -112,7 +101,6 @@ declare module GeneXusAbstractLayout {
   }
 
   export interface Tab extends IControl {
-    "@controlName": string;
     "@class": string;
     "@visible": string;
     "@historyManagement": string;
@@ -120,7 +108,6 @@ declare module GeneXusAbstractLayout {
   }
 
   export interface Actiongroup extends IControl {
-    "@controlName": string;
     "@visible": string;
   }
 
@@ -154,6 +141,7 @@ declare module GeneXusAbstractLayout {
 
   export interface IControl {
     "@id": string;
+    "@controlName": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES"?: string;
     CustomProperties?: any;
   }
@@ -174,7 +162,6 @@ declare module GeneXusAbstractLayout {
 
   export interface Table extends IControl {
     "@id": string;
-    "@controlName": string;
     "@width": string;
     "@height": string;
     "@class": string;

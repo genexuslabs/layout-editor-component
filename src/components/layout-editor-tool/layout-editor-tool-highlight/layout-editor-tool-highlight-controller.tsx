@@ -1,8 +1,11 @@
 import { Component, Listen, Prop, State, Watch, h } from "@stencil/core";
+import {
+  findControlWrapper,
+  getControlWrapper
+} from "../../layout-editor/layout-editor-helpers";
 
 import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 import { LayoutEditor } from "../../layout-editor/layout-editor";
-import { findParentCell } from "../../layout-editor/layout-editor-helpers";
 
 @Component({
   tag: "gx-le-tool-highlight-controller"
@@ -18,12 +21,10 @@ export class LayoutEditorToolHighlightController {
     this.selectedControls = [];
 
     this.selection.map(id => {
-      const control: HTMLElement = this.editor.element.querySelector(
-        `[data-gx-le-control-id="${id}"]`
-      );
+      const control = getControlWrapper(id, this.editor.element);
 
       if (control) {
-        this.selectedControls.push(findParentCell(control));
+        this.selectedControls.push(control);
       }
     });
   }
@@ -39,12 +40,7 @@ export class LayoutEditorToolHighlightController {
   }
 
   handleMouseOver(event: MouseEvent) {
-    const hoveredElement = event.target as HTMLElement;
-    const cell = findParentCell(hoveredElement);
-
-    if (cell) {
-      this.hoveredControl = cell;
-    }
+    this.hoveredControl = findControlWrapper(event.target as HTMLElement);
   }
 
   @Listen("select")

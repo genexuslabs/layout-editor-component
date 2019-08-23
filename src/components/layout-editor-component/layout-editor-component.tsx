@@ -1,6 +1,8 @@
-import { Component, Element, Prop, h } from "@stencil/core";
-
-import { IResolverContext } from "../layout-editor/layout-editor-control-resolver";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
+import {
+  IResolverContext,
+  getControlCommonAttrs
+} from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
   shadow: false,
@@ -16,13 +18,13 @@ export class LayoutEditorComponent {
   render() {
     const { component } = this.model;
 
-    this.element.setAttribute("data-gx-le-control-id", component["@id"]);
-
     return (
-      <div data-gx-le-control-id={component["@id"]}>
-        {component["@controlName"]}
-        {component["@webObject"] ? ":" + component["@webObject"] : ""}
-      </div>
+      <Host {...getControlCommonAttrs(this.model)}>
+        <div>
+          {component["@controlName"]}
+          {component["@webObject"] ? ":" + component["@webObject"] : ""}
+        </div>
+      </Host>
     );
   }
 }

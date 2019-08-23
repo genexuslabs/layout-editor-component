@@ -1,10 +1,9 @@
-import { Component, Element, Prop, h } from "@stencil/core";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlName,
-  getControlTypeName,
-  isCellSelected
+  getCellCommonAttrs,
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,10 +18,13 @@ export class LayoutEditorResponsiveTable {
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
-    const table = this.model.table;
-    this.element.setAttribute("data-gx-le-control-id", table["@id"]);
+    const { table } = this.model;
 
-    return responsiveTableResolver(table, this.context);
+    return (
+      <Host {...getControlCommonAttrs(this.model)}>
+        {responsiveTableResolver(table, this.context)}
+      </Host>
+    );
   }
 }
 
@@ -98,15 +100,11 @@ function getRowStyle(): any {
 function renderCell(cell, rowId, context) {
   return (
     <div
-      tabindex="0"
-      key={cell["@id"]}
-      data-gx-le-cell-id={cell["@id"]}
-      data-gx-le-drop-area="horizontal"
+      {...getCellCommonAttrs(cell, context)}
       data-gx-le-row-id={rowId}
-      data-gx-le-selected={isCellSelected(cell, context).toString()}
+      data-gx-le-drop-area="horizontal"
       data-gx-le-responsive-table-cell
-      data-gx-le-control-type-name={getControlTypeName(cell)}
-      data-gx-le-control-name={getControlName(cell)}
+      tabindex="0"
       style={getCellStyle(cell)}
     >
       {controlResolver(cell, context)}

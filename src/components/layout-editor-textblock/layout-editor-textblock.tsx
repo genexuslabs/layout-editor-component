@@ -1,6 +1,8 @@
-import { Component, Element, Prop, h } from "@stencil/core";
-
-import { IResolverContext } from "../layout-editor/layout-editor-control-resolver";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
+import {
+  IResolverContext,
+  getControlCommonAttrs
+} from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
   shadow: false,
@@ -16,12 +18,10 @@ export class LayoutEditorTextblock {
   render() {
     const { textblock } = this.model;
 
-    this.element.setAttribute("data-gx-le-control-id", textblock["@id"]);
-
     return (
-      <gx-textblock data-gx-le-control-id={textblock["@id"]}>
-        {textblock["@caption"]}
-      </gx-textblock>
+      <Host {...getControlCommonAttrs(this.model)}>
+        <gx-textblock>{textblock["@caption"]}</gx-textblock>
+      </Host>
     );
   }
 }

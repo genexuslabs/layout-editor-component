@@ -36,6 +36,14 @@ export function getCellData(el: Element): ICellData {
   };
 }
 
+export function getControlData(element: Element): IControlData {
+  return {
+    id: element.getAttribute("data-gx-le-control-id"),
+    name: element.getAttribute("data-gx-le-control-name"),
+    typeName: element.getAttribute("data-gx-le-control-type-name")
+  };
+}
+
 export function getDropTargetData(el: HTMLElement): IDropTargetData {
   return {
     nextRowId: el.getAttribute("data-gx-le-next-row-id"),
@@ -97,10 +105,41 @@ export function getBreadcrumb(el: HTMLElement): HTMLElement[] {
   return breadcrumb;
 }
 
+export function findControlWrapper(el: HTMLElement): HTMLElement {
+  while (el && !isControlWrapper(el)) {
+    el = el.parentElement;
+  }
+
+  return el;
+}
+
+export function getControlWrapper(
+  controlId: string,
+  element?: Element
+): HTMLElement {
+  return (element || document).querySelector(
+    `[data-gx-le-control-id="${controlId}"]`
+  );
+}
+
+export function isControlWrapper(el: Element): boolean {
+  return el.hasAttribute("data-gx-le-control-id");
+}
+
+export function isControlContainer(el: Element): boolean {
+  return el.hasAttribute("data-gx-le-control-container");
+}
+
 interface ICellData {
   cellId: string;
   dropArea: string;
   rowId: string;
+}
+
+interface IControlData {
+  id: string;
+  name: string;
+  typeName: string;
 }
 
 interface ISelectedData {

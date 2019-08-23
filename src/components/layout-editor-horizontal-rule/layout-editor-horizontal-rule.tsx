@@ -1,6 +1,8 @@
-import { Component, Element, Prop, h } from "@stencil/core";
-
-import { IResolverContext } from "../layout-editor/layout-editor-control-resolver";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
+import {
+  IResolverContext,
+  getControlCommonAttrs
+} from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
   shadow: false,
@@ -16,11 +18,10 @@ export class LayoutEditorHorizontalRule {
   render() {
     const { horizontalrule } = this.model;
 
-    this.element.setAttribute(
-      "data-gx-le-control-id",
-      horizontalrule["@id"] || ""
+    return (
+      <Host {...getControlCommonAttrs(this.model)}>
+        <hr class={horizontalrule["@class"]}> </hr>
+      </Host>
     );
-
-    return <hr class={horizontalrule["@class"]}> </hr>;
   }
 }

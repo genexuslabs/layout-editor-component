@@ -1,10 +1,9 @@
-import { Component, Element, Prop, h } from "@stencil/core";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlName,
-  getControlTypeName,
-  isCellSelected
+  getCellCommonAttrs,
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,10 +18,13 @@ export class LayoutEditorTabularTable {
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
-    const table = this.model.table;
-    this.element.setAttribute("data-gx-le-control-id", table["@id"]);
+    const { table } = this.model;
 
-    return tabularTableResolver(table, this.context);
+    return (
+      <Host {...getControlCommonAttrs(this.model)}>
+        {tabularTableResolver(table, this.context)}
+      </Host>
+    );
   }
 }
 
@@ -167,20 +169,16 @@ function renderCell(cell, rowId, rowIndex, context) {
 
   return (
     <gx-table-cell
-      tabindex="0"
-      key={cell["@id"]}
-      data-gx-le-cell-id={cell["@id"]}
-      data-gx-le-drop-area="horizontal"
+      {...getCellCommonAttrs(cell, context)}
       data-gx-le-row-id={rowId}
+      data-gx-le-drop-area="horizontal"
+      tabindex="0"
       style={{
         "--gx-le-control-type-name":
           cell.controlType && `"${cell.controlType}"`,
         "grid-column": `span ${colSpan}`,
         "grid-row": ` ${rowStart} / span ${rowSpan}`
       }}
-      data-gx-le-selected={isCellSelected(cell, context).toString()}
-      data-gx-le-control-type-name={getControlTypeName(cell)}
-      data-gx-le-control-name={getControlName(cell)}
     >
       {controlResolver(cell, context)}
     </gx-table-cell>

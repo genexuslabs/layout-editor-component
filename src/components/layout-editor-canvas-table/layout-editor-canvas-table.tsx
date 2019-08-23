@@ -1,10 +1,9 @@
-import { Component, Element, Prop, h } from "@stencil/core";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlName,
-  getControlTypeName,
-  isCellSelected
+  getCellCommonAttrs,
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,7 +18,13 @@ export class LayoutEditorCanvasTable {
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
-    return canvasTableResolver(this.model.table, this.context);
+    const { table } = this.model;
+
+    return (
+      <Host {...getControlCommonAttrs(this.model)}>
+        {canvasTableResolver(table, this.context)}
+      </Host>
+    );
   }
 }
 
@@ -45,7 +50,6 @@ function canvasTableResolver(table, context: IResolverContext) {
 
   return (
     <gx-canvas
-      data-gx-le-control-id={table["@id"]}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}
     >
@@ -65,15 +69,11 @@ function renderCell(cell, rowId, context) {
 
   return (
     <gx-canvas-cell
-      tabindex="0"
-      key={cell["@id"]}
-      data-gx-le-drop-area="vertical"
-      data-gx-le-cell-id={cell["@id"]}
+      {...getCellCommonAttrs(cell, context)}
       data-gx-le-row-id={rowId}
+      data-gx-le-drop-area="vertical"
+      tabindex="0"
       style={editorCellStyle}
-      data-gx-le-selected={isCellSelected(cell, context).toString()}
-      data-gx-le-control-type-name={getControlTypeName(cell)}
-      data-gx-le-control-name={getControlName(cell)}
     >
       {controlResolver(cell, context)}
     </gx-canvas-cell>

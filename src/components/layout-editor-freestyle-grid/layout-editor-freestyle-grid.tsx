@@ -1,7 +1,8 @@
-import { Component, Element, Prop, h } from "@stencil/core";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
+  getControlCommonAttrs,
   isCellSelected
 } from "../layout-editor/layout-editor-control-resolver";
 
@@ -19,20 +20,19 @@ export class LayoutEditorFreestyleGrid {
   render() {
     const { grid } = this.model;
 
-    this.element.setAttribute("data-gx-le-control-id", grid["@id"]);
-
     return (
-      <div
-        class={grid["@class"]}
-        data-gx-le-control-id={grid["@id"]}
-        data-gx-le-control-header-bar
-        data-gx-le-selected={isCellSelected(grid, this.context).toString()}
-        style={{
-          "--gx-le-control-header-bar-text": `'${this.model.controlType}'`
-        }}
-      >
-        {controlResolver(grid, this.context)}
-      </div>
+      <Host {...getControlCommonAttrs(this.model)}>
+        <div
+          class={grid["@class"]}
+          data-gx-le-control-header-bar
+          data-gx-le-selected={isCellSelected(grid, this.context).toString()}
+          style={{
+            "--gx-le-control-header-bar-text": `'${this.model.controlType}'`
+          }}
+        >
+          {controlResolver(grid, this.context)}
+        </div>
+      </Host>
     );
   }
 }

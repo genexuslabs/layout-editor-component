@@ -1,8 +1,7 @@
-import { Component, Element, Prop, h } from "@stencil/core";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlName,
-  getControlTypeName,
+  getControlCommonAttrs,
   isControlSelected
 } from "../layout-editor/layout-editor-control-resolver";
 
@@ -21,13 +20,6 @@ export class LayoutEditorSimpelGrid {
     const { simplegrid } = this.model;
     const headerBarText = this.model.controlType || "Grid";
 
-    this.element.setAttribute("data-gx-le-control-id", simplegrid["@id"]);
-
-    this.element.style.setProperty(
-      "--gx-le-control-header-bar-text",
-      `'${headerBarText}'`
-    );
-
     const items: GeneXusAbstractLayout.SimpleGridItem[] = simplegrid.item
       ? Array.isArray(simplegrid.item)
         ? simplegrid.item
@@ -42,53 +34,58 @@ export class LayoutEditorSimpelGrid {
     };
 
     return (
-      <div data-gx-le-control-header-bar>
-        <table
-          data-gx-le-container
-          data-gx-le-container-empty={(!items.length).toString()}
-          class={simplegrid["@class"]}
-          style={{
-            borderCollapse: "collapse",
-            width: "100%"
-          }}
-        >
-          <tbody>
-            <tr>
-              {items.length ? (
-                items.map(item => (
-                  <td
-                    key={item["@id"]}
-                    data-gx-le-control-id={item["@id"]}
-                    data-gx-le-selected={isControlSelected(
-                      item,
-                      this.context
-                    ).toString()}
-                    data-gx-le-drop-area="horizontal"
-                    data-gx-le-control-type-name={getControlTypeName(item)}
-                    data-gx-le-control-name={getControlName(item)}
-                    style={{
-                      "--gx-le-control-type-name":
-                        item.controlType && `"${item.controlType}"`
-                    }}
-                    {...acceptedTypesAttrs}
-                  >
-                    <div class="column">
-                      <div class="header">{item["@titleExp"]}</div>
-                      <gx-le-data
-                        model={
-                          ({ data: item } as any) as GeneXusAbstractLayout.Cell
-                        }
-                      />
-                    </div>
-                  </td>
-                ))
-              ) : (
-                <td data-gx-le-placeholder="row" {...acceptedTypesAttrs} />
-              )}
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <Host
+        {...getControlCommonAttrs(this.model)}
+        style={{ "--gx-le-control-header-bar-text": `'${headerBarText}'` }}
+      >
+        <div data-gx-le-control-header-bar>
+          <table
+            data-gx-le-container
+            data-gx-le-container-empty={(!items.length).toString()}
+            class={simplegrid["@class"]}
+            style={{
+              borderCollapse: "collapse",
+              width: "100%"
+            }}
+          >
+            <tbody>
+              <tr>
+                {items.length ? (
+                  items.map(item => (
+                    <td
+                      key={item["@id"]}
+                      data-gx-le-selected={isControlSelected(
+                        item,
+                        this.context
+                      ).toString()}
+                      data-gx-le-drop-area="horizontal"
+                      style={{
+                        "--gx-le-control-type-name":
+                          item.controlType && `"${item.controlType}"`
+                      }}
+                      {...acceptedTypesAttrs}
+                    >
+                      <div class="column">
+                        <div class="header">{item["@titleExp"]}</div>
+                        <gx-le-data
+                          model={
+                            ({
+                              childControlType: "data",
+                              data: item
+                            } as any) as GeneXusAbstractLayout.Cell
+                          }
+                        />
+                      </div>
+                    </td>
+                  ))
+                ) : (
+                  <td data-gx-le-placeholder="row" {...acceptedTypesAttrs} />
+                )}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Host>
     );
   }
 }

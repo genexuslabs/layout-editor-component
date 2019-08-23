@@ -1,4 +1,4 @@
-import { Component, Element, Prop } from "@stencil/core";
+import { Component, Element, Host, Prop, h } from "@stencil/core";
 
 @Component({
   styleUrl: "layout-editor-tool-drag.scss",
@@ -8,7 +8,7 @@ export class LayoutEditorToolDrag {
   @Element() el: HTMLElement;
   @Prop() control: HTMLElement;
 
-  componentWillLoad() {
-    this.el.setAttribute("draggable", "true");
+  render() {
+    return <Host draggable="true" />;
   }
 }
