@@ -90,7 +90,7 @@ declare module GeneXusAbstractLayout {
 
   export interface Section extends IControl {
     "@class": string;
-    item: SectionItem;
+    item: SectionItem[];
   }
 
   export interface TabItem extends IContainer {

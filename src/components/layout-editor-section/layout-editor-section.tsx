@@ -20,11 +20,7 @@ export class LayoutEditorSection {
   render() {
     const { section } = this.model;
 
-    const items: GeneXusAbstractLayout.SectionItem[] = section.item
-      ? Array.isArray(section.item)
-        ? section.item
-        : [section.item]
-      : [];
+    const items = section.item;
     const isEmptySection = items.length === 0;
 
     return (

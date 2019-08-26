@@ -126,6 +126,31 @@ function transformTabItem(
   };
 }
 
+function transformSection(
+  rawSection: GeneXusAbstractLayout.Section
+): GeneXusAbstractLayout.Section {
+  const item = fixArrayProperty(rawSection.item);
+
+  return {
+    ...rawSection,
+    item: item.map(transformSectionItem)
+  };
+}
+
+function transformSectionItem(
+  rawSectionItem: GeneXusAbstractLayout.SectionItem
+): GeneXusAbstractLayout.SectionItem {
+  const transformed = transformContainer(
+    rawSectionItem as GeneXusAbstractLayout.TabItem,
+    inferChildControlType(rawSectionItem)
+  );
+
+  return {
+    ...rawSectionItem,
+    ...transformed
+  };
+}
+
 function transformControl(
   control: GeneXusAbstractLayout.IControl
 ): GeneXusAbstractLayout.IControl {
@@ -163,6 +188,9 @@ function inferChildControlType(parent: any): string {
 }
 
 const controlsTransforms = {
+  section: {
+    transformFn: transformSection
+  },
   tab: {
     transformFn: transformTab
   },
