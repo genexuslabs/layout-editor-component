@@ -77,7 +77,6 @@ function getTableStyle(table): any {
 
 function renderCell(cell, rowId, context, direction) {
   const editorCellStyle = {
-    "--gx-le-control-type-name": cell.controlType && `"${cell.controlType}"`,
     "align-self": cell["@alignSelf"],
     "flex-grow": cell["@flexGrow"],
     "flex-shrink": cell["@flexShrink"],
@@ -91,7 +90,7 @@ function renderCell(cell, rowId, context, direction) {
 
   return (
     <div
-      {...getCellCommonAttrs(cell, context)}
+      {...getCellCommonAttrs(cell)}
       data-gx-le-row-id={rowId}
       data-gx-le-drop-area={direction === "Column" ? "vertical" : "horizontal"}
       data-gx-flex-cell

@@ -169,13 +169,11 @@ function renderCell(cell, rowId, rowIndex, context) {
 
   return (
     <gx-table-cell
-      {...getCellCommonAttrs(cell, context)}
+      {...getCellCommonAttrs(cell)}
       data-gx-le-row-id={rowId}
       data-gx-le-drop-area="horizontal"
       tabindex="0"
       style={{
-        "--gx-le-control-type-name":
-          cell.controlType && `"${cell.controlType}"`,
         "grid-column": `span ${colSpan}`,
         "grid-row": ` ${rowStart} / span ${rowSpan}`
       }}

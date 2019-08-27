@@ -9,10 +9,6 @@ import {
   h
 } from "@stencil/core";
 import {
-  controlResolver,
-  isCellSelected
-} from "./layout-editor-control-resolver";
-import {
   findControlWrapper,
   findParentCell,
   getCellData,
@@ -21,9 +17,8 @@ import {
 
 import { Fragment } from "../common/util";
 import { LayoutEditorDragDrop } from "./layout-editor-drag-drop";
+import { controlResolver } from "./layout-editor-control-resolver";
 import { transform } from "../metadata/transform";
-
-// import { LayoutEditorHighlightManager } from "./layout-editor-highlight-manager";
 
 // The following import must be commented until Stencil issue regarding SASS @imports
 // of imported components and the SASS Stencil plugin is solved.
@@ -39,7 +34,6 @@ export class LayoutEditor {
   @Element() element: HTMLElement;
 
   dragDrop: LayoutEditorDragDrop;
-  // highlightManager: LayoutEditorHighlightManager;
 
   /**
    * The abstract form model object
@@ -226,11 +220,6 @@ export class LayoutEditor {
       this.controlAdded
     );
     this.dragDrop.initialize();
-    /*
-    this.highlightManager = new LayoutEditorHighlightManager(this
-      .element as HTMLGxLayoutEditorElement);
-    this.highlightManager.initialize();
-*/
   }
 
   componentWillUpdate() {
@@ -301,10 +290,6 @@ export class LayoutEditor {
         selectedControls: this.selectedControls
       };
 
-      const isSelected =
-        this.selectedControls.find(id => id === "") !== undefined ||
-        isCellSelected(model.layout, context);
-      this.element.setAttribute("data-gx-le-selected", isSelected.toString());
       return [
         <gx-le-tool-highlight-controller
           editor={this}

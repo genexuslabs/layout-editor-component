@@ -100,21 +100,20 @@ function getRowStyle(): any {
 function renderCell(cell, rowId, context) {
   return (
     <div
-      {...getCellCommonAttrs(cell, context)}
+      {...getCellCommonAttrs(cell)}
       data-gx-le-row-id={rowId}
       data-gx-le-drop-area="horizontal"
       data-gx-le-responsive-table-cell
       tabindex="0"
-      style={getCellStyle(cell)}
+      style={getCellStyle()}
     >
       {controlResolver(cell, context)}
     </div>
   );
 }
 
-function getCellStyle(cell) {
+function getCellStyle() {
   return {
-    "--gx-le-control-type-name": cell.controlType && `"${cell.controlType}"`,
     display: "flex",
     "flex-grow": "1"
   };

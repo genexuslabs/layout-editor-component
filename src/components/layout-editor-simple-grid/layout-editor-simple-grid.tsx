@@ -1,8 +1,7 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs,
-  isControlSelected
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -54,15 +53,7 @@ export class LayoutEditorSimpelGrid {
                   items.map(item => (
                     <td
                       key={item["@id"]}
-                      data-gx-le-selected={isControlSelected(
-                        item,
-                        this.context
-                      ).toString()}
                       data-gx-le-drop-area="horizontal"
-                      style={{
-                        "--gx-le-control-type-name":
-                          item.controlType && `"${item.controlType}"`
-                      }}
                       {...acceptedTypesAttrs}
                     >
                       <div class="column">

@@ -2,8 +2,7 @@ import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlCommonAttrs,
-  isCellSelected
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -35,14 +34,6 @@ export class LayoutEditorSection {
                 tabindex="0"
                 key={item["@id"]}
                 data-gx-le-drop-area="vertical"
-                style={{
-                  "--gx-le-control-type-name":
-                    item.controlType && `"${item.controlType}"`
-                }}
-                data-gx-le-selected={isCellSelected(
-                  item,
-                  this.context
-                ).toString()}
               >
                 {controlResolver(item, this.context)}
               </div>

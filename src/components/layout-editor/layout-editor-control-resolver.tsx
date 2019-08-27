@@ -49,14 +49,10 @@ export interface IResolverContext {
   selectedControls: string[];
 }
 
-export function getCellCommonAttrs(
-  cell: GeneXusAbstractLayout.Cell,
-  context: IResolverContext
-) {
+export function getCellCommonAttrs(cell: GeneXusAbstractLayout.Cell) {
   return {
     "data-gx-le-cell-id": cell["@id"],
     "data-gx-le-control-container": true,
-    "data-gx-le-selected": isCellSelected(cell, context).toString(),
     key: cell["@id"]
   };
 }

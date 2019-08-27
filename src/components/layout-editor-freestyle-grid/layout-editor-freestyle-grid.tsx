@@ -2,8 +2,7 @@ import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlCommonAttrs,
-  isCellSelected
+  getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -25,7 +24,6 @@ export class LayoutEditorFreestyleGrid {
         <div
           class={grid["@class"]}
           data-gx-le-control-header-bar
-          data-gx-le-selected={isCellSelected(grid, this.context).toString()}
           style={{
             "--gx-le-control-header-bar-text": `'${this.model.controlType}'`
           }}

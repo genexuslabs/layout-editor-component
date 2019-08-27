@@ -171,51 +171,6 @@
   }
 }
 
-@mixin selection-highlighting {
-  [data-gx-le-selected="true"] {
-    outline: var(--gx-le-table-selected-cell-border-color) solid
-      var(--gx-le-table-selected-cell-border-width);
-  }
-}
-
-@mixin container-highlighting($color, $width) {
-  outline: $color solid $width !important;
-  position: relative;
-
-  &:before {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    content: var(--gx-le-control-type-name);
-    z-index: 1;
-    color: var(--gx-le-control-type-name-color);
-    text-shadow: initial;
-    background-color: $color;
-    font: var(--gx-le-control-type-name-font);
-    padding: 0.3rem;
-  }
-}
-
-@mixin dragging-hovering-highlighting {
-  [data-gx-le-active-target-parent] {
-    @include container-highlighting(
-      var(--gx-le-table-dragging-hovered-container-border-color),
-      var(--gx-le-table-dragging-hovered-container-border-width)
-    );
-  }
-}
-
-@mixin hovering-highlighting {
-  [data-gx-le-drop-area] {
-    &[data-gx-le-highlighted] {
-      @include container-highlighting(
-        var(--gx-le-table-hovered-cell-border-color),
-        var(--gx-le-table-hovered-cell-border-width)
-      );
-    }
-  }
-}
-
 %box-sizing-props {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -317,12 +272,6 @@ gx-layout-editor {
   @include containers-defaults();
 
   @include drop-area();
-
-  @include selection-highlighting();
-
-  @include hovering-highlighting();
-
-  @include dragging-hovering-highlighting();
 
   @include ghost();
 

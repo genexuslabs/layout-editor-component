@@ -63,17 +63,12 @@ function canvasTableResolver(table, context: IResolverContext) {
 }
 
 function renderCell(cell, rowId, context) {
-  const editorCellStyle = {
-    "--gx-le-control-type-name": cell.controlType && `"${cell.controlType}"`
-  };
-
   return (
     <gx-canvas-cell
-      {...getCellCommonAttrs(cell, context)}
+      {...getCellCommonAttrs(cell)}
       data-gx-le-row-id={rowId}
       data-gx-le-drop-area="vertical"
       tabindex="0"
-      style={editorCellStyle}
     >
       {controlResolver(cell, context)}
     </gx-canvas-cell>
