@@ -1,4 +1,6 @@
 import {
+  findContainedControlWrapper,
+  findControlWrapper,
   findParentCell,
   findParentContainer,
   findValidDropTarget,
@@ -49,9 +51,9 @@ export class LayoutEditorDragDrop {
   private handleControlDragStart(event: DragEvent) {
     const dataTransfer = event.dataTransfer;
     const control = (event.target as HTMLGxLeToolDragElement).control;
+    const controlId = getControlId(control);
     const cell = findParentCell(control);
     const { cellId } = getCellData(cell);
-    const controlId = getControlId(cell.firstElementChild) || "";
 
     cell.setAttribute("data-gx-le-dragged", "true");
 
@@ -294,7 +296,7 @@ export class LayoutEditorDragDrop {
       if (isEmptyContainerDrop(targetCell)) {
         // Dropped on an empty container
         eventData = {
-          containerId: getControlId(findParentContainer(targetCell))
+          containerId: getControlId(findControlWrapper(targetCell))
         };
       } else {
         // Dropped on a new row
@@ -305,7 +307,7 @@ export class LayoutEditorDragDrop {
           };
         } else {
           eventData = {
-            containerId: getControlId(findParentContainer(targetCell))
+            containerId: getControlId(findControlWrapper(targetCell))
           };
         }
       }
@@ -319,18 +321,22 @@ export class LayoutEditorDragDrop {
           targetCellId
         };
       } else {
-        const targetControlId = getControlId(targetCell);
-        if (targetControlId) {
+        if (!targetRowId) {
+          const targetControlId = getControlId(
+            findContainedControlWrapper(targetCell)
+          );
           // Dropped on a control (this happens when the container doesn't handle rows nor cells)
           eventData = {
-            containerId: getControlId(findParentContainer(targetCell))
+            containerId: getControlId(findControlWrapper(targetCell))
           };
           if (droppedEl.nextElementSibling) {
             eventData.beforeControlId = targetControlId;
           } else {
             if (droppedEl.parentElement.nextElementSibling) {
               eventData.beforeControlId = getControlId(
-                droppedEl.parentElement.nextElementSibling
+                findContainedControlWrapper(
+                  droppedEl.parentElement.nextElementSibling
+                )
               );
             }
           }
