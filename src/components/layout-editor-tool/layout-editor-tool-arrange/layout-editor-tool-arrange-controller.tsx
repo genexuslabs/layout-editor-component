@@ -65,7 +65,7 @@ export class LayoutEditorToolArrangeController {
   handleIntersectionObserver(entries: IntersectionObserverEntry[]) {
     entries.forEach(entry => {
       const el = entry.target as HTMLElement;
-      const isAvailable = entry.intersectionRatio === 1;
+      const isAvailable = entry.intersectionRatio >= 1;
 
       switch (el) {
         case this.placeholderBarOutsideTop:
