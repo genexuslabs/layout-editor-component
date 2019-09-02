@@ -16,26 +16,33 @@ export class LayoutEditorToolSelection {
   @Prop() changeSmooth: boolean;
 
   arrange: HTMLGxLeToolArrangeControllerElement;
+  resizeObserver: ResizeObserver = new window.ResizeObserver(
+    this.handleResizeObserver.bind(this)
+  );
 
   @Listen("scroll", { target: "window", passive: true })
-  handleScroll() {
+  @Listen("resize", { target: "window", passive: true })
+  @Listen("dragstart", { target: "window", passive: true })
+  @Listen("dragenter", { target: "window", passive: true })
+  @Listen("dragend", { target: "window", passive: true })
+  handleWindowEvents() {
     this.smoothSuspend();
     this.updatePosition();
     this.smoothResume();
   }
 
-  @Listen("resize", { target: "window", passive: true })
-  handleResize() {
+  handleResizeObserver() {
     this.smoothSuspend();
     this.updatePosition();
     this.smoothResume();
   }
 
   @Watch("control")
-  watchControl() {
+  watchControl(selectedControl: HTMLElement, unselectedControl: HTMLElement) {
     this.highlight();
     this.updatePosition();
     this.refreshArrange();
+    this.monitorResize(selectedControl, unselectedControl);
   }
 
   componentDidLoad() {
@@ -43,6 +50,19 @@ export class LayoutEditorToolSelection {
     this.highlight();
     this.updatePosition();
     this.refreshArrange();
+    this.monitorResize(this.control);
+  }
+
+  private monitorResize(
+    observeControl: HTMLElement,
+    unobserveControl?: HTMLElement
+  ) {
+    if (unobserveControl) {
+      this.resizeObserver.unobserve(unobserveControl);
+    }
+    if (observeControl) {
+      this.resizeObserver.observe(observeControl);
+    }
   }
 
   private smooth() {
@@ -78,10 +98,10 @@ export class LayoutEditorToolSelection {
     if (this.control) {
       const rect = this.control.getBoundingClientRect();
 
-      this.el.style.top = rect.top + "px";
-      this.el.style.left = rect.left + "px";
-      this.el.style.width = rect.width + "px";
-      this.el.style.height = rect.height + "px";
+      this.el.style.top = `${rect.top}px`;
+      this.el.style.left = `${rect.left}px`;
+      this.el.style.width = `${rect.width}px`;
+      this.el.style.height = `${rect.height}px`;
     }
   }
 
