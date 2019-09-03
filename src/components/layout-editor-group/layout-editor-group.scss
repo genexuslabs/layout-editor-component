@@ -1,6 +1,8 @@
+@import "../layout-editor/layout-editor-common.scss";
+
 gx-le-group {
-  display: flex;
-  flex-grow: 1;
+  @include common-control-wrapper();
+
   & > gx-group {
     flex-grow: 1;
   }

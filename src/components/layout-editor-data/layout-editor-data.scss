@@ -1,5 +1,8 @@
+@import "../layout-editor/layout-editor-common.scss";
+
 gx-le-data {
-  display: block;
+  @include common-control-wrapper();
+
   & input[disabled],
   & select[disabled],
   & textarea[disabled] {

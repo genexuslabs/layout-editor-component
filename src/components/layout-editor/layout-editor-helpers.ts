@@ -117,6 +117,10 @@ export function findContainedControlWrapper(cell: Element): HTMLElement {
   return (cell || document).querySelector("[data-gx-le-control-id]");
 }
 
+export function findContainedControl(wrapper: Element): HTMLElement {
+  return (wrapper || document).querySelector("[data-gx-le-control-id] > *");
+}
+
 export function getControlWrapper(
   controlId: string,
   element?: Element

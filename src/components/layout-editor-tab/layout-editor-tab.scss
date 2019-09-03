@@ -1,0 +1,9 @@
+@import "../layout-editor/layout-editor-common.scss";
+
+gx-le-tab {
+  @include common-control-wrapper();
+
+  & > gx-tab {
+    flex-grow: 1;
+  }
+}

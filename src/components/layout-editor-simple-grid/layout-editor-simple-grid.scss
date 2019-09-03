@@ -1,7 +1,10 @@
+@import "../layout-editor/layout-editor-common.scss";
+
 gx-le-simple-grid {
+  @include common-control-wrapper();
+
   --gx-le-simple-grid-border: 1px solid
     var(--gx-le-control-header-bar-background-color);
-  display: block;
   border: var(--gx-le-simple-grid-border);
 
   // Hide container's anchor icon

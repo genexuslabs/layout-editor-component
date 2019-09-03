@@ -1,6 +1,7 @@
 import { Component, Element, Listen, Prop, Watch, h } from "@stencil/core";
 
 import { LayoutEditorToolDimensionType } from "../layout-editor-tool-commons";
+import { findContainedControl } from "../../layout-editor/layout-editor-helpers";
 
 @Component({
   styleUrl: "layout-editor-tool-selection.scss",
@@ -96,7 +97,7 @@ export class LayoutEditorToolSelection {
 
   private updatePosition() {
     if (this.control) {
-      const rect = this.control.getBoundingClientRect();
+      const rect = findContainedControl(this.control).getBoundingClientRect();
 
       this.el.style.top = `${rect.top}px`;
       this.el.style.left = `${rect.left}px`;

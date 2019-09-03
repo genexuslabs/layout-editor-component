@@ -1,3 +1,10 @@
+@import "../layout-editor/layout-editor-common.scss";
+
 gx-le-flex-table {
-  display: block;
+  @include common-control-wrapper();
+  @include common-control-cell();
+
+  & > [data-gx-le-flex-table] {
+    flex-grow: 1;
+  }
 }

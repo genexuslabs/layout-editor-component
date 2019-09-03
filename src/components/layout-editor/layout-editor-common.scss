@@ -1,0 +1,9 @@
+@mixin common-control-wrapper() {
+  display: contents;
+}
+
+@mixin common-control-cell() {
+  & [data-gx-le-cell-id] {
+    align-items: flex-start;
+  }
+}
