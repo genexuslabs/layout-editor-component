@@ -63,6 +63,22 @@ export function getControlId(el: Element): string {
   return el ? el.getAttribute("data-gx-le-control-id") || "" : "";
 }
 
+export function getControlItemId(el: Element): string {
+  return el ? el.getAttribute("data-gx-le-control-item-id") || "" : "";
+}
+
+export function getControlItemSelectedId(el: Element): string {
+  return el ? el.getAttribute("data-gx-le-control-item-selected-id") || "" : "";
+}
+
+export function getControlSelectionId(wrapper: Element) {
+  return getControlItemSelectedId(wrapper) || getControlId(wrapper);
+}
+
+export function setControlItemSelectedId(el: Element, value: string) {
+  el.setAttribute("data-gx-le-control-item-selected-id", value);
+}
+
 export function findParentContainer(el: Element): Element {
   const parentElement = el.parentElement;
   if (!parentElement) {
@@ -126,7 +142,7 @@ export function getControlWrapper(
   element?: Element
 ): HTMLElement {
   return (element || document).querySelector(
-    `[data-gx-le-control-id="${controlId}"]`
+    `[data-gx-le-control-id="${controlId}"], [data-gx-le-control-item-selected-id="${controlId}"]`
   );
 }
 

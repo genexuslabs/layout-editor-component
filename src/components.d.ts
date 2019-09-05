@@ -93,6 +93,7 @@ export namespace Components {
   interface GxLeTab {
     'context': IResolverContext;
     'model': GeneXusAbstractLayout.Cell;
+    'tabItemSelectedId': string;
   }
   interface GxLeTabularTable {
     'context': IResolverContext;
@@ -458,6 +459,7 @@ declare namespace LocalJSX {
   interface GxLeTab extends JSXBase.HTMLAttributes<HTMLGxLeTabElement> {
     'context'?: IResolverContext;
     'model'?: GeneXusAbstractLayout.Cell;
+    'tabItemSelectedId'?: string;
   }
   interface GxLeTabularTable extends JSXBase.HTMLAttributes<HTMLGxLeTabularTableElement> {
     'context'?: IResolverContext;

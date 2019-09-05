@@ -4,8 +4,10 @@ import {
   controlResolver,
   getControlCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
-
-import { getControlId } from "../layout-editor/layout-editor-helpers";
+import {
+  getControlItemId,
+  setControlItemSelectedId
+} from "../layout-editor/layout-editor-helpers";
 
 @Component({
   shadow: false,
@@ -17,12 +19,31 @@ export class LayoutEditorTab {
 
   @Prop() context: IResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
-
+  @Prop({
+    attribute: "data-gx-le-control-item-selected-id",
+    mutable: true,
+    reflect: true
+  })
   tabItemSelectedId = "";
+
+  componentWillLoad() {
+    const tabItem = this.model.tab.item[0];
+
+    if (tabItem && !this.tabItemSelectedId) {
+      this.tabItemSelectedId = tabItem["@id"];
+    }
+  }
 
   @Listen("onTabChange")
   onTabChangeHandler(event: CustomEvent) {
-    this.tabItemSelectedId = getControlId(event.detail.target);
+    this.tabItemSelectedId = getControlItemId(event.detail.target);
+
+    /**
+     * Workaround to set attribute when event is fired.
+     * Reflect property is fired during render but value is needed
+     * during click event of selection manager.
+     */
+    setControlItemSelectedId(this.element, this.tabItemSelectedId);
   }
 
   render() {
@@ -61,10 +82,16 @@ export class LayoutEditorTab {
     selected: boolean
   ) {
     return [
-      <gx-tab-caption slot="caption" selected={selected}>
+      <gx-tab-caption
+        slot="caption"
+        selected={selected}
+        data-gx-le-control-item-id={tabItem["@id"]}
+      >
         {tabItem["@caption"]}
       </gx-tab-caption>,
-      <gx-tab-page slot="page">{controlResolver(tabItem, context)}</gx-tab-page>
+      <gx-tab-page slot="page" data-gx-le-control-item-id={tabItem["@id"]}>
+        {controlResolver(tabItem, context)}
+      </gx-tab-page>
     ];
   }
 }

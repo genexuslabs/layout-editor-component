@@ -12,7 +12,8 @@ import {
   findControlWrapper,
   findParentCell,
   getCellData,
-  getControlId
+  getControlId,
+  getControlSelectionId
 } from "./layout-editor-helpers";
 
 import { Fragment } from "../common/util";
@@ -239,9 +240,10 @@ export class LayoutEditor {
   }
 
   private handleSelection(target: HTMLElement, add: boolean) {
-    const selectedControlId = getControlId(findControlWrapper(target));
-
-    this.updateSelection(selectedControlId, add);
+    this.updateSelection(
+      getControlSelectionId(findControlWrapper(target)),
+      add
+    );
   }
 
   private updateSelection(selectedControlId: string, add: boolean) {
