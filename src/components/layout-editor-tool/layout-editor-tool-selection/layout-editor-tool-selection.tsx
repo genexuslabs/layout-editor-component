@@ -59,10 +59,10 @@ export class LayoutEditorToolSelection {
     unobserveControl?: HTMLElement
   ) {
     if (unobserveControl) {
-      this.resizeObserver.unobserve(unobserveControl);
+      this.resizeObserver.unobserve(findContainedControl(unobserveControl));
     }
     if (observeControl) {
-      this.resizeObserver.observe(observeControl);
+      this.resizeObserver.observe(findContainedControl(observeControl));
     }
   }
 
