@@ -1,5 +1,11 @@
 @mixin common-control-wrapper() {
   display: contents;
+
+  /**
+   * Workaround. Chrome not render childs of element with display:contents when
+   * have visibility:inherits on childs.
+  */
+  visibility: inherit;
 }
 
 @mixin common-control-cell() {
