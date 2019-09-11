@@ -30,10 +30,17 @@ export class LayoutEditorUserControl {
     if ((ucw as GeneXusAbstractLayout.UcwContainer).childControlType) {
       return controlResolver(ucw, context);
     } else {
+      const userControlType =
+        ucw["@UserControlType"] ||
+        (ucw.CustomProperties && ucw.CustomProperties.UserControlType);
+      const controlName =
+        ucw["@controlName"] ||
+        (ucw.CustomProperties && ucw.CustomProperties.ControlName);
+
       return (
         <div>
-          {`<${ucw.CustomProperties.UserControlType}`}:{" "}
-          {`${ucw.CustomProperties.ControlName}>`}
+          {`<${userControlType || "Unknown UserControl type"}`}:{" "}
+          {`${controlName || ""}>`}
         </div>
       );
     }
