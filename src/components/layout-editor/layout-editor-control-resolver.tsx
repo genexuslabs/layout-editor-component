@@ -57,7 +57,9 @@ export function getCellCommonAttrs(cell: GeneXusAbstractLayout.Cell) {
   };
 }
 
-export function getControlCommonAttrs(model: GeneXusAbstractLayout.Cell) {
+export function getControlWrapperCommonAttrs(
+  model: GeneXusAbstractLayout.Cell
+) {
   const controlDefinition = findResolverByType(model.childControlType);
   const control = model[
     model.childControlType
@@ -68,5 +70,11 @@ export function getControlCommonAttrs(model: GeneXusAbstractLayout.Cell) {
     "data-gx-le-control-name": control["@controlName"] || "",
     "data-gx-le-control-type-name":
       (controlDefinition && controlDefinition.typeName) || "Unknown control"
+  };
+}
+
+export function getControlCommonAttrs() {
+  return {
+    draggable: true
   };
 }

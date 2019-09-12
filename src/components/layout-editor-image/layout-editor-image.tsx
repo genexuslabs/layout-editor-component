@@ -1,7 +1,8 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,8 +20,9 @@ export class LayoutEditorImage {
     const { image } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         <gx-image
+          {...getControlCommonAttrs()}
           alt={image["@controlName"]}
           src={image.imgSrc}
           css-class={image["@class"]}

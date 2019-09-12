@@ -1,7 +1,8 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,8 +20,10 @@ export class LayoutEditorHorizontalRule {
     const { horizontalrule } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
-        <hr class={horizontalrule["@class"]}> </hr>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
+        <hr {...getControlCommonAttrs()} class={horizontalrule["@class"]}>
+          {" "}
+        </hr>
       </Host>
     );
   }

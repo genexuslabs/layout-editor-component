@@ -2,7 +2,8 @@ import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -20,8 +21,9 @@ export class LayoutEditorFreestyleGrid {
     const { grid } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         <div
+          {...getControlCommonAttrs()}
           class={grid["@class"]}
           data-gx-le-control-header-bar
           style={{

@@ -3,7 +3,8 @@ import {
   IResolverContext,
   controlResolver,
   getCellCommonAttrs,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -21,7 +22,7 @@ export class LayoutEditorFlexTable {
     const { table } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         {flexTableResolver(table, this.context)}
       </Host>
     );
@@ -50,6 +51,7 @@ function flexTableResolver(table, context: IResolverContext) {
 
   return (
     <div
+      {...getControlCommonAttrs()}
       style={getTableStyle(table)}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}

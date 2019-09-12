@@ -50,7 +50,7 @@ export class LayoutEditorDragDrop {
 
   private handleControlDragStart(event: DragEvent) {
     const dataTransfer = event.dataTransfer;
-    const control = (event.target as HTMLGxLeToolDragElement).control;
+    const control = this.getDraggedControlWrapper(event.target as HTMLElement);
     const controlId = getControlId(control);
     const cell = findParentCell(control);
     const { cellId } = getCellData(cell);
@@ -424,6 +424,12 @@ export class LayoutEditorDragDrop {
     for (const target of activeTargets) {
       target.removeAttribute(attributeName);
     }
+  }
+
+  private getDraggedControlWrapper(target: HTMLElement): HTMLElement {
+    return target.tagName === "GX-LE-TOOL-DRAG"
+      ? (target as HTMLGxLeToolDragElement).control
+      : findControlWrapper(target);
   }
 }
 

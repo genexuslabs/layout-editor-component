@@ -3,7 +3,8 @@ import {
   IResolverContext,
   controlResolver,
   getCellCommonAttrs,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -21,7 +22,7 @@ export class LayoutEditorResponsiveTable {
     const { table } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         {responsiveTableResolver(table, this.context)}
       </Host>
     );
@@ -70,6 +71,7 @@ function responsiveTableResolver(table, context: IResolverContext) {
 
   return (
     <div
+      {...getControlCommonAttrs()}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}
       data-gx-le-responsive-table

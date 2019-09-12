@@ -2,7 +2,8 @@ import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -23,8 +24,9 @@ export class LayoutEditorSection {
     const isEmptySection = items.length === 0;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         <div
+          {...getControlCommonAttrs()}
           data-gx-le-container
           data-gx-le-container-empty={isEmptySection.toString()}
         >

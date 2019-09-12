@@ -1,7 +1,8 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,8 +20,8 @@ export class LayoutEditorHyperlink {
     const { hyperlink } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
-        <a href="#" class={hyperlink["@class"]}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
+        <a {...getControlCommonAttrs()} href="#" class={hyperlink["@class"]}>
           {hyperlink["@text"]}
         </a>
       </Host>

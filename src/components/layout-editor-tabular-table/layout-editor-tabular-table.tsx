@@ -3,7 +3,8 @@ import {
   IResolverContext,
   controlResolver,
   getCellCommonAttrs,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -21,7 +22,7 @@ export class LayoutEditorTabularTable {
     const { table } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         {tabularTableResolver(table, this.context)}
       </Host>
     );
@@ -100,6 +101,7 @@ function tabularTableResolver(table, context: IResolverContext) {
 
   return (
     <gx-table
+      {...getControlCommonAttrs()}
       {...getTableStyle(rowsCount, maxCols)}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}

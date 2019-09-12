@@ -1,7 +1,8 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,8 +20,8 @@ export class LayoutEditorComponent {
     const { component } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
-        <div>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
+        <div {...getControlCommonAttrs()}>
           {component["@controlName"]}
           {component["@webObject"] ? ":" + component["@webObject"] : ""}
         </div>

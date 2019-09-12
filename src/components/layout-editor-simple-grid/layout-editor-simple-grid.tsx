@@ -1,7 +1,8 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -34,10 +35,10 @@ export class LayoutEditorSimpelGrid {
 
     return (
       <Host
-        {...getControlCommonAttrs(this.model)}
+        {...getControlWrapperCommonAttrs(this.model)}
         style={{ "--gx-le-control-header-bar-text": `'${headerBarText}'` }}
       >
-        <div data-gx-le-control-header-bar>
+        <div {...getControlCommonAttrs()} data-gx-le-control-header-bar>
           <table
             data-gx-le-container
             data-gx-le-container-empty={(!items.length).toString()}

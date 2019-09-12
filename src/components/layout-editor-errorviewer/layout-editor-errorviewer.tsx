@@ -1,7 +1,8 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,8 +20,10 @@ export class LayoutEditorErrorViewer {
     const { errorviewer } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
-        <span class={errorviewer["@class"]}>{errorviewer["@controlName"]}</span>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
+        <span {...getControlCommonAttrs()} class={errorviewer["@class"]}>
+          {errorviewer["@controlName"]}
+        </span>
       </Host>
     );
   }

@@ -2,7 +2,8 @@ import { Component, Element, Host, Listen, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 import {
   getControlItemId,
@@ -50,7 +51,7 @@ export class LayoutEditorTab {
     const { tab } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         {this.renderTab(this.context, tab)}
       </Host>
     );
@@ -62,7 +63,7 @@ export class LayoutEditorTab {
     );
 
     return (
-      <gx-tab>
+      <gx-tab {...getControlCommonAttrs()}>
         {tab.item.map((tabItem, index) => {
           return this.renderTabItem(
             context,

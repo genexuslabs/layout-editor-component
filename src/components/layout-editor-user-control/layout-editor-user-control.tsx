@@ -2,7 +2,8 @@ import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
   controlResolver,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -20,7 +21,7 @@ export class LayoutEditorUserControl {
     const { ucw } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         {this.renderUCW(this.context, ucw)}
       </Host>
     );
@@ -38,7 +39,7 @@ export class LayoutEditorUserControl {
         (ucw.CustomProperties && ucw.CustomProperties.ControlName);
 
       return (
-        <div>
+        <div {...getControlCommonAttrs()}>
           {`<${userControlType || "Unknown UserControl type"}`}:{" "}
           {`${controlName || ""}>`}
         </div>

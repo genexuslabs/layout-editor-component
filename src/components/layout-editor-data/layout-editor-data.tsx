@@ -1,7 +1,8 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,8 +20,9 @@ export class LayoutEditorData {
     const { data } = this.model;
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         <gx-form-field
+          {...getControlCommonAttrs()}
           label-caption={data["@labelCaption"]}
           label-position={labelPositionMap[data["@labelPosition"]]}
         >

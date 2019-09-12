@@ -1,7 +1,8 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   IResolverContext,
-  getControlCommonAttrs
+  getControlCommonAttrs,
+  getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
 @Component({
@@ -19,8 +20,9 @@ export class LayoutEditorDefault {
     const childControl = this.model[this.model.childControlType];
 
     return (
-      <Host {...getControlCommonAttrs(this.model)}>
+      <Host {...getControlWrapperCommonAttrs(this.model)}>
         <div
+          {...getControlCommonAttrs()}
           data-gx-le-control-obj={JSON.stringify(this.model)}
           data-gx-le-default-render=""
         >
