@@ -19,6 +19,10 @@
     */
     min-height: inherit;
   }
+  gx-layout-editor:not(.preview) > & {
+    height: unset;
+    min-height: unset;
+  }
 }
 
 @mixin common-control-cell() {
