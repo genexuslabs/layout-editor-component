@@ -137,6 +137,7 @@ export namespace Components {
     'loadBar': boolean;
     'loadBox': boolean;
     'loadDimension': boolean;
+    'preview': boolean;
   }
   interface GxLeUserControl {
     'context': IResolverContext;
@@ -504,6 +505,7 @@ declare namespace LocalJSX {
     'loadBar'?: boolean;
     'loadBox'?: boolean;
     'loadDimension'?: boolean;
+    'preview'?: boolean;
   }
   interface GxLeUserControl extends JSXBase.HTMLAttributes<HTMLGxLeUserControlElement> {
     'context'?: IResolverContext;

@@ -69,7 +69,8 @@ export function getControlWrapperCommonAttrs(
     "data-gx-le-control-id": control["@id"],
     "data-gx-le-control-name": control["@controlName"] || "",
     "data-gx-le-control-type-name":
-      (controlDefinition && controlDefinition.typeName) || "Unknown control"
+      (controlDefinition && controlDefinition.typeName) || "Unknown control",
+    draggable: "true"
   };
 }
 

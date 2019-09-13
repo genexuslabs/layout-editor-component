@@ -1,11 +1,24 @@
 @mixin common-control-wrapper() {
-  display: contents;
+  gx-layout-editor.preview & {
+    display: contents;
 
-  /**
-   * Workaround. Chrome not render childs of element with display:contents when
-   * have visibility:inherits on childs.
-  */
-  visibility: inherit;
+    /**
+    * Workaround. Chrome not render childs of element with display:contents when
+    * have visibility:inherits on childs.
+    */
+    visibility: inherit;
+  }
+  gx-layout-editor:not(.preview) & {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+
+    /**
+    * Workaround. height: 100% not work if parent height can only min-height setted.
+    */
+    min-height: inherit;
+  }
 }
 
 @mixin common-control-cell() {

@@ -15,6 +15,7 @@ export class LayoutEditorToolSelection {
   @Prop() loadDimension: boolean;
   @Prop() changeHighlight: boolean;
   @Prop() changeSmooth: boolean;
+  @Prop() preview: boolean;
 
   arrange: HTMLGxLeToolArrangeControllerElement;
   resizeObserver: ResizeObserver = new window.ResizeObserver(
@@ -59,10 +60,10 @@ export class LayoutEditorToolSelection {
     unobserveControl?: HTMLElement
   ) {
     if (unobserveControl) {
-      this.resizeObserver.unobserve(findContainedControl(unobserveControl));
+      this.resizeObserver.unobserve(this.getSelectElement(unobserveControl));
     }
     if (observeControl) {
-      this.resizeObserver.observe(findContainedControl(observeControl));
+      this.resizeObserver.observe(this.getSelectElement(observeControl));
     }
   }
 
@@ -97,7 +98,7 @@ export class LayoutEditorToolSelection {
 
   private updatePosition() {
     if (this.control) {
-      const rect = findContainedControl(this.control).getBoundingClientRect();
+      const rect = this.getSelectElement(this.control).getBoundingClientRect();
 
       this.el.style.top = `${rect.top}px`;
       this.el.style.left = `${rect.left}px`;
@@ -111,6 +112,14 @@ export class LayoutEditorToolSelection {
       window.requestAnimationFrame(() => {
         this.arrange.refresh();
       });
+    }
+  }
+
+  private getSelectElement(controlWrapper: HTMLElement) {
+    if (this.preview) {
+      return findContainedControl(controlWrapper);
+    } else {
+      return controlWrapper;
     }
   }
 

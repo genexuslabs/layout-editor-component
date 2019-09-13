@@ -15,6 +15,9 @@ export class LayoutEditorToolHighlightController {
   @Prop() selection: string[] = [];
   @State() hoveredControl: HTMLElement;
   @State() selectedControls: HTMLElement[] = [];
+  @State() preview = false;
+
+  mutation = new MutationObserver(this.handleMutationObserver.bind(this));
 
   @Watch("selection")
   watchSelection() {
@@ -37,10 +40,19 @@ export class LayoutEditorToolHighlightController {
       },
       { passive: true }
     );
+
+    this.mutation.observe(this.editor.element, {
+      attributeFilter: ["class"],
+      attributes: true
+    });
   }
 
   handleMouseOver(event: MouseEvent) {
     this.hoveredControl = findControlWrapper(event.target as HTMLElement);
+  }
+
+  handleMutationObserver() {
+    this.preview = this.editor.element.classList.contains("preview");
   }
 
   @Listen("select")
@@ -68,13 +80,18 @@ export class LayoutEditorToolHighlightController {
   render() {
     return (
       <div>
-        <gx-le-tool-selection control={this.hoveredControl} changeSmooth />
+        <gx-le-tool-selection
+          control={this.hoveredControl}
+          changeSmooth
+          preview={this.preview}
+        />
         {this.selectedControls.map(control => (
           <gx-le-tool-selection
             control={control}
             changeHighlight
             loadBar
             loadBox
+            preview={this.preview}
           />
         ))}
       </div>
