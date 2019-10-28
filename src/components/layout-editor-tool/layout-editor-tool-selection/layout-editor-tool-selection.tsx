@@ -17,7 +17,6 @@ export class LayoutEditorToolSelection {
   @Prop() changeSmooth: boolean;
   @Prop() preview: boolean;
 
-  arrange: HTMLGxLeToolArrangeControllerElement;
   resizeObserver: ResizeObserver = new window.ResizeObserver(
     this.handleResizeObserver.bind(this)
   );
@@ -43,7 +42,6 @@ export class LayoutEditorToolSelection {
   watchControl(selectedControl: HTMLElement, unselectedControl: HTMLElement) {
     this.highlight();
     this.updatePosition();
-    this.refreshArrange();
     this.monitorResize(selectedControl, unselectedControl);
   }
 
@@ -51,7 +49,6 @@ export class LayoutEditorToolSelection {
     this.smooth();
     this.highlight();
     this.updatePosition();
-    this.refreshArrange();
     this.monitorResize(this.control);
   }
 
@@ -107,14 +104,6 @@ export class LayoutEditorToolSelection {
     }
   }
 
-  private refreshArrange() {
-    if (this.arrange) {
-      window.requestAnimationFrame(() => {
-        this.arrange.refresh();
-      });
-    }
-  }
-
   private getSelectElement(controlWrapper: HTMLElement) {
     if (this.preview) {
       return findContainedControl(controlWrapper);
@@ -126,15 +115,11 @@ export class LayoutEditorToolSelection {
   render() {
     return [
       this.loadBar && (
-        <gx-le-tool-arrange-controller
-          selection={this.el}
-          ref={el =>
-            (this.arrange = el as HTMLGxLeToolArrangeControllerElement)
-          }
+        <gx-le-tool-bar
+          class="location-outside-top"
+          data-gx-le-tool-arrange-locations="location-outside-top location-outside-right location-outside-bottom location-outside-left location-inside-sticky"
+          control={this.control}
         />
-      ),
-      this.loadBar && (
-        <gx-le-tool-bar class="location-none" control={this.control} />
       ),
       this.loadBox && <gx-le-tool-box control={this.control} />,
       this.loadDimension && (

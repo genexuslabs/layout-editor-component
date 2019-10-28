@@ -64,50 +64,58 @@ gx-le-tool-bar {
       margin-left: 35px;
       padding: 0;
       list-style: none;
-      & li {
+      & > li {
         display: flex;
         align-items: center;
         margin-right: 5px;
         &:last-child {
           margin-right: 0px;
         }
+        & > button {
+          width: 24px;
+          height: 24px;
+          border: none;
+          margin: 0;
+          padding: 0;
+          background-color: white;
+        }
       }
-      & button {
-        width: 24px;
-        height: 24px;
-        border: none;
-        margin: 0;
-        padding: 0;
-        background-color: white;
-      }
-      & .info {
-        & button {
+      & > .info {
+        & > button {
           -webkit-mask-image: url("assets/images/tool-bar-info.svg");
           mask-image: url("assets/images/tool-bar-info.svg");
         }
       }
-      & .task {
-        & button {
+      & > .task {
+        & > button {
           -webkit-mask-image: url("assets/images/tool-bar-task.svg");
           mask-image: url("assets/images/tool-bar-task.svg");
         }
       }
-      & .select {
+      & > .select {
         position: relative;
-        & button {
+        & > button {
           -webkit-mask-image: url("assets/images/tool-bar-select.svg");
           mask-image: url("assets/images/tool-bar-select.svg");
         }
-        & .breadcrumb-container {
-          display: none;
+        & gx-le-tool-breadcrumb,
+        & .gx-le-tool-breadcrumb {
           position: absolute;
-          right: 0px;
-          bottom: 100%;
-          margin-right: calc(var(--bar-padding) * -1);
-          padding-bottom: var(--bar-padding);
+          &.location-top {
+            right: 0px;
+            bottom: 100%;
+            padding-bottom: var(--bar-padding);
+            margin-right: calc(var(--bar-padding) * -1);
+          }
+          &.location-bottom {
+            right: 0px;
+            top: 100%;
+            padding-top: var(--bar-padding);
+            margin-right: calc(var(--bar-padding) * -1);
+          }
         }
-        &:hover > .breadcrumb-container {
-          display: block;
+        &:not(:hover) > gx-le-tool-breadcrumb {
+          visibility: hidden;
         }
       }
     }
@@ -196,7 +204,12 @@ gx-le-tool-bar {
       );
     }
   }
-  &.location-none {
-    display: none;
+}
+
+.gx-le-tool-arrange-container {
+  & .gx-le-tool-bar {
+    &.location-inside-sticky {
+      max-width: unset !important;
+    }
   }
 }

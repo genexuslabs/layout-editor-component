@@ -3,16 +3,26 @@ gx-le-tool-breadcrumb {
 
   & .list {
     display: flex;
-    flex-direction: column-reverse;
+    align-items: flex-end;
     margin: 0;
     padding: 0;
     list-style: none;
-
     & .item {
       cursor: pointer;
       background-color: var(--gx-le-tool-breadcrumb-background-color, #00a2ff);
-      margin-bottom: 2px;
       padding: 5px;
+    }
+  }
+  &.location-top .list {
+    flex-direction: column-reverse;
+    & .item {
+      margin-bottom: 2px;
+    }
+  }
+  &.location-bottom .list {
+    flex-direction: column;
+    & .item {
+      margin-top: 2px;
     }
   }
   & .identity {

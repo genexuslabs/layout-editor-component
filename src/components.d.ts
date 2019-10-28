@@ -103,10 +103,6 @@ export namespace Components {
     'context': IResolverContext;
     'model': GeneXusAbstractLayout.Cell;
   }
-  interface GxLeToolArrangeController {
-    'refresh': () => Promise<void>;
-    'selection': HTMLElement;
-  }
   interface GxLeToolBar {
     'control': HTMLElement;
   }
@@ -274,12 +270,6 @@ declare global {
     new (): HTMLGxLeTextblockElement;
   };
 
-  interface HTMLGxLeToolArrangeControllerElement extends Components.GxLeToolArrangeController, HTMLStencilElement {}
-  var HTMLGxLeToolArrangeControllerElement: {
-    prototype: HTMLGxLeToolArrangeControllerElement;
-    new (): HTMLGxLeToolArrangeControllerElement;
-  };
-
   interface HTMLGxLeToolBarElement extends Components.GxLeToolBar, HTMLStencilElement {}
   var HTMLGxLeToolBarElement: {
     prototype: HTMLGxLeToolBarElement;
@@ -355,7 +345,6 @@ declare global {
     'gx-le-tab': HTMLGxLeTabElement;
     'gx-le-tabular-table': HTMLGxLeTabularTableElement;
     'gx-le-textblock': HTMLGxLeTextblockElement;
-    'gx-le-tool-arrange-controller': HTMLGxLeToolArrangeControllerElement;
     'gx-le-tool-bar': HTMLGxLeToolBarElement;
     'gx-le-tool-box': HTMLGxLeToolBoxElement;
     'gx-le-tool-breadcrumb': HTMLGxLeToolBreadcrumbElement;
@@ -470,9 +459,6 @@ declare namespace LocalJSX {
     'context'?: IResolverContext;
     'model'?: GeneXusAbstractLayout.Cell;
   }
-  interface GxLeToolArrangeController extends JSXBase.HTMLAttributes<HTMLGxLeToolArrangeControllerElement> {
-    'selection'?: HTMLElement;
-  }
   interface GxLeToolBar extends JSXBase.HTMLAttributes<HTMLGxLeToolBarElement> {
     'control'?: HTMLElement;
     'onSelect'?: (event: CustomEvent<ILayoutEditorToolSelectEvent>) => void;
@@ -534,7 +520,6 @@ declare namespace LocalJSX {
     'gx-le-tab': GxLeTab;
     'gx-le-tabular-table': GxLeTabularTable;
     'gx-le-textblock': GxLeTextblock;
-    'gx-le-tool-arrange-controller': GxLeToolArrangeController;
     'gx-le-tool-bar': GxLeToolBar;
     'gx-le-tool-box': GxLeToolBox;
     'gx-le-tool-breadcrumb': GxLeToolBreadcrumb;

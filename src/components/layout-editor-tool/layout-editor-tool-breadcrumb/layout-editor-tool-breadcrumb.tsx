@@ -1,5 +1,6 @@
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   Prop,
@@ -13,17 +14,27 @@ import {
 } from "../../layout-editor/layout-editor-helpers";
 
 import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
+import { LayoutEditorToolArrangeObserver } from "../layout-editor-tool-arrange/layout-editor-tool-arrange-observer";
 
 @Component({
   styleUrl: "layout-editor-tool-breadcrumb.scss",
   tag: "gx-le-tool-breadcrumb"
 })
 export class LayoutEditorToolBreadcrumb {
+  @Element() el: HTMLElement;
   @Prop() control: HTMLElement;
   @State() breadcrumb: HTMLElement[] = [];
 
   componentWillLoad() {
     this.loadBreadcrumb();
+  }
+
+  componentDidLoad() {
+    LayoutEditorToolArrangeObserver.observe(this.el);
+  }
+
+  componentDidUnload() {
+    LayoutEditorToolArrangeObserver.unobserve(this.el);
   }
 
   @Watch("control")

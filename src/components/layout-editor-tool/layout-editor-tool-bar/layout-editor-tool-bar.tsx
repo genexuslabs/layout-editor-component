@@ -1,5 +1,6 @@
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   Prop,
@@ -13,12 +14,14 @@ import {
 } from "../../layout-editor/layout-editor-helpers";
 
 import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
+import { LayoutEditorToolArrangeObserver } from "../layout-editor-tool-arrange/layout-editor-tool-arrange-observer";
 
 @Component({
   styleUrl: "layout-editor-tool-bar.scss",
   tag: "gx-le-tool-bar"
 })
 export class LayoutEditorToolBar {
+  @Element() el: HTMLElement;
   @Prop() control: HTMLElement;
   @State() parentControl: HTMLElement;
   @State() buttonInfoHidden = true;
@@ -27,6 +30,14 @@ export class LayoutEditorToolBar {
 
   componentWillLoad() {
     this.initializeButtonSelect();
+  }
+
+  componentDidLoad() {
+    LayoutEditorToolArrangeObserver.observe(this.el);
+  }
+
+  componentDidUnload() {
+    LayoutEditorToolArrangeObserver.unobserve(this.el);
   }
 
   @Watch("control")
@@ -67,9 +78,11 @@ export class LayoutEditorToolBar {
               class="parent"
               onClick={this.handleSelectParentClick.bind(this)}
             />
-            <div class="breadcrumb-container">
-              <gx-le-tool-breadcrumb control={this.control} />
-            </div>
+            <gx-le-tool-breadcrumb
+              control={this.control}
+              class="location-top"
+              data-gx-le-tool-arrange-locations="location-top location-bottom"
+            />
           </li>
         </ul>
       </div>,

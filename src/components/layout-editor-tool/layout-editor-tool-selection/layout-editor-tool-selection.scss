@@ -22,7 +22,7 @@ gx-le-tool-selection {
   }
 
   & gx-le-tool-bar,
-  gx-le-tool-arrange-controller .placeholder-bar {
+  & .gx-le-tool-bar {
     position: absolute;
     z-index: 3;
 

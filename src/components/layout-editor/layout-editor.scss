@@ -1,4 +1,5 @@
 @import "../../../node_modules/@genexus/web-controls-library/dist/theming/theming-mixins.scss";
+@import "../layout-editor-tool/layout-editor-tool-arrange/layout-editor-tool-arrange.scss";
 
 @mixin containers-gap() {
   gx-table {
@@ -282,4 +283,6 @@ gx-layout-editor {
   @include controls-customization();
 
   @include main-table-defaults();
+
+  @include layout-editor-tool-arrange();
 }
