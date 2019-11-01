@@ -101,7 +101,7 @@ function tabularTableResolver(table, context: IResolverContext) {
 
   return (
     <gx-table
-      {...getControlCommonAttrs()}
+      {...getControlCommonAttrs(table)}
       {...getTableStyle(rowsCount, maxCols)}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}

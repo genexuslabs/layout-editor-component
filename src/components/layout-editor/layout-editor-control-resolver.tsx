@@ -70,12 +70,12 @@ export function getControlWrapperCommonAttrs(
     "data-gx-le-control-name": control["@controlName"] || "",
     "data-gx-le-control-type-name":
       (controlDefinition && controlDefinition.typeName) || "Unknown control",
-    draggable: "true"
+    draggable: (!control.isRootControl).toString()
   };
 }
 
-export function getControlCommonAttrs() {
+export function getControlCommonAttrs(control) {
   return {
-    draggable: true
+    draggable: control.isRootControl
   };
 }

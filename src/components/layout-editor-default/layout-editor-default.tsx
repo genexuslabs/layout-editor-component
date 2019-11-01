@@ -22,7 +22,7 @@ export class LayoutEditorDefault {
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
         <div
-          {...getControlCommonAttrs()}
+          {...getControlCommonAttrs(childControl)}
           data-gx-le-control-obj={JSON.stringify(this.model)}
           data-gx-le-default-render=""
         >

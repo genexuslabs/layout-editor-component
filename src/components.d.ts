@@ -120,6 +120,7 @@ export namespace Components {
     'control': HTMLElement;
   }
   interface GxLeToolHighlightController {
+    'dragTarget': string;
     'editor': LayoutEditor;
     'selection': string[];
   }
@@ -380,6 +381,10 @@ declare namespace LocalJSX {
     */
     'onMoveCompleted'?: (event: CustomEvent<any>) => void;
     /**
+    * Fired when a control is moved over valid target control  | Property         | Details                                                                                                          | | ---------------- | ---------------------------------------------------------------------------------------------------------------- | | `targetControlId`| Identifier of the control where the control was hovered                                                          |
+    */
+    'onMoveTarget'?: (event: CustomEvent<any>) => void;
+    /**
     * Array with the identifiers of the selected controls. If empty the whole layout-editor is marked as selected.
     */
     'selectedControls'?: string[];
@@ -478,6 +483,7 @@ declare namespace LocalJSX {
     'control'?: HTMLElement;
   }
   interface GxLeToolHighlightController extends JSXBase.HTMLAttributes<HTMLGxLeToolHighlightControllerElement> {
+    'dragTarget'?: string;
     'editor'?: LayoutEditor;
     'selection'?: string[];
   }

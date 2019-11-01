@@ -15,6 +15,7 @@ import { EventEmitter } from "@stencil/core";
 export class LayoutEditorDragDrop {
   constructor(
     private element: HTMLGxLayoutEditorElement,
+    private dropTargetChanged: EventEmitter,
     private moveCompleted: EventEmitter,
     private controlAdded: EventEmitter
   ) {}
@@ -122,6 +123,10 @@ export class LayoutEditorDragDrop {
     }
 
     event.preventDefault();
+
+    this.emitDragEvent(this.dropTargetChanged, {
+      targetControlId: getControlId(findControlWrapper(targetCell))
+    });
 
     if (this.lastCellDragLeft === targetCell) {
       window.clearTimeout(this.dragLeaveTimeoutId);
@@ -365,6 +370,10 @@ export class LayoutEditorDragDrop {
     return eventData;
   }
 
+  private emitDragEvent(emitter: EventEmitter, data: any) {
+    emitter.emit.call(this, data);
+  }
+
   private emitDropEvent(emitter: EventEmitter, data: any) {
     this.restoreAfterDragDrop();
     emitter.emit.call(this, data);
@@ -415,6 +424,10 @@ export class LayoutEditorDragDrop {
     this.removeAttributeFromElements("data-gx-le-active-target");
     this.removeAttributeFromElements("data-gx-le-active-target-parent");
     this.removeAttributeFromElements("data-gx-le-dragged");
+
+    this.emitDragEvent(this.dropTargetChanged, {
+      targetControlId: ""
+    });
   }
 
   private removeAttributeFromElements(attributeName: string) {

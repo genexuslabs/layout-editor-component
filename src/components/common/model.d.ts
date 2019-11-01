@@ -143,6 +143,7 @@ declare module GeneXusAbstractLayout {
     "@id": string;
     "@controlName": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES"?: string;
+    isRootControl?: boolean;
     CustomProperties?: any;
   }
 

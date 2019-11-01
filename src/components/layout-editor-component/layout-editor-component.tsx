@@ -21,7 +21,7 @@ export class LayoutEditorComponent {
 
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
-        <div {...getControlCommonAttrs()}>
+        <div {...getControlCommonAttrs(component)}>
           {component["@controlName"]}
           {component["@webObject"] ? ":" + component["@webObject"] : ""}
         </div>

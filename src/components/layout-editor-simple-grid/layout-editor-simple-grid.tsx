@@ -38,7 +38,10 @@ export class LayoutEditorSimpelGrid {
         {...getControlWrapperCommonAttrs(this.model)}
         style={{ "--gx-le-control-header-bar-text": `'${headerBarText}'` }}
       >
-        <div {...getControlCommonAttrs()} data-gx-le-control-header-bar>
+        <div
+          {...getControlCommonAttrs(simplegrid)}
+          data-gx-le-control-header-bar
+        >
           <table
             data-gx-le-container
             data-gx-le-container-empty={(!items.length).toString()}

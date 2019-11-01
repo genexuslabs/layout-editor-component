@@ -21,7 +21,11 @@ export class LayoutEditorHyperlink {
 
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
-        <a {...getControlCommonAttrs()} href="#" class={hyperlink["@class"]}>
+        <a
+          {...getControlCommonAttrs(hyperlink)}
+          href="#"
+          class={hyperlink["@class"]}
+        >
           {hyperlink["@text"]}
         </a>
       </Host>

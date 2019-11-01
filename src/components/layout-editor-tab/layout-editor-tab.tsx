@@ -63,7 +63,7 @@ export class LayoutEditorTab {
     );
 
     return (
-      <gx-tab {...getControlCommonAttrs()}>
+      <gx-tab {...getControlCommonAttrs(tab)}>
         {tab.item.map((tabItem, index) => {
           return this.renderTabItem(
             context,

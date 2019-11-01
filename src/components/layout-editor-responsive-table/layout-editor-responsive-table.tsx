@@ -71,7 +71,7 @@ function responsiveTableResolver(table, context: IResolverContext) {
 
   return (
     <div
-      {...getControlCommonAttrs()}
+      {...getControlCommonAttrs(table)}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}
       data-gx-le-responsive-table

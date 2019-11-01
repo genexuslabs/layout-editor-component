@@ -23,7 +23,7 @@ export class LayoutEditorFreestyleGrid {
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
         <div
-          {...getControlCommonAttrs()}
+          {...getControlCommonAttrs(grid)}
           class={grid["@class"]}
           data-gx-le-control-header-bar
           style={{

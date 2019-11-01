@@ -26,7 +26,7 @@ export class LayoutEditorSection {
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
         <div
-          {...getControlCommonAttrs()}
+          {...getControlCommonAttrs(section)}
           data-gx-le-container
           data-gx-le-container-empty={isEmptySection.toString()}
         >

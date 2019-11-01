@@ -51,7 +51,7 @@ function canvasTableResolver(table, context: IResolverContext) {
 
   return (
     <gx-canvas
-      {...getControlCommonAttrs()}
+      {...getControlCommonAttrs(table)}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}
     >

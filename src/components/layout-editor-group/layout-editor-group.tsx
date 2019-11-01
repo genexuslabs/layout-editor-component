@@ -23,7 +23,7 @@ export class LayoutEditorGroup {
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
         <gx-group
-          {...getControlCommonAttrs()}
+          {...getControlCommonAttrs(group)}
           caption={group["@caption"]}
           class={group["@class"]}
           data-gx-le-container

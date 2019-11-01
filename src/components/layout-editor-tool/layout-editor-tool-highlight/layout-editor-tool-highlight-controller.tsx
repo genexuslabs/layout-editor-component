@@ -13,8 +13,11 @@ import { LayoutEditor } from "../../layout-editor/layout-editor";
 export class LayoutEditorToolHighlightController {
   @Prop() editor: LayoutEditor;
   @Prop() selection: string[] = [];
+  @Prop() dragTarget: string;
+  @State() dragging = false;
   @State() hoveredControl: HTMLElement;
   @State() selectedControls: HTMLElement[] = [];
+  @State() dragTargetControl: HTMLElement;
   @State() preview = false;
 
   mutation = new MutationObserver(this.handleMutationObserver.bind(this));
@@ -32,12 +35,27 @@ export class LayoutEditorToolHighlightController {
     });
   }
 
+  @Watch("dragTarget")
+  watchDragTarget() {
+    this.dragTargetControl = getControlWrapper(this.dragTarget);
+  }
+
   componentDidLoad() {
     this.editor.element.addEventListener(
       "mouseover",
       event => {
         this.handleMouseOver(event);
       },
+      { passive: true }
+    );
+    this.editor.element.addEventListener(
+      "dragstart",
+      () => (this.dragging = true),
+      { passive: true }
+    );
+    this.editor.element.addEventListener(
+      "dragend",
+      () => (this.dragging = false),
       { passive: true }
     );
 
@@ -81,19 +99,31 @@ export class LayoutEditorToolHighlightController {
     return (
       <div>
         <gx-le-tool-selection
+          key="highlight-hovered"
           control={this.hoveredControl}
           changeSmooth
           preview={this.preview}
+          hidden={this.dragging}
         />
         {this.selectedControls.map(control => (
           <gx-le-tool-selection
+            key={`highlight-selected-${control.id}`}
             control={control}
             changeHighlight
             loadBar
             loadBox
             preview={this.preview}
+            hidden={this.dragging}
           />
         ))}
+        {this.dragTargetControl && (
+          <gx-le-tool-selection
+            key="highlight-drop-target"
+            control={this.dragTargetControl}
+            loadBar
+            preview={this.preview}
+          />
+        )}
       </div>
     );
   }

@@ -22,7 +22,7 @@ export class LayoutEditorImage {
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
         <gx-image
-          {...getControlCommonAttrs()}
+          {...getControlCommonAttrs(image)}
           alt={image["@controlName"]}
           src={image.imgSrc}
           css-class={image["@class"]}

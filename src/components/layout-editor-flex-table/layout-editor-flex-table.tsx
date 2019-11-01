@@ -51,7 +51,7 @@ function flexTableResolver(table, context: IResolverContext) {
 
   return (
     <div
-      {...getControlCommonAttrs()}
+      {...getControlCommonAttrs(table)}
       style={getTableStyle(table)}
       data-gx-le-container
       data-gx-le-container-empty={isEmptyTable.toString()}

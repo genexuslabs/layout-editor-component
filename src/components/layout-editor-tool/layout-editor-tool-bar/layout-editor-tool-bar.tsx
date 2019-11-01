@@ -10,7 +10,9 @@ import {
 } from "@stencil/core";
 import {
   getBreadcrumb,
-  getSelectedData
+  getSelectedData,
+  isControlDragActiveTarget,
+  isControlDraggable
 } from "../../layout-editor/layout-editor-helpers";
 
 import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
@@ -24,12 +26,14 @@ export class LayoutEditorToolBar {
   @Element() el: HTMLElement;
   @Prop() control: HTMLElement;
   @State() parentControl: HTMLElement;
+  @State() dragHidden = true;
+  @State() buttonsHidden = true;
   @State() buttonInfoHidden = true;
   @State() buttonTaskHidden = true;
   @State() buttonSelectHidden = true;
 
   componentWillLoad() {
-    this.initializeButtonSelect();
+    this.initialize();
   }
 
   componentDidLoad() {
@@ -42,7 +46,7 @@ export class LayoutEditorToolBar {
 
   @Watch("control")
   watchControl() {
-    this.initializeButtonSelect();
+    this.initialize();
   }
 
   @Event() select: EventEmitter<ILayoutEditorToolSelectEvent>;
@@ -55,17 +59,27 @@ export class LayoutEditorToolBar {
     event.stopPropagation();
   }
 
+  private initialize() {
+    const isDragTarget = isControlDragActiveTarget(this.control);
+
+    this.initializeButtonSelect();
+
+    this.dragHidden = isDragTarget || !isControlDraggable(this.control);
+    this.buttonSelectHidden = isDragTarget || !this.parentControl;
+    this.buttonsHidden =
+      this.buttonInfoHidden && this.buttonTaskHidden && this.buttonSelectHidden;
+  }
+
   private initializeButtonSelect() {
     this.parentControl = getBreadcrumb(this.control)[0];
-    this.buttonSelectHidden = this.parentControl ? false : true;
   }
 
   render() {
     return [
       <div class="bar">
-        <gx-le-tool-drag control={this.control} />
+        <gx-le-tool-drag control={this.control} hidden={this.dragHidden} />
         <gx-le-tool-identity class="identity" control={this.control} />
-        <ul class="buttons">
+        <ul class="buttons" hidden={this.buttonsHidden}>
           <li class="info" hidden={this.buttonInfoHidden}>
             <button type="button" />
           </li>

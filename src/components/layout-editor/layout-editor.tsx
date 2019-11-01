@@ -5,6 +5,7 @@ import {
   EventEmitter,
   Listen,
   Prop,
+  State,
   Watch,
   h
 } from "@stencil/core";
@@ -46,6 +47,9 @@ export class LayoutEditor {
    */
   @Prop({ mutable: true })
   selectedControls: string[] = [];
+
+  @State()
+  dragTarget: string;
 
   @Watch("selectedControls")
   watchSelectedControls() {
@@ -110,6 +114,16 @@ export class LayoutEditor {
    *
    */
   @Event() moveCompleted: EventEmitter;
+
+  /**
+   * Fired when change drop target control during drag a control
+   *
+   * | Property         | Details                                                                                                          |
+   * | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
+   * | `targetControlId`| Identifier of the control where the control was hovered                                                          |
+   *
+   */
+  @Event() dropTargetChanged: EventEmitter;
 
   /**
    * Fired when a control (that wasn't already inside the layout editor) has been dropped on
@@ -217,6 +231,7 @@ export class LayoutEditor {
   componentDidLoad() {
     this.dragDrop = new LayoutEditorDragDrop(
       this.element as HTMLGxLayoutEditorElement,
+      this.dropTargetChanged,
       this.moveCompleted,
       this.controlAdded
     );
@@ -284,6 +299,11 @@ export class LayoutEditor {
     });
   }
 
+  @Listen("moveTarget")
+  handleKeyMoveTarget(event: CustomEvent) {
+    this.dragTarget = event.detail.targetControlId;
+  }
+
   render() {
     if (this.model && this.model.layout) {
       const model = transform(this.model);
@@ -296,6 +316,7 @@ export class LayoutEditor {
         <gx-le-tool-highlight-controller
           editor={this}
           selection={this.selectedControls}
+          dragTarget={this.dragTarget}
         />,
         <Fragment>
           {controlResolver(model.layout, context)}

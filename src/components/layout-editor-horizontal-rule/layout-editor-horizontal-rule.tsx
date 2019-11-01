@@ -21,7 +21,10 @@ export class LayoutEditorHorizontalRule {
 
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
-        <hr {...getControlCommonAttrs()} class={horizontalrule["@class"]}>
+        <hr
+          {...getControlCommonAttrs(horizontalrule)}
+          class={horizontalrule["@class"]}
+        >
           {" "}
         </hr>
       </Host>

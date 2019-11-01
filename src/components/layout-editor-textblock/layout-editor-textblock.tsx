@@ -21,7 +21,7 @@ export class LayoutEditorTextblock {
 
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
-        <gx-textblock {...getControlCommonAttrs()}>
+        <gx-textblock {...getControlCommonAttrs(textblock)}>
           {textblock["@caption"]}
         </gx-textblock>
       </Host>

@@ -21,7 +21,10 @@ export class LayoutEditorErrorViewer {
 
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
-        <span {...getControlCommonAttrs()} class={errorviewer["@class"]}>
+        <span
+          {...getControlCommonAttrs(errorviewer)}
+          class={errorviewer["@class"]}
+        >
           {errorviewer["@controlName"]}
         </span>
       </Host>

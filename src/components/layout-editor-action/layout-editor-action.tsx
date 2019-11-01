@@ -22,7 +22,7 @@ export class LayoutEditorAction {
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
         <gx-button
-          {...getControlCommonAttrs()}
+          {...getControlCommonAttrs(action)}
           css-class={action["@class"]}
           disabled={action["@enabled"] === "False"}
           image-position={imagePositionMap[action["@imagePosition"]]}

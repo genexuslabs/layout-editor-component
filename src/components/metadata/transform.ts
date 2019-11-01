@@ -14,20 +14,24 @@ function transformLayout(
   const childControlType = inferChildControlType(rawLayout);
   return {
     ...rawLayout,
-    ...transformContainer(rawLayout, childControlType)
+    ...transformContainer(rawLayout, childControlType, true)
   };
 }
 
 function transformContainer(
   rawContainer: GeneXusAbstractLayout.IContainer,
-  childControlType: string
+  childControlType: string,
+  isRoot?: boolean
 ): GeneXusAbstractLayout.IContainer {
   const transformControlFn = getTransformFunctionByType(childControlType);
 
   return {
     childControlType,
     controlType: childControlType,
-    [childControlType]: transformControlFn(rawContainer[childControlType])
+    [childControlType]: {
+      ...transformControlFn(rawContainer[childControlType]),
+      ...(isRoot && { isRootControl: true })
+    }
   };
 }
 

@@ -154,6 +154,14 @@ export function isControlContainer(el: Element): boolean {
   return el.hasAttribute("data-gx-le-control-container");
 }
 
+export function isControlDraggable(el: Element): boolean {
+  return el.getAttribute("draggable") === "true";
+}
+
+export function isControlDragActiveTarget(el: Element): boolean {
+  return el.hasAttribute("data-gx-le-active-target-parent");
+}
+
 interface ICellData {
   cellId: string;
   dropArea: string;

@@ -22,7 +22,7 @@ export class LayoutEditorData {
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
         <gx-form-field
-          {...getControlCommonAttrs()}
+          {...getControlCommonAttrs(data)}
           label-caption={data["@labelCaption"]}
           label-position={labelPositionMap[data["@labelPosition"]]}
         >

@@ -39,7 +39,7 @@ export class LayoutEditorUserControl {
         (ucw.CustomProperties && ucw.CustomProperties.ControlName);
 
       return (
-        <div {...getControlCommonAttrs()}>
+        <div {...getControlCommonAttrs(ucw)}>
           {`<${userControlType || "Unknown UserControl type"}`}:{" "}
           {`${controlName || ""}>`}
         </div>
