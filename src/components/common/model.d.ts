@@ -142,6 +142,7 @@ declare module GeneXusAbstractLayout {
   export interface IControl {
     "@id": string;
     "@controlName": string;
+    "@class": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES"?: string;
     isRootControl?: boolean;
     CustomProperties?: any;

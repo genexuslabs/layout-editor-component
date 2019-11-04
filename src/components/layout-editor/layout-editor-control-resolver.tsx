@@ -74,8 +74,9 @@ export function getControlWrapperCommonAttrs(
   };
 }
 
-export function getControlCommonAttrs(control) {
+export function getControlCommonAttrs(control: GeneXusAbstractLayout.IControl) {
   return {
+    class: control["@class"],
     draggable: control.isRootControl
   };
 }
