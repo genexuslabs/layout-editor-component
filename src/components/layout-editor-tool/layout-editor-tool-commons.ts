@@ -1,4 +1,4 @@
-export interface ILayoutEditorToolSelectEvent {
+export interface LayoutEditorToolSelectEvent {
   add: boolean;
   controlId: string;
 }

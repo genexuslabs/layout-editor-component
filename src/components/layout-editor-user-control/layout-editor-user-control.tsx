@@ -1,6 +1,6 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
-  IResolverContext,
+  ResolverContext,
   controlResolver,
   getControlCommonAttrs,
   getControlWrapperCommonAttrs
@@ -14,7 +14,7 @@ import {
 export class LayoutEditorUserControl {
   @Element() element: HTMLElement;
 
-  @Prop() context: IResolverContext;
+  @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
@@ -27,7 +27,7 @@ export class LayoutEditorUserControl {
     );
   }
 
-  renderUCW(context: IResolverContext, ucw: GeneXusAbstractLayout.Ucw) {
+  renderUCW(context: ResolverContext, ucw: GeneXusAbstractLayout.Ucw) {
     if ((ucw as GeneXusAbstractLayout.UcwContainer).childControlType) {
       return controlResolver(ucw, context);
     } else {

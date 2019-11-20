@@ -13,8 +13,8 @@ import {
   getSelectedData
 } from "../../layout-editor/layout-editor-helpers";
 
-import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 import { LayoutEditorToolArrangeObserver } from "../layout-editor-tool-arrange/layout-editor-tool-arrange-observer";
+import { LayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 
 @Component({
   styleUrl: "layout-editor-tool-breadcrumb.scss",
@@ -42,7 +42,7 @@ export class LayoutEditorToolBreadcrumb {
     this.loadBreadcrumb();
   }
 
-  @Event() select: EventEmitter<ILayoutEditorToolSelectEvent>;
+  @Event() select: EventEmitter<LayoutEditorToolSelectEvent>;
 
   handleBreadcrumbClick(control: HTMLElement, event: MouseEvent) {
     this.select.emit({

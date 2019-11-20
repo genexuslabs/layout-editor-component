@@ -1,6 +1,6 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
-  IResolverContext,
+  ResolverContext,
   controlResolver,
   getCellCommonAttrs,
   getControlCommonAttrs,
@@ -15,7 +15,7 @@ import {
 export class LayoutEditorResponsiveTable {
   @Element() element: HTMLElement;
 
-  @Prop() context: IResolverContext;
+  @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
@@ -29,7 +29,7 @@ export class LayoutEditorResponsiveTable {
   }
 }
 
-function responsiveTableResolver(table, context: IResolverContext) {
+function responsiveTableResolver(table, context: ResolverContext) {
   const modelRows = table.row
     ? Array.isArray(table.row)
       ? table.row

@@ -1,9 +1,17 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
-  IResolverContext,
+  ResolverContext,
   getControlCommonAttrs,
   getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
+
+const imagePositionMap = {
+  "Above Text": "above",
+  "After Text": "after",
+  "Before Text": "before",
+  "Behind Text": "behind",
+  "Below Text": "below"
+};
 
 @Component({
   shadow: false,
@@ -13,7 +21,7 @@ import {
 export class LayoutEditorAction {
   @Element() element: HTMLElement;
 
-  @Prop() context: IResolverContext;
+  @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
@@ -37,11 +45,3 @@ export class LayoutEditorAction {
     );
   }
 }
-
-const imagePositionMap = {
-  "Above Text": "above",
-  "After Text": "after",
-  "Before Text": "before",
-  "Behind Text": "behind",
-  "Below Text": "below"
-};

@@ -4,8 +4,8 @@ import {
   getControlWrapper
 } from "../../layout-editor/layout-editor-helpers";
 
-import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 import { LayoutEditor } from "../../layout-editor/layout-editor";
+import { LayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 
 @Component({
   tag: "gx-le-tool-highlight-controller"
@@ -75,7 +75,7 @@ export class LayoutEditorToolHighlightController {
 
   @Listen("select")
   layoutEditorToolBarSelectHandler(event: CustomEvent) {
-    const detail: ILayoutEditorToolSelectEvent = event.detail;
+    const detail: LayoutEditorToolSelectEvent = event.detail;
 
     this.updateSelection(detail.controlId, detail.add);
     event.stopPropagation();
@@ -83,7 +83,7 @@ export class LayoutEditorToolHighlightController {
 
   @Listen("select")
   layoutEditorToolBreadcrumbSelectHandler(event: CustomEvent) {
-    const detail: ILayoutEditorToolSelectEvent = event.detail;
+    const detail: LayoutEditorToolSelectEvent = event.detail;
 
     this.updateSelection(detail.controlId, detail.add);
     event.stopPropagation();

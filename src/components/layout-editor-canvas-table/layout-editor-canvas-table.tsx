@@ -1,6 +1,6 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
-  IResolverContext,
+  ResolverContext,
   controlResolver,
   getCellCommonAttrs,
   getControlCommonAttrs,
@@ -15,7 +15,7 @@ import {
 export class LayoutEditorCanvasTable {
   @Element() element: HTMLElement;
 
-  @Prop() context: IResolverContext;
+  @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
@@ -29,7 +29,7 @@ export class LayoutEditorCanvasTable {
   }
 }
 
-function canvasTableResolver(table, context: IResolverContext) {
+function canvasTableResolver(table, context: ResolverContext) {
   const modelRows = table.row
     ? Array.isArray(table.row)
       ? table.row

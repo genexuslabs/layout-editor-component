@@ -12,6 +12,21 @@ import {
 
 import { EventEmitter } from "@stencil/core";
 
+interface DragOperationData {
+  controlId?: string;
+  elementType?: string;
+  kbObjectName?: string;
+  sourceCellId?: string;
+}
+
+enum DropPosition {
+  Before = "before",
+  After = "after"
+}
+
+const MOVE_OPERATION_NAME = "gx-le-move-operation";
+const GX_ADD_OPERATION_NAME = "GX_DASHBOARD_ADDELEMENT";
+
 export class LayoutEditorDragDrop {
   constructor(
     private element: HTMLGxLayoutEditorElement,
@@ -162,7 +177,7 @@ export class LayoutEditorDragDrop {
     }
   }
 
-  private parseDropEventDataTransfer(event: DragEvent): IDragOperationData {
+  private parseDropEventDataTransfer(event: DragEvent): DragOperationData {
     const evtDataTransfer = event.dataTransfer.getData("text/plain");
     const [
       dataTransferFirst,
@@ -445,18 +460,3 @@ export class LayoutEditorDragDrop {
       : findControlWrapper(target);
   }
 }
-
-interface IDragOperationData {
-  controlId?: string;
-  elementType?: string;
-  kbObjectName?: string;
-  sourceCellId?: string;
-}
-
-enum DropPosition {
-  Before = "before",
-  After = "after"
-}
-
-const MOVE_OPERATION_NAME = "gx-le-move-operation";
-const GX_ADD_OPERATION_NAME = "GX_DASHBOARD_ADDELEMENT";

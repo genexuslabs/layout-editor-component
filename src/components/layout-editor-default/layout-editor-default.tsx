@@ -1,6 +1,6 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
-  IResolverContext,
+  ResolverContext,
   getControlCommonAttrs,
   getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
@@ -13,7 +13,7 @@ import {
 export class LayoutEditorDefault {
   @Element() element: HTMLElement;
 
-  @Prop() context: IResolverContext;
+  @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {

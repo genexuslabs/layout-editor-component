@@ -28,7 +28,7 @@ export function findValidDropTarget(el: HTMLElement): HTMLElement {
   return findParentCell(el);
 }
 
-export function getCellData(el: Element): ICellData {
+export function getCellData(el: Element): CellData {
   return {
     cellId: el.getAttribute("data-gx-le-cell-id"),
     dropArea: el.getAttribute("data-gx-le-drop-area"),
@@ -36,7 +36,7 @@ export function getCellData(el: Element): ICellData {
   };
 }
 
-export function getControlData(element: Element): IControlData {
+export function getControlData(element: Element): ControlData {
   return {
     id: element.getAttribute("data-gx-le-control-id"),
     name: element.getAttribute("data-gx-le-control-name"),
@@ -44,7 +44,7 @@ export function getControlData(element: Element): IControlData {
   };
 }
 
-export function getDropTargetData(el: HTMLElement): IDropTargetData {
+export function getDropTargetData(el: HTMLElement): DropTargetData {
   return {
     nextRowId: el.getAttribute("data-gx-le-next-row-id"),
     placeholderType: el.getAttribute("data-gx-le-placeholder")
@@ -93,7 +93,7 @@ export function findParentContainer(el: Element): Element {
   return findParentContainer(parentElement);
 }
 
-export function getSelectedData(el: Element): ISelectedData {
+export function getSelectedData(el: Element): SelectedData {
   let controlId = getControlId(el);
 
   if (controlId === "" && el.firstElementChild) {
@@ -162,23 +162,23 @@ export function isControlDragActiveTarget(el: Element): boolean {
   return el.hasAttribute("data-gx-le-active-target-parent");
 }
 
-interface ICellData {
+interface CellData {
   cellId: string;
   dropArea: string;
   rowId: string;
 }
 
-interface IControlData {
+interface ControlData {
   id: string;
   name: string;
   typeName: string;
 }
 
-interface ISelectedData {
+interface SelectedData {
   controlId: string;
 }
 
-interface IDropTargetData {
+interface DropTargetData {
   nextRowId: string;
   placeholderType: string;
 }

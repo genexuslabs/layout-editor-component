@@ -15,8 +15,8 @@ import {
   isControlDraggable
 } from "../../layout-editor/layout-editor-helpers";
 
-import { ILayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 import { LayoutEditorToolArrangeObserver } from "../layout-editor-tool-arrange/layout-editor-tool-arrange-observer";
+import { LayoutEditorToolSelectEvent } from "../layout-editor-tool-commons";
 
 @Component({
   styleUrl: "layout-editor-tool-bar.scss",
@@ -49,7 +49,7 @@ export class LayoutEditorToolBar {
     this.initialize();
   }
 
-  @Event() select: EventEmitter<ILayoutEditorToolSelectEvent>;
+  @Event() select: EventEmitter<LayoutEditorToolSelectEvent>;
 
   handleSelectParentClick(event: MouseEvent) {
     this.select.emit({

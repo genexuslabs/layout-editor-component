@@ -1,8 +1,8 @@
-import { IControlDefinition, controlsDefinition } from "../common/controls";
+import { ControlDefinition, controlsDefinition } from "../common/controls";
 
 import { h } from "@stencil/core";
 
-export function controlResolver(control, context: IResolverContext) {
+export function controlResolver(control, context: ResolverContext) {
   if (control.childControlType) {
     const resolverObj = findResolverByType(control.childControlType);
 
@@ -22,16 +22,16 @@ export function controlResolver(control, context: IResolverContext) {
   }
 }
 
-function findResolverByType(type: string): IControlDefinition {
+function findResolverByType(type: string): ControlDefinition {
   return controlsDefinition.find(r => r.type === type);
 }
 
-export function isCellSelected(cell, context: IResolverContext): boolean {
+export function isCellSelected(cell, context: ResolverContext): boolean {
   const controlToVerify = findChildControl(cell) || cell;
   return isControlSelected(controlToVerify, context);
 }
 
-export function isControlSelected(control, context: IResolverContext): boolean {
+export function isControlSelected(control, context: ResolverContext): boolean {
   for (const selControl of context.selectedControls) {
     if (selControl === control["@id"]) {
       return true;
@@ -45,7 +45,7 @@ function findChildControl(cell): any {
   return cell[cell.childControlType];
 }
 
-export interface IResolverContext {
+export interface ResolverContext {
   selectedControls: string[];
 }
 
@@ -63,7 +63,7 @@ export function getControlWrapperCommonAttrs(
   const controlDefinition = findResolverByType(model.childControlType);
   const control = model[
     model.childControlType
-  ] as GeneXusAbstractLayout.IControl;
+  ] as GeneXusAbstractLayout.Control;
 
   return {
     "data-gx-le-control-id": control["@id"],
@@ -74,7 +74,7 @@ export function getControlWrapperCommonAttrs(
   };
 }
 
-export function getControlCommonAttrs(control: GeneXusAbstractLayout.IControl) {
+export function getControlCommonAttrs(control: GeneXusAbstractLayout.Control) {
   return {
     class: control["@class"],
     draggable: control.isRootControl

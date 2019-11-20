@@ -1,6 +1,7 @@
-const { sass } = require("@stencil/sass");
+import { Config } from "@stencil/core";
+import { sass } from "@stencil/sass";
 
-exports.config = {
+export const config: Config = {
   namespace: "gx-layout-editor",
   outputTargets: [
     {
@@ -8,7 +9,7 @@ exports.config = {
     },
     {
       type: "www",
-      serviceWorker: false,
+      serviceWorker: null,
       copy: [{ src: "assets" }]
     }
   ],

@@ -1,9 +1,15 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
-  IResolverContext,
+  ResolverContext,
   getControlCommonAttrs,
   getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
+
+const labelPositionMap = {
+  Left: "left",
+  "Platform Default": "left",
+  Top: "top"
+};
 
 @Component({
   shadow: false,
@@ -13,7 +19,7 @@ import {
 export class LayoutEditorData {
   @Element() element: HTMLElement;
 
-  @Prop() context: IResolverContext;
+  @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
@@ -37,9 +43,3 @@ export class LayoutEditorData {
     );
   }
 }
-
-const labelPositionMap = {
-  Left: "left",
-  "Platform Default": "left",
-  Top: "top"
-};

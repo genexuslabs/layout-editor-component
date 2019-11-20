@@ -1,5 +1,5 @@
-declare module GeneXusAbstractLayout {
-  export interface Data extends IControl {
+declare namespace GeneXusAbstractLayout {
+  export interface Data extends Control {
     "@attribute": string;
     "@labelPosition": string;
     "@labelCaption": string;
@@ -11,47 +11,47 @@ declare module GeneXusAbstractLayout {
     "@controlNameForStencil": string;
   }
 
-  export interface Action extends IControl {
+  export interface Action extends Control {
     "@onClickEvent": string;
     "@caption": string;
     "@ControlType": string;
     "@class": string;
   }
 
-  export interface Embeddedpage extends IControl {
+  export interface Embeddedpage extends Control {
     "@class": string;
   }
 
-  export interface Errorviewer extends IControl {
+  export interface Errorviewer extends Control {
     "@class": string;
     "@visible": string;
   }
 
-  export interface Horizontalrule extends IControl {}
+  export interface Horizontalrule extends Control {}
 
-  export interface Hyperlink extends IControl {
+  export interface Hyperlink extends Control {
     "@text": string;
     "@class": string;
     "@controlNameForStencil": string;
   }
 
-  export interface Image extends IControl {
+  export interface Image extends Control {
     "@image": string;
     imgSrc: string;
     "@class": string;
   }
 
-  export interface Textblock extends IControl {
+  export interface Textblock extends Control {
     "@caption": string;
     "@class": string;
   }
 
-  export interface Component extends IControl {
+  export interface Component extends Control {
     "@webObject": string;
     "@parameters": string;
   }
 
-  export interface Grid extends IControl {
+  export interface Grid extends Control {
     "@class": string;
     "@collection": string;
     "@rows": string;
@@ -71,53 +71,53 @@ declare module GeneXusAbstractLayout {
     controlType: string;
   }
 
-  export interface Simplegrid extends IControl {
+  export interface Simplegrid extends Control {
     "@class": string;
     "@collection": string;
     item: [SimpleGridItem];
     acceptedElementTypes?: string[];
   }
 
-  export interface Group extends IControl {
+  export interface Group extends Control {
     "@caption": string;
     "@class": string;
     table: Table;
   }
 
-  export interface SectionItem extends IContainer {
+  export interface SectionItem extends Container {
     "@id": string;
   }
 
-  export interface Section extends IControl {
+  export interface Section extends Control {
     "@class": string;
     item: SectionItem[];
   }
 
-  export interface TabItem extends IContainer {
+  export interface TabItem extends Container {
     "@id": string;
     "@itemControlName": string;
     "@caption": string;
     table: Table;
   }
 
-  export interface Tab extends IControl {
+  export interface Tab extends Control {
     "@class": string;
     "@visible": string;
     "@historyManagement": string;
     item: TabItem[];
   }
 
-  export interface Actiongroup extends IControl {
+  export interface Actiongroup extends Control {
     "@visible": string;
   }
 
-  export interface Ucw extends IControl {
+  export interface Ucw extends Control {
     "@gxControlType": string;
   }
 
-  export interface UcwContainer extends Ucw, IContainer {}
+  export interface UcwContainer extends Ucw, Container {}
 
-  export interface IContainer {
+  export interface Container {
     childControlType: string;
     controlType: string;
     data?: Data;
@@ -139,7 +139,7 @@ declare module GeneXusAbstractLayout {
     ucw?: Ucw | UcwContainer;
   }
 
-  export interface IControl {
+  export interface Control {
     "@id": string;
     "@controlName": string;
     "@class": string;
@@ -148,7 +148,7 @@ declare module GeneXusAbstractLayout {
     CustomProperties?: any;
   }
 
-  export interface Cell extends IContainer {
+  export interface Cell extends Container {
     "@id": string;
     "@cellControlName": string;
     "@hAlign": string;
@@ -162,7 +162,7 @@ declare module GeneXusAbstractLayout {
     cell: Cell[];
   }
 
-  export interface Table extends IControl {
+  export interface Table extends Control {
     "@id": string;
     "@width": string;
     "@height": string;

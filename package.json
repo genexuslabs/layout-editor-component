@@ -12,15 +12,14 @@
   "scripts": {
     "build": "stencil build --docs",
     "docs": "stencil build --dev --docs",
-    "lint": "npm run tslint",
-    "precommit": "pretty-quick --staged && npm run lint",
+    "lint": "npm run eslint",
     "pretty-quick": "pretty-quick",
     "start": "stencil build --dev --watch --serve",
     "start.es5": "stencil build --dev --watch --serve --es5",
     "test": "stencil test --spec --e2e",
     "test.ci": "stencil test --spec",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "tslint": "tslint --project . -e \"**/*.spec.ts\" -e \"**/*.json\"",
+    "eslint": "eslint . --ext .tsx,.ts,.jsx,.js",
     "validate": "npm run lint && npm run test && npm run build",
     "validate.ci": "npm run lint && npm run test.ci && npm run build --max-workers 1 --debug"
   },
@@ -28,24 +27,43 @@
     "@genexus/web-controls-library": "0.10.4"
   },
   "devDependencies": {
-    "@stencil/core": "^1.2.5",
-    "@stencil/sass": "^1.0.1",
-    "@types/jest": "24.0.17",
+    "@stencil/core": "^1.8.0",
+    "@stencil/sass": "^1.1.1",
+    "@types/jest": "24.0.23",
     "@types/puppeteer": "1.19.1",
-    "husky": "^0.14.3",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-local": "^1.0.0",
+    "husky": "^3.0.9",
     "jest": "24.8.0",
     "jest-cli": "^24.8.0",
     "jest-environment-node": "^24.8.0",
+    "lint-staged": "^9.4.2",
     "pixelmatch": "4.0.2",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "puppeteer": "1.19.0",
     "sass-lint": "^1.13.1",
     "sassdoc": "^2.7.0",
-    "tslint": "^5.18.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-eslint-rules": "^5.3.1",
-    "typescript": "^2.8.3"
+    "typescript": "^3.7.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{tsx,ts,jsx,js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{tsx,ts,jsx,js}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",

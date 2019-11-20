@@ -1,5 +1,21 @@
 import { controlsDefinition } from "../common/controls";
 
+const controlTypesList = controlsDefinition.map(def => def.type);
+const controlsTransforms = {
+  section: {
+    transformFn: transformSection
+  },
+  tab: {
+    transformFn: transformTab
+  },
+  table: {
+    transformFn: transformTable
+  },
+  ucw: {
+    transformFn: transformUserControl
+  }
+};
+
 function transformModel(
   rawModel: GeneXusAbstractLayout.Model
 ): GeneXusAbstractLayout.Model {
@@ -19,10 +35,10 @@ function transformLayout(
 }
 
 function transformContainer(
-  rawContainer: GeneXusAbstractLayout.IContainer,
+  rawContainer: GeneXusAbstractLayout.Container,
   childControlType: string,
   isRoot?: boolean
-): GeneXusAbstractLayout.IContainer {
+): GeneXusAbstractLayout.Container {
   const transformControlFn = getTransformFunctionByType(childControlType);
 
   return {
@@ -37,15 +53,15 @@ function transformContainer(
 
 function getTransformFunctionByType(
   type: string
-): (control: GeneXusAbstractLayout.IControl) => GeneXusAbstractLayout.IControl {
+): (control: GeneXusAbstractLayout.Control) => GeneXusAbstractLayout.Control {
   const definition = controlsTransforms[type];
 
   if (!definition) {
     return transformControl;
   } else {
     return (
-      control: GeneXusAbstractLayout.IControl
-    ): GeneXusAbstractLayout.IControl =>
+      control: GeneXusAbstractLayout.Control
+    ): GeneXusAbstractLayout.Control =>
       definition.transformFn(transformControl(control));
   }
 }
@@ -156,8 +172,8 @@ function transformSectionItem(
 }
 
 function transformControl(
-  control: GeneXusAbstractLayout.IControl
-): GeneXusAbstractLayout.IControl {
+  control: GeneXusAbstractLayout.Control
+): GeneXusAbstractLayout.Control {
   const customPropertiesXml = control["@PATTERN_ELEMENT_CUSTOM_PROPERTIES"];
   if (customPropertiesXml) {
     control.CustomProperties = parseControlCustomProperties(
@@ -190,22 +206,5 @@ function inferChildControlType(parent: any): string {
     }
   }
 }
-
-const controlsTransforms = {
-  section: {
-    transformFn: transformSection
-  },
-  tab: {
-    transformFn: transformTab
-  },
-  table: {
-    transformFn: transformTable
-  },
-  ucw: {
-    transformFn: transformUserControl
-  }
-};
-
-const controlTypesList = controlsDefinition.map(def => def.type);
 
 export const transform = transformModel;

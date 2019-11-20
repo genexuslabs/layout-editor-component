@@ -1,6 +1,6 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
-  IResolverContext,
+  ResolverContext,
   controlResolver,
   getCellCommonAttrs,
   getControlCommonAttrs,
@@ -15,7 +15,7 @@ import {
 export class LayoutEditorTabularTable {
   @Element() element: HTMLElement;
 
-  @Prop() context: IResolverContext;
+  @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
 
   render() {
@@ -29,7 +29,7 @@ export class LayoutEditorTabularTable {
   }
 }
 
-function tabularTableResolver(table, context: IResolverContext) {
+function tabularTableResolver(table, context: ResolverContext) {
   const modelRows: GeneXusAbstractLayout.Row[] = table.row
     ? Array.isArray(table.row)
       ? table.row
@@ -48,7 +48,7 @@ function tabularTableResolver(table, context: IResolverContext) {
 
   const rowsCount = nonEmptyRows.length;
 
-  let rowPlaceholdersToRender: IPlaceholderRow[] = [];
+  let rowPlaceholdersToRender: PlaceholderRow[] = [];
 
   const rows = nonEmptyRows.map((row, i) => {
     const rowCells: GeneXusAbstractLayout.Cell[] = Array.isArray(row.cell)
@@ -111,7 +111,7 @@ function tabularTableResolver(table, context: IResolverContext) {
   );
 }
 
-function mergeContiguousPlaceholders(placeholderRows: IPlaceholderRow[]) {
+function mergeContiguousPlaceholders(placeholderRows: PlaceholderRow[]) {
   return placeholderRows
     .sort((a, b) => {
       if (a.rowStart === b.rowStart) {
@@ -119,7 +119,7 @@ function mergeContiguousPlaceholders(placeholderRows: IPlaceholderRow[]) {
       }
       return a.rowStart - b.rowStart;
     })
-    .reduce((acc: IPlaceholderRow[], placeholder: IPlaceholderRow) => {
+    .reduce((acc: PlaceholderRow[], placeholder: PlaceholderRow) => {
       if (acc.length) {
         const previous = acc[acc.length - 1];
         if (previous.rowStart === placeholder.rowStart) {
@@ -146,9 +146,9 @@ function getTableStyle(rowsCount, colsCount) {
   };
 }
 
-function renderEmptyRows(rowPlaceholdersToRender: IPlaceholderRow[]) {
+function renderEmptyRows(rowPlaceholdersToRender: PlaceholderRow[]) {
   return rowPlaceholdersToRender.map(
-    ({ nextRow, colSpan, rowStart, rowSpan }: IPlaceholderRow) => {
+    ({ nextRow, colSpan, rowStart, rowSpan }: PlaceholderRow) => {
       const emptyCellStyle = {
         "grid-column": `span ${colSpan}`,
         "grid-row": `${rowStart} / span ${rowSpan}`
@@ -197,7 +197,7 @@ function getCellColSpan(cell): number {
   return parseInt(cell["@colSpan"] || "1", 10);
 }
 
-interface IPlaceholderRow {
+interface PlaceholderRow {
   colStart: number;
   colSpan: number;
   rowStart: number;

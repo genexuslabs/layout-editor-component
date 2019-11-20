@@ -1,3 +1,15 @@
+interface LocationData {
+  height: number;
+  isAvailable: boolean;
+  name: string;
+  width: number;
+}
+
+enum Dataset {
+  Locations = "gxLeToolArrangeLocations",
+  Visibility = "gxLeToolArrangeVisibility"
+}
+
 export class LayoutEditorToolArrangeObserverEntry {
   private resize: ResizeObserver = new window.ResizeObserver(
     this.handleResizeObserver.bind(this)
@@ -10,7 +22,7 @@ export class LayoutEditorToolArrangeObserverEntry {
       threshold: [1]
     }
   );
-  private locations = new Map<string, ILocationData>();
+  private locations = new Map<string, LocationData>();
   private placeholders: HTMLElement[] = [];
   private placeholdersContainer: HTMLElement;
 
@@ -172,16 +184,4 @@ export class LayoutEditorToolArrangeObserverEntry {
     this.placeholdersContainer.remove();
     this.locations.clear();
   }
-}
-
-interface ILocationData {
-  height: number;
-  isAvailable: boolean;
-  name: string;
-  width: number;
-}
-
-enum Dataset {
-  Locations = "gxLeToolArrangeLocations",
-  Visibility = "gxLeToolArrangeVisibility"
 }

@@ -1,6 +1,6 @@
 import { Component, Element, Host, Listen, Prop, h } from "@stencil/core";
 import {
-  IResolverContext,
+  ResolverContext,
   controlResolver,
   getControlCommonAttrs,
   getControlWrapperCommonAttrs
@@ -18,7 +18,7 @@ import {
 export class LayoutEditorTab {
   @Element() element: HTMLElement;
 
-  @Prop() context: IResolverContext;
+  @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
   @Prop({
     attribute: "data-gx-le-control-item-selected-id",
@@ -57,7 +57,7 @@ export class LayoutEditorTab {
     );
   }
 
-  renderTab(context: IResolverContext, tab: GeneXusAbstractLayout.Tab) {
+  renderTab(context: ResolverContext, tab: GeneXusAbstractLayout.Tab) {
     const tabItemSelectedIndex = tab.item.findIndex(
       el => el["@id"] === this.tabItemSelectedId
     );
@@ -78,7 +78,7 @@ export class LayoutEditorTab {
   }
 
   renderTabItem(
-    context: IResolverContext,
+    context: ResolverContext,
     tabItem: GeneXusAbstractLayout.TabItem,
     selected: boolean
   ) {

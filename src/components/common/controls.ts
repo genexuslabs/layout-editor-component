@@ -1,4 +1,4 @@
-export const controlsDefinition: IControlDefinition[] = [
+export const controlsDefinition: ControlDefinition[] = [
   {
     type: "Attribute",
     typeName: "Attribute"
@@ -96,7 +96,7 @@ export const controlsDefinition: IControlDefinition[] = [
   }
 ];
 
-export interface IControlDefinition {
+export interface ControlDefinition {
   tag?:
     | string
     | {
@@ -108,6 +108,6 @@ export interface IControlDefinition {
   type: string;
   typeName: string;
   metadataTransform?: (
-    control: GeneXusAbstractLayout.IControl
-  ) => GeneXusAbstractLayout.IControl;
+    control: GeneXusAbstractLayout.Control
+  ) => GeneXusAbstractLayout.Control;
 }
