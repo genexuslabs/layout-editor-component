@@ -49,6 +49,11 @@ export class LayoutEditorToolHighlightController {
       { passive: true }
     );
     this.editor.element.addEventListener(
+      "mouseleave",
+      () => (this.hoveredControl = null),
+      { passive: true }
+    );
+    this.editor.element.addEventListener(
       "dragstart",
       () => (this.dragging = true),
       { passive: true }
@@ -103,7 +108,7 @@ export class LayoutEditorToolHighlightController {
           control={this.hoveredControl}
           changeSmooth
           preview={this.preview}
-          hidden={this.dragging}
+          hidden={!this.hoveredControl || this.dragging}
         />
         {this.selectedControls.map(control => (
           <gx-le-tool-selection
