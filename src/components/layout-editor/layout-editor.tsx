@@ -299,8 +299,8 @@ export class LayoutEditor {
     });
   }
 
-  @Listen("moveTarget")
-  handleKeyMoveTarget(event: CustomEvent) {
+  @Listen("dropTargetChanged")
+  handleKeyDropTargetChanged(event: CustomEvent) {
     this.dragTarget = event.detail.targetControlId;
   }
 
