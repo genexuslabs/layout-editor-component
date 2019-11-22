@@ -31,65 +31,57 @@ A set of special attributes are used to annotate container web components and it
 
 ## CSS variables
 
-| CSS variable name                                       | Details                                                             |
-| ------------------------------------------------------- | ------------------------------------------------------------------- |
-| `--gx-le-empty-min-height`                              | Layout editor minimum height when empty                             |
-| `--gx-le-control-header-bar-background-color`           | Control header bar background color                                 |
-| `--gx-le-control-header-bar-font-size`                  | Control header bar font size                                        |
-| `--gx-le-control-header-bar-color`                      | Control header bar text color                                       |
-| `--gx-le-control-header-bar-text`                       | Control header bar text content                                     |
-| `--gx-le-form-field-color`                              | Color of the field of `gx-form-field` elements                      |
-| `--gx-le-table-anchor-icon`                             | Icon to be shown as an anchor for containers                        |
-| `--gx-le-table-anchor-icon-size`                        | Size of the anchor icon                                             |
-| `--gx-le-table-cell-border`                             | Container item border                                               |
-| `--gx-le-table-cell-gap`                                | Gap between a container cells                                       |
-| `--gx-le-table-min-height`                              | Container minimum height                                            |
-| `--gx-le-table-cell-min-height`                         | Container cell minimum height                                       |
-| `--gx-le-table-placeholder-color`                       | Drop placeholder color                                              |
-| `--gx-le-table-placeholder-height`                      | Height of drop placeholder (when a horizontal placeholder is shown) |
-| `--gx-le-table-placeholder-width`                       | Width of drop placeholder (when a vertical placeholder is shown)    |
-| `--gx-le-table-hovered-cell-border-color`               | Hovered container item border color                                 |
-| `--gx-le-table-hovered-cell-border-width`               | Hovered container item border width                                 |
-| `--gx-le-table-dragging-hovered-container-border-color` | Hovered container while dragging border color                       |
-| `--gx-le-table-dragging-hovered-container-border-width` | Hovered container while dragging border width                       |
-| `--gx-le-table-selected-cell-border-color`              | Selected container item border color                                |
-| `--gx-le-table-selected-cell-border-width`              | Selected container item border width                                |
-| `--gx-le-tool-selection-color`                          | Highlight color of the selected control                             |
-| `--gx-le-tool-bar-background-color`                     | Control bar background color                                        |
-| `--gx-le-tool-bar-type-name-font-family`                | Control type name text family                                       |
-| `--gx-le-tool-bar-type-name-font-size`                  | Control type name text size                                         |
-| `--gx-le-tool-bar-type-name-font-style`                 | Control type name text style                                        |
-| `--gx-le-tool-bar-type-name-font-weight`                | Control type name text weight                                       |
-| `--gx-le-tool-bar-type-name-text-decoration`            | Control type name text decoration                                   |
-| `--gx-le-tool-bar-type-name-color`                      | Control type name text color                                        |
-| `--gx-le-tool-bar-name-font-family`                     | Control name text family                                            |
-| `--gx-le-tool-bar-name-font-size`                       | Control name text size                                              |
-| `--gx-le-tool-bar-name-font-style`                      | Control name text style                                             |
-| `--gx-le-tool-bar-name-font-weight`                     | Control name text weight                                            |
-| `--gx-le-tool-bar-name-text-decoration`                 | Control name text decoration                                        |
-| `--gx-le-tool-bar-name-color`                           | Control name text color                                             |
-| `--gx-le-tool-breadcrumb-background-color`              | Breadcrumb background color                                         |
-| `--gx-le-tool-breadcrumb-type-name-font-family`         | Breadcrumb control type name text family                            |
-| `--gx-le-tool-breadcrumb-type-name-font-size`           | Breadcrumb control type name text size                              |
-| `--gx-le-tool-breadcrumb-type-name-font-style`          | Breadcrumb control type name text style                             |
-| `--gx-le-tool-breadcrumb-type-name-font-weight`         | Breadcrumb control type name text weight                            |
-| `--gx-le-tool-breadcrumb-type-name-text-decoration`     | Breadcrumb control type name text decoration                        |
-| `--gx-le-tool-breadcrumb-type-name-color`               | Breadcrumb control type name text color                             |
-| `--gx-le-tool-breadcrumb-name-font-family`              | Breadcrumb control name text family                                 |
-| `--gx-le-tool-breadcrumb-name-font-size`                | Breadcrumb control name text size                                   |
-| `--gx-le-tool-breadcrumb-name-font-style`               | Breadcrumb control name text style                                  |
-| `--gx-le-tool-breadcrumb-name-font-weight`              | Breadcrumb control name text weight                                 |
-| `--gx-le-tool-breadcrumb-name-text-decoration`          | Breadcrumb control name text decoration                             |
-| `--gx-le-tool-breadcrumb-name-color`                    | Breadcrumb control name text color                                  |
-| `--gx-le-tool-dimension-background-color`               | Dimension background color                                          |
-| `--gx-le-tool-dimension-font-family`                    | Dimension text family                                               |
-| `--gx-le-tool-dimension-font-size`                      | Dimension text size                                                 |
-| `--gx-le-tool-dimension-font-style`                     | Dimension text style                                                |
-| `--gx-le-tool-dimension-font-weight`                    | Dimension text weight                                               |
-| `--gx-le-tool-dimension-text-decoration`                | Dimension text decoration                                           |
-| `--gx-le-tool-dimension-color`                          | Dimension text color                                                |
-| `--gx-le-tool-box-margin-color`                         | Box margin color                                                    |
-| `--gx-le-tool-box-padding-color`                        | Box padding color                                                   |
+| CSS variable name                                   | Details                                                             |
+| --------------------------------------------------- | ------------------------------------------------------------------- |
+| `--gx-le-empty-min-height`                          | Layout editor minimum height when empty                             |
+| `--gx-le-control-header-bar-background-color`       | Control header bar background color                                 |
+| `--gx-le-control-header-bar-font-size`              | Control header bar font size                                        |
+| `--gx-le-control-header-bar-color`                  | Control header bar text color                                       |
+| `--gx-le-control-header-bar-text`                   | Control header bar text content                                     |
+| `--gx-le-form-field-color`                          | Color of the field of `gx-form-field` elements                      |
+| `--gx-le-table-cell-border`                         | Container item border                                               |
+| `--gx-le-table-cell-gap`                            | Gap between a container cells                                       |
+| `--gx-le-table-min-height`                          | Container minimum height                                            |
+| `--gx-le-table-cell-min-height`                     | Container cell minimum height                                       |
+| `--gx-le-table-placeholder-color`                   | Drop placeholder color                                              |
+| `--gx-le-table-placeholder-height`                  | Height of drop placeholder (when a horizontal placeholder is shown) |
+| `--gx-le-table-placeholder-width`                   | Width of drop placeholder (when a vertical placeholder is shown)    |
+| `--gx-le-tool-selection-color`                      | Highlight color of the selected control                             |
+| `--gx-le-tool-bar-background-color`                 | Control bar background color                                        |
+| `--gx-le-tool-bar-type-name-font-family`            | Control type name text family                                       |
+| `--gx-le-tool-bar-type-name-font-size`              | Control type name text size                                         |
+| `--gx-le-tool-bar-type-name-font-style`             | Control type name text style                                        |
+| `--gx-le-tool-bar-type-name-font-weight`            | Control type name text weight                                       |
+| `--gx-le-tool-bar-type-name-text-decoration`        | Control type name text decoration                                   |
+| `--gx-le-tool-bar-type-name-color`                  | Control type name text color                                        |
+| `--gx-le-tool-bar-name-font-family`                 | Control name text family                                            |
+| `--gx-le-tool-bar-name-font-size`                   | Control name text size                                              |
+| `--gx-le-tool-bar-name-font-style`                  | Control name text style                                             |
+| `--gx-le-tool-bar-name-font-weight`                 | Control name text weight                                            |
+| `--gx-le-tool-bar-name-text-decoration`             | Control name text decoration                                        |
+| `--gx-le-tool-bar-name-color`                       | Control name text color                                             |
+| `--gx-le-tool-breadcrumb-background-color`          | Breadcrumb background color                                         |
+| `--gx-le-tool-breadcrumb-type-name-font-family`     | Breadcrumb control type name text family                            |
+| `--gx-le-tool-breadcrumb-type-name-font-size`       | Breadcrumb control type name text size                              |
+| `--gx-le-tool-breadcrumb-type-name-font-style`      | Breadcrumb control type name text style                             |
+| `--gx-le-tool-breadcrumb-type-name-font-weight`     | Breadcrumb control type name text weight                            |
+| `--gx-le-tool-breadcrumb-type-name-text-decoration` | Breadcrumb control type name text decoration                        |
+| `--gx-le-tool-breadcrumb-type-name-color`           | Breadcrumb control type name text color                             |
+| `--gx-le-tool-breadcrumb-name-font-family`          | Breadcrumb control name text family                                 |
+| `--gx-le-tool-breadcrumb-name-font-size`            | Breadcrumb control name text size                                   |
+| `--gx-le-tool-breadcrumb-name-font-style`           | Breadcrumb control name text style                                  |
+| `--gx-le-tool-breadcrumb-name-font-weight`          | Breadcrumb control name text weight                                 |
+| `--gx-le-tool-breadcrumb-name-text-decoration`      | Breadcrumb control name text decoration                             |
+| `--gx-le-tool-breadcrumb-name-color`                | Breadcrumb control name text color                                  |
+| `--gx-le-tool-dimension-background-color`           | Dimension background color                                          |
+| `--gx-le-tool-dimension-font-family`                | Dimension text family                                               |
+| `--gx-le-tool-dimension-font-size`                  | Dimension text size                                                 |
+| `--gx-le-tool-dimension-font-style`                 | Dimension text style                                                |
+| `--gx-le-tool-dimension-font-weight`                | Dimension text weight                                               |
+| `--gx-le-tool-dimension-text-decoration`            | Dimension text decoration                                           |
+| `--gx-le-tool-dimension-color`                      | Dimension text color                                                |
+| `--gx-le-tool-box-margin-color`                     | Box margin color                                                    |
+| `--gx-le-tool-box-padding-color`                    | Box padding color                                                   |
 
 <!-- Auto Generated Below -->
 

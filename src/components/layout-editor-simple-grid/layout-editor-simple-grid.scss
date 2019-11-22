@@ -8,11 +8,7 @@ gx-le-simple-grid {
   border: var(--gx-le-simple-grid-border);
 
   // Hide container's anchor icon
-  & > table {
-    &[data-gx-le-container]:hover::after {
-      display: none;
-    }
-
+  & [data-gx-le-control-header-bar] > table {
     &[data-gx-le-container-empty="true"] {
       min-width: 300px;
     }
@@ -20,8 +16,6 @@ gx-le-simple-grid {
     .header {
       font-weight: bold;
       border-bottom: var(--gx-le-simple-grid-border);
-      margin: 0 calc(-1 * var(--gx-le-table-selected-cell-border-width));
-      padding: var(--gx-le-table-selected-cell-border-width);
     }
   }
 

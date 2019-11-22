@@ -63,12 +63,6 @@ gx-layout-editor-sample {
     --gx-le-table-placeholder-color: var(--primary-color);
     --gx-le-table-placeholder-height: 4px;
     --gx-le-table-placeholder-width: 4px;
-    --gx-le-table-selected-cell-border-color: var(--primary-color);
-    --gx-le-table-selected-cell-border-width: 2px;
-    --gx-le-table-hovered-cell-border-color: var(--primary-color);
-    --gx-le-table-hovered-cell-border-width: 2px;
-    --gx-le-table-dragging-hovered-container-border-color: var(--warning-color);
-    --gx-le-table-dragging-hovered-container-border-width: 1px;
     --gx-le-form-field-color: var(--dark-color);
     --gx-le-empty-min-height: 100vh;
     --gx-le-tool-selection-color: var(--primary-color);
@@ -101,10 +95,6 @@ gx-layout-editor-sample {
       --gx-le-table-placeholder-color: unset;
       --gx-le-table-placeholder-width: unset;
       --gx-le-table-placeholder-height: unset;
-      --gx-le-table-selected-cell-border-color: unset;
-      --gx-le-table-selected-cell-border-width: unset;
-      --gx-le-table-hovered-cell-border-color: unset;
-      --gx-le-table-hovered-cell-border-width: unset;
     }
   }
 }
