@@ -145,6 +145,7 @@ declare namespace GeneXusAbstractLayout {
     "@class": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES"?: string;
     isRootControl?: boolean;
+    isPartControl?: boolean;
     CustomProperties?: any;
   }
 

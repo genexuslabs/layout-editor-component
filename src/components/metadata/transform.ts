@@ -37,7 +37,8 @@ function transformLayout(
 function transformContainer(
   rawContainer: GeneXusAbstractLayout.Container,
   childControlType: string,
-  isRoot?: boolean
+  isRoot?: boolean,
+  isPart?: boolean
 ): GeneXusAbstractLayout.Container {
   const transformControlFn = getTransformFunctionByType(childControlType);
 
@@ -46,7 +47,8 @@ function transformContainer(
     controlType: childControlType,
     [childControlType]: {
       ...transformControlFn(rawContainer[childControlType]),
-      ...(isRoot && { isRootControl: true })
+      isRootControl: isRoot,
+      isPartControl: isPart
     }
   };
 }
@@ -137,7 +139,9 @@ function transformTabItem(
 ): GeneXusAbstractLayout.TabItem {
   const transformed = transformContainer(
     rawTabItem as GeneXusAbstractLayout.TabItem,
-    inferChildControlType(rawTabItem)
+    inferChildControlType(rawTabItem),
+    false,
+    true
   );
 
   return {

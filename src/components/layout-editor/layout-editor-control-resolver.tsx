@@ -70,13 +70,13 @@ export function getControlWrapperCommonAttrs(
     "data-gx-le-control-name": control["@controlName"] || "",
     "data-gx-le-control-type-name":
       (controlDefinition && controlDefinition.typeName) || "Unknown control",
-    draggable: (!control.isRootControl).toString()
+    draggable: (!control.isRootControl && !control.isPartControl).toString()
   };
 }
 
 export function getControlCommonAttrs(control: GeneXusAbstractLayout.Control) {
   return {
     class: control["@class"],
-    draggable: control.isRootControl
+    draggable: !control.isRootControl && !control.isPartControl
   };
 }
