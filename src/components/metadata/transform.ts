@@ -43,8 +43,8 @@ function transformLayout(
 function transformContainer(
   rawContainer: GeneXusAbstractLayout.Container,
   childControlType: string,
-  isRoot?: boolean,
-  isPart?: boolean
+  isRoot = false,
+  isPart = false
 ): GeneXusAbstractLayout.Container {
   const transformControlFn = getTransformFunctionByType(childControlType);
 
