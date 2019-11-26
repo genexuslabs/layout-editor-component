@@ -51,7 +51,7 @@ declare namespace GeneXusAbstractLayout {
     "@parameters": string;
   }
 
-  export interface Grid extends Control {
+  export interface Grid extends Control, Container {
     "@class": string;
     "@collection": string;
     "@rows": string;
@@ -78,7 +78,7 @@ declare namespace GeneXusAbstractLayout {
     acceptedElementTypes?: string[];
   }
 
-  export interface Group extends Control {
+  export interface Group extends Control, Container {
     "@caption": string;
     "@class": string;
     table: Table;

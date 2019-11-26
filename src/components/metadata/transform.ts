@@ -2,6 +2,12 @@ import { controlsDefinition } from "../common/controls";
 
 const controlTypesList = controlsDefinition.map(def => def.type);
 const controlsTransforms = {
+  group: {
+    transformFn: transformGroup
+  },
+  grid: {
+    transformFn: transformGrid
+  },
   section: {
     transformFn: transformSection
   },
@@ -138,7 +144,7 @@ function transformTabItem(
   rawTabItem: GeneXusAbstractLayout.TabItem
 ): GeneXusAbstractLayout.TabItem {
   const transformed = transformContainer(
-    rawTabItem as GeneXusAbstractLayout.TabItem,
+    rawTabItem,
     inferChildControlType(rawTabItem),
     false,
     true
@@ -147,6 +153,29 @@ function transformTabItem(
   return {
     ...rawTabItem,
     ...transformed
+  };
+}
+
+function transformGroup(
+  rawGroup: GeneXusAbstractLayout.Group
+): GeneXusAbstractLayout.Group {
+  return {
+    ...rawGroup,
+    ...transformContainer(
+      rawGroup,
+      inferChildControlType(rawGroup),
+      false,
+      true
+    )
+  };
+}
+
+function transformGrid(
+  rawGrid: GeneXusAbstractLayout.Grid
+): GeneXusAbstractLayout.Grid {
+  return {
+    ...rawGrid,
+    ...transformContainer(rawGrid, inferChildControlType(rawGrid), false, true)
   };
 }
 
@@ -165,7 +194,7 @@ function transformSectionItem(
   rawSectionItem: GeneXusAbstractLayout.SectionItem
 ): GeneXusAbstractLayout.SectionItem {
   const transformed = transformContainer(
-    rawSectionItem as GeneXusAbstractLayout.TabItem,
+    rawSectionItem,
     inferChildControlType(rawSectionItem)
   );
 
