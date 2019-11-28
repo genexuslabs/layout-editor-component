@@ -24,7 +24,7 @@
     "validate.ci": "npm run lint && npm run test.ci && npm run build --max-workers 1 --debug"
   },
   "dependencies": {
-    "@genexus/web-controls-library": "0.10.4"
+    "@genexus/web-controls-library": "^0.12.23"
   },
   "devDependencies": {
     "@stencil/core": "^1.8.0",

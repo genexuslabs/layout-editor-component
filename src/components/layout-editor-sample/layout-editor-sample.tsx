@@ -32,7 +32,7 @@ export class LayoutEditorSample {
             <gx-message type="error">{this.errorMessage}</gx-message>
           ) : null}
           <gx-edit
-            multiline="true"
+            multiline={true}
             placeholder="Enter a GeneXus abstract form model in JSON format"
           />
           <gx-button
