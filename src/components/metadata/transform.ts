@@ -113,15 +113,15 @@ function transformCell(
 
 function transformUserControl(
   rawUserControl: GeneXusAbstractLayout.Ucw
-): GeneXusAbstractLayout.Ucw {
+): GeneXusAbstractLayout.Ucw | GeneXusAbstractLayout.UcwContainer {
   const childControlType = inferChildControlType(rawUserControl);
 
   const transformed = childControlType
-    ? transformContainer(
+    ? (transformContainer(
         rawUserControl as GeneXusAbstractLayout.UcwContainer,
         childControlType
-      )
-    : transformControl(rawUserControl);
+      ) as GeneXusAbstractLayout.UcwContainer)
+    : (transformControl(rawUserControl) as GeneXusAbstractLayout.Ucw);
 
   return {
     ...rawUserControl,
@@ -216,7 +216,9 @@ function transformControl(
   return control;
 }
 
-function parseControlCustomProperties(propertiesXml: string): any {
+function parseControlCustomProperties(
+  propertiesXml: string
+): GeneXusAbstractLayout.ControlCustomProperties {
   const parser = new DOMParser();
   const doc = parser.parseFromString(propertiesXml, "application/xml");
   const propsElements = Array.from(doc.querySelectorAll("Property"));

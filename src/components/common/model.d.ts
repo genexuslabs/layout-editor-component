@@ -113,8 +113,13 @@ declare namespace GeneXusAbstractLayout {
 
   export interface Ucw extends Control {
     "@gxControlType": string;
+    CustomProperties?: UcwCustomProperties;
   }
 
+  export interface UcwCustomProperties extends ControlCustomProperties {
+    ControlName: string;
+    UserControlType: string;
+  }
   export interface UcwContainer extends Ucw, Container {}
 
   export interface Container {
@@ -146,8 +151,11 @@ declare namespace GeneXusAbstractLayout {
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES"?: string;
     isRootControl?: boolean;
     isPartControl?: boolean;
-    CustomProperties?: any;
+    CustomProperties?: ControlCustomProperties;
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface ControlCustomProperties {}
 
   export interface Cell extends Container {
     "@id": string;

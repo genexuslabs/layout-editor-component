@@ -32,11 +32,9 @@ export class LayoutEditorUserControl {
       return controlResolver(ucw, context);
     } else {
       const userControlType =
-        ucw["@UserControlType"] ||
-        (ucw.CustomProperties && ucw.CustomProperties.UserControlType);
+        ucw["@UserControlType"] || ucw.CustomProperties?.UserControlType;
       const controlName =
-        ucw["@controlName"] ||
-        (ucw.CustomProperties && ucw.CustomProperties.ControlName);
+        ucw["@controlName"] || ucw.CustomProperties?.ControlName;
 
       return (
         <div {...getControlCommonAttrs(ucw)}>
