@@ -1,4 +1,11 @@
 import { controlsDefinition } from "../common/controls";
+import { transformGrid } from "./transform-grid";
+import { transformGroup } from "./transform-group";
+import { transformLayout } from "./transform-layout";
+import { transformSection } from "./transform-section";
+import { transformTab } from "./transform-tab";
+import { transformTable } from "./transform-table";
+import { transformUserControl } from "./transform-user-control";
 
 const controlTypesList = controlsDefinition.map(def => def.type);
 const controlsTransforms = {
@@ -30,17 +37,7 @@ function transformModel(
   };
 }
 
-function transformLayout(
-  rawLayout: GeneXusAbstractLayout.Layout
-): GeneXusAbstractLayout.Layout {
-  const childControlType = inferChildControlType(rawLayout);
-  return {
-    ...rawLayout,
-    ...transformContainer(rawLayout, childControlType, true)
-  };
-}
-
-function transformContainer(
+export function transformContainer(
   rawContainer: GeneXusAbstractLayout.Container,
   childControlType: string,
   isRoot = false,
@@ -59,6 +56,18 @@ function transformContainer(
   };
 }
 
+export function transformControl(
+  control: GeneXusAbstractLayout.Control
+): GeneXusAbstractLayout.Control {
+  const customPropertiesXml = control["@PATTERN_ELEMENT_CUSTOM_PROPERTIES"];
+  if (customPropertiesXml) {
+    control.CustomProperties = parseControlCustomProperties(
+      customPropertiesXml
+    );
+  }
+  return control;
+}
+
 function getTransformFunctionByType(
   type: string
 ): (control: GeneXusAbstractLayout.Control) => GeneXusAbstractLayout.Control {
@@ -72,148 +81,6 @@ function getTransformFunctionByType(
     ): GeneXusAbstractLayout.Control =>
       definition.transformFn(transformControl(control));
   }
-}
-
-function transformTable(
-  rawTable: GeneXusAbstractLayout.Table
-): GeneXusAbstractLayout.Table {
-  const row = fixArrayProperty(rawTable.row);
-
-  return {
-    ...rawTable,
-    row: row.map(transformRow)
-  };
-}
-
-function transformRow(
-  rawRow: GeneXusAbstractLayout.Row
-): GeneXusAbstractLayout.Row {
-  const cell = fixArrayProperty(rawRow.cell);
-  return {
-    ...rawRow,
-    cell: cell.map(transformCell)
-  };
-}
-
-function transformCell(
-  rawCell: GeneXusAbstractLayout.Cell
-): GeneXusAbstractLayout.Cell {
-  const childControlType = rawCell.childControlType
-    ? rawCell.childControlType
-    : inferChildControlType(rawCell);
-  const container = childControlType
-    ? transformContainer(rawCell, childControlType)
-    : null;
-
-  return {
-    ...rawCell,
-    ...container
-  };
-}
-
-function transformUserControl(
-  rawUserControl: GeneXusAbstractLayout.Ucw
-): GeneXusAbstractLayout.Ucw | GeneXusAbstractLayout.UcwContainer {
-  const childControlType = inferChildControlType(rawUserControl);
-
-  const transformed = childControlType
-    ? (transformContainer(
-        rawUserControl as GeneXusAbstractLayout.UcwContainer,
-        childControlType
-      ) as GeneXusAbstractLayout.UcwContainer)
-    : (transformControl(rawUserControl) as GeneXusAbstractLayout.Ucw);
-
-  return {
-    ...rawUserControl,
-    ...transformed
-  };
-}
-
-function transformTab(
-  rawTab: GeneXusAbstractLayout.Tab
-): GeneXusAbstractLayout.Tab {
-  const item = fixArrayProperty(rawTab.item);
-
-  return {
-    ...rawTab,
-    item: item.map(transformTabItem)
-  };
-}
-
-function transformTabItem(
-  rawTabItem: GeneXusAbstractLayout.TabItem
-): GeneXusAbstractLayout.TabItem {
-  const transformed = transformContainer(
-    rawTabItem,
-    inferChildControlType(rawTabItem),
-    false,
-    true
-  );
-
-  return {
-    ...rawTabItem,
-    ...transformed
-  };
-}
-
-function transformGroup(
-  rawGroup: GeneXusAbstractLayout.Group
-): GeneXusAbstractLayout.Group {
-  return {
-    ...rawGroup,
-    ...transformContainer(
-      rawGroup,
-      inferChildControlType(rawGroup),
-      false,
-      true
-    )
-  };
-}
-
-function transformGrid(
-  rawGrid: GeneXusAbstractLayout.Grid
-): GeneXusAbstractLayout.Grid {
-  return {
-    ...rawGrid,
-    ...transformContainer(rawGrid, inferChildControlType(rawGrid), false, true)
-  };
-}
-
-function transformSection(
-  rawSection: GeneXusAbstractLayout.Section
-): GeneXusAbstractLayout.Section {
-  const item = fixArrayProperty(rawSection.item);
-
-  return {
-    ...rawSection,
-    item: item.map(transformSectionItem)
-  };
-}
-
-function transformSectionItem(
-  rawSectionItem: GeneXusAbstractLayout.SectionItem
-): GeneXusAbstractLayout.SectionItem {
-  const transformed = transformContainer(
-    rawSectionItem,
-    inferChildControlType(rawSectionItem)
-  );
-
-  return {
-    ...rawSectionItem,
-    ...transformed
-  };
-}
-
-function transformControl(
-  control: GeneXusAbstractLayout.Control
-): GeneXusAbstractLayout.Control {
-  const customPropertiesXml = control["@PATTERN_ELEMENT_CUSTOM_PROPERTIES"];
-  if (customPropertiesXml) {
-    control.CustomProperties = parseControlCustomProperties(
-      customPropertiesXml
-    );
-  }
-  return control;
 }
 
 function parseControlCustomProperties(
@@ -230,11 +97,11 @@ function parseControlCustomProperties(
   }, {});
 }
 
-function fixArrayProperty<T>(rawValue: any): T[] {
+export function fixArrayProperty<T>(rawValue: any): T[] {
   return rawValue ? (Array.isArray(rawValue) ? rawValue : [rawValue]) : [];
 }
 
-function inferChildControlType(parent: any): string {
+export function inferChildControlType(parent: any): string {
   for (const type of controlTypesList) {
     if (parent[type]) {
       return type;
