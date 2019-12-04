@@ -1,4 +1,5 @@
 import { controlsDefinition } from "../common/controls";
+import { transformData } from "./transform-data";
 import { transformGrid } from "./transform-grid";
 import { transformGroup } from "./transform-group";
 import { transformLayout } from "./transform-layout";
@@ -9,6 +10,9 @@ import { transformUserControl } from "./transform-user-control";
 
 const controlTypesList = controlsDefinition.map(def => def.type);
 const controlsTransforms = {
+  data: {
+    transformFn: transformData
+  },
   group: {
     transformFn: transformGroup
   },

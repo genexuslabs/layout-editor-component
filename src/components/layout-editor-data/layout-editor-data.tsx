@@ -24,6 +24,9 @@ export class LayoutEditorData {
 
   render() {
     const { data } = this.model;
+    const renderControlTypeFn = this.getRenderControlTypeFn(
+      data.CustomProperties.ControlType
+    );
 
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
@@ -32,14 +35,61 @@ export class LayoutEditorData {
           label-caption={data["@labelCaption"]}
           label-position={labelPositionMap[data["@labelPosition"]]}
         >
-          <gx-edit
-            area="field"
-            disabled
-            value={data["@controlName"]}
-            class={data["@class"]}
-          />
+          {renderControlTypeFn(data)}
         </gx-form-field>
       </Host>
     );
+  }
+
+  renderEdit(data: GeneXusAbstractLayout.Data) {
+    return (
+      <gx-edit
+        area="field"
+        disabled
+        value={data["@controlName"]}
+        class={data["@class"]}
+      />
+    );
+  }
+
+  renderCheckBox(data: GeneXusAbstractLayout.Data) {
+    return <gx-checkbox caption={data.CustomProperties.ControlTitle} />;
+  }
+
+  renderComboBox(data: GeneXusAbstractLayout.Data) {
+    return (
+      <gx-select>
+        {data.CustomProperties.ControlValuesList.map(item => (
+          <gx-select-option value={item.Value}>{item.Name}</gx-select-option>
+        ))}
+      </gx-select>
+    );
+  }
+
+  renderRadioButton(data: GeneXusAbstractLayout.Data) {
+    return (
+      <gx-radio-group>
+        {data.CustomProperties.ControlValuesList.map(item => (
+          <gx-radio-option caption={item.Name} value={item.Value} />
+        ))}
+      </gx-radio-group>
+    );
+  }
+
+  getRenderControlTypeFn(
+    controlType: GeneXusAbstractLayout.DataCustomPropertiesControlType
+  ) {
+    switch (controlType) {
+      case "Edit":
+        return this.renderEdit;
+      case "Check Box":
+        return this.renderCheckBox;
+      case "Combo Box":
+        return this.renderComboBox;
+      case "Radio Button":
+        return this.renderRadioButton;
+      default:
+        return this.renderEdit;
+    }
   }
 }

@@ -9,7 +9,21 @@ declare namespace GeneXusAbstractLayout {
     "@ReturnOnClick": string;
     "@WebUserControlProperties": string;
     "@controlNameForStencil": string;
+    CustomProperties: DataCustomProperties;
   }
+
+  export interface DataCustomProperties extends ControlCustomProperties {
+    ControlType: DataCustomPropertiesControlType;
+    ControlTitle?: string;
+    ControlValues?: string;
+    ControlValuesList?: { Name: string; Value: string }[];
+  }
+
+  export type DataCustomPropertiesControlType =
+    | "Combo Box"
+    | "Edit"
+    | "Check Box"
+    | "Radio Button";
 
   export interface Action extends Control {
     "@onClickEvent": string;
