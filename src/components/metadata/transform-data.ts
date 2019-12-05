@@ -12,7 +12,7 @@ function transformCustomProperties(
 ): GeneXusAbstractLayout.DataCustomProperties {
   return {
     ...customProperties,
-    ...(customProperties.ControlValues &&
+    ...(customProperties?.ControlValues &&
       parseControlValues(customProperties.ControlValues))
   };
 }
