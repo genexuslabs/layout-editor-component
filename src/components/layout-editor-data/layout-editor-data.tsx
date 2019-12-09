@@ -25,7 +25,7 @@ export class LayoutEditorData {
   render() {
     const { data } = this.model;
     const renderControlTypeFn = this.getRenderControlTypeFn(
-      data.CustomProperties.ControlType
+      data.CustomProperties?.ControlType
     );
 
     return (

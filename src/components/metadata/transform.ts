@@ -1,4 +1,5 @@
 import { controlsDefinition } from "../common/controls";
+import { datasetData } from "../dataset/dataset-data";
 import { transformData } from "./transform-data";
 import { transformGrid } from "./transform-grid";
 import { transformGroup } from "./transform-group";
@@ -11,7 +12,8 @@ import { transformUserControl } from "./transform-user-control";
 const controlTypesList = controlsDefinition.map(def => def.type);
 const controlsTransforms = {
   data: {
-    transformFn: transformData
+    transformFn: transformData,
+    datasetFn: datasetData
   },
   group: {
     transformFn: transformGroup
@@ -72,6 +74,13 @@ export function transformControl(
   return control;
 }
 
+function transformDataset(
+  datasetFn,
+  control: GeneXusAbstractLayout.Control
+): GeneXusAbstractLayout.Control {
+  return datasetFn ? datasetFn(control) : control;
+}
+
 function getTransformFunctionByType(
   type: string
 ): (control: GeneXusAbstractLayout.Control) => GeneXusAbstractLayout.Control {
@@ -83,7 +92,9 @@ function getTransformFunctionByType(
     return (
       control: GeneXusAbstractLayout.Control
     ): GeneXusAbstractLayout.Control =>
-      definition.transformFn(transformControl(control));
+      definition.transformFn(
+        transformDataset(definition.datasetFn, transformControl(control))
+      );
   }
 }
 
