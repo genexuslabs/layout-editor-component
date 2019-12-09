@@ -35,20 +35,22 @@ export class LayoutEditorSample {
             multiline={true}
             placeholder="Enter a GeneXus abstract form model in JSON format"
           />
-          <gx-button
+          <gxg-button
+            type="primary-text-only"
             id="btn-load-model"
-            onClick={this.handleLoadModelButtonClick.bind(this)}
             class="le-test-button"
+            onClick={this.handleLoadModelButtonClick.bind(this)}
           >
             Load
-          </gx-button>
-          <gx-button
+          </gxg-button>
+          <gxg-button
+            type="primary-text-only"
             id="btn-clear"
-            onClick={this.handleClearButtonClick.bind(this)}
             class="le-test-button"
+            onClick={this.handleClearButtonClick.bind(this)}
           >
             Clear
-          </gx-button>
+          </gxg-button>
         </form>
         <div
           id="options-bar"
@@ -56,14 +58,15 @@ export class LayoutEditorSample {
             hidden: !this.currentModel
           }}
         >
-          <gx-button
+          <gxg-button
+            type="primary-text-icon"
             id="btn-reset-model"
             class="le-test-button"
             onClick={this.handleResetButtonClick.bind(this)}
-            size="small"
           >
+            <gxg-icon slot="icon" type="Add"></gxg-icon>
             Reset
-          </gx-button>
+          </gxg-button>
           <gx-switch
             caption="Preview mode"
             class="le-test-button"

@@ -13,5 +13,6 @@ export const config: Config = {
       copy: [{ src: "assets" }]
     }
   ],
+  globalStyle: "src/globals/global.scss",
   plugins: [sass()]
 };
