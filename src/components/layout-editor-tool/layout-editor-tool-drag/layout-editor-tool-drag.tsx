@@ -9,6 +9,12 @@ export class LayoutEditorToolDrag {
   @Prop() control: HTMLElement;
 
   render() {
-    return <Host draggable="true" />;
+    return (
+      <Host draggable="true">
+        <gxg-button type="primary-icon-only">
+          <gxg-icon slot="icon" type="drag"></gxg-icon>
+        </gxg-button>
+      </Host>
+    );
   }
 }

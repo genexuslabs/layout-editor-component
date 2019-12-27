@@ -1,8 +1,6 @@
 gx-le-tool-drag {
-  width: 24px;
-  height: 24px;
-  background-color: white;
-  -webkit-mask-image: url("assets/images/tool-bar-drag.svg");
-  mask-image: url("assets/images/tool-bar-drag.svg");
   cursor: move;
+  & gxg-button {
+    pointer-events: none;
+  }
 }

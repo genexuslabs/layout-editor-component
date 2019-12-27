@@ -9,8 +9,7 @@ export const config: Config = {
     },
     {
       type: "www",
-      serviceWorker: null,
-      copy: [{ src: "assets" }]
+      serviceWorker: null
     }
   ],
   globalStyle: "src/globals/global.scss",

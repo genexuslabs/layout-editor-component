@@ -1,25 +1,8 @@
 gx-le-tool-identity {
   white-space: nowrap;
-  & .typeName {
-    font-family: var(--gx-le-tool-identity-type-name-font-family, initial);
-    font-size: var(--gx-le-tool-identity-type-name-font-size, initial);
-    font-style: var(--gx-le-tool-identity-type-name-font-style, initial);
-    font-weight: var(--gx-le-tool-identity-type-name-font-weight, initial);
-    text-decoration: var(
-      --gx-le-tool-identity-type-name-text-decoration,
-      initial
-    );
-    color: var(--gx-le-tool-identity-type-name-color, white);
+  & .type-name {
     &::after {
       content: ":";
     }
-  }
-  & .name {
-    font-family: var(--gx-le-tool-identity-name-font-family, initial);
-    font-size: var(--gx-le-tool-identity-name-font-size, initial);
-    font-style: var(--gx-le-tool-identity-name-font-style, initial);
-    font-weight: var(--gx-le-tool-identity-name-font-weight, initial);
-    text-decoration: var(--gx-le-tool-identity-name-text-decoration, initial);
-    color: var(--gx-le-tool-identity-name-color, lightgray);
   }
 }

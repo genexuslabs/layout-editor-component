@@ -14,8 +14,10 @@ export class LayoutEditorToolSelection {
 
     return (
       <div class="identity">
-        <span class="typeName">{data.typeName}</span>
-        <span class="name">{data.name}</span>
+        <span class="type-name gxg-title-01 gxg-title-01--negative">
+          {data.typeName}
+        </span>
+        <span class="name gxg-text gxg-text--negative">{data.name}</span>
       </div>
     );
   }

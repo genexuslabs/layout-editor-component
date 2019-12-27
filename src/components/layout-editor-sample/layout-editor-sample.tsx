@@ -64,7 +64,7 @@ export class LayoutEditorSample {
             class="le-test-button"
             onClick={this.handleResetButtonClick.bind(this)}
           >
-            <gxg-icon slot="icon" type="Add"></gxg-icon>
+            <gxg-icon slot="icon" type="deleted"></gxg-icon>
             Reset
           </gxg-button>
           <gx-switch

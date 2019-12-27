@@ -9,7 +9,7 @@ gx-le-tool-breadcrumb {
     list-style: none;
     & .item {
       cursor: pointer;
-      background-color: var(--gx-le-tool-breadcrumb-background-color, #00a2ff);
+      background-color: var(--color-primary-enabled);
       padding: 5px;
     }
   }
@@ -24,56 +24,5 @@ gx-le-tool-breadcrumb {
     & .item {
       margin-top: 2px;
     }
-  }
-  & .identity {
-    --gx-le-tool-identity-type-name-font-family: var(
-      --gx-le-tool-breadcrumb-type-name-font-family,
-      initial
-    );
-    --gx-le-tool-identity-type-name-font-size: var(
-      --gx-le-tool-breadcrumb-type-name-font-size,
-      initial
-    );
-    --gx-le-tool-identity-type-name-font-style: var(
-      --gx-le-tool-breadcrumb-type-name-font-style,
-      initial
-    );
-    --gx-le-tool-identity-type-name-font-weight: var(
-      --gx-le-tool-breadcrumb-type-name-font-weight,
-      initial
-    );
-    --gx-le-tool-identity-type-name-text-decoration: var(
-      --gx-le-tool-breadcrumb-type-name-text-decoration,
-      initial
-    );
-    --gx-le-tool-identity-type-name-color: var(
-      --gx-le-tool-breadcrumb-type-name-color,
-      white
-    );
-
-    --gx-le-tool-identity-name-font-family: var(
-      --gx-le-tool-breadcrumb-name-font-family,
-      initial
-    );
-    --gx-le-tool-identity-name-font-size: var(
-      --gx-le-tool-breadcrumb-name-font-size,
-      initial
-    );
-    --gx-le-tool-identity-name-font-style: var(
-      --gx-le-tool-breadcrumb-name-font-style,
-      initial
-    );
-    --gx-le-tool-identity-name-font-weight: var(
-      --gx-le-tool-breadcrumb-name-font-weight,
-      initial
-    );
-    --gx-le-tool-identity-name-text-decoration: var(
-      --gx-le-tool-breadcrumb-name-text-decoration,
-      initial
-    );
-    --gx-le-tool-identity-name-color: var(
-      --gx-le-tool-breadcrumb-name-color,
-      lightgray
-    );
   }
 }

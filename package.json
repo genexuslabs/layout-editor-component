@@ -24,7 +24,7 @@
     "validate.ci": "npm run lint && npm run test.ci && npm run build --max-workers 1 --debug"
   },
   "dependencies": {
-    "@genexus/gemini": "^0.1.8",
+    "@genexus/gemini": "^0.1.13",
     "@genexus/web-controls-library": "^0.12.23"
   },
   "devDependencies": {

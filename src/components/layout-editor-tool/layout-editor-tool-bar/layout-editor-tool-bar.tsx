@@ -81,17 +81,23 @@ export class LayoutEditorToolBar {
         <gx-le-tool-identity class="identity" control={this.control} />
         <ul class="buttons" hidden={this.buttonsHidden}>
           <li class="info" hidden={this.buttonInfoHidden}>
-            <button type="button" />
+            <gxg-button type="primary-icon-only">
+              <gxg-icon slot="icon" type="more-info"></gxg-icon>
+            </gxg-button>
           </li>
           <li class="task" hidden={this.buttonTaskHidden}>
-            <button type="button" />
+            <gxg-button type="primary-icon-only">
+              <gxg-icon slot="icon" type="settings"></gxg-icon>
+            </gxg-button>
           </li>
           <li class="select" hidden={this.buttonSelectHidden}>
-            <button
-              type="button"
+            <gxg-button
+              type="primary-icon-only"
               class="parent"
               onClick={this.handleSelectParentClick.bind(this)}
-            />
+            >
+              <gxg-icon slot="icon" type="level-up"></gxg-icon>
+            </gxg-button>
             <gx-le-tool-breadcrumb
               control={this.control}
               class="location-top"
