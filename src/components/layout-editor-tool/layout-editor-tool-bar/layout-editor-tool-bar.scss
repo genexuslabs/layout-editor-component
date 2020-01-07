@@ -1,11 +1,11 @@
 gx-le-tool-bar {
   display: flex;
   pointer-events: all;
-  --bar-padding: 5px;
+  --bar-padding: 0px;
 
   & .bar {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     background-color: var(--color-primary-enabled);
     padding: var(--bar-padding);
     & .buttons {

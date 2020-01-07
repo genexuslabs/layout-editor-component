@@ -1,5 +1,6 @@
 gx-le-tool-breadcrumb {
   display: block;
+  --item-margin: 3px;
 
   & .list {
     display: flex;
@@ -10,19 +11,19 @@ gx-le-tool-breadcrumb {
     & .item {
       cursor: pointer;
       background-color: var(--color-primary-enabled);
-      padding: 5px;
+      padding: 3px 5px;
     }
   }
   &.location-top .list {
     flex-direction: column-reverse;
     & .item {
-      margin-bottom: 2px;
+      margin-bottom: var(--item-margin);
     }
   }
   &.location-bottom .list {
     flex-direction: column;
     & .item {
-      margin-top: 2px;
+      margin-top: var(--item-margin);
     }
   }
 }

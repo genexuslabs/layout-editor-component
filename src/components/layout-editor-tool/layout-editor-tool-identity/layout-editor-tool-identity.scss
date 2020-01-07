@@ -1,8 +1,11 @@
 gx-le-tool-identity {
   white-space: nowrap;
-  & .type-name {
-    &::after {
-      content: ":";
+  & .identity {
+    display: flex;
+    & .type-name {
+      &::after {
+        content: ":";
+      }
     }
   }
 }
