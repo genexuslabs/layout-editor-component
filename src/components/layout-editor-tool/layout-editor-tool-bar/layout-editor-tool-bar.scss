@@ -1,5 +1,6 @@
 gx-le-tool-bar {
   display: flex;
+  line-height: 0;
   pointer-events: all;
   --bar-padding: 0px;
 
@@ -8,7 +9,14 @@ gx-le-tool-bar {
     align-items: center;
     background-color: var(--color-primary-enabled);
     padding: var(--bar-padding);
-    & .buttons {
+    min-height: 24px;
+    & > .drag[hidden] + .identity {
+      margin-left: 5px;
+    }
+    & > .identity {
+      margin-right: 5px;
+    }
+    & > .buttons {
       display: flex;
       margin: 0;
       margin-left: 35px;
