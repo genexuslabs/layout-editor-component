@@ -11,9 +11,7 @@ export class LayoutEditorToolDrag {
   render() {
     return (
       <Host draggable="true">
-        <gxg-button type="primary-icon-only">
-          <gxg-icon slot="icon" type="drag"></gxg-icon>
-        </gxg-button>
+        <gxg-icon type="drag" color="negative"></gxg-icon>
       </Host>
     );
   }
