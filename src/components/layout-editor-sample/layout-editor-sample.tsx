@@ -72,6 +72,11 @@ export class LayoutEditorSample {
             class="le-test-button"
             onClick={this.handlePreviewClick.bind(this)}
           />
+          <gx-switch
+            caption="Dark mode"
+            class="le-test-button"
+            onClick={this.handleDarkClick.bind(this)}
+          />
         </div>
         <gx-layout-editor
           class={{
@@ -115,5 +120,14 @@ export class LayoutEditorSample {
   handlePreviewClick(event: Event) {
     const target: any = event.target;
     this.previewMode = target.checked;
+  }
+  handleDarkClick(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    if (target.checked) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }
 }
