@@ -7,6 +7,8 @@ import {
   getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
+import { CssGridLayout } from "../helpers/css-grid-layout";
+
 @Component({
   shadow: false,
   styleUrl: "layout-editor-tabular-table.scss",
@@ -14,7 +16,6 @@ import {
 })
 export class LayoutEditorTabularTable {
   @Element() element: HTMLElement;
-
   @Prop() context: ResolverContext;
   @Prop() model: GeneXusAbstractLayout.Cell;
 
@@ -23,178 +24,155 @@ export class LayoutEditorTabularTable {
 
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
-        {tabularTableResolver(table, this.context)}
+        {this.tabularTableResolver(table, this.context)}
       </Host>
     );
   }
-}
 
-function tabularTableResolver(table, context: ResolverContext) {
-  const modelRows: GeneXusAbstractLayout.Row[] = table.row
-    ? Array.isArray(table.row)
-      ? table.row
-      : [table.row]
-    : [];
+  private tabularTableResolver(
+    table: GeneXusAbstractLayout.Table,
+    context: ResolverContext
+  ) {
+    const grid = new CssGridLayout<string>();
+    const rowPlaceholdersToRender: PlaceholderRow[] = [];
+    const cells = [];
 
-  const isEmptyTable = modelRows.length === 0;
-  const nonEmptyRows = modelRows.filter(
-    r => (Array.isArray(r.cell) && r.cell.length) || r.cell
-  );
+    // load CSSGridLayout with cells
+    table.row.forEach((row, rowIndex) => {
+      row.cell.forEach(cell => {
+        grid.addToRow(
+          cell["@id"],
+          rowIndex + 1,
+          this.getCellRowSpan(cell),
+          this.getCellColSpan(cell)
+        );
+      });
+    });
 
-  const maxCols = nonEmptyRows.reduce(
-    (acc, row) => Math.max(acc, Array.isArray(row.cell) ? row.cell.length : 1),
-    0
-  );
+    if (this.isEmptyGrid(grid)) {
+      rowPlaceholdersToRender.push({
+        colSpan: 1,
+        colStart: 1,
+        nextRow: null,
+        rowSpan: 1,
+        rowStart: 1
+      });
+    } else {
+      // add to CSSGridLayout rows to horizontal placeholders
+      for (let row = grid.getRowCount(); row >= 0; row--) {
+        if (
+          row === 0 ||
+          row === grid.getRowCount() ||
+          !grid.isMergedRowsOnColumnRange(row, 2, 1, grid.getColumnCount())
+        ) {
+          grid.insertRow(row + 1);
+        }
+      }
 
-  const rowsCount = nonEmptyRows.length;
+      // load list of rows placeholders to render
+      for (let i = 1; i <= grid.getRowCount(); i += 2) {
+        const emptyAreasOfRow = grid.getEmptyAreasOfRow(i);
 
-  let rowPlaceholdersToRender: PlaceholderRow[] = [];
-
-  const rows = nonEmptyRows.map((row, i) => {
-    const rowCells: GeneXusAbstractLayout.Cell[] = Array.isArray(row.cell)
-      ? row.cell
-      : [row.cell];
-
-    const nextRow = nonEmptyRows.length > i ? nonEmptyRows[i + 1] : null;
-    const isLastRow = !nextRow;
-
-    let colStart = 0;
-    const renderedCells = rowCells.map((cell, j) => {
-      const previousCell = rowCells[j - 1];
-      const previousCellColSpan = previousCell
-        ? getCellColSpan(previousCell)
-        : 1;
-      colStart += previousCellColSpan;
-
-      if (!isLastRow) {
-        rowPlaceholdersToRender.push({
-          colSpan: getCellColSpan(cell),
-          colStart,
-          nextRow,
-          rowSpan: 1,
-          rowStart: (i + getCellRowSpan(cell)) * 2 + 1
+        emptyAreasOfRow.forEach(emptyArea => {
+          rowPlaceholdersToRender.push({
+            colSpan: emptyArea.columnSpan,
+            colStart: emptyArea.column,
+            nextRow: table.row[(i + 1) / 2 - 1],
+            rowSpan: emptyArea.rowSpan,
+            rowStart: emptyArea.row
+          });
         });
       }
 
-      return renderCell(cell, row["@id"], i, context);
-    });
-    return renderedCells;
-  });
-
-  rowPlaceholdersToRender = [
-    {
-      colSpan: maxCols,
-      colStart: 1,
-      nextRow: nonEmptyRows[0],
-      rowSpan: 1,
-      rowStart: 1
-    },
-    ...mergeContiguousPlaceholders(rowPlaceholdersToRender),
-    {
-      colSpan: maxCols,
-      colStart: 1,
-      nextRow: null,
-      rowSpan: 1,
-      rowStart: nonEmptyRows.length * 2 + 1
+      // load list of cells to render
+      table.row.forEach(row => {
+        row.cell.forEach(cell => {
+          cells.push(this.renderCell(grid, cell, row["@id"], context));
+        });
+      });
     }
-  ];
 
-  return (
-    <gx-table
-      {...getControlCommonAttrs(table)}
-      {...getTableStyle(rowsCount, maxCols)}
-      data-gx-le-container
-      data-gx-le-container-empty={isEmptyTable.toString()}
-    >
-      {[...rows, ...renderEmptyRows(rowPlaceholdersToRender)]}
-    </gx-table>
-  );
-}
+    // render
+    return (
+      <gx-table
+        {...getControlCommonAttrs(table)}
+        {...this.getTableStyle(grid)}
+        data-gx-le-container
+        data-gx-le-container-empty={this.isEmptyGrid(grid).toString()}
+      >
+        {[...cells, ...this.renderRowPlaceholders(rowPlaceholdersToRender)]}
+      </gx-table>
+    );
+  }
 
-function mergeContiguousPlaceholders(placeholderRows: PlaceholderRow[]) {
-  return placeholderRows
-    .sort((a, b) => {
-      if (a.rowStart === b.rowStart) {
-        return a.colStart - b.colStart;
+  private renderCell(grid: CssGridLayout<string>, cell, rowId, context) {
+    return (
+      <gx-table-cell
+        {...getCellCommonAttrs(cell)}
+        data-gx-le-row-id={rowId}
+        data-gx-le-drop-area="horizontal"
+        tabindex="0"
+        style={{ "grid-area": grid.getCssGridAreaValue(cell["@id"]) }}
+      >
+        {controlResolver(cell, context)}
+      </gx-table-cell>
+    );
+  }
+
+  private renderRowPlaceholders(rowPlaceholdersToRender: PlaceholderRow[]) {
+    return rowPlaceholdersToRender.map(
+      ({ nextRow, colStart, colSpan, rowStart, rowSpan }: PlaceholderRow) => {
+        const emptyCellStyle = {
+          "grid-column": `${colStart} / span ${colSpan}`,
+          "grid-row": `${rowStart} / span ${rowSpan}`
+        };
+        return (
+          <gx-layout-editor-placeholder
+            data-gx-le-placeholder="row"
+            style={emptyCellStyle}
+            data-gx-le-next-row-id={nextRow ? nextRow["@id"] : ""}
+          />
+        );
       }
-      return a.rowStart - b.rowStart;
-    })
-    .reduce((acc: PlaceholderRow[], placeholder: PlaceholderRow) => {
-      if (acc.length) {
-        const previous = acc[acc.length - 1];
-        if (previous.rowStart === placeholder.rowStart) {
-          if (previous.colStart + previous.colSpan === placeholder.colStart) {
-            previous.colSpan += placeholder.colSpan;
-            return acc;
-          }
-        }
-      }
-      return acc.concat(placeholder);
-    }, []);
-}
+    );
+  }
 
-function getTableStyle(rowsCount, colsCount) {
-  const baseRowsTemplate = new Array(rowsCount).fill("auto", 0, rowsCount);
-  const baseColsTemplate = new Array(colsCount).fill("1fr", 0, colsCount);
+  private getTableStyle(grid: CssGridLayout<string>) {
+    const baseRowsTemplate = Array.from(
+      { length: grid.getRowCount() },
+      (_, i) => (i % 2 === 0 ? "var(--gx-le-table-cell-gap)" : "auto")
+    );
+    const baseColsTemplate = new Array(grid.getColumnCount()).fill(
+      "1fr",
+      0,
+      grid.getColumnCount()
+    );
 
-  return {
-    "columns-template": baseColsTemplate.join(" "),
-    "rows-template": intercalateArray(
-      baseRowsTemplate,
-      "var(--gx-le-table-cell-gap)"
-    ).join(" ")
-  };
-}
+    return {
+      "columns-template": baseColsTemplate.join(" "),
+      "rows-template": baseRowsTemplate.join(" ")
+    };
+  }
 
-function renderEmptyRows(rowPlaceholdersToRender: PlaceholderRow[]) {
-  return rowPlaceholdersToRender.map(
-    ({ nextRow, colSpan, rowStart, rowSpan }: PlaceholderRow) => {
-      const emptyCellStyle = {
-        "grid-column": `span ${colSpan}`,
-        "grid-row": `${rowStart} / span ${rowSpan}`
-      };
-      return (
-        <gx-layout-editor-placeholder
-          data-gx-le-placeholder="row"
-          style={emptyCellStyle}
-          data-gx-le-next-row-id={nextRow ? nextRow["@id"] : ""}
-        />
-      );
+  private getCellRowSpan(cell): number {
+    return parseInt(cell["@rowSpan"] || "1", 10);
+  }
+
+  private getCellColSpan(cell): number {
+    return parseInt(cell["@colSpan"] || "1", 10);
+  }
+
+  private isEmptyGrid(grid: CssGridLayout<string>): boolean {
+    if (
+      grid.getRowCount() === 1 &&
+      grid.getColumnCount() === 1 &&
+      grid.get(1, 1) === undefined
+    ) {
+      return true;
+    } else {
+      return false;
     }
-  );
-}
-
-function renderCell(cell, rowId, rowIndex, context) {
-  const rowSpan = (getCellRowSpan(cell) - 1) * 2 + 1;
-  const colSpan = getCellColSpan(cell);
-  const rowStart = (rowIndex + 1) * 2;
-
-  return (
-    <gx-table-cell
-      {...getCellCommonAttrs(cell)}
-      data-gx-le-row-id={rowId}
-      data-gx-le-drop-area="horizontal"
-      tabindex="0"
-      style={{
-        "grid-column": `span ${colSpan}`,
-        "grid-row": ` ${rowStart} / span ${rowSpan}`
-      }}
-    >
-      {controlResolver(cell, context)}
-    </gx-table-cell>
-  );
-}
-
-function intercalateArray(arr, item): any[] {
-  return arr.reduce((acc, o) => (o ? acc.concat(o, item) : acc), [item]);
-}
-
-function getCellRowSpan(cell): number {
-  return parseInt(cell["@rowSpan"] || "1", 10);
-}
-
-function getCellColSpan(cell): number {
-  return parseInt(cell["@colSpan"] || "1", 10);
+  }
 }
 
 interface PlaceholderRow {

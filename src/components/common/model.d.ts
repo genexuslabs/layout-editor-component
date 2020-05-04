@@ -176,6 +176,8 @@ declare namespace GeneXusAbstractLayout {
     "@cellControlName": string;
     "@hAlign": string;
     "@vAlign": string;
+    "@rowSpan": number;
+    "@colSpan": number;
   }
 
   export interface Row {
