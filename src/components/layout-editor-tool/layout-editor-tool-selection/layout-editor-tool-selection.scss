@@ -43,6 +43,12 @@ gx-le-tool-selection {
       top: 0px;
       max-width: min-content;
     }
+    &.location-viewport-top {
+      position: fixed;
+      top: 5px;
+      left: 50%;
+      transform: translate(-50%, 0px);
+    }
   }
   /* workaround to bug of chromium with position:sticky */
   & gx-le-tool-bar {

@@ -124,7 +124,7 @@ export class LayoutEditorToolSelection {
       this.loadBar && (
         <gx-le-tool-bar
           class="location-outside-top"
-          data-gx-le-tool-arrange-locations="location-outside-top location-outside-right location-outside-bottom location-outside-left location-inside-sticky"
+          data-gx-le-tool-arrange-locations="location-outside-top location-outside-right location-outside-bottom location-outside-left location-inside-sticky location-viewport-top"
           control={this.control}
         />
       ),

@@ -138,6 +138,15 @@ gx-le-tool-bar {
       );
     }
   }
+  &.location-viewport-top {
+    flex-direction: row;
+    & .bar {
+      order: 1;
+    }
+    & .arrow {
+      display: none;
+    }
+  }
 }
 
 .gx-le-tool-arrange-container {
