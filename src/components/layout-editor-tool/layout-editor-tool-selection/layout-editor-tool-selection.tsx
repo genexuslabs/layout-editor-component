@@ -101,6 +101,13 @@ export class LayoutEditorToolSelection {
       this.el.style.left = `${rect.left}px`;
       this.el.style.width = `${rect.width}px`;
       this.el.style.height = `${rect.height}px`;
+
+      /* workaround to bug of chromium with position:sticky */
+      this.el.style.setProperty(
+        "--sticky-top",
+        `${rect.top >= 0 ? 0 : rect.top * -1}px`
+      );
+      /* end of workaround */
     }
   }
 

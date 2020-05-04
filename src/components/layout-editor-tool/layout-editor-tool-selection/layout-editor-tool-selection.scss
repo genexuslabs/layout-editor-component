@@ -44,6 +44,15 @@ gx-le-tool-selection {
       max-width: min-content;
     }
   }
+  /* workaround to bug of chromium with position:sticky */
+  & gx-le-tool-bar {
+    &.location-inside-sticky {
+      position: absolute;
+      top: var(--sticky-top);
+      max-width: min-content;
+    }
+  }
+  /* end of workaround */
   & gx-le-tool-box {
     z-index: 1;
   }
