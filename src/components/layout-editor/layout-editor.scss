@@ -1,5 +1,6 @@
 @import "../../../node_modules/@genexus/web-controls-library/dist/theming/theming-mixins.scss";
 @import "../layout-editor-tool/layout-editor-tool-arrange/layout-editor-tool-arrange.scss";
+@import "./layout-editor-abstract-view.scss";
 
 @mixin containers-gap() {
   gx-table {
@@ -30,7 +31,6 @@
 @mixin empty-outermost-container {
   & > [data-gx-le-container-empty="true"] {
     min-height: var(--gx-le-empty-min-height, 100vh);
-    border: var(--gx-le-table-cell-border);
   }
 }
 
@@ -40,7 +40,6 @@
 
     &[data-gx-le-container-empty="true"] {
       grid-template-rows: 1fr !important;
-      border: var(--gx-le-table-cell-border);
     }
 
     &[data-gx-le-highlighted-container] {
@@ -55,7 +54,6 @@
 
 @mixin drop-area {
   [data-gx-le-drop-area] {
-    border: var(--gx-le-table-cell-border);
     min-height: var(--gx-le-table-cell-min-height);
 
     &[data-gx-le-active-target="empty"] {
@@ -268,4 +266,6 @@ gx-layout-editor {
   @include main-table-defaults();
 
   @include layout-editor-tool-arrange();
+
+  @include layout-editor-abstract-view();
 }

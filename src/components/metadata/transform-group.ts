@@ -1,14 +1,15 @@
 import { inferChildControlType, transformContainer } from "./transform";
 
 export function transformGroup(
-  rawGroup: GeneXusAbstractLayout.Group
+  rawGroup: GeneXusAbstractLayout.Group,
+  nestingLevel: number
 ): GeneXusAbstractLayout.Group {
   return {
     ...rawGroup,
     ...transformContainer(
       rawGroup,
       inferChildControlType(rawGroup),
-      false,
+      nestingLevel + 1,
       true
     )
   };

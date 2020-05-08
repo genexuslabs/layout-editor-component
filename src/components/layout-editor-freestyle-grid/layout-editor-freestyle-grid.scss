@@ -2,4 +2,8 @@
 
 gx-le-freestyle-grid {
   @include common-control-wrapper();
+
+  & > div {
+    flex-grow: 1;
+  }
 }

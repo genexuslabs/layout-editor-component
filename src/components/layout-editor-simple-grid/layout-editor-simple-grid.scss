@@ -3,19 +3,14 @@
 gx-le-simple-grid {
   @include common-control-wrapper();
 
-  --gx-le-simple-grid-border: 1px solid
-    var(--gx-le-control-header-bar-background-color);
-  border: var(--gx-le-simple-grid-border);
+  & > div {
+    flex-grow: 1;
+  }
 
   // Hide container's anchor icon
   & [data-gx-le-control-header-bar] > table {
     &[data-gx-le-container-empty="true"] {
       min-width: 300px;
-    }
-
-    .header {
-      font-weight: bold;
-      border-bottom: var(--gx-le-simple-grid-border);
     }
   }
 

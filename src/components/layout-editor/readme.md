@@ -31,31 +31,53 @@ A set of special attributes are used to annotate container web components and it
 
 ## CSS variables
 
-| CSS variable name                             | Details                                                             |
-| --------------------------------------------- | ------------------------------------------------------------------- |
-| `--gx-le-empty-min-height`                    | Layout editor minimum height when empty                             |
-| `--gx-le-control-header-bar-background-color` | Control header bar background color                                 |
-| `--gx-le-control-header-bar-font-size`        | Control header bar font size                                        |
-| `--gx-le-control-header-bar-color`            | Control header bar text color                                       |
-| `--gx-le-control-header-bar-text`             | Control header bar text content                                     |
-| `--gx-le-form-field-color`                    | Color of the field of `gx-form-field` elements                      |
-| `--gx-le-table-cell-border`                   | Container item border                                               |
-| `--gx-le-table-cell-gap`                      | Gap between a container cells                                       |
-| `--gx-le-table-min-height`                    | Container minimum height                                            |
-| `--gx-le-table-cell-min-height`               | Container cell minimum height                                       |
-| `--gx-le-table-placeholder-color`             | Drop placeholder color                                              |
-| `--gx-le-table-placeholder-height`            | Height of drop placeholder (when a horizontal placeholder is shown) |
-| `--gx-le-table-placeholder-width`             | Width of drop placeholder (when a vertical placeholder is shown)    |
-| `--gx-le-tool-selection-color`                | Highlight color of the selected control                             |
-| `--gx-le-tool-dimension-background-color`     | Dimension background color                                          |
-| `--gx-le-tool-dimension-font-family`          | Dimension text family                                               |
-| `--gx-le-tool-dimension-font-size`            | Dimension text size                                                 |
-| `--gx-le-tool-dimension-font-style`           | Dimension text style                                                |
-| `--gx-le-tool-dimension-font-weight`          | Dimension text weight                                               |
-| `--gx-le-tool-dimension-text-decoration`      | Dimension text decoration                                           |
-| `--gx-le-tool-dimension-color`                | Dimension text color                                                |
-| `--gx-le-tool-box-margin-color`               | Box margin color                                                    |
-| `--gx-le-tool-box-padding-color`              | Box padding color                                                   |
+| CSS variable name                                       | Details                                                             |
+| ------------------------------------------------------- | ------------------------------------------------------------------- |
+| `--gx-le-empty-min-height`                              | Layout editor minimum height when empty                             |
+| `--gx-le-control-header-bar-background-color`           | Control header bar background color                                 |
+| `--gx-le-control-header-bar-font-size`                  | Control header bar font size                                        |
+| `--gx-le-control-header-bar-color`                      | Control header bar text color                                       |
+| `--gx-le-control-header-bar-text`                       | Control header bar text content                                     |
+| `--gx-le-form-field-color`                              | Color of the field of `gx-form-field` elements                      |
+| `--gx-le-table-cell-gap`                                | Gap between a container cells                                       |
+| `--gx-le-table-min-height`                              | Container minimum height                                            |
+| `--gx-le-table-cell-min-height`                         | Container cell minimum height                                       |
+| `--gx-le-table-placeholder-color`                       | Drop placeholder color                                              |
+| `--gx-le-table-placeholder-height`                      | Height of drop placeholder (when a horizontal placeholder is shown) |
+| `--gx-le-table-placeholder-width`                       | Width of drop placeholder (when a vertical placeholder is shown)    |
+| `--gx-le-abstract-view-table-cell-padding`              | Padding of container cells                                          |
+| `--gx-le-abstract-view-table-guideline-style`           | Table guidelines style                                              |
+| `--gx-le-abstract-view-tabular-table-odd-backcolor`     | Background color of `gx-le-tabular-table` on odd nesting level      |
+| `--gx-le-abstract-view-tabular-table-even-backcolor`    | Background color of `gx-le-tabular-table` on even odd nesting level |
+| `--gx-le-abstract-view-tabular-table-border-color`      | Border and guide lines color of `gx-le-tabular-table`               |
+| `--gx-le-abstract-view-canvas-table-odd-backcolor`      | Background color of `gx-le-canvas-table` on odd nesting level       |
+| `--gx-le-abstract-view-canvas-table-even-backcolor`     | Background color of `gx-le-canvas-table` even odd nesting level     |
+| `--gx-le-abstract-view-canvas-table-border-color`       | Border and guide lines color of `gx-le-canvas-table`                |
+| `--gx-le-abstract-view-flex-table-odd-backcolor`        | Background color of `gx-le-flex-table` on odd nesting level         |
+| `--gx-le-abstract-view-flex-table-even-backcolor`       | Background color of `gx-le-flex-table` even odd nesting level       |
+| `--gx-le-abstract-view-flex-table-border-color`         | Border and guide lines color of `gx-le-flex-table`                  |
+| `--gx-le-abstract-view-responsive-table-odd-backcolor`  | Background color of `gx-le-responsive-table` on odd nesting level   |
+| `--gx-le-abstract-view-responsive-table-even-backcolor` | Background color of `gx-le-responsive-table` even odd nesting level |
+| `--gx-le-abstract-view-responsive-table-border-color`   | Border and guide lines color of `gx-le-responsive-table`            |
+| `--gx-le-abstract-view-freestyle-grid-odd-backcolor`    | Background color of `gx-le-freestyle-grid` on odd nesting level     |
+| `--gx-le-abstract-view-freestyle-grid-even-backcolor`   | Background color of `gx-le-freestyle-grid` even odd nesting level   |
+| `--gx-le-abstract-view-freestyle-grid-border-color`     | Border and guide lines color of `gx-le-freestyle-grid`              |
+| `--gx-le-abstract-view-simple-grid-odd-backcolor`       | Background color of `gx-le-simple-grid` on odd nesting level        |
+| `--gx-le-abstract-view-simple-grid-even-backcolor`      | Background color of `gx-le-simple-grid` even odd nesting level      |
+| `--gx-le-abstract-view-simple-grid-border-color`        | Border and guide lines color of `gx-le-simple-grid`                 |
+| `--gx-le-abstract-view-section-odd-backcolor`           | Background color of `gx-le-section` on odd nesting level            |
+| `--gx-le-abstract-view-section-even-backcolor`          | Background color of `gx-le-section` even odd nesting level          |
+| `--gx-le-abstract-view-section-border-color`            | Border and guide lines color of `gx-le-section`                     |
+| `--gx-le-tool-selection-color`                          | Highlight color of the selected control                             |
+| `--gx-le-tool-dimension-background-color`               | Dimension background color                                          |
+| `--gx-le-tool-dimension-font-family`                    | Dimension text family                                               |
+| `--gx-le-tool-dimension-font-size`                      | Dimension text size                                                 |
+| `--gx-le-tool-dimension-font-style`                     | Dimension text style                                                |
+| `--gx-le-tool-dimension-font-weight`                    | Dimension text weight                                               |
+| `--gx-le-tool-dimension-text-decoration`                | Dimension text decoration                                           |
+| `--gx-le-tool-dimension-color`                          | Dimension text color                                                |
+| `--gx-le-tool-box-margin-color`                         | Box margin color                                                    |
+| `--gx-le-tool-box-padding-color`                        | Box padding color                                                   |
 
 <!-- Auto Generated Below -->
 

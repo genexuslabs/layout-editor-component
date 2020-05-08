@@ -39,14 +39,14 @@ function transformModel(
   rawModel: GeneXusAbstractLayout.Model
 ): GeneXusAbstractLayout.Model {
   return {
-    layout: transformLayout(rawModel.layout)
+    layout: transformLayout(rawModel.layout, 0)
   };
 }
 
 export function transformContainer(
   rawContainer: GeneXusAbstractLayout.Container,
   childControlType: string,
-  isRoot = false,
+  nestingLevel: number,
   isPart = false
 ): GeneXusAbstractLayout.Container {
   const transformControlFn = getTransformFunctionByType(childControlType);
@@ -55,8 +55,9 @@ export function transformContainer(
     childControlType,
     controlType: childControlType,
     [childControlType]: {
-      ...transformControlFn(rawContainer[childControlType]),
-      isRootControl: isRoot,
+      ...transformControlFn(rawContainer[childControlType], nestingLevel),
+      nestingLevel,
+      isRootControl: nestingLevel === 0,
       isPartControl: isPart
     }
   };
@@ -83,17 +84,22 @@ function transformDataset(
 
 function getTransformFunctionByType(
   type: string
-): (control: GeneXusAbstractLayout.Control) => GeneXusAbstractLayout.Control {
+): (
+  control: GeneXusAbstractLayout.Control,
+  nestingLevel: number
+) => GeneXusAbstractLayout.Control {
   const definition = controlsTransforms[type];
 
   if (!definition) {
     return transformControl;
   } else {
     return (
-      control: GeneXusAbstractLayout.Control
+      control: GeneXusAbstractLayout.Control,
+      nestingLevel: number
     ): GeneXusAbstractLayout.Control =>
       definition.transformFn(
-        transformDataset(definition.datasetFn, transformControl(control))
+        transformDataset(definition.datasetFn, transformControl(control)),
+        nestingLevel
       );
   }
 }

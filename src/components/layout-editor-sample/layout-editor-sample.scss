@@ -56,7 +56,6 @@ gx-layout-editor-sample {
     --gx-le-control-header-bar-background-color: var(--primary-color);
     --gx-le-control-header-bar-font-size: 11px;
     --gx-le-control-header-bar-color: white;
-    --gx-le-table-cell-border: 1px dashed var(--primary-color);
     --gx-le-table-cell-gap: 1px;
     --gx-le-table-min-height: 100px;
     --gx-le-table-cell-min-height: 80px;
@@ -72,7 +71,6 @@ gx-layout-editor-sample {
     --gx-le-tool-dimension-color: var(--light-color);
 
     &.preview {
-      --gx-le-table-cell-border: unset;
       --gx-le-table-cell-gap: unset;
       --gx-le-table-min-height: unset;
       --gx-le-table-cell-min-height: unset;

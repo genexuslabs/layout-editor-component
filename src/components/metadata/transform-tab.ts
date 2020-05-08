@@ -5,23 +5,27 @@ import {
 } from "./transform";
 
 export function transformTab(
-  rawTab: GeneXusAbstractLayout.Tab
+  rawTab: GeneXusAbstractLayout.Tab,
+  nestingLevel: number
 ): GeneXusAbstractLayout.Tab {
   const item = fixArrayProperty(rawTab.item);
 
   return {
     ...rawTab,
-    item: item.map(transformTabItem)
+    item: item.map((rawTabItem: GeneXusAbstractLayout.TabItem) =>
+      transformTabItem(rawTabItem, nestingLevel)
+    )
   };
 }
 
 function transformTabItem(
-  rawTabItem: GeneXusAbstractLayout.TabItem
+  rawTabItem: GeneXusAbstractLayout.TabItem,
+  nestingLevel: number
 ): GeneXusAbstractLayout.TabItem {
   const transformed = transformContainer(
     rawTabItem,
     inferChildControlType(rawTabItem),
-    false,
+    nestingLevel + 1,
     true
   );
 

@@ -1,0 +1,333 @@
+/* CSS variables defaults */
+$gx-le-abstract-view-table-cell-padding: 10px;
+$gx-le-abstract-view-table-guideline-style: dashed;
+$gx-le-abstract-view-tabular-table-odd-backcolor: rgb(241, 239, 255);
+$gx-le-abstract-view-tabular-table-even-backcolor: rgb(232, 228, 255);
+$gx-le-abstract-view-tabular-table-border-color: rgb(138, 124, 217);
+$gx-le-abstract-view-canvas-table-odd-backcolor: rgb(255, 246, 220);
+$gx-le-abstract-view-canvas-table-even-backcolor: rgb(255, 240, 197);
+$gx-le-abstract-view-canvas-table-border-color: rgb(245, 184, 59);
+$gx-le-abstract-view-flex-table-odd-backcolor: rgb(255, 237, 237);
+$gx-le-abstract-view-flex-table-even-backcolor: rgb(255, 221, 221);
+$gx-le-abstract-view-flex-table-border-color: rgb(255, 130, 130);
+$gx-le-abstract-view-responsive-table-odd-backcolor: rgb(236, 240, 255);
+$gx-le-abstract-view-responsive-table-even-backcolor: rgb(229, 235, 255);
+$gx-le-abstract-view-responsive-table-border-color: rgb(65, 128, 255);
+$gx-le-abstract-view-freestyle-grid-odd-backcolor: rgb(210, 248, 255);
+$gx-le-abstract-view-freestyle-grid-even-backcolor: rgb(210, 248, 255);
+$gx-le-abstract-view-freestyle-grid-border-color: rgb(24, 186, 217);
+$gx-le-abstract-view-simple-grid-odd-backcolor: rgb(225, 254, 235);
+$gx-le-abstract-view-simple-grid-even-backcolor: rgb(225, 254, 235);
+$gx-le-abstract-view-simple-grid-border-color: rgb(55, 180, 117);
+$gx-le-abstract-view-section-odd-backcolor: rgb(255, 240, 197);
+$gx-le-abstract-view-section-even-backcolor: rgb(255, 246, 220);
+$gx-le-abstract-view-section-border-color: rgb(128, 128, 128);
+
+@mixin user-agent-override {
+  &:focus,
+  & *:focus {
+    outline: none;
+  }
+}
+
+@mixin container-decoration($evenBackColor, $oddBackColor, $borderColor) {
+  outline: 2px solid $borderColor;
+  outline-offset: -1px;
+  &[data-gx-le-control-nesting-parity="even"] {
+    background-color: $evenBackColor;
+  }
+  &[data-gx-le-control-nesting-parity="odd"] {
+    background-color: $oddBackColor;
+  }
+}
+
+@mixin container-decoration-none() {
+  outline: none;
+  outline-offset: 0px;
+  &[data-gx-le-control-nesting-parity="even"],
+  &[data-gx-le-control-nesting-parity="odd"] {
+    background-color: transparent;
+  }
+}
+
+@mixin cell-decoration($borderColor) {
+  padding: var(
+    --gx-le-abstract-view-table-cell-padding,
+    $gx-le-abstract-view-table-cell-padding
+  );
+  border: 1px
+    var(
+      --gx-le-abstract-view-table-guideline-style,
+      $gx-le-abstract-view-table-guideline-style
+    )
+    $borderColor !important;
+  margin-top: -1px;
+  margin-left: -1px;
+}
+
+@mixin gx-le-tabular-table {
+  & gx-le-tabular-table {
+    @include container-decoration(
+      var(
+        --gx-le-abstract-view-tabular-table-even-backcolor,
+        $gx-le-abstract-view-tabular-table-even-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-tabular-table-odd-backcolor,
+        $gx-le-abstract-view-tabular-table-odd-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-tabular-table-border-color,
+        $gx-le-abstract-view-tabular-table-border-color
+      )
+    );
+    & gx-table-cell {
+      @include cell-decoration(
+        var(
+          --gx-le-abstract-view-tabular-table-border-color,
+          $gx-le-abstract-view-tabular-table-border-color
+        )
+      );
+    }
+  }
+}
+
+@mixin gx-le-canvas-table {
+  & gx-le-canvas-table {
+    @include container-decoration(
+      var(
+        --gx-le-abstract-view-canvas-table-even-backcolor,
+        $gx-le-abstract-view-canvas-table-even-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-canvas-table-odd-backcolor,
+        $gx-le-abstract-view-canvas-table-odd-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-canvas-table-border-color,
+        $gx-le-abstract-view-canvas-table-border-color
+      )
+    );
+  }
+  & gx-le-canvas-table {
+    & gx-canvas-cell {
+      @include cell-decoration(
+        var(
+          --gx-le-abstract-view-canvas-table-border-color,
+          $gx-le-abstract-view-canvas-table-border-color
+        )
+      );
+    }
+  }
+}
+
+@mixin gx-le-flex-table {
+  & gx-le-flex-table {
+    @include container-decoration(
+      var(
+        --gx-le-abstract-view-flex-table-even-backcolor,
+        $gx-le-abstract-view-flex-table-even-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-flex-table-odd-backcolor,
+        $gx-le-abstract-view-flex-table-odd-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-flex-table-border-color,
+        $gx-le-abstract-view-flex-table-border-color
+      )
+    );
+  }
+  & gx-le-flex-table {
+    & > div[data-gx-le-flex-table] {
+      & > div[data-gx-le-cell-id] {
+        @include cell-decoration(
+          var(
+            --gx-le-abstract-view-flex-table-border-color,
+            $gx-le-abstract-view-flex-table-border-color
+          )
+        );
+      }
+    }
+  }
+}
+
+@mixin gx-le-responsive-table {
+  & gx-le-responsive-table {
+    @include container-decoration(
+      var(
+        --gx-le-abstract-view-responsive-table-even-backcolor,
+        $gx-le-abstract-view-responsive-table-even-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-responsive-table-odd-backcolor,
+        $gx-le-abstract-view-responsive-table-odd-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-responsive-table-border-color,
+        $gx-le-abstract-view-responsive-table-border-color
+      )
+    );
+  }
+  & gx-le-responsive-table {
+    & > div[data-gx-le-responsive-table] {
+      & > div[data-gx-le-responsive-table-row] {
+        & > div[data-gx-le-cell-id] {
+          @include cell-decoration(
+            var(
+              --gx-le-abstract-view-responsive-table-border-color,
+              $gx-le-abstract-view-responsive-table-border-color
+            )
+          );
+        }
+      }
+    }
+  }
+}
+
+@mixin gx-le-freestyle-grid {
+  & gx-le-freestyle-grid {
+    @include container-decoration(
+      var(
+        --gx-le-abstract-view-freestyle-grid-even-backcolor,
+        $gx-le-abstract-view-freestyle-grid-even-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-freestyle-grid-odd-backcolor,
+        $gx-le-abstract-view-freestyle-grid-odd-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-freestyle-grid-border-color,
+        $gx-le-abstract-view-freestyle-grid-border-color
+      )
+    );
+    & > div {
+      & > gx-le-tabular-table {
+        @include container-decoration-none();
+        & > gx-table {
+          & > gx-table-cell {
+            @include cell-decoration(
+              var(
+                --gx-le-abstract-view-freestyle-grid-border-color,
+                $gx-le-abstract-view-freestyle-grid-border-color
+              )
+            );
+          }
+        }
+      }
+      & > gx-le-responsive-table {
+        @include container-decoration-none();
+        & > div[data-gx-le-responsive-table] {
+          & > div[data-gx-le-responsive-table-row] {
+            & > div[data-gx-le-cell-id] {
+              @include cell-decoration(
+                var(
+                  --gx-le-abstract-view-freestyle-grid-border-color,
+                  $gx-le-abstract-view-freestyle-grid-border-color
+                )
+              );
+            }
+          }
+        }
+      }
+      & > gx-le-canvas-table {
+        @include container-decoration-none();
+        & > gx-canvas {
+          & > gx-canvas-cell {
+            @include cell-decoration(
+              var(
+                --gx-le-abstract-view-freestyle-grid-border-color,
+                $gx-le-abstract-view-freestyle-grid-border-color
+              )
+            );
+          }
+        }
+      }
+      & > gx-le-flex-table {
+        @include container-decoration-none();
+        & > div[data-gx-le-flex-table] {
+          & > div[data-gx-le-cell-id] {
+            @include cell-decoration(
+              var(
+                --gx-le-abstract-view-freestyle-grid-border-color,
+                $gx-le-abstract-view-freestyle-grid-border-color
+              )
+            );
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin gx-le-simple-grid {
+  & gx-le-simple-grid {
+    @include container-decoration(
+      var(
+        --gx-le-abstract-view-simple-grid-even-backcolor,
+        $gx-le-abstract-view-simple-grid-even-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-simple-grid-odd-backcolor,
+        $gx-le-abstract-view-simple-grid-odd-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-simple-grid-border-color,
+        $gx-le-abstract-view-simple-grid-border-color
+      )
+    );
+    & td {
+      @include cell-decoration(
+        var(
+          --gx-le-abstract-view-simple-grid-border-color,
+          $gx-le-abstract-view-simple-grid-border-color
+        )
+      );
+      & .header {
+        margin-bottom: var(
+          --gx-le-abstract-view-table-cell-padding,
+          $gx-le-abstract-view-table-cell-padding
+        );
+      }
+    }
+  }
+}
+
+@mixin gx-le-section {
+  & gx-le-section {
+    @include container-decoration(
+      var(
+        --gx-le-abstract-view-section-even-backcolor,
+        $gx-le-abstract-view-section-even-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-section-odd-backcolor,
+        $gx-le-abstract-view-section-odd-backcolor
+      ),
+      var(
+        --gx-le-abstract-view-section-border-color,
+        $gx-le-abstract-view-section-border-color
+      )
+    );
+  }
+}
+
+@mixin layout-editor-abstract-view {
+  &:not(.preview) {
+    @include user-agent-override();
+
+    @include gx-le-tabular-table();
+
+    @include gx-le-canvas-table();
+
+    @include gx-le-flex-table();
+
+    @include gx-le-responsive-table();
+
+    @include gx-le-freestyle-grid();
+
+    @include gx-le-simple-grid();
+
+    @include gx-le-section();
+  }
+}

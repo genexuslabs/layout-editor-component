@@ -163,6 +163,7 @@ declare namespace GeneXusAbstractLayout {
     "@controlName": string;
     "@class": string;
     "@PATTERN_ELEMENT_CUSTOM_PROPERTIES"?: string;
+    nestingLevel: number;
     isRootControl?: boolean;
     isPartControl?: boolean;
     CustomProperties?: ControlCustomProperties;

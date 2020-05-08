@@ -70,7 +70,9 @@ export function getControlWrapperCommonAttrs(
     "data-gx-le-control-name": control["@controlName"] || "",
     "data-gx-le-control-type-name":
       (controlDefinition && controlDefinition.typeName) || "Unknown control",
-    draggable: (!control.isRootControl && !control.isPartControl).toString()
+    draggable: (!control.isRootControl && !control.isPartControl).toString(),
+    "data-gx-le-control-nesting-parity":
+      control.nestingLevel % 2 === 0 ? "even" : "odd"
   };
 }
 
