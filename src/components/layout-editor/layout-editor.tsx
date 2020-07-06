@@ -238,10 +238,6 @@ export class LayoutEditor {
     this.dragDrop.initialize();
   }
 
-  componentWillUpdate() {
-    this.dragDrop.restoreAfterDragDrop();
-  }
-
   @Listen("click")
   @Listen("contextmenu")
   handleClick(event: MouseEvent) {

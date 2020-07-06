@@ -13,7 +13,9 @@ export abstract class LayoutEditorToolArrangeObserver {
   }
 
   public static unobserve(el: HTMLElement) {
-    this.entries.get(el).destroy();
-    this.entries.delete(el);
+    if (this.entries.has(el)) {
+      this.entries.get(el).destroy();
+      this.entries.delete(el);
+    }
   }
 }

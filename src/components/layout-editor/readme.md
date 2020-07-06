@@ -39,7 +39,6 @@ A set of special attributes are used to annotate container web components and it
 | `--gx-le-control-header-bar-color`                      | Control header bar text color                                       |
 | `--gx-le-control-header-bar-text`                       | Control header bar text content                                     |
 | `--gx-le-form-field-color`                              | Color of the field of `gx-form-field` elements                      |
-| `--gx-le-table-cell-gap`                                | Gap between a container cells                                       |
 | `--gx-le-table-min-height`                              | Container minimum height                                            |
 | `--gx-le-table-cell-min-height`                         | Container cell minimum height                                       |
 | `--gx-le-table-placeholder-color`                       | Drop placeholder color                                              |

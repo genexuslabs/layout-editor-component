@@ -39,6 +39,7 @@ export class LayoutEditorDragDrop {
   private dragLeaveTimeoutId: number;
   private lastCellDragLeft: HTMLElement;
   private ghostElement: HTMLDivElement;
+  private isMoveOperation = false;
 
   public initialize() {
     this.element.addEventListener(
@@ -71,6 +72,7 @@ export class LayoutEditorDragDrop {
     const cell = findParentCell(control);
     const { cellId } = getCellData(cell);
 
+    this.isMoveOperation = true;
     cell.setAttribute("data-gx-le-dragged", "true");
 
     dataTransfer.dropEffect = "copy";
@@ -89,6 +91,8 @@ export class LayoutEditorDragDrop {
   private handleControlDragLeave(event: DragEvent) {
     const evtTarget = event.target as HTMLElement;
     const targetCell = findValidDropTarget(evtTarget);
+    const relatedTarget = event.relatedTarget;
+
     if (!targetCell) {
       return;
     }
@@ -99,6 +103,13 @@ export class LayoutEditorDragDrop {
       this.clearActiveTarget(targetCell);
       this.removeTransitElement();
     }, 50);
+
+    if (
+      !this.isMoveOperation &&
+      (relatedTarget === null || relatedTarget["tagName"] === "HTML")
+    ) {
+      this.handleControlDragEnd();
+    }
   }
 
   private removeTransitElement() {
@@ -148,16 +159,16 @@ export class LayoutEditorDragDrop {
     }
 
     const transitElement = this.getTransitElement();
+    const { dropArea: direction } = getCellData(targetCell);
 
     if (
-      this.getTransitElementPosition(targetCell, event) === DropPosition.After
+      this.getTransitElementPosition(targetCell, direction, event) ===
+      DropPosition.After
     ) {
       targetCell.appendChild(transitElement);
     } else {
       targetCell.insertBefore(transitElement, targetCell.firstElementChild);
     }
-
-    const { dropArea: direction } = getCellData(targetCell);
 
     const position =
       targetCell.children.length === 1
@@ -223,13 +234,25 @@ export class LayoutEditorDragDrop {
 
   private getTransitElementPosition(
     targetCell: HTMLElement,
+    direction: string,
     event: DragEvent
   ): DropPosition {
     const boundingRect = targetCell.getBoundingClientRect();
     const boundingRectWidth = boundingRect.right - boundingRect.left;
-    return event.clientX > boundingRect.left + boundingRectWidth / 2
-      ? DropPosition.After
-      : DropPosition.Before;
+    const boundingRectHeight = boundingRect.bottom - boundingRect.top;
+
+    switch (direction) {
+      case "horizontal":
+        return event.clientX > boundingRect.left + boundingRectWidth / 2
+          ? DropPosition.After
+          : DropPosition.Before;
+      case "vertical":
+        return event.clientY > boundingRect.top + boundingRectHeight / 2
+          ? DropPosition.After
+          : DropPosition.Before;
+      default:
+        return DropPosition.After;
+    }
   }
 
   private getTransitElement(): HTMLDivElement {
@@ -439,6 +462,7 @@ export class LayoutEditorDragDrop {
     this.removeAttributeFromElements("data-gx-le-active-target");
     this.removeAttributeFromElements("data-gx-le-active-target-parent");
     this.removeAttributeFromElements("data-gx-le-dragged");
+    this.isMoveOperation = false;
 
     this.emitDragEvent(this.dropTargetChanged, {
       targetControlId: ""

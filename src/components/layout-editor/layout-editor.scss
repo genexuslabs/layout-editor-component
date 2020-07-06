@@ -2,32 +2,6 @@
 @import "../layout-editor-tool/layout-editor-tool-arrange/layout-editor-tool-arrange.scss";
 @import "./layout-editor-abstract-view.scss";
 
-@mixin containers-gap() {
-  gx-table {
-    grid-column-gap: var(--gx-le-table-cell-gap);
-  }
-
-  [data-gx-le-flex-table-direction="column"],
-  [data-gx-le-flex-table-direction="reverse-column"] {
-    & > [data-gx-flex-cell] {
-      margin-top: var(--gx-le-table-cell-gap);
-    }
-    & > [data-gx-flex-cell]:first-child {
-      margin-top: 0;
-    }
-  }
-
-  [data-gx-le-flex-table-direction="row"],
-  [data-gx-le-flex-table-direction="reverse-row"] {
-    & > [data-gx-flex-cell] {
-      margin-left: var(--gx-le-table-cell-gap);
-    }
-    & > [data-gx-flex-cell]:first-child {
-      margin-left: 0;
-    }
-  }
-}
-
 @mixin empty-outermost-container {
   & > [data-gx-le-container-empty="true"] {
     min-height: var(--gx-le-empty-min-height, 100vh);
@@ -56,43 +30,35 @@
   [data-gx-le-drop-area] {
     min-height: var(--gx-le-table-cell-min-height);
 
+    [data-gx-le-transit-element] {
+      pointer-events: none;
+    }
+
     &[data-gx-le-active-target="empty"] {
       background-color: var(--gx-le-table-placeholder-color);
     }
 
     &[data-gx-le-active-target="left"] {
       [data-gx-le-transit-element] {
-        left: calc(
-          var(--gx-le-table-placeholder-width) * -0.5 -
-            var(--gx-le-table-cell-gap) - 1px
-        );
+        left: 0px;
       }
     }
 
     &[data-gx-le-active-target="right"] {
       [data-gx-le-transit-element] {
-        right: calc(
-          var(--gx-le-table-placeholder-width) * -0.5 -
-            var(--gx-le-table-cell-gap)
-        );
+        right: 0px;
       }
     }
 
     &[data-gx-le-active-target="top"] {
       [data-gx-le-transit-element] {
-        top: calc(
-          var(--gx-le-table-placeholder-height) * -0.5 -
-            var(--gx-le-table-cell-gap)
-        );
+        top: 0px;
       }
     }
 
     &[data-gx-le-active-target="bottom"] {
       [data-gx-le-transit-element] {
-        bottom: calc(
-          var(--gx-le-table-placeholder-height) * -0.5 -
-            var(--gx-le-table-cell-gap) - 1px
-        );
+        bottom: 0px;
       }
     }
 
@@ -246,8 +212,6 @@ gx-layout-editor {
   @include active-placeholder();
 
   @include box-sizing();
-
-  @include containers-gap();
 
   @include empty-outermost-container();
 

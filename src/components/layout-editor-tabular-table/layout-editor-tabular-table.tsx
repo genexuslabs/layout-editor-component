@@ -138,15 +138,8 @@ export class LayoutEditorTabularTable {
   }
 
   private getTableStyle(grid: CssGridLayout<string>) {
-    const baseRowsTemplate = Array.from(
-      { length: grid.getRowCount() },
-      (_, i) => (i % 2 === 0 ? "var(--gx-le-table-cell-gap)" : "auto")
-    );
-    const baseColsTemplate = new Array(grid.getColumnCount()).fill(
-      "1fr",
-      0,
-      grid.getColumnCount()
-    );
+    const baseRowsTemplate = new Array(grid.getRowCount()).fill("auto");
+    const baseColsTemplate = new Array(grid.getColumnCount()).fill("1fr");
 
     return {
       "columns-template": baseColsTemplate.join(" "),
