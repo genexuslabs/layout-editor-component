@@ -69,7 +69,7 @@ export const controlsDefinition: ControlDefinition[] = [
   {
     tag: "gx-le-simple-grid",
     type: "simplegrid",
-    typeName: "Simple Grid"
+    typeName: "Grid"
   },
   {
     tag: "gx-le-tab",

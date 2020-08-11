@@ -3,6 +3,7 @@ import {
   ResolverContext,
   controlResolver,
   getControlCommonAttrs,
+  getControlTypeName,
   getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
@@ -19,6 +20,7 @@ export class LayoutEditorFreestyleGrid {
 
   render() {
     const { grid } = this.model;
+    const headerBarText = getControlTypeName(this.model);
 
     return (
       <Host {...getControlWrapperCommonAttrs(this.model)}>
@@ -27,7 +29,7 @@ export class LayoutEditorFreestyleGrid {
           class={grid["@class"]}
           data-gx-le-control-header-bar
           style={{
-            "--gx-le-control-header-bar-text": `'${this.model.controlType}'`
+            "--gx-le-control-header-bar-text": `'${headerBarText}'`
           }}
         >
           {controlResolver(grid, this.context)}

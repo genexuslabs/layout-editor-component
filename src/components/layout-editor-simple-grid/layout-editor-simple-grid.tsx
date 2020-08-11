@@ -2,6 +2,7 @@ import { Component, Element, Host, Prop, h } from "@stencil/core";
 import {
   ResolverContext,
   getControlCommonAttrs,
+  getControlTypeName,
   getControlWrapperCommonAttrs
 } from "../layout-editor/layout-editor-control-resolver";
 
@@ -18,8 +19,7 @@ export class LayoutEditorSimpelGrid {
 
   render() {
     const { simplegrid } = this.model;
-    const headerBarText = this.model.controlType || "Grid";
-
+    const headerBarText = getControlTypeName(this.model);
     const items: GeneXusAbstractLayout.SimpleGridItem[] = simplegrid.item
       ? Array.isArray(simplegrid.item)
         ? simplegrid.item

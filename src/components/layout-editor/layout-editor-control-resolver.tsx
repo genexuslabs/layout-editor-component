@@ -60,7 +60,6 @@ export function getCellCommonAttrs(cell: GeneXusAbstractLayout.Cell) {
 export function getControlWrapperCommonAttrs(
   model: GeneXusAbstractLayout.Cell
 ) {
-  const controlDefinition = findResolverByType(model.childControlType);
   const control = model[
     model.childControlType
   ] as GeneXusAbstractLayout.Control;
@@ -68,8 +67,7 @@ export function getControlWrapperCommonAttrs(
   return {
     "data-gx-le-control-id": control["@id"],
     "data-gx-le-control-name": control["@controlName"] || "",
-    "data-gx-le-control-type-name":
-      (controlDefinition && controlDefinition.typeName) || "Unknown control",
+    "data-gx-le-control-type-name": getControlTypeName(model),
     draggable: (!control.isRootControl && !control.isPartControl).toString(),
     "data-gx-le-control-nesting-parity":
       control.nestingLevel % 2 === 0 ? "even" : "odd"
@@ -81,4 +79,10 @@ export function getControlCommonAttrs(control: GeneXusAbstractLayout.Control) {
     class: control["@class"],
     draggable: !control.isRootControl && !control.isPartControl
   };
+}
+
+export function getControlTypeName(model: GeneXusAbstractLayout.Cell) {
+  return (
+    findResolverByType(model.childControlType)?.typeName ?? "Unknown control"
+  );
 }
