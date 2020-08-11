@@ -1,4 +1,12 @@
-import { Component, Element, Listen, Prop, Watch, h } from "@stencil/core";
+import {
+  Component,
+  Element,
+  Host,
+  Listen,
+  Prop,
+  Watch,
+  h
+} from "@stencil/core";
 
 import { LayoutEditorToolDimensionType } from "../layout-editor-tool-commons";
 import { findContainedControl } from "../../layout-editor/layout-editor-helpers";
@@ -120,27 +128,29 @@ export class LayoutEditorToolSelection {
   }
 
   render() {
-    return [
-      this.loadBar && (
-        <gx-le-tool-bar
-          class="location-outside-top"
-          data-gx-le-tool-arrange-locations="location-outside-top location-outside-right location-outside-bottom location-outside-left location-inside-sticky location-viewport-top"
-          control={this.control}
-        />
-      ),
-      this.loadBox && <gx-le-tool-box control={this.control} />,
-      this.loadDimension && (
-        <gx-le-tool-dimension
-          control={this.control}
-          type={LayoutEditorToolDimensionType.Height}
-        />
-      ),
-      this.loadDimension && (
-        <gx-le-tool-dimension
-          control={this.control}
-          type={LayoutEditorToolDimensionType.Width}
-        />
-      )
-    ];
+    return (
+      <Host>
+        {this.loadBar && (
+          <gx-le-tool-bar
+            class="location-outside-top"
+            data-gx-le-tool-arrange-locations="location-outside-top location-outside-right location-outside-bottom location-outside-left location-inside-sticky location-viewport-top"
+            control={this.control}
+          />
+        )}
+        {this.loadBox && <gx-le-tool-box control={this.control} />}
+        {this.loadDimension && (
+          <gx-le-tool-dimension
+            control={this.control}
+            type={LayoutEditorToolDimensionType.Height}
+          />
+        )}
+        {this.loadDimension && (
+          <gx-le-tool-dimension
+            control={this.control}
+            type={LayoutEditorToolDimensionType.Width}
+          />
+        )}
+      </Host>
+    );
   }
 }

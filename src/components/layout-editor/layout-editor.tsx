@@ -311,7 +311,7 @@ export class LayoutEditor {
       return [
         <gx-le-tool-highlight-controller
           editor={this}
-          selection={this.selectedControls}
+          selection={[...this.selectedControls]}
           dragTarget={this.dragTarget}
         />,
         <Fragment>
